@@ -1,6 +1,13 @@
 ## CHURCH MIS
 Capstone project
 
+## Dev Requirements
+• Composer
+• Node Package Manager
+• Apache
+• MySQL
+• PHP 8.1+
+
 ## Project Setup
 
 ```sh
