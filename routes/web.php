@@ -17,10 +17,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/admin', function () {
+//     return view('layouts/admin');
+// });
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function() {
+    Route::get('/dashboard', function () {
+        return view('layouts/admin');
+    });
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
+    Route::get('/dashboard', function () {
+        return view('home');
+    });
+});

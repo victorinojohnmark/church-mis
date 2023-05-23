@@ -19,8 +19,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'birth_date',
+        'address',
+        'contact_number',
         'email',
         'password',
+        'is_admin'
     ];
 
     /**
@@ -43,8 +47,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function getIsAdminAttribute()
-    {
-        return $this->is_admin;
-    }
+    // public function getIsAdminAttribute()
+    // {
+    //     return $this->is_admin;
+    // }
 }
