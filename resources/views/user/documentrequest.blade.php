@@ -6,8 +6,79 @@
         @include('user.sidebarmenu')
 
         <div class="col-md-9">
-            {{-- Content goes here --}}
+            <div id="content" class="px-3">
+                <h1>Document Requests</h1>
+                <hr>
+                @include('layouts.message')
+                <div class="py-3">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#documentRequestModal">Add Request</button>
+                    <div class="modal fade" id="documentRequestModal" tabindex="-1" aria-labelledby="documentRequestModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="documentRequestModalLabel">Document Request Form</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <form action="{{ route('documentrequestsave') }}" method="POST" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    @include('user.documentrequest-form')
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </form>
+
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table id="users-table" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Request Code</th>
+                                <th>Document Type</th>
+                                <th>Date Requested</th>
+                                <th>Payment Amount</th>
+                                <th>Status</th>
+                                <th>Options</th>
+                                <!-- Add more columns as needed -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($documentRequests as $request)
+                                <tr>
+                                    <td>{{ $request->request_code }}</td>
+                                    <td>{{ $request->document_type }}</td>
+                                    <td>{{ $request->requested_date }}</td>
+                                    <td>{{ 'N/A' }}</td>
+                                    <td>{{ $request->status }}</td>
+                                    <td><button class="btn btn-success btn-sm">Update</button></td>
+                                    <!-- Add more columns as needed -->
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <link rel="stylesheet" href="/vendor/datatables/dataTables.bootstrap5.min.css">
+@endpush
+
+@push('scripts')
+    <script src="/vendor/jquery/jquery-3.5.1.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#users-table').DataTable();
+        });
+    </script>
+@endpush

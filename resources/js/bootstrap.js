@@ -6,11 +6,7 @@ import 'bootstrap';
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-import * as Popper from '@popperjs/core'
-window.Popper = Popper
 
-import 'bootstrap';
-import 'datatables.net-bs5/js/dataTables.bootstrap5.min.js';
 
 import axios from 'axios';
 window.axios = axios;

@@ -46,10 +46,6 @@ footer {
     width: 1.50rem;
 }
 
-.form-control {
-    border-radius: 0;
-}
-
-.btn {
+.form-control, .form-select, .btn, .modal-content {
     border-radius: 0;
 }

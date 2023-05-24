@@ -7,10 +7,11 @@
 
         <div class="col-md-9">
             <div id="content" class="px-3">
-                <form action="#" method="POST">
+                <form action="{{ route('userprofileupdate') }}" method="POST">
                 @csrf
                 <h1>Profile</h1>
                 <hr>
+                @include('layouts.message')
                   <h5 class="mb-3 fw-normal text-right">Personal Information</h5>
                     
                     <div class="mb-3">

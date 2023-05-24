@@ -8,6 +8,7 @@
   <link rel="dns-prefetch" href="//fonts.bunny.net">
   @vite(['resources/sass/app.scss'])
   @vite(['resources/css/app.css'])
+  @stack('css')
 </head>
 <body>
     @include('layouts.navbar')
@@ -30,5 +31,6 @@
         </div>
     </footer>
     @vite(['resources/js/app.js'])
+    @stack('scripts')
 </body>
 </html>

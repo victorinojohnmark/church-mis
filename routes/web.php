@@ -36,5 +36,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
         return view('home');
     })->name('user-dashboard');
 
-    Route::get('/profile', [App\Http\Controllers\UserController::class, 'userprofile'])->name('userprofile');
+    //profile
+    Route::get('/profile', [App\Http\Controllers\UserController::class, 'show'])->name('userprofile');
+    Route::post('/profileupdate', [App\Http\Controllers\UserController::class, 'update'])->name('userprofileupdate');
+
+    //document request
+    Route::get('/documentrequest', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('documentrequest');
+    Route::post('/documentrequestsave', [App\Http\Controllers\DocumentRequestController::class, 'store'])->name('documentrequestsave');
 });
