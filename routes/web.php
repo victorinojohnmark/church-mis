@@ -34,5 +34,7 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
 Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     Route::get('/dashboard', function () {
         return view('home');
-    });
+    })->name('user-dashboard');
+
+    Route::get('/profile', [App\Http\Controllers\UserController::class, 'userprofile'])->name('userprofile');
 });

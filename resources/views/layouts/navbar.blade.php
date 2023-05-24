@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="#">St. Gregory the Great Parish</a>
         <i class="fa fas-copy"></i> 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+        <button class="navbar-toggler rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
             aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
             {{-- <span class="navbar-toggler-icon"></span> --}}
             <i class="fa-solid fa-bars"></i>
@@ -31,11 +31,11 @@
                             {{ Auth::user()->name }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-end mt-0" aria-labelledby="navbarDropdown" data-bs-offset="10,5">
+                        <div class="dropdown-menu dropdown-menu-end mt-0 rounded-0" aria-labelledby="navbarDropdown" data-bs-offset="10,5">
                             @if (Auth::user()->is_admin) 
                                 <a class="dropdown-item" href="#">Admin Dashboard</a>
                             @else
-                                <a class="dropdown-item" href="#">My Profile</a>
+                                <a class="dropdown-item" href="{{ route('userprofile') }}">My Profile</a>
                                 <a class="dropdown-item" href="#">My Requests</a>
                             @endif
 
