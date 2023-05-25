@@ -26,9 +26,21 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function() {
-    Route::get('/dashboard', function () {
-        return view('layouts/admin');
-    });
+    //Admin Dashboard
+    Route::get('/dashboard', function () { return view('admin.welcome'); });
+
+    //Parishioners
+    Route::get('/parishioners', [App\Http\Controllers\ParishionerController::class, 'index'])->name('parishionerlist');
+
+    //Documents
+    Route::get('/documents', function(){ return 'hello'; })->name('documentlist');
+
+    //Document Requests
+    Route::get('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('admindocumentrequestlist');
+
+    //Payments
+    Route::get('/payments', [App\Http\Controllers\PaymentController::class, 'index'])->name('paymentlist');
+
 });
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {

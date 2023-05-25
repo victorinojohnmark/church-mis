@@ -28,7 +28,10 @@
             <label class="form-label">Proof of Payment</label>
             <input type="file" name="proof_of_payment" value="{{ $documentRequest->id ? $documentRequest->payment_amount : '' }}" 
             class="form-control" accept="image/*" required>
-            <div class="form-text">Your G-Cash payment confirmation screenshot</div>
+            <div class="form-text">
+                Your G-Cash payment confirmation screenshot <br>
+                Maximum of 5mb file size
+            </div>
         </div>
     </div>
 </div>

@@ -53,7 +53,7 @@
                                     <td>{{ $documentRequest->request_code }}</td>
                                     <td>{{ $documentRequest->document_type }}</td>
                                     <td>{{ $documentRequest->requested_date }}</td>
-                                    <td>{{ 'N/A' }}</td>
+                                    <td>{{ $documentRequest->payment ? 'Php ' . number_format($documentRequest->payment->amount, 2) : 'N/A' }}</td>
                                     <td>{{ $documentRequest->status }}</td>
                                     <td>
                                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#documentRequestCancelModal{{ $documentRequest->id }}">Cancel</button>
