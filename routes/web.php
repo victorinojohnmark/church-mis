@@ -43,4 +43,5 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     //document request
     Route::get('/documentrequest', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('documentrequest');
     Route::post('/documentrequestsave', [App\Http\Controllers\DocumentRequestController::class, 'store'])->name('documentrequestsave');
+    Route::post('/documentrequestcancel', [App\Http\Controllers\DocumentRequestController::class, 'cancel'])->name('documentrequestcancel');
 });

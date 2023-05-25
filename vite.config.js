@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import { VitePluginNode } from 'vite-plugin-node';
 // import path from 'path'
 
 export default defineConfig({
@@ -12,8 +11,7 @@ export default defineConfig({
                 'resources/js/app.js',
             ],
             refresh: true,
-        }),
-        VitePluginNode(),
+        })
     ],
     optimizeDeps: {
         include: ['jquery'],

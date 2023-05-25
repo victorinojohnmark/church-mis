@@ -15,7 +15,7 @@ class DocumentRequestController extends Controller
 
         return view('user.documentrequest', [
             'documentTypes' => json_decode($documentTypes),
-            'documentRequests' => DocumentRequest::latest()->get(),
+            'documentRequests' => DocumentRequest::active()->latest()->get(),
             'documentRequest' => new DocumentRequest()
         ]);
     }
@@ -60,5 +60,17 @@ class DocumentRequestController extends Controller
     public function destroy(DocumentRequest $documentRequest)
     {
         //
+    }
+
+    public function cancel(Request $request)
+    {
+        //cancel document request
+        $documentRequest = DocumentRequest::findOrFail($request->id);
+
+        $documentRequest->is_active = false;
+        $documentRequest->save();
+
+        session()->flash('success', 'Your ' . strtolower($documentRequest->document_type) . ' document request(' . $documentRequest->request_code . ') has been cancelled.');
+        return redirect()->back();
     }
 }
