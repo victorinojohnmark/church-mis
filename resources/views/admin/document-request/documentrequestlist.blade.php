@@ -84,7 +84,7 @@
     <script>
         $(document).ready(function() {
             $('#document-requests-table').DataTable({
-                'sort': false
+
             });
             
         });

@@ -33,7 +33,8 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::get('/parishioners', [App\Http\Controllers\ParishionerController::class, 'index'])->name('parishionerlist');
 
     //Documents
-    Route::get('/documents', function(){ return 'hello'; })->name('documentlist');
+    Route::get('/documents', [App\Http\Controllers\DocumentController::class, 'index'])->name('documentlist');
+    Route::post('/documents', [App\Http\Controllers\DocumentController::class, 'store'])->name('documentsave');
 
     //Document Requests
     Route::get('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('admindocumentrequestlist');

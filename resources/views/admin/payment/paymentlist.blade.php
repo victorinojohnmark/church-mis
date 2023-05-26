@@ -86,7 +86,7 @@
     <script>
         $(document).ready(function() {
             $('#payments-table').DataTable({
-                'sort': false
+                
             });
             
         });
