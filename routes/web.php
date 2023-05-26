@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
 
     //Payments
     Route::get('/payments', [App\Http\Controllers\PaymentController::class, 'index'])->name('paymentlist');
+    Route::post('/payments-verify/{payment}', [App\Http\Controllers\PaymentController::class, 'verify'])->name('paymentverify');
 
 });
 

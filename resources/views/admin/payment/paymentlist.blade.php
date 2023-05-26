@@ -39,7 +39,29 @@
                         @endif
                     </td>
                     <td>
-                        <button class="btn btn-success btn-sm" {{ $payment->is_verified ? 'disabled' : '' }}>Verify</button>
+                        <button class="btn btn-success btn-sm" {{ $payment->is_verified ? 'disabled' : '' }} data-bs-toggle="modal" data-bs-target="#paymentModal{{ $payment->id }}">Verify</button>
+                        <div class="modal fade" id="paymentModal{{ $payment->id }}" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="paymentModalLabel">Verify Payment</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                        
+                                <form action="{{ route('paymentverify', ['payment' => $payment->id]) }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        Please confirm on verifying payment.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Confirm</button>
+                                    </div>
+                                </form>
+                        
+                              </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             @empty

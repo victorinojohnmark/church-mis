@@ -26,5 +26,10 @@ class DocumentRequest extends Model
         return $query->where('is_active', true);
     }
 
+    public function getIsReadyAttribute()
+    {
+        return $this->payment->is_verified && $this->parishioner->documents->where('document_type', $this->document_type)->count() ? true : false;
+    }
+
     
 }

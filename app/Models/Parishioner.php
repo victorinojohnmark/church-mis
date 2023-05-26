@@ -17,4 +17,9 @@ class Parishioner extends Model
     {
         $query->where('is_admin', false);
     }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class, 'user_id');
+    }
 }
