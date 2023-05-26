@@ -56,11 +56,16 @@
                         </div>
                     </td>
                     <td>
-                        <form action="#" method="post" class="d-inline">
-                            @csrf
-                            <button class="btn btn-primary btn-sm" {{ $documentRequest->is_ready ? '' : 'disabled' }}>Ready to Pick up</button>
-                        </form>
-                        <button class="btn btn-danger btn-sm">Reject</button>
+                        @if ($documentRequest->is_ready)
+                            <form action="#" method="post" class="d-inline">
+                                @csrf
+                                <button class="btn btn-primary btn-sm">Ready to Pick up</button>
+                            </form>
+                        @endif
+
+                        @if (!$documentRequest->is_ready)
+                            <button class="btn btn-danger btn-sm d-inline">Reject</button>
+                        @endif
                     </td>
                 </tr>
             @empty
