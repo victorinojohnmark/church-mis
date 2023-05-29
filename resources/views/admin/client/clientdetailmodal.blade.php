@@ -1,8 +1,8 @@
-<div class="modal fade" id="parishionerModal{{ $parishioner->id }}" tabindex="-1" aria-labelledby="parishionerModalLabel" aria-hidden="true">
+<div class="modal fade" id="clientModal{{ $client->id }}" tabindex="-1" aria-labelledby="clientModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="parishionerModalLabel">Parishioners Details</h1>
+          <h1 class="modal-title fs-5" id="clientModalLabel">Client Details</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -10,25 +10,25 @@
             <div class="d-flex flex-column">
                 <div>
                     <label class="text-secondary">Name</label>
-                    <p class="fs-5">{{ $parishioner->name }}</p>
+                    <p class="fs-5">{{ $client->name }}</p>
                 </div>
                 <div>
                     <label class="text-secondary">Birth Date</label>
-                    <p class="fs-5">{{ $parishioner->birth_date }}</p>
+                    <p class="fs-5">{{ $client->birth_date }}</p>
                 </div>
                 <div>
                     <label class="text-secondary">Address</label>
-                    <p class="fs-5">{{ $parishioner->address }}</p>
+                    <p class="fs-5">{{ $client->address }}</p>
                 </div>
                 <hr>
                 <h5>Contact Information</h5>
                 <div>
                     <label class="text-secondary">Phone No.</label>
-                    <a href="tel:{{ $parishioner->contact_number }}" class="fs-5 text-decoration-none text-default">{{ $parishioner->contact_number }}</a>
+                    <a href="tel:{{ $client->contact_number }}" class="fs-5 text-decoration-none text-default">{{ $client->contact_number }}</a>
                 </div>
                 <div>
                     <label class="text-secondary">Email Address</label>
-                    <a href="mailto:{{ $parishioner->email }}" class="fs-5 text-decoration-none text-default">{{ $parishioner->email }}</a>
+                    <a href="mailto:{{ $client->email }}" class="fs-5 text-decoration-none text-default">{{ $client->email }}</a>
                 </div>
             </div>
         </div>

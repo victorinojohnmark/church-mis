@@ -9,7 +9,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="addDocumentModalLabel">Verify Payment</h1>
+              <h1 class="modal-title fs-5" id="addDocumentModalLabel">Document Form</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
     
@@ -43,7 +43,7 @@
         <tbody>
             @forelse ($documents as $document)
                 <tr>
-                    <td>{{ $document->parishioner->name }}</td>
+                    <td>{{ $document->client->name }}</td>
                     <td>{{ $document->document_type }}</td>
                     <td>{{ $document->date }}</td>
                     <td>

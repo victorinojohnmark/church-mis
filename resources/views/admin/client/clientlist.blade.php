@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Parishioners')
+@section('title', 'Clients')
 
 @section('content')
 {{-- <div class="py-3">
@@ -8,7 +8,7 @@
     
 </div> --}}
 <div class="table-responsive">
-    <table id="parishioners-table" class="table table-bordered table-hover">
+    <table id="clients-table" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Name</th>
@@ -19,15 +19,15 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($parishioners as $parishioner)
+            @forelse ($clients as $client)
                 <tr>
-                    <td>{{ $parishioner->name }}</td>
-                    <td>{{ $parishioner->birth_date }}</td>
-                    <td>{{ $parishioner->email }}</td>
-                    <td>{{ $parishioner->contact_number }}</td>
+                    <td>{{ $client->name }}</td>
+                    <td>{{ $client->birth_date }}</td>
+                    <td>{{ $client->email }}</td>
+                    <td>{{ $client->contact_number }}</td>
                     <td>
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#parishionerModal{{ $parishioner->id }}">View Details</button>
-                        @include('admin.parishioner.parishionerdetailmodal')
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#clientModal{{ $client->id }}">View Details</button>
+                        @include('admin.client.clientdetailmodal')
                     </td>
                 </tr>
             @empty
@@ -50,7 +50,7 @@
     <script src="/vendor/datatables/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#parishioners-table').DataTable({
+            $('#clients-table').DataTable({
 
             });
             

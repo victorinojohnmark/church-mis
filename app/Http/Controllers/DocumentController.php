@@ -20,7 +20,7 @@ class DocumentController extends Controller
         return view('admin.document.documentlist', [
             'documents' => Document::latest()->get(),
             'documentTypes' => json_decode($documentTypes),
-            'parishioners' => User::parishioner()->orderBy('name')->get()
+            'clients' => User::client()->orderBy('name')->get()
         ]);
     }
 

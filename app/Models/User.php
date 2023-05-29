@@ -20,7 +20,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function scopeParishioner($query)
+    public function scopeClient($query)
     {
         $query->where('is_admin', false);
     }

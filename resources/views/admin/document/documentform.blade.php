@@ -5,8 +5,8 @@
             <label class="form-label">Name</label>
             <select name="user_id" class="form-control" required>
                 <option selected disabled>Select here...</option>
-                @forelse ($parishioners as $parishioner)
-                <option value="{{ $parishioner->id }}">{{ $parishioner->name }}</option>
+                @forelse ($clients as $client)
+                <option value="{{ $client->id }}">{{ $client->name }}</option>
                 @empty
                 @endforelse
             </select>

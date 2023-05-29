@@ -11,8 +11,8 @@ class Document extends Model
 
     protected $fillable = ['user_id', 'document_type', 'filename', 'date'];
 
-    public function parishioner()
+    public function client()
     {
-        return $this->belongsTo(Parishioner::class, 'user_id');
+        return $this->belongsTo(Client::class, 'user_id');
     }
 }

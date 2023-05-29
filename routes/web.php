@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::get('/dashboard', function () { return view('admin.welcome'); });
 
     //Parishioners
-    Route::get('/parishioners', [App\Http\Controllers\ParishionerController::class, 'index'])->name('parishionerlist');
+    Route::get('/clients', [App\Http\Controllers\ClientController::class, 'index'])->name('clientlist');
 
     //Documents
     Route::get('/documents', [App\Http\Controllers\DocumentController::class, 'index'])->name('documentlist');
@@ -53,6 +53,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     //profile
     Route::get('/profile', [App\Http\Controllers\UserController::class, 'show'])->name('userprofile');
     Route::post('/profileupdate', [App\Http\Controllers\UserController::class, 'update'])->name('userprofileupdate');
+
+    //event reservation
+    Route::get('/reservations', [App\Http\Controllers\ClientController::class, 'reservation'])->name('clientreservations');
 
     //document request
     Route::get('/documentrequest', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('documentrequest');
