@@ -54,8 +54,25 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     Route::get('/profile', [App\Http\Controllers\UserController::class, 'show'])->name('userprofile');
     Route::post('/profileupdate', [App\Http\Controllers\UserController::class, 'update'])->name('userprofileupdate');
 
-    //event reservation
+    //reservation
     Route::get('/reservations', [App\Http\Controllers\ClientController::class, 'reservation'])->name('clientreservations');
+
+    //baptism
+    Route::get('/baptisms', [App\Http\Controllers\BaptismController::class, 'index'])->name('clientbaptism');
+    Route::post('/baptisms', [App\Http\Controllers\BaptismController::class, 'store'])->name('clientbaptismsave');
+
+    //communion
+    Route::get('/communions', [App\Http\Controllers\CommunionController::class, 'index'])->name('clientcommunion');
+    Route::post('/communions', [App\Http\Controllers\CommunionController::class, 'store'])->name('clientcommunionsave');
+
+    //confirmation
+    Route::get('/confirmations', [App\Http\Controllers\ConfirmationController::class, 'index'])->name('clientconfirmation');
+    Route::post('/confirmations', [App\Http\Controllers\ConfirmationController::class, 'store'])->name('clientconfirmationsave');
+
+    //matrimony
+    Route::get('/matrimonies', [App\Http\Controllers\MatrimonyController::class, 'index'])->name('clientmatrimony');
+    Route::post('/matrimonies', [App\Http\Controllers\MatrimonyController::class, 'store'])->name('clientmatrimonysave');
+
 
     //document request
     Route::get('/documentrequest', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('documentrequest');

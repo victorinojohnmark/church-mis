@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 use App\Models\Parishioner;
 
-class ParishionerFactory extends Factory
+class ClientFactory extends Factory
 {
     protected $model = Parishioner::class;
 
