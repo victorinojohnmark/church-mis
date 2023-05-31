@@ -7,57 +7,67 @@
 
         <div class="col-md-9">
             <div id="content" class="px-3">
-                <h1>Communion</h1>
+                <h1>Blessings</h1>
                 <hr>
                 @include('layouts.message')
                 @include('user.reservations.reservation-menu')
                 <div class="py-3">
-                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#communionFormModal">Create Communion Reservation</button>
-                    <div class="modal fade" id="communionFormModal" tabindex="-1">
+                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#blessingFormModal">Create Blessing Reservation</button>
+                    <div class="modal fade" id="blessingFormModal" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5">Communion Reservation Form</h1>
+                                    <h1 class="modal-title fs-5">Blessing Reservation Form</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
-                                <form action="{{ route('clientcommunionsave') }}" method="post">
+                                <form action="{{ route('clientblessingsave') }}" method="post">
                                     <input type="hidden" name="created_by_id" value="{{ Auth::id() }}">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-md-12 mb-3">
+                                                <label class="form-label">Type</label>
+                                                <select name="blessing_type" class="form-control" required>
+                                                    <option value="House">House</option>
+                                                    <option value="Apartment">Apartment</option>
+                                                    <option value="Business">Business</option>
+                                                    <option value="Car">Car</option>
+                                                </select>
+                                            </div>
+    
+                                            <div class="col-md-12 mb-3">
                                                 <label class="form-label">Name</label>
                                                 <input type="text" name="name" class="form-control" placeholder="..." required>
                                             </div>
-
+    
                                             <div class="col-md-6 mb-3">
-                                                <label class="form-label">Desired Date</label>
+                                                <label class="form-label">Date</label>
                                                 <input type="date" name="date" class="form-control" placeholder="..." required>
                                             </div>
-
+    
                                             <div class="col-md-6 mb-3">
-                                                <label class="form-label">Birth Date</label>
-                                                <input type="date" name="birth_date" class="form-control" placeholder="..." required>
+                                                <label class="form-label">Time</label>
+                                                <input type="time" name="time" class="form-control" placeholder="..." required>
+                                            </div>
+    
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Religion</label>
+                                                <input type="text" name="religion" class="form-control" placeholder="..." required>
                                             </div>
 
                                             <div class="col-md-6 mb-3">
-                                                <label class="form-label">Father's Name</label>
-                                                <input type="text" name="fathers_name" class="form-control" placeholder="..." required>
-                                            </div>
-
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Mother's Name</label>
-                                                <input type="text" name="mothers_name" class="form-control" placeholder="..." required>
-                                            </div>
-
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Contact #</label>
+                                                <label class="form-label">Contact Number</label>
                                                 <input type="text" name="contact_number" class="form-control" placeholder="..." required>
                                             </div>
-
+                                        
                                             <div class="col-md-12 mb-3">
-                                                <label class="form-label">Present Address</label>
-                                                <textarea name="present_address" class="form-control" cols="30" rows="5"></textarea>
+                                                <label class="form-label">Address</label>
+                                                <textarea name="address" class="form-control" cols="30" rows="5"></textarea>
+                                            </div>
+                                        
+                                            <div class="col-md-12 mb-3">
+                                                <label class="form-label">Landmark</label>
+                                                <input type="text" name="landmark" class="form-control" placeholder="...">
                                             </div>
                                         </div>
                                     </div>
@@ -70,33 +80,38 @@
                         </div>
                     </div>
                 </div>
-                <table id="baptism-table" class="table table-hover table-bordered">
+                <table id="blessing-table" class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Birth Date</th>
-                            <th>Submitted At</th>
-                            <th>Options</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Address</th>
+                            <th>Option</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($communions as $communion)
+                        @forelse ($blessings as $blessing)
                         <tr>
-                            <td>{{ $communion->name }}</td>
-                            <td>{{ $communion->birth_date }}</td>
-                            <td>{{ $communion->created_at }}</td>
+                            <td>{{ $blessing->name }}</td>
+                            <td>{{ $blessing->blessing_type }}</td>
+                            <td>{{ $blessing->date }}</td>
+                            <td>{{ $blessing->time }}</td>
+                            <td>{{ $blessing->address }}</td>
+
                             <td>
-                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#communionModal{{ $communion->id }}">View</button>
-                                <div class="modal fade" id="communionModal{{ $communion->id }}" tabindex="-1">
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#blessingModal{{ $blessing->id }}">View</button>
+                                <div class="modal fade" id="blessingModal{{ $blessing->id }}" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5">Communion Reservation Form</h1>
+                                                <h1 class="modal-title fs-5">Blessing Reservation Form</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
-                                            <form action="{{ route('clientcommunionsave') }}" method="post">
+                                            <form action="{{ route('clientblessingsave') }}" method="post">
                                                 <div class="modal-body">
-                                                    @include('user.communion.communionform')
+                                                    @include('user.blessing.blessingform')
                                                 <div class="modal-footer">
                                                     <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -128,7 +143,7 @@
     <script src="/vendor/datatables/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#baptism-table').DataTable({
+            $('#blessing-table').DataTable({
                 dom: 'ftp'
             });
         });

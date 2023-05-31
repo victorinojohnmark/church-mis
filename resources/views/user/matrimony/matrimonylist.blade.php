@@ -125,7 +125,9 @@
     <script src="/vendor/datatables/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#baptism-table').DataTable();
+            $('#baptism-table').DataTable({
+                dom: 'ftp'
+            });
         });
     </script>
 @endpush

@@ -73,6 +73,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     Route::get('/matrimonies', [App\Http\Controllers\MatrimonyController::class, 'index'])->name('clientmatrimony');
     Route::post('/matrimonies', [App\Http\Controllers\MatrimonyController::class, 'store'])->name('clientmatrimonysave');
 
+    //blessing
+    Route::get('/blessings', [App\Http\Controllers\BlessingController::class, 'index'])->name('clientblessing');
+    Route::post('/blessings', [App\Http\Controllers\BlessingController::class, 'store'])->name('clientblessingsave');
+
+    //blessing
+    Route::get('/funerals', [App\Http\Controllers\FuneralController::class, 'index'])->name('clientfuneral');
+    Route::post('/funerals', [App\Http\Controllers\FuneralController::class, 'store'])->name('clientfuneralsave');
+
 
     //document request
     Route::get('/documentrequest', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('documentrequest');
