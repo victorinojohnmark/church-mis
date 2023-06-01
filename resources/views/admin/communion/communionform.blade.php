@@ -34,6 +34,6 @@
 
     <div class="col-md-12 mb-3">
         <label class="form-label">Present Address</label>
-        <textarea name="present_address" class="form-control" cols="30" rows="5" readonly>{{ $communion->present_address }}</textarea>
+        <textarea name="present_address" class="form-control" cols="30" rows="5">{{ $communion->present_address }}</textarea>
     </div>
 </div>

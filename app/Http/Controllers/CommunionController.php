@@ -10,9 +10,15 @@ class CommunionController extends Controller
 {
     public function index()
     {
-        return view('user.communion.communionlist', [
-            'communions' => Communion::where('created_by_id', Auth::id())->get()
-        ]);
+        if(Auth::user()->is_admin) {
+            return view('admin.communion.communionlist', [
+                'communions' => Communion::latest()->get()
+            ]);
+        } else {
+            return view('user.communion.communionlist', [
+                'communions' => Communion::where('created_by_id', Auth::id())->get()
+            ]);
+        }
     }
 
     public function store(Request $request)

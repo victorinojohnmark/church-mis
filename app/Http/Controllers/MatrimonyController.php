@@ -10,9 +10,15 @@ class MatrimonyController extends Controller
 {
     public function index()
     {
-        return view('user.matrimony.matrimonylist', [
-            'matrimonies' => Matrimony::where('created_by_id', Auth::id())->get()
-        ]);
+       if(Auth::user()->is_admin){
+            return view('admin.matrimony.matrimonylist', [
+                'matrimonies' => Matrimony::latest()->get()
+            ]);
+       } else {
+            return view('user.matrimony.matrimonylist', [
+                'matrimonies' => Matrimony::where('created_by_id', Auth::id())->get()
+            ]);
+       }
     }
 
     public function store(Request $request)

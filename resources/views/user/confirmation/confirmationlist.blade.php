@@ -70,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <table id="baptism-table" class="table table-hover table-bordered">
+                <table id="confirmation-table" class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -128,7 +128,7 @@
     <script src="/vendor/datatables/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#baptism-table').DataTable({
+            $('#confirmation-table').DataTable({
                 dom: 'ftp'
             });
         });

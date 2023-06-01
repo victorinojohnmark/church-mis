@@ -10,9 +10,15 @@ class ConfirmationController extends Controller
 {
     public function index()
     {
-        return view('user.confirmation.confirmationlist', [
-            'confirmations' => Confirmation::where('created_by_id', Auth::id())->get()
-        ]);
+        if(Auth::user()->is_admin) {
+            return view('admin.confirmation.confirmationlist', [
+                'confirmations' => Confirmation::latest()->get()
+            ]);
+        } else {
+            return view('user.confirmation.confirmationlist', [
+                'confirmations' => Confirmation::where('created_by_id', Auth::id())->get()
+            ]);
+        }
     }
 
     public function store(Request $request)

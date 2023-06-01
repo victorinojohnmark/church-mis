@@ -11,9 +11,16 @@ class BaptismController extends Controller
 
     public function index()
     {
-        return view('user.baptism.baptismlist', [
-            'baptisms' => Baptism::where('created_by_id', Auth::id())->get()
-        ]);
+        if(Auth::user()->is_admin){
+            return view('admin.baptism.baptismlist', [
+                'baptisms' => Baptism::latest()->get()
+            ]);
+        } else {
+            return view('user.baptism.baptismlist', [
+                'baptisms' => Baptism::where('created_by_id', Auth::id())->get()
+            ]);
+        }
+        
     }
 
     public function store(Request $request)

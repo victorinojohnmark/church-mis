@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EventReservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventReservationController extends Controller
 {
@@ -12,6 +13,11 @@ class EventReservationController extends Controller
      */
     public function index()
     {
-        return view('user.eventreservation');
+        if(Auth::user()->is_admin) {
+            return view('admin.reservation.reservationlist');
+        } else {
+            return view('user.eventreservation');
+        }
+        
     }
 }

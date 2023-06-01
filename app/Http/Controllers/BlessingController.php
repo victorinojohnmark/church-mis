@@ -10,9 +10,15 @@ class BlessingController extends Controller
 {
     public function index()
     {
-        return view('user.blessing.blessinglist', [
-            'blessings' => Blessing::where('created_by_id', Auth::id())->get()
-        ]);
+        if(Auth::user()->is_admin){
+            return view('admin.blessing.blessinglist', [
+                'blessings' => Blessing::latest()->get()
+            ]);
+        } else {
+            return view('user.blessing.blessinglist', [
+                'blessings' => Blessing::where('created_by_id', Auth::id())->get()
+            ]);
+        }
     }
 
     public function store(Request $request)

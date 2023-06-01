@@ -10,9 +10,15 @@ class FuneralController extends Controller
 {
     public function index()
     {
-        return view('user.funeral.funerallist', [
-            'funerals' => Funeral::where('created_by_id', Auth::id())->get()
-        ]);
+        if(Auth::user()->is_admin) {
+            return view('admin.funeral.funerallist', [
+                'funerals' => Funeral::latest()->get()
+            ]);
+        } else {
+            return view('user.funeral.funerallist', [
+                'funerals' => Funeral::where('created_by_id', Auth::id())->get()
+            ]);
+        }
     }
 
     public function store(Request $request)

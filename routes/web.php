@@ -29,19 +29,33 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     //Admin Dashboard
     Route::get('/dashboard', function () { return view('admin.welcome'); });
 
-    //Parishioners
+    //Clients
     Route::get('/clients', [App\Http\Controllers\ClientController::class, 'index'])->name('clientlist');
 
     //Documents
     Route::get('/documents', [App\Http\Controllers\DocumentController::class, 'index'])->name('documentlist');
     Route::post('/documents', [App\Http\Controllers\DocumentController::class, 'store'])->name('documentsave');
 
-    //Document Requests
-    Route::get('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('admindocumentrequestlist');
+    //Event Reservation
+    Route::get('/eventreservations', [App\Http\Controllers\EventReservationController::class, 'index'])->name('eventreservationlist');
 
-    //Payments
-    Route::get('/payments', [App\Http\Controllers\PaymentController::class, 'index'])->name('paymentlist');
-    Route::post('/payments-verify/{payment}', [App\Http\Controllers\PaymentController::class, 'verify'])->name('paymentverify');
+    //Baptism
+    Route::get('/baptisms', [App\Http\Controllers\BaptismController::class, 'index'])->name('baptismlist');
+
+    //Communion
+    Route::get('/communions', [App\Http\Controllers\CommunionController::class, 'index'])->name('communionlist');
+
+    //Confirmation
+    Route::get('/confirmations', [App\Http\Controllers\ConfirmationController::class, 'index'])->name('confirmationlist');
+
+    //Confirmation
+    Route::get('/matrimonies', [App\Http\Controllers\MatrimonyController::class, 'index'])->name('matrimonylist');
+
+    //Blessing
+    Route::get('/blessings', [App\Http\Controllers\BlessingController::class, 'index'])->name('blessinglist');
+
+    //Blessing
+    Route::get('/funerals', [App\Http\Controllers\FuneralController::class, 'index'])->name('funerallist');
 
 });
 
