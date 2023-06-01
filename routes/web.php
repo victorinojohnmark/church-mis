@@ -41,15 +41,23 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
 
     //Baptism
     Route::get('/baptisms', [App\Http\Controllers\BaptismController::class, 'index'])->name('baptismlist');
+    Route::post('/baptismaccept', [App\Http\Controllers\BaptismController::class, 'acceptreservation'])->name('baptismaccept');
+    Route::post('/baptismreject', [App\Http\Controllers\BaptismController::class, 'rejectreservation'])->name('baptismreject');
 
     //Communion
     Route::get('/communions', [App\Http\Controllers\CommunionController::class, 'index'])->name('communionlist');
+    Route::post('/communionaccept', [App\Http\Controllers\CommunionController::class, 'acceptreservation'])->name('communionaccept');
+    Route::post('/communionreject', [App\Http\Controllers\CommunionController::class, 'rejectreservation'])->name('communionreject');
 
     //Confirmation
     Route::get('/confirmations', [App\Http\Controllers\ConfirmationController::class, 'index'])->name('confirmationlist');
+    Route::post('/confirmationaccept', [App\Http\Controllers\ConfirmationController::class, 'acceptreservation'])->name('confirmationaccept');
+    Route::post('/confirmationreject', [App\Http\Controllers\ConfirmationController::class, 'rejectreservation'])->name('confirmationreject');
 
     //Confirmation
     Route::get('/matrimonies', [App\Http\Controllers\MatrimonyController::class, 'index'])->name('matrimonylist');
+    Route::post('/matrimonyaccept', [App\Http\Controllers\MatrimonyController::class, 'acceptreservation'])->name('matrimonyaccept');
+    Route::post('/matrimonyreject', [App\Http\Controllers\MatrimonyController::class, 'rejectreservation'])->name('matrimonyreject');
 
     //Blessing
     Route::get('/blessings', [App\Http\Controllers\BlessingController::class, 'index'])->name('blessinglist');

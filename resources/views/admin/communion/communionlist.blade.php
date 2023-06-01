@@ -3,7 +3,6 @@
 @section('title', 'Communion')
 
 @section('content')
-@include('layouts.message')
 @include('admin.reservation.reservation-menu')
 {{-- <div class="py-3">
 
@@ -20,26 +19,29 @@
     <tbody>
         @forelse ($communions as $communion)
         <tr>
-            <td>{{ $communion->name }}</td>
+            <td>
+                {{ $communion->name }}
+                @if ($communion->is_accepted)
+                    <span class="badge bg-success">Accepted</span>
+                @elseif ($communion->is_rejected)
+                    <span class="badge bg-danger">Rejected</span>
+                @else
+                    <span class="badge bg-warning">Pending</span>
+                @endif
+            </td>
             <td>{{ $communion->birth_date }}</td>
             <td>{{ $communion->created_at }}</td>
             <td>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#communionModal{{ $communion->id }}">View</button>
-                <div class="modal fade" id="communionModal{{ $communion->id }}" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5">Communion Reservation</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                                <div class="modal-body">
-                                    @include('user.communion.communionform')
-                                <div class="modal-footer">
-                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+                @include('admin.communion.communionmodal')
+
+                @if (!$communion->is_accepted && !$communion->is_rejected)
+                    <button class="btn btn-info btn-sm text-white" data-bs-toggle="modal" data-bs-target="#communionAcceptModal{{ $communion->id }}">Accept</button>
+                    @include('admin.communion.communionacceptmodal')
+                
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#communionRejectModal{{ $communion->id }}">Reject</button>
+                    @include('admin.communion.communionrejectmodal')
+                @endif
             </td>
         </tr>
         @empty

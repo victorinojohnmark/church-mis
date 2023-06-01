@@ -3,7 +3,6 @@
 @section('title', 'Confirmation')
 
 @section('content')
-@include('layouts.message')
 @include('admin.reservation.reservation-menu')
 {{-- <div class="py-3">
 
@@ -20,29 +19,29 @@
     <tbody>
         @forelse ($confirmations as $confirmation)
         <tr>
-            <td>{{ $confirmation->name }}</td>
+            <td>
+                {{ $confirmation->name }}
+                @if ($confirmation->is_accepted)
+                    <span class="badge bg-success">Accepted</span>
+                @elseif ($confirmation->is_rejected)
+                    <span class="badge bg-danger">Rejected</span>
+                @else
+                    <span class="badge bg-warning">Pending</span>
+                @endif
+            </td>
             <td>{{ $confirmation->birth_date }}</td>
             <td>{{ $confirmation->created_at }}</td>
             <td>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationModal{{ $confirmation->id }}">View</button>
-                <div class="modal fade" id="confirmationModal{{ $confirmation->id }}" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5">Confirmation Reservation</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <form action="{{ route('clientconfirmationsave') }}" method="post">
-                                <div class="modal-body">
-                                    @include('admin.confirmation.confirmationform')
-                                <div class="modal-footer">
-                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                @include('admin.confirmation.confirmationmodal')
+
+                @if (!$confirmation->is_accepted && !$confirmation->is_rejected)
+                    <button class="btn btn-info btn-sm text-white" data-bs-toggle="modal" data-bs-target="#confirmationAcceptModal{{ $confirmation->id }}">Accept</button>
+                    @include('admin.confirmation.confirmationacceptmodal')
+                
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationRejectModal{{ $confirmation->id }}">Reject</button>
+                    @include('admin.confirmation.confirmationrejectmodal')
+                @endif
             </td>
         </tr>
         @empty

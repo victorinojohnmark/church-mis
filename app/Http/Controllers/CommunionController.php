@@ -47,4 +47,34 @@ class CommunionController extends Controller
 
         return redirect()->back();
     }
+
+    public function acceptreservation(Request $request)
+    {
+        $communion = Communion::findOrFail($request->id);
+
+        $communion->is_accepted = true;
+        $communion->accepted_message = $request->accepted_message;
+        $communion->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('success', 'The communion reservation has been accepted');
+        return redirect()->back();
+    }
+
+    public function rejectreservation(Request $request)
+    {
+        $communion = Communion::findOrFail($request->id);
+
+        $communion->is_rejected = true;
+        $communion->rejection_message = $request->rejection_message;
+        $communion->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('warning', 'The communion reservation has been rejected');
+        return redirect()->back();
+    }
 }

@@ -49,4 +49,34 @@ class BaptismController extends Controller
 
         return redirect()->back();
     }
+
+    public function acceptreservation(Request $request)
+    {
+        $baptism = Baptism::findOrFail($request->id);
+
+        $baptism->is_accepted = true;
+        $baptism->accepted_message = $request->accepted_message;
+        $baptism->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('success', 'The baptism reservation has been accepted');
+        return redirect()->back();
+    }
+
+    public function rejectreservation(Request $request)
+    {
+        $baptism = Baptism::findOrFail($request->id);
+
+        $baptism->is_rejected = true;
+        $baptism->rejection_message = $request->rejection_message;
+        $baptism->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('warning', 'The baptism reservation has been rejected');
+        return redirect()->back();
+    }
 }

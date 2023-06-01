@@ -10,5 +10,4 @@ class Baptism extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'date', 'birth_date', 'fathers_name', 'mothers_name', 'present_address', 'contact_number', 'created_by_id'];
-
 }

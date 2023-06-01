@@ -3,7 +3,6 @@
 @section('title', 'Baptism')
 
 @section('content')
-@include('layouts.message')
 @include('admin.reservation.reservation-menu')
 {{-- <div class="py-3">
 
@@ -20,28 +19,29 @@
     <tbody>
         @forelse($baptisms as $baptism)
             <tr>
-                <td>{{ $baptism->name }}</td>
+                <td>
+                    {{ $baptism->name }}
+                    @if ($baptism->is_accepted)
+                        <span class="badge bg-success">Accepted</span>
+                    @elseif ($baptism->is_rejected)
+                        <span class="badge bg-danger">Rejected</span>
+                    @else
+                        <span class="badge bg-warning">Pending</span>
+                    @endif
+                </td>
                 <td>{{ $baptism->birth_date }}</td>
                 <td>{{ $baptism->created_at }}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#baptismModal{{ $baptism->id }}">View</button>
-                    <div class="modal fade" id="baptismModal{{ $baptism->id }}" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5">Baptism Reservation</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                    <div class="modal-body">
-                                    @include('admin.baptism.baptismform')
-                                    <div class="modal-footer">
-                                        <button type="reset" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#baptismModal{{ $baptism->id }}">View</button>
+                    @include('admin.baptism.baptismmodal')
+
+                    @if (!$baptism->is_accepted && !$baptism->is_rejected)
+                        <button class="btn btn-info btn-sm text-white" data-bs-toggle="modal" data-bs-target="#baptismAcceptModal{{ $baptism->id }}">Accept</button>
+                        @include('admin.baptism.baptismacceptmodal')
+                    
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#baptismRejectModal{{ $baptism->id }}">Reject</button>
+                        @include('admin.baptism.baptismrejectmodal')
+                    @endif
                 </td>
             </tr>
         @empty

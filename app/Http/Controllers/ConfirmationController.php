@@ -47,4 +47,34 @@ class ConfirmationController extends Controller
 
         return redirect()->back();
     }
+
+    public function acceptreservation(Request $request)
+    {
+        $confirmation = Confirmation::findOrFail($request->id);
+
+        $confirmation->is_accepted = true;
+        $confirmation->accepted_message = $request->accepted_message;
+        $confirmation->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('success', 'The confirmation reservation has been accepted');
+        return redirect()->back();
+    }
+
+    public function rejectreservation(Request $request)
+    {
+        $confirmation = Confirmation::findOrFail($request->id);
+
+        $confirmation->is_rejected = true;
+        $confirmation->rejection_message = $request->rejection_message;
+        $confirmation->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('warning', 'The confirmation reservation has been rejected');
+        return redirect()->back();
+    }
 }

@@ -47,4 +47,34 @@ class MatrimonyController extends Controller
 
         return redirect()->back();
     }
+
+    public function acceptreservation(Request $request)
+    {
+        $matrimony = Matrimony::findOrFail($request->id);
+
+        $matrimony->is_accepted = true;
+        $matrimony->accepted_message = $request->accepted_message;
+        $matrimony->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('success', 'The matrimony reservation has been accepted');
+        return redirect()->back();
+    }
+
+    public function rejectreservation(Request $request)
+    {
+        $matrimony = Matrimony::findOrFail($request->id);
+
+        $matrimony->is_rejected = true;
+        $matrimony->rejection_message = $request->rejection_message;
+        $matrimony->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('warning', 'The matrimony reservation has been rejected');
+        return redirect()->back();
+    }
 }
