@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-success" aria-label="Fourth navbar example">
+<nav class="navbar navbar-expand-md bg-warning" aria-label="Fourth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="#">St. Gregory the Great Parish</a>
+        <a class="navbar-brand" href="#">
+            <img src="/img/logo.png" class="img-fluid" alt="Logo" style="height: 35px;">
+            St. Gregory the Great Parish</a>
         <i class="fa fas-copy"></i> 
         <button class="navbar-toggler rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
             aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
