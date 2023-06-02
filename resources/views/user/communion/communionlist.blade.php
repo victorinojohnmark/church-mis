@@ -82,7 +82,16 @@
                     <tbody>
                         @forelse ($communions as $communion)
                         <tr>
-                            <td>{{ $communion->name }}</td>
+                            <td>
+                                {{ $communion->name }}
+                                @if ($communion->is_accepted)
+                                    <span class="badge bg-success">Accepted</span>
+                                @elseif ($communion->is_rejected)
+                                    <span class="badge bg-danger">Rejected</span>
+                                @else
+                                    <span class="badge bg-warning">Pending</span>
+                                @endif
+                            </td>
                             <td>{{ $communion->birth_date }}</td>
                             <td>{{ $communion->created_at }}</td>
                             <td>

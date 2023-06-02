@@ -125,7 +125,16 @@
                     <tbody>
                         @forelse ($funerals as $funeral)
                         <tr>
-                            <td>{{ $funeral->name }}</td>
+                            <td>
+                                {{ $funeral->name }}
+                                @if ($funeral->is_accepted)
+                                    <span class="badge bg-success">Accepted</span>
+                                @elseif ($funeral->is_rejected)
+                                    <span class="badge bg-danger">Rejected</span>
+                                @else
+                                    <span class="badge bg-warning">Pending</span>
+                                @endif
+                            </td>
                             <td>{{ $funeral->date }}</td>
                             <td>{{ $funeral->time }}</td>
                             <td>{{ $funeral->age }}</td>

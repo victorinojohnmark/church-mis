@@ -82,7 +82,16 @@
                     <tbody>
                         @forelse ($baptisms as $baptism)
                         <tr>
-                            <td>{{ $baptism->name }}</td>
+                            <td>
+                                {{ $baptism->name }}
+                                @if ($baptism->is_accepted)
+                                    <span class="badge bg-success">Accepted</span>
+                                @elseif ($baptism->is_rejected)
+                                    <span class="badge bg-danger">Rejected</span>
+                                @else
+                                    <span class="badge bg-warning">Pending</span>
+                                @endif
+                            </td>
                             <td>{{ $baptism->birth_date }}</td>
                             <td>{{ $baptism->created_at }}</td>
                             <td>

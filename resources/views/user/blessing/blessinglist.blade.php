@@ -94,7 +94,16 @@
                     <tbody>
                         @forelse ($blessings as $blessing)
                         <tr>
-                            <td>{{ $blessing->name }}</td>
+                            <td>
+                                {{ $blessing->name }}
+                                @if ($blessing->is_accepted)
+                                    <span class="badge bg-success">Accepted</span>
+                                @elseif ($blessing->is_rejected)
+                                    <span class="badge bg-danger">Rejected</span>
+                                @else
+                                    <span class="badge bg-warning">Pending</span>
+                                @endif
+                            </td>
                             <td>{{ $blessing->blessing_type }}</td>
                             <td>{{ $blessing->date }}</td>
                             <td>{{ $blessing->time }}</td>

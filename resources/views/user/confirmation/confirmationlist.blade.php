@@ -82,7 +82,16 @@
                     <tbody>
                         @forelse ($confirmations as $confirmation)
                         <tr>
-                            <td>{{ $confirmation->name }}</td>
+                            <td>
+                                {{ $confirmation->name }}
+                                @if ($confirmation->is_accepted)
+                                    <span class="badge bg-success">Accepted</span>
+                                @elseif ($confirmation->is_rejected)
+                                    <span class="badge bg-danger">Rejected</span>
+                                @else
+                                    <span class="badge bg-warning">Pending</span>
+                                @endif
+                            </td>
                             <td>{{ $confirmation->birth_date }}</td>
                             <td>{{ $confirmation->created_at }}</td>
                             <td>

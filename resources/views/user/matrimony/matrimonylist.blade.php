@@ -79,7 +79,16 @@
                     <tbody>
                         @forelse ($matrimonies as $matrimony)
                         <tr>
-                            <td>{{ $matrimony->grooms_name }} / {{ $matrimony->brides_name }}</td>
+                            <td>
+                                {{ $matrimony->grooms_name }} / {{ $matrimony->brides_name }}
+                                @if ($matrimony->is_accepted)
+                                    <span class="badge bg-success">Accepted</span>
+                                @elseif ($matrimony->is_rejected)
+                                    <span class="badge bg-danger">Rejected</span>
+                                @else
+                                    <span class="badge bg-warning">Pending</span>
+                                @endif
+                            </td>
                             <td>{{ $matrimony->wedding_date }}</td>
                             <td>{{ $matrimony->created_at }}</td>
                             <td>
