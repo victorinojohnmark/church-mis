@@ -36,6 +36,11 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::get('/documents', [App\Http\Controllers\DocumentController::class, 'index'])->name('documentlist');
     Route::post('/documents', [App\Http\Controllers\DocumentController::class, 'store'])->name('documentsave');
 
+    //Documents
+    Route::get('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('documentrequestlist');
+    Route::post('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'setReady'])->name('documentrequestready');
+
+
     //Event Reservation
     Route::get('/eventreservations', [App\Http\Controllers\EventReservationController::class, 'index'])->name('eventreservationlist');
 

@@ -46,6 +46,6 @@ footer {
     width: 1.50rem;
 }
 
-.form-control, .form-select, .btn, .modal-content {
+.badge, .form-control, .form-select, .btn, .modal-content {
     border-radius: 0;
 }

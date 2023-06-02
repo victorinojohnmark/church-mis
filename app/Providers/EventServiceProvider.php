@@ -7,6 +7,15 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+
+#Models
+use App\Models\Baptism;
+use App\Models\DocumentRequest;
+
+#Observers
+use App\Observers\BaptismObserver;
+use App\Observers\DocumentRequestObserver;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -25,7 +34,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        DocumentRequest::observe(DocumentRequestObserver::class);
+        Baptism::observe(BaptismObserver::class);
     }
 
     /**

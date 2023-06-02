@@ -15,35 +15,8 @@ class DocumentRequestObserver
         $documentRequest->update();
     }
 
-    /**
-     * Handle the DocumentRequest "updated" event.
-     */
-    public function updated(DocumentRequest $documentRequest): void
+    public function setReady(DocumentRequest $documentRequest)
     {
-        //
-    }
 
-    /**
-     * Handle the DocumentRequest "deleted" event.
-     */
-    public function deleted(DocumentRequest $documentRequest): void
-    {
-        //
-    }
-
-    /**
-     * Handle the DocumentRequest "restored" event.
-     */
-    public function restored(DocumentRequest $documentRequest): void
-    {
-        //
-    }
-
-    /**
-     * Handle the DocumentRequest "force deleted" event.
-     */
-    public function forceDeleted(DocumentRequest $documentRequest): void
-    {
-        //
     }
 }

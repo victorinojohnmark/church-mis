@@ -59,7 +59,7 @@ class BaptismController extends Controller
         $baptism->save();
 
         //trigger some events
-        //do someting
+        $baptism->triggerReservationAccepted();
 
         session()->flash('success', 'The baptism reservation has been accepted');
         return redirect()->back();
