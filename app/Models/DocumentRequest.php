@@ -11,6 +11,8 @@ class DocumentRequest extends Model
 
     protected $fillable = ['user_id', 'name', 'document_type', 'requested_date'];
 
+    protected $observables = ['setReady'];
+
     public function createdBy()
     {
         return $this->belongsTo(Client::class, 'user_id');
@@ -22,5 +24,10 @@ class DocumentRequest extends Model
         } else {
             return false;
         }
+    }
+
+    public function triggerDocumentReady()
+    {
+        $this->fireModelEvent('setReady', false);
     }
 }

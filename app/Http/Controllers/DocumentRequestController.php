@@ -65,6 +65,8 @@ class DocumentRequestController extends Controller
         $documentRequest->is_ready = true;
         $documentRequest->save();
 
+        $documentRequest->triggerDocumentReady();
+
         session()->flash('success', 'Document Request updated, email notification will be sent to the client');
         return redirect()->back();
 

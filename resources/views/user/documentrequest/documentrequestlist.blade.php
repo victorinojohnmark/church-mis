@@ -65,11 +65,15 @@
                                     <td>{{ $documentRequest->requested_date }}</td>
                                     <td>
                                         @if ($documentRequest->is_active)
-                                            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#documentRequestModal{{ $documentRequest->id }}">Update</button>
-                                            @include('user.documentrequest.documentrequestmodal')
+                                            @if (!$documentRequest->is_ready)
+                                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#documentRequestModal{{ $documentRequest->id }}">Update</button>
+                                                @include('user.documentrequest.documentrequestmodal')
 
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#documentRequestCancelModal{{ $documentRequest->id }}">Cancel</button>
-                                            @include('user.documentrequest.documentrequestcancelmodal')
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#documentRequestCancelModal{{ $documentRequest->id }}">Cancel</button>
+                                                @include('user.documentrequest.documentrequestcancelmodal')
+                                            @else
+                                                <button class="btn btn-secondary btn-sm" disabled>N/A</button>
+                                            @endif
                                         @else
                                             <button class="btn btn-secondary btn-sm" disabled>N/A</button>
                                         @endif

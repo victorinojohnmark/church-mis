@@ -50,18 +50,5 @@ class DocumentController extends Controller
         return redirect()->back();
     }
 
-    public function show(Document $document)
-    {
-        //
-    }
-
-    public function update(Request $request, Document $document)
-    {
-        //
-    }
-
-    public function destroy(Document $document)
-    {
-        //
-    }
+    
 }

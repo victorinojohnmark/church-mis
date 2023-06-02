@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Models\DocumentRequest;
+use App\Models\Client;
+use App\Notifications\DocumentRequestReadyNotification;
 
 class DocumentRequestObserver
 {
@@ -17,6 +19,7 @@ class DocumentRequestObserver
 
     public function setReady(DocumentRequest $documentRequest)
     {
-
+        $client = Client::findOrFail($documentRequest->user_id);
+        $client->notify(new DocumentRequestReadyNotification($documentRequest));
     }
 }
