@@ -48,4 +48,34 @@ class BlessingController extends Controller
 
         return redirect()->back();
     }
+
+    public function acceptreservation(Request $request)
+    {
+        $blessing = Blessing::findOrFail($request->id);
+
+        $blessing->is_accepted = true;
+        $blessing->accepted_message = $request->accepted_message;
+        $blessing->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('success', 'The blessing reservation has been accepted');
+        return redirect()->back();
+    }
+
+    public function rejectreservation(Request $request)
+    {
+        $blessing = Blessing::findOrFail($request->id);
+
+        $blessing->is_rejected = true;
+        $blessing->rejection_message = $request->rejection_message;
+        $blessing->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('warning', 'The blessing reservation has been rejected');
+        return redirect()->back();
+    }
 }

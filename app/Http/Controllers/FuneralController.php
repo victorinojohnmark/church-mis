@@ -53,4 +53,34 @@ class FuneralController extends Controller
 
         return redirect()->back();
     }
+
+    public function acceptreservation(Request $request)
+    {
+        $funeral = Funeral::findOrFail($request->id);
+
+        $funeral->is_accepted = true;
+        $funeral->accepted_message = $request->accepted_message;
+        $funeral->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('success', 'The funeral reservation has been accepted');
+        return redirect()->back();
+    }
+
+    public function rejectreservation(Request $request)
+    {
+        $funeral = Funeral::findOrFail($request->id);
+
+        $funeral->is_rejected = true;
+        $funeral->rejection_message = $request->rejection_message;
+        $funeral->save();
+
+        //trigger some events
+        //do someting
+
+        session()->flash('warning', 'The funeral reservation has been rejected');
+        return redirect()->back();
+    }
 }

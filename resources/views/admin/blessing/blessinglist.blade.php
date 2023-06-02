@@ -3,7 +3,6 @@
 @section('title', 'Blessing')
 
 @section('content')
-@include('layouts.message')
 @include('admin.reservation.reservation-menu')
 {{-- <div class="py-3">
 
@@ -22,7 +21,16 @@
     <tbody>
         @forelse ($blessings as $blessing)
         <tr>
-            <td>{{ $blessing->name }}</td>
+            <td>
+                {{ $blessing->name }}
+                @if ($blessing->is_accepted)
+                    <span class="badge bg-success">Accepted</span>
+                @elseif ($blessing->is_rejected)
+                    <span class="badge bg-danger">Rejected</span>
+                @else
+                    <span class="badge bg-warning">Pending</span>
+                @endif
+            </td>
             <td>{{ $blessing->blessing_type }}</td>
             <td>{{ $blessing->date }}</td>
             <td>{{ $blessing->time }}</td>
@@ -30,21 +38,15 @@
 
             <td>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#blessingModal{{ $blessing->id }}">View</button>
-                <div class="modal fade" id="blessingModal{{ $blessing->id }}" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5">Blessing Reservation</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                                <div class="modal-body">
-                                    @include('admin.blessing.blessingform')
-                                <div class="modal-footer">
-                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+                @include('admin.blessing.blessingmodal')
+
+                @if (!$blessing->is_accepted && !$blessing->is_rejected)
+                    <button class="btn btn-info btn-sm text-white" data-bs-toggle="modal" data-bs-target="#blessingAcceptModal{{ $blessing->id }}">Accept</button>
+                    @include('admin.blessing.blessingacceptmodal')
+                
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#blessingRejectModal{{ $blessing->id }}">Reject</button>
+                    @include('admin.blessing.blessingrejectmodal')
+                @endif
             </td>
         </tr>
         @empty

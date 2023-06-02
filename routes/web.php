@@ -61,9 +61,13 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
 
     //Blessing
     Route::get('/blessings', [App\Http\Controllers\BlessingController::class, 'index'])->name('blessinglist');
+    Route::post('/blessingaccept', [App\Http\Controllers\BlessingController::class, 'acceptreservation'])->name('blessingaccept');
+    Route::post('/blessingreject', [App\Http\Controllers\BlessingController::class, 'rejectreservation'])->name('blessingreject');
 
     //Blessing
     Route::get('/funerals', [App\Http\Controllers\FuneralController::class, 'index'])->name('funerallist');
+    Route::post('/funeralaccept', [App\Http\Controllers\FuneralController::class, 'acceptreservation'])->name('funeralaccept');
+    Route::post('/funeralreject', [App\Http\Controllers\FuneralController::class, 'rejectreservation'])->name('funeralreject');
 
 });
 

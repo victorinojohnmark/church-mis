@@ -8,7 +8,7 @@
             $types = ['House', 'Apartment', 'Business', 'Car'];
         @endphp
         <label class="form-label">Type</label>
-        <select name="blessing_type" class="form-control" readonly>
+        <select name="blessing_type" class="form-control" readonly disabled>
             @forelse ($types as $type)
                 <option value="{{ $type }}" {{ $blessing->blessing_type == $type ? 'selected' : '' }}>{{ $type }}</option>
             @empty
