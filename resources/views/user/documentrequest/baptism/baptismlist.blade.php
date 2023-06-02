@@ -21,7 +21,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                     
-                            <form action="#" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('client-documentrequestbaptismsave') }}" method="POST" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     @include('user.documentrequest.baptism.baptismform')
                                 </div>
@@ -52,7 +52,7 @@
                                         <td>{{ $baptismRequest->baptismal_date }}</td>
                                         <td>{{ $baptismRequest->requested_date }}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#baptismDocumentRequestModal{{ $documentRequest->id }}">Update</button>
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#baptismDocumentRequestModal{{ $baptismRequest->id }}">Update</button>
                                             @include('user.documentrequest.baptism.baptismmodal')
                                         </td>
                                     </tr>

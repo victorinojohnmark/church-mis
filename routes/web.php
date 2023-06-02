@@ -36,12 +36,18 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::get('/documents', [App\Http\Controllers\DocumentController::class, 'index'])->name('documentlist');
     Route::post('/documents', [App\Http\Controllers\DocumentController::class, 'store'])->name('documentsave');
 
-    //Documents
-    Route::get('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('documentrequestlist');
-    Route::post('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'setReady'])->name('documentrequestready');
+    
+    ### DOCUMENT REQUEST ###
+    Route::get('/documentrequests', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'index'])->name('documentrequestlist');
+
+    // Route::get('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('documentrequestlist');
+    // Route::post('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'setReady'])->name('documentrequestready');
+
+    Route::get('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'index'])->name('documentrequestbaptismlist');
 
 
-    //Event Reservation
+
+    ### EVENT RESERVATION ###
     Route::get('/eventreservations', [App\Http\Controllers\EventReservationController::class, 'index'])->name('eventreservationlist');
 
     //Baptism
@@ -114,7 +120,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
 
     //document request
-    Route::get('/documentrequest', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('documentrequest');
-    Route::post('/documentrequestsave', [App\Http\Controllers\DocumentRequestController::class, 'store'])->name('documentrequestsave');
-    Route::post('/documentrequestcancel', [App\Http\Controllers\DocumentRequestController::class, 'cancel'])->name('documentrequestcancel');
+    Route::get('/documentrequest', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'index'])->name('client-documentrequestlist');
+
+    // Route::post('/documentrequestsave', [App\Http\Controllers\DocumentRequestController::class, 'store'])->name('documentrequestsave');
+    // Route::post('/documentrequestcancel', [App\Http\Controllers\DocumentRequestController::class, 'cancel'])->name('documentrequestcancel');
+
+    Route::get('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'index'])->name('client-documentrequestbaptismlist');
+    Route::post('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'store'])->name('client-documentrequestbaptismsave');
 });

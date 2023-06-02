@@ -13,6 +13,11 @@ class DocumentRequest extends Model
 
     protected $observables = ['setReady'];
 
+    public function baptismDetail()
+    {
+        return $this->hasOne(BaptismDocumentRequestDetail::class, 'document_request_id');
+    }
+
     public function createdBy()
     {
         return $this->belongsTo(Client::class, 'user_id');

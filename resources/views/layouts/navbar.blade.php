@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-warning" aria-label="Fourth navbar example">
+<nav class="navbar navbar-expand-md bg-body-tertiary shadow-sm" aria-label="Fourth navbar example">
     <div class="container">
         <a class="navbar-brand" href="#">
             <img src="/img/logo.png" class="img-fluid" alt="Logo" style="height: 35px;">

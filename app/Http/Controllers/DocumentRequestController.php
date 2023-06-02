@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DocumentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+
+use App\Models\DocumentRequest;
+use App\Models\DocumentRequest\DocumentRequestBaptism;
 
 class DocumentRequestController extends Controller
 {
@@ -16,14 +18,13 @@ class DocumentRequestController extends Controller
 
         if(Auth::user()->is_admin) {
             return view('admin.documentrequest.documentrequestlist', [
-                'documentTypes' => json_decode($documentTypes),
-                'documentRequests' => DocumentRequest::latest()->get(),
+
             ]);
         } else {
-            return view('user.documentrequest.documentrequestlist', [
-                'documentTypes' => json_decode($documentTypes),
-                'documentRequests' => DocumentRequest::latest()->where('user_id', Auth::id())->get(),
-                'documentRequest' => new DocumentRequest()
+            return view('user.documentrequest.baptism.baptismlist', [
+
+                'baptismRequests' => DocumentRequestBaptism::latest()->get(),
+                'baptismRequest' => new DocumentRequestBaptism()
             ]);
         }
     }
@@ -37,20 +38,88 @@ class DocumentRequestController extends Controller
             'requested_date' => ['required', 'date'],
         ]);
 
-        if($request->id) {
-            $documentRequest = DocumentRequest::findOrFail($request->id);
-            if(!$documentRequest->is_ready){
-                $documentRequest->fill($data);
-                $documentRequest->save();
-            }
+        switch ($request->document_type) {
+            case 'Baptism':
+                $details = $request->validate([
+                    'baptismal_date' => ['required', 'date'],
+                    'contact_number' => ['required'],
+                    'birth_date' => ['required', 'date'],
+                    'father_name' => ['required'],
+                    'mother_name' => ['required'],
+                    'address' => ['required'],
+                    'purpose' => ['required']
+                ]);
 
-            session()->flash('success', 'Request updated successfully.');
-            return redirect()->back();
-        } else {
-            $documentRequest = DocumentRequest::create($data);
-            session()->flash('success', 'Request submitted successfully.');
-            return redirect()->back();
+                if($request->id) {
+                    $documentRequest = DocumentRequest::findOrFail($request->id);
+
+                    if(!$documentRequest->is_ready){
+                        $documentRequest->fill($data);
+                        $baptismRequestDetail->fill($details);
+
+                        $documentRequest->save();
+                        $baptismRequestDetail->save();
+                    }
+                    session()->flash('success', 'Request updated successfully.');
+                    return redirect()->back();
+                } else {
+                    $documentRequest = DocumentRequest::create($data);
+                    $details['document_request_id'] = $documentRequest->id;
+
+                    session()->flash('success', 'Request submitted successfully.');
+                    return redirect()->back();
+                }
+
+                break;
+
+            case 'Confirmation':
+                $details = $request->validate([
+                    'confirmation_date' => ['required', 'date'],
+                    'contact_number' => ['required'],
+                    'birth_date' => ['required', 'date'],
+                    'father_name' => ['required'],
+                    'mother_name' => ['required'],
+                    'address' => ['required'],
+                    'purpose' => ['required']
+                ]);
+                break;
+
+            case 'First Holy Communion':
+                $details = $request->validate([
+                    'communion_date' => ['required', 'date'],
+                    'contact_number' => ['required'],
+                    'birth_date' => ['required', 'date'],
+                    'father_name' => ['required'],
+                    'mother_name' => ['required'],
+                    'address' => ['required'],
+                    'purpose' => ['required']
+                ]);
+                break;
+
+            case 'Matrimony':
+                $details = $request->validate([
+                    # validate here
+                ]);
+                break;
+
+            case 'Blessings':
+                $details = $request->validate([
+                    # validate here
+                ]);
+                break;
+
+            case 'Death':
+                $details = $request->validate([
+                    # validate here
+                ]);
+                break;
+            
+            default:
+                # code...
+                break;
         }
+
+        
 
         // dd($documentRequest);
 

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Baptism;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use App\Models\Baptism;
 
 class BaptismController extends Controller
 {
