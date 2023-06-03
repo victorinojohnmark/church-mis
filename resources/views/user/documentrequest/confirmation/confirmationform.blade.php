@@ -51,7 +51,7 @@
     <div class="col-md-12">
         <div class="p-3 bg-body-secondary rounded">
             <small><i class="fa-solid fa-circle-info text-primary"></i>
-                You might receive the document in 3-5 business days, and we'll email you when it's ready for pickup.
+                You might receive the document in 3-5 business days. You'll recieve an email advisory when it's ready for pickup.
             </small>
         </div>
     </div>

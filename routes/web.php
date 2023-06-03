@@ -57,6 +57,9 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::post('/documentrequestmatrimonies-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'setReady'])->name('documentrequestmatrimonysetready');
 
 
+    // Matrimony Doc Request
+    Route::get('/documentrequestblessing', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'index'])->name('documentrequestblessinglist');
+    Route::post('/documentrequestblessing-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'setReady'])->name('documentrequestblessingsetready');
 
 
     ### EVENT RESERVATION ###
@@ -156,6 +159,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     Route::get('/documentrequestmatrimonies', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'index'])->name('client-documentrequestmatrimonylist');
     Route::post('/documentrequestmatrimonies', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'store'])->name('client-documentrequestmatrimonysave');
     Route::post('/canceldocumentrequestmatrimony', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'cancel'])->name('client-canceldocumentrequestmatrimony');
+
+    //Blessing Document Request
+    Route::get('/documentrequestblessing', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'index'])->name('client-documentrequestblessinglist');
+    Route::post('/documentrequestblessing', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'store'])->name('client-documentrequestblessingsave');
+    Route::post('/canceldocumentrequestblessing', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'cancel'])->name('client-canceldocumentrequestblessing');
 
 
 });

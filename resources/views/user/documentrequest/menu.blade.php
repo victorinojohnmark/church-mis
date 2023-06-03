@@ -3,6 +3,6 @@
     <a href="{{ route('client-documentrequestconfirmationlist') }}" class="btn btn-success">Confirmation</a>
     <a href="{{ route('client-documentrequestcommunionlist') }}" class="btn btn-success">1st Communion</a>
     <a href="{{ route('client-documentrequestmatrimonylist') }}" class="btn btn-success">Matrimony</a>
-    <a href="#" class="btn btn-success">Blessings</a>
+    <a href="{{ route('client-documentrequestblessinglist') }}" class="btn btn-success">Blessings</a>
     <a href="#" class="btn btn-success">Death</a>
 </div>

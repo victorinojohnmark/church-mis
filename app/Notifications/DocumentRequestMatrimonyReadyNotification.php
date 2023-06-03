@@ -42,7 +42,7 @@ class DocumentRequestMatrimonyReadyNotification extends Notification implements 
         return [
             'title' => 'Matrimony document requested is ready',
             'message' => 'Your matrimony document request for ' . $this->documentRequestMatrimony->grooms_name . ' and ' . $this->documentRequestMatrimony->brides_name . ' is now ready for pick up.',
-            'link' => env('APP_URL', 'localhost') . '/user/documentrequestnatrimonies'
+            'link' => env('APP_URL', 'localhost') . '/user/documentrequestmatrimonies'
         ];
     }
 }
