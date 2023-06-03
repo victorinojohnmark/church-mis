@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 
 use App\Models\DocumentRequest\DocumentRequestBaptism;
 
-class DocumentRequestBaptismReadyNotification extends Notification
+class DocumentRequestBaptismReadyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

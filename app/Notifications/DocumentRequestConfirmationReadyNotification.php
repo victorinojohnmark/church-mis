@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 
 use App\Models\DocumentRequest\DocumentRequestConfirmation;
 
-class DocumentRequestConfirmationReadyNotification extends Notification
+class DocumentRequestConfirmationReadyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

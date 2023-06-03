@@ -132,8 +132,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     // Baptism Document Request
     Route::get('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'index'])->name('client-documentrequestbaptismlist');
     Route::post('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'store'])->name('client-documentrequestbaptismsave');
+    Route::post('/canceldocumentrequestbaptism', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'cancel'])->name('client-canceldocumentrequestbaptism');
+
 
     //Confirmation Document Request
     Route::get('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'index'])->name('client-documentrequestconfirmationlist');
     Route::post('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'store'])->name('client-documentrequestconfirmationsave');
+    
 });

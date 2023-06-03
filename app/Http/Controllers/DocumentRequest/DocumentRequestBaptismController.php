@@ -60,6 +60,18 @@ class DocumentRequestBaptismController extends Controller
 
     }
 
+    public function cancel(Request $request)
+    {
+        $documentRequestBaptism = DocumentRequestBaptism::findOrFail($request->id);
+
+        $documentRequestBaptism->is_active = false;
+        $documentRequestBaptism->save();
+
+        session()->flash('warning', 'Your request has been successfully cancelled');
+        return redirect()->back();
+
+    }
+
     public function setReady(Request $request)
     {
         $documentRequestBaptism = DocumentRequestBaptism::findOrFail($request->id);
