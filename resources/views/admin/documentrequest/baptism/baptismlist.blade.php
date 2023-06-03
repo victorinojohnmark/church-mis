@@ -35,7 +35,7 @@
                     <td>
                         @include('admin.documentrequest.baptism.baptismmodal')
 
-                        @if (!$baptismRequest->is_ready)
+                        @if ($baptismRequest->is_active && !$baptismRequest->is_ready)
                             @include('admin.documentrequest.baptism.baptismreadymodal')
                         @endif
                         

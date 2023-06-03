@@ -60,6 +60,18 @@ class DocumentRequestConfirmationController extends Controller
 
     }
 
+    public function cancel(Request $request)
+    {
+        $documentRequestConfirmation = DocumentRequestConfirmation::findOrFail($request->id);
+
+        $documentRequestConfirmation->is_active = false;
+        $documentRequestConfirmation->save();
+
+        session()->flash('warning', 'Your request has been successfully cancelled');
+        return redirect()->back();
+
+    }
+
     public function setReady(Request $request)
     {
         $documentRequestConfirmation = DocumentRequestConfirmation::findOrFail($request->id);

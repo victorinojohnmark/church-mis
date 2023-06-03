@@ -69,7 +69,10 @@
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationDocumentRequestModal{{ $confirmationRequest->id }}">{{ $confirmationRequest->is_ready ? 'View' : 'Update' }}</button>
                                                 @include('user.documentrequest.confirmation.confirmationmodal')
 
-                                                <button class="btn btn-danger btn-sm">Cancel Request</button>
+                                                @if (!$confirmationRequest->is_ready)
+                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationCancelDocumentRequestModal{{ $confirmationRequest->id }}">Cancel Request</button>
+                                                    @include('user.documentrequest.confirmation.confirmationcancelmodal')
+                                                @endif
                                             @else
                                                 <button disabled="disabled" class="btn btn-secondary btn-sm">N/A</button>
                                             @endif

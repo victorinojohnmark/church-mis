@@ -67,8 +67,10 @@
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#baptismDocumentRequestModal{{ $baptismRequest->id }}">{{ $baptismRequest->is_ready ? 'View' : 'Update' }}</button>
                                                 @include('user.documentrequest.baptism.baptismmodal')
 
-                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#baptismCancelDocumentRequestModal{{ $baptismRequest->id }}">Cancel Request</button>
-                                                @include('user.documentrequest.baptism.baptismcancelmodal')
+                                                @if (!$baptismRequest->is_ready)
+                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#baptismCancelDocumentRequestModal{{ $baptismRequest->id }}">Cancel Request</button>
+                                                    @include('user.documentrequest.baptism.baptismcancelmodal')
+                                                @endif
 
                                             @else
                                                 <button disabled="disabled" class="btn btn-secondary btn-sm">N/A</button>

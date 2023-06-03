@@ -35,7 +35,7 @@
                     <td>
                         @include('admin.documentrequest.confirmation.confirmationmodal')
 
-                        @if (!$confirmationRequest->is_ready)
+                        @if ($confirmationRequest->is_active && !$confirmationRequest->is_ready)
                             @include('admin.documentrequest.confirmation.confirmationreadymodal')
                         @endif
                         
