@@ -16,6 +16,7 @@ use App\Models\DocumentRequest\DocumentRequestConfirmation;
 use App\Models\DocumentRequest\DocumentRequestCommunion;
 use App\Models\DocumentRequest\DocumentRequestMatrimony;
 use App\Models\DocumentRequest\DocumentRequestBlessing;
+use App\Models\DocumentRequest\DocumentRequestDeath;
 
 
 
@@ -28,10 +29,7 @@ use App\Observers\DocumentRequestConfirmationObserver;
 use App\Observers\DocumentRequestCommunionObserver;
 use App\Observers\DocumentRequestMatrimonyObserver;
 use App\Observers\DocumentRequestBlessingObserver;
-
-
-
-
+use App\Observers\DocumentRequestDeathObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -58,8 +56,7 @@ class EventServiceProvider extends ServiceProvider
         DocumentRequestCommunion::observe(DocumentRequestCommunionObserver::class);
         DocumentRequestMatrimony::observe(DocumentRequestMatrimonyObserver::class);
         DocumentRequestBlessing::observe(DocumentRequestBlessingObserver::class);
-
-
+        DocumentRequestDeath::observe(DocumentRequestDeathObserver::class);
 
     }
 

@@ -57,9 +57,13 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::post('/documentrequestmatrimonies-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'setReady'])->name('documentrequestmatrimonysetready');
 
 
-    // Matrimony Doc Request
+    // Blessing Doc Request
     Route::get('/documentrequestblessing', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'index'])->name('documentrequestblessinglist');
     Route::post('/documentrequestblessing-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'setReady'])->name('documentrequestblessingsetready');
+
+    // Death Doc Request
+    Route::get('/documentrequestdeath', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'index'])->name('documentrequestdeathlist');
+    Route::post('/documentrequestdeath-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'setReady'])->name('documentrequestdeathsetready');
 
 
     ### EVENT RESERVATION ###
@@ -164,6 +168,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     Route::get('/documentrequestblessing', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'index'])->name('client-documentrequestblessinglist');
     Route::post('/documentrequestblessing', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'store'])->name('client-documentrequestblessingsave');
     Route::post('/canceldocumentrequestblessing', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'cancel'])->name('client-canceldocumentrequestblessing');
+
+    //Death Document Request
+    Route::get('/documentrequestdeath', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'index'])->name('client-documentrequestdeathlist');
+    Route::post('/documentrequestdeath', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'store'])->name('client-documentrequestdeathsave');
+    Route::post('/canceldocumentrequestdeath', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'cancel'])->name('client-canceldocumentrequestdeath');
 
 
 });
