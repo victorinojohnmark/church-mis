@@ -47,6 +47,10 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     // Confirmation Doc Request
     Route::get('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'index'])->name('documentrequestconfirmationlist');
     Route::post('/documentrequestconfirmations-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'setReady'])->name('documentrequestconfirmationsetready');
+
+    // Communion Doc Request
+    Route::get('/documentrequestcommunions', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'index'])->name('documentrequestcommunionlist');
+    Route::post('/documentrequestcommunions-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'setReady'])->name('documentrequestcommunionsetready');
     
 
 
@@ -134,9 +138,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     Route::post('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'store'])->name('client-documentrequestbaptismsave');
     Route::post('/canceldocumentrequestbaptism', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'cancel'])->name('client-canceldocumentrequestbaptism');
 
-
     //Confirmation Document Request
     Route::get('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'index'])->name('client-documentrequestconfirmationlist');
     Route::post('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'store'])->name('client-documentrequestconfirmationsave');
+    Route::post('/canceldocumentrequestconfirmation', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'cancel'])->name('client-canceldocumentrequestconfirmation');
+
+    //Communion Document Request
+    Route::get('/documentrequestcommunions', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'index'])->name('client-documentrequestcommunionlist');
+    Route::post('/documentrequestcommunions', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'store'])->name('client-documentrequestcommunionsave');
+    Route::post('/canceldocumentrequestcommunion', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'cancel'])->name('client-canceldocumentrequestcommunion');
     
 });

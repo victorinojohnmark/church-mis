@@ -76,12 +76,17 @@ class DocumentRequestBaptismController extends Controller
     {
         $documentRequestBaptism = DocumentRequestBaptism::findOrFail($request->id);
 
-        $documentRequestBaptism->is_ready = true;
-        $documentRequestBaptism->save();
+        if($documentRequestBaptism->is_active) {
+            $documentRequestBaptism->is_ready = true;
+            $documentRequestBaptism->save();
 
-        $documentRequestBaptism->triggerSetReadyEvent();
+            $documentRequestBaptism->triggerSetReadyEvent();
 
-        session()->flash('success', 'Baptism document request updated, email notification will be sent to the client');
-        return redirect()->back();
+            session()->flash('success', 'Baptism document request updated, email notification will be sent to the client');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', 'Invalid, Confirmation document request has been cancelled.');
+            return redirect()->back();
+        }
     }
 }

@@ -76,12 +76,17 @@ class DocumentRequestConfirmationController extends Controller
     {
         $documentRequestConfirmation = DocumentRequestConfirmation::findOrFail($request->id);
 
-        $documentRequestConfirmation->is_ready = true;
-        $documentRequestConfirmation->save();
+        if($documentRequestConfirmation->is_active) {
+            $documentRequestConfirmation->is_ready = true;
+            $documentRequestConfirmation->save();
 
-        $documentRequestConfirmation->triggerSetReadyEvent();
+            $documentRequestConfirmation->triggerSetReadyEvent();
 
-        session()->flash('success', 'Confirmation document request updated, email notification will be sent to the client');
-        return redirect()->back();
+            session()->flash('success', 'Confirmation document request updated, email notification will be sent to the client');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', 'Invalid, Confirmation document request has been cancelled.');
+            return redirect()->back();
+        }
     }
 }

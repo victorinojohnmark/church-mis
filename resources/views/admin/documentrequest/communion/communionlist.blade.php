@@ -1,27 +1,27 @@
 @extends('layouts.admin')
 
-@section('title', 'Confirmation Document Requests')
+@section('title', 'Communion Document Requests')
 
 @section('content')
 @include('admin.documentrequest.menu')
 
 <div class="table-responsive">
-    <table id="documentrequests-confirmation-table" class="table table-bordered table-hover">
+    <table id="documentrequests-communion-table" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Date of Confirmation</th>
+                <th>Date of Communion</th>
                 <th>Date Requested</th>
                 <th>Option</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($confirmationRequests as $confirmationRequest)
+            @forelse ($communionRequests as $communionRequest)
                 <tr>
                     <td>
-                        {{ $confirmationRequest->name }}
-                        @if ($confirmationRequest->is_active)
-                            @if ($confirmationRequest->is_ready)
+                        {{ $communionRequest->name }}
+                        @if ($communionRequest->is_active)
+                            @if ($communionRequest->is_ready)
                                 <span class="badge bg-success">Ready for pick up</span>
                             @else
                                 <span class="badge bg-warning">Pending</span>
@@ -30,13 +30,13 @@
                         <span class="badge bg-danger">Cancelled by Client</span>
                         @endif
                     </td>
-                    <td>{{ $confirmationRequest->confirmation_date }}</td>
-                    <td>{{ $confirmationRequest->requested_date }}</td>
+                    <td>{{ $communionRequest->communion_date }}</td>
+                    <td>{{ $communionRequest->requested_date }}</td>
                     <td>
-                        @include('admin.documentrequest.confirmation.confirmationmodal')
+                        @include('admin.documentrequest.communion.communionmodal')
 
-                        @if ($confirmationRequest->is_active && !$confirmationRequest->is_ready)
-                            @include('admin.documentrequest.confirmation.confirmationreadymodal')
+                        @if ($communionRequest->is_active && !$communionRequest->is_ready)
+                            @include('admin.documentrequest.communion.communionreadymodal')
                         @endif
                         
                     </td>
@@ -61,7 +61,7 @@
     <script src="/vendor/datatables/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#documentrequests-confirmation-table').DataTable({
+            $('#documentrequests-communion-table').DataTable({
 
             });
             
