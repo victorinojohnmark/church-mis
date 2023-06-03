@@ -7,23 +7,23 @@
 
         <div class="col-md-9">
             <div id="content" class="px-3">
-                <h1>Baptism Document Requests</h1>
+                <h1>Confirmation Document Requests</h1>
                 <hr>
                 @include('layouts.message')
                 @include('user.documentrequest.menu')
                 <div class="py-3">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#baptismDocumentRequestModal"><i class="fa-solid fa-plus"></i> Add Request</button>
-                    <div class="modal fade" id="baptismDocumentRequestModal" tabindex="-1" aria-labelledby="documentRequestModalLabel" aria-hidden="true">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationDocumentRequestModal"><i class="fa-solid fa-plus"></i> Add Request</button>
+                    <div class="modal fade" id="confirmationDocumentRequestModal" tabindex="-1" aria-labelledby="documentRequestModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="baptismDocumentRequestModalLabel">Baptism Document Request Form</h1>
+                                <h1 class="modal-title fs-5" id="confirmationDocumentRequestModalLabel">Confirmation Document Request Form</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                     
-                            <form action="{{ route('client-documentrequestbaptismsave') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('client-documentrequestconfirmationsave') }}" method="POST" enctype="multipart/form-data">
                                 <div class="modal-body">
-                                    @include('user.documentrequest.baptism.baptismform')
+                                    @include('user.documentrequest.confirmation.confirmationform')
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -36,22 +36,22 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table id="baptismrequests-table" class="table table-hover">
+                        <table id="confirmationrequests-table" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Date of Baptismal</th>
+                                    <th>Date of Confirmation</th>
                                     <th>Date Requested</th>
                                     <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($baptismRequests as $baptismRequest)
+                                @forelse ($confirmationRequests as $confirmationRequest)
                                     <tr>
                                         <td>
-                                            {{ $baptismRequest->name }}
-                                            @if ($baptismRequest->is_active)
-                                                @if ($baptismRequest->is_ready)
+                                            {{ $confirmationRequest->name }}
+                                            @if ($confirmationRequest->is_active)
+                                                @if ($confirmationRequest->is_ready)
                                                     <span class="badge bg-success">Ready for pick up</span>
                                                 @else
                                                     <span class="badge bg-warning">Pending</span>
@@ -60,12 +60,14 @@
                                             <span class="badge bg-danger">Cancelled by Client</span>
                                             @endif
                                         </td>
-                                        <td>{{ $baptismRequest->baptismal_date }}</td>
-                                        <td>{{ $baptismRequest->requested_date }}</td>
+                                        <td>{{ $confirmationRequest->confirmational_date }}</td>
+                                        <td>{{ $confirmationRequest->requested_date }}</td>
                                         <td>
-                                            @if ($baptismRequest->is_active)
-                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#baptismDocumentRequestModal{{ $baptismRequest->id }}">{{ $baptismRequest->is_ready ? 'View' : 'Update' }}</button>
-                                                @include('user.documentrequest.baptism.baptismmodal')
+                                            
+
+                                            @if ($confirmationRequest->is_active)
+                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationDocumentRequestModal{{ $confirmationRequest->id }}">{{ $confirmationRequest->is_ready ? 'View' : 'Update' }}</button>
+                                                @include('user.documentrequest.confirmation.confirmationmodal')
 
                                                 <button class="btn btn-danger btn-sm">Cancel Request</button>
                                             @else
@@ -96,7 +98,7 @@
     <script src="/vendor/datatables/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#baptismrequests-table').DataTable({
+            $('#confirmationrequests-table').DataTable({
                 dom: 'ftp'
             });
         });

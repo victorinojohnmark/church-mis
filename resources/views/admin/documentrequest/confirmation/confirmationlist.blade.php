@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Baptism Document Requests')
+@section('title', 'Confirmation Document Requests')
 
 @section('content')
 @include('admin.documentrequest.menu')
@@ -10,18 +10,18 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Date of Baptismal</th>
+                <th>Date of Confirmation</th>
                 <th>Date Requested</th>
                 <th>Option</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($baptismRequests as $baptismRequest)
+            @forelse ($confirmationRequests as $confirmationRequest)
                 <tr>
                     <td>
-                        {{ $baptismRequest->name }}
-                        @if ($baptismRequest->is_active)
-                            @if ($baptismRequest->is_ready)
+                        {{ $confirmationRequest->name }}
+                        @if ($confirmationRequest->is_active)
+                            @if ($confirmationRequest->is_ready)
                                 <span class="badge bg-success">Ready for pick up</span>
                             @else
                                 <span class="badge bg-warning">Pending</span>
@@ -30,13 +30,13 @@
                         <span class="badge bg-danger">Cancelled by Client</span>
                         @endif
                     </td>
-                    <td>{{ $baptismRequest->baptismal_date }}</td>
-                    <td>{{ $baptismRequest->requested_date }}</td>
+                    <td>{{ $confirmationRequest->confirmation_date }}</td>
+                    <td>{{ $confirmationRequest->requested_date }}</td>
                     <td>
-                        @include('admin.documentrequest.baptism.baptismmodal')
+                        @include('admin.documentrequest.confirmation.confirmationmodal')
 
-                        @if (!$baptismRequest->is_ready)
-                            @include('admin.documentrequest.baptism.baptismreadymodal')
+                        @if (!$confirmationRequest->is_ready)
+                            @include('admin.documentrequest.confirmation.confirmationreadymodal')
                         @endif
                         
                     </td>

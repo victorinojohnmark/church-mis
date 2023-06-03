@@ -40,12 +40,14 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     ### DOCUMENT REQUEST ###
     Route::get('/documentrequests', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'index'])->name('documentrequestlist');
 
-    // Route::get('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'index'])->name('documentrequestlist');
-    // Route::post('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'setReady'])->name('documentrequestready');
-
+    // Baptism Doc Request
     Route::get('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'index'])->name('documentrequestbaptismlist');
     Route::post('/documentrequestbaptisms-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'setReady'])->name('documentrequestbaptismsetready');
 
+    // Confirmation Doc Request
+    Route::get('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'index'])->name('documentrequestconfirmationlist');
+    Route::post('/documentrequestconfirmations-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'setReady'])->name('documentrequestconfirmationsetready');
+    
 
 
 
@@ -126,7 +128,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
     // Route::post('/documentrequestsave', [App\Http\Controllers\DocumentRequestController::class, 'store'])->name('documentrequestsave');
     // Route::post('/documentrequestcancel', [App\Http\Controllers\DocumentRequestController::class, 'cancel'])->name('documentrequestcancel');
-
+    
+    // Baptism Document Request
     Route::get('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'index'])->name('client-documentrequestbaptismlist');
     Route::post('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'store'])->name('client-documentrequestbaptismsave');
+
+    //Confirmation Document Request
+    Route::get('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'index'])->name('client-documentrequestconfirmationlist');
+    Route::post('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'store'])->name('client-documentrequestconfirmationsave');
 });
