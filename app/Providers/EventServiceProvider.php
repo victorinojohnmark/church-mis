@@ -13,12 +13,20 @@ use App\Models\Baptism;
 use App\Models\DocumentRequest;
 use App\Models\DocumentRequest\DocumentRequestBaptism;
 use App\Models\DocumentRequest\DocumentRequestConfirmation;
+use App\Models\DocumentRequest\DocumentRequestCommunion;
+use App\Models\DocumentRequest\DocumentRequestMatrimony;
+
+
 
 #Observers
 use App\Observers\BaptismObserver;
 use App\Observers\DocumentRequestObserver;
 use App\Observers\DocumentRequestBaptismObserver;
 use App\Observers\DocumentRequestConfirmationObserver;
+use App\Observers\DocumentRequestCommunionObserver;
+use App\Observers\DocumentRequestMatrimonyObserver;
+
+
 
 
 class EventServiceProvider extends ServiceProvider
@@ -43,6 +51,9 @@ class EventServiceProvider extends ServiceProvider
         Baptism::observe(BaptismObserver::class);
         DocumentRequestBaptism::observe(DocumentRequestBaptismObserver::class);
         DocumentRequestConfirmation::observe(DocumentRequestConfirmationObserver::class);
+        DocumentRequestCommunion::observe(DocumentRequestCommunionObserver::class);
+        DocumentRequestMatrimony::observe(DocumentRequestMatrimonyObserver::class);
+
 
     }
 
