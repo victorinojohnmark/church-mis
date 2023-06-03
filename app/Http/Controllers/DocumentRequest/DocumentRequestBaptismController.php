@@ -15,10 +15,9 @@ class DocumentRequestBaptismController extends Controller
     public function index()
     {
         if(Auth::user()->is_admin) {
-            // return view('admin.documentrequest.documentrequestlist', [
-            //     // 'documentTypes' => json_decode($documentTypes),
-            //     // 'documentRequests' => DocumentRequest::latest()->get(),
-            // ]);
+            return view('admin.documentrequest.baptism.baptismlist', [
+                'baptismRequests' => DocumentRequestBaptism::latest()->get()
+            ]);
         } else {
             return view('user.documentrequest.baptism.baptismlist', [
                 'baptismRequests' => DocumentRequestBaptism::where('user_id', Auth::id())->get(),
@@ -44,20 +43,33 @@ class DocumentRequestBaptismController extends Controller
 
 
          if($request->id) {
-            $documentRequest = DocumentRequestBaptism::findOrFail($request->id);
-            if(!$documentRequest->is_ready){
-                $documentRequest->fill($data);
-                $documentRequest->save();
+            $documentRequestBaptism = DocumentRequestBaptism::findOrFail($request->id);
+            if(!$documentRequestBaptism->is_ready){
+                $documentRequestBaptism->fill($data);
+                $documentRequestBaptism->save();
             }
 
             session()->flash('success', 'Baptism document request updated successfully.');
             return redirect()->back();
         } else {
-            $documentRequest = DocumentRequestBaptism::create($data);
+            $documentRequestBaptism = DocumentRequestBaptism::create($data);
 
             session()->flash('success', 'Baptism document request submitted successfully.');
             return redirect()->back();
         }
 
+    }
+
+    public function setReady(Request $request)
+    {
+        $documentRequestBaptism = DocumentRequestBaptism::findOrFail($request->id);
+
+        $documentRequestBaptism->is_ready = true;
+        $documentRequestBaptism->save();
+
+        $documentRequestBaptism->triggerSetReadyEvent();
+
+        session()->flash('success', 'Baptism document request updated, email notification will be sent to the client');
+        return redirect()->back();
     }
 }

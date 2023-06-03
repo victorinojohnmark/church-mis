@@ -5,6 +5,8 @@ namespace App\Models\DocumentRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Client;
+
 class DocumentRequestBaptism extends Model
 {
     use HasFactory;
@@ -21,4 +23,16 @@ class DocumentRequestBaptism extends Model
         'purpose',
         'requested_date'
     ];
+
+    protected $observables = ['setReady'];
+
+    public function createdBy()
+    {
+        return $this->belongsTo(Client::class, 'user_id');
+    }
+
+    public function triggerSetReadyEvent()
+    {
+        $this->fireModelEvent('setReady', false);
+    }
 }

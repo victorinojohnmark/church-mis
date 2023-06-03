@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     // Route::post('/documentrequests', [App\Http\Controllers\DocumentRequestController::class, 'setReady'])->name('documentrequestready');
 
     Route::get('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'index'])->name('documentrequestbaptismlist');
+    Route::post('/documentrequestbaptisms-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'setReady'])->name('documentrequestbaptismsetready');
+
 
 
 

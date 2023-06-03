@@ -11,10 +11,13 @@ use Illuminate\Support\Facades\Event;
 #Models
 use App\Models\Baptism;
 use App\Models\DocumentRequest;
+use App\Models\DocumentRequest\DocumentRequestBaptism;
 
 #Observers
 use App\Observers\BaptismObserver;
 use App\Observers\DocumentRequestObserver;
+use App\Observers\DocumentRequestBaptismObserver;
+
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -36,6 +39,7 @@ class EventServiceProvider extends ServiceProvider
     {
         DocumentRequest::observe(DocumentRequestObserver::class);
         Baptism::observe(BaptismObserver::class);
+        DocumentRequestBaptism::observe(DocumentRequestBaptismObserver::class);
     }
 
     /**
