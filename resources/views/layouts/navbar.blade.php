@@ -15,9 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Events</a>
-                </li>
+                </li> --}}
 
                 @guest
                     <li class="nav-item">
@@ -38,7 +38,8 @@
                                 <a class="dropdown-item" href="#">Admin Dashboard</a>
                             @else
                                 <a class="dropdown-item" href="{{ route('userprofile') }}">My Profile</a>
-                                <a class="dropdown-item" href="#">My Requests</a>
+                                <a class="dropdown-item" href="{{ route('client-documentrequestlist') }}">My Requests</a>
+                                <a class="dropdown-item" href="{{ route('clientreservations') }}">My Reservations</a>
                             @endif
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
