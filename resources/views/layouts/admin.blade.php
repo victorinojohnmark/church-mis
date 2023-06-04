@@ -32,6 +32,17 @@
     </div>
     @vite(['resources/js/app.js'])
     @stack('scripts')
+
+    <script>
+        function hideMenu(elementID) {
+            var el = document.getElementById(elementID);
+            if (el.style.display === "none") {
+            el.style.display = "block";
+            } else {
+            el.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>

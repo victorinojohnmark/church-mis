@@ -49,3 +49,13 @@ footer {
 .badge, .form-control, .form-select, .btn, .modal-content {
     border-radius: 0;
 }
+
+.dataTables_info, .dataTables_paginate, .dt-buttons, .dataTables_length, .dataTables_filter {
+    display: inline-block !important;
+    margin-right: 10px;
+    }
+
+
+.dataTables_filter, .dataTables_paginate {
+    float: right !important;
+}

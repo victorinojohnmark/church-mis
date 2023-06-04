@@ -99,6 +99,12 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::post('/funeralaccept', [App\Http\Controllers\Reservation\FuneralController::class, 'acceptreservation'])->name('funeralaccept');
     Route::post('/funeralreject', [App\Http\Controllers\Reservation\FuneralController::class, 'rejectreservation'])->name('funeralreject');
 
+
+    ### REPORT ###
+    Route::group(['prefix' => 'reports'], function() {
+        Route::any('/documents', [App\Http\Controllers\Report\DocumentReportController::class, 'index'])->name('report-documentlist');
+    });
+
 });
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
@@ -109,6 +115,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     //profile
     Route::get('/profile', [App\Http\Controllers\UserController::class, 'show'])->name('userprofile');
     Route::post('/profileupdate', [App\Http\Controllers\UserController::class, 'update'])->name('userprofileupdate');
+
+    //notification
+    Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('usernotification');
 
     //reservation
     Route::get('/reservations', [App\Http\Controllers\ClientController::class, 'reservation'])->name('clientreservations');
