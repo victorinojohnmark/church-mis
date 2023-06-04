@@ -13,7 +13,7 @@ class Matrimony extends Model
 
     protected $fillable = ['grooms_name', 'grooms_birth_date', 'brides_name', 'brides_birth_date', 'wedding_date', 'contact_number', 'created_by_id'];
 
-    protected $observables = ['reservationAccepted'];
+    protected $observables = ['reservationAccepted', 'reservationRejected'];
 
     public function createdBy()
     {
@@ -23,5 +23,10 @@ class Matrimony extends Model
     public function triggerReservationAccepted()
     {
         $this->fireModelEvent('reservationAccepted', false);
+    }
+
+    public function triggerReservationRejected()
+    {
+        $this->fireModelEvent('reservationRejected', false);
     }
 }
