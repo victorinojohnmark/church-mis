@@ -57,10 +57,9 @@ class ConfirmationController extends Controller
         $confirmation->accepted_message = $request->accepted_message;
         $confirmation->save();
 
-        //trigger some events
-        //do someting
+        $confirmation->triggerReservationAccepted();
 
-        session()->flash('success', 'The confirmation reservation has been accepted');
+        session()->flash('success', 'The confirmation reservation has been accepted, an email notification will be sent to the client');
         return redirect()->back();
     }
 
@@ -72,10 +71,9 @@ class ConfirmationController extends Controller
         $confirmation->rejection_message = $request->rejection_message;
         $confirmation->save();
 
-        //trigger some events
-        //do someting
+        $confirmation->triggerReservationRejected();
 
-        session()->flash('warning', 'The confirmation reservation has been rejected');
+        session()->flash('success', 'The confirmation reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
 }

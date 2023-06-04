@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 
 use App\Models\Reservation\Matrimony;
 
-class MatrimonyAcceptNotification extends Notification implements ShouldQueue
+class MatrimonyRejectNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -20,21 +20,27 @@ class MatrimonyAcceptNotification extends Notification implements ShouldQueue
         $this->matrimony = $matrimony;
     }
 
-    
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @return array<int, string>
+     */
     public function via(object $notifiable): array
     {
         return ['mail', 'database'];
     }
 
-    
+    /**
+     * Get the mail representation of the notification.
+     */
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
                     ->subject('Matrimony Reservation for '. $this->matrimony->grooms_name . ' and ' . $this->matrimony->brides_name)
                     ->greeting('Good day '. $this->matrimony->createdBy->name)
-                    ->line('Your matrimony reservation for ' . $this->matrimony->grooms_name . ' and ' . $this->matrimony->brides_name . ' has been accepted.')
+                    ->line('Your matrimony reservation for ' . $this->matrimony->grooms_name . ' and ' . $this->matrimony->brides_name . ' has been rejected.')
                     ->action('View reservation', url('/user/matrimonies'))
-                    ->line('Admin Message: ' . $this->matrimony->accepted_message);
+                    ->line('Admin Message: ' . $this->matrimony->rejection_message);
     }
 
     /**
@@ -45,8 +51,8 @@ class MatrimonyAcceptNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'title' => 'Matrimony reservation accepted',
-            'message' => 'Your matrimony reservation for ' . $this->matrimony->grooms_name . ' and ' . $this->matrimony->brides_name . ' has been accepted.',
+            'title' => 'Matrimony reservation rejected',
+            'message' => 'Your matrimony reservation for ' . $this->matrimony->grooms_name . ' and ' . $this->matrimony->brides_name . ' has been rejected.',
             'link' => env('APP_URL', 'localhost') . '/user/matrimonies'
         ];
     }

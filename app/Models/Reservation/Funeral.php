@@ -14,7 +14,7 @@ class Funeral extends Model
     protected $fillable = ['date', 'time', 'name', 'age', 'status', 'religion', 
     'address', 'date_of_death', 'cause_of_death', 'cemetery', 'funeraria', 'contact_person', 'contact_number', 'created_by_id'];
 
-    protected $observables = ['reservationAccepted'];
+    protected $observables = ['reservationAccepted', 'reservationRejected'];
 
     public function createdBy()
     {
@@ -24,5 +24,10 @@ class Funeral extends Model
     public function triggerReservationAccepted()
     {
         $this->fireModelEvent('reservationAccepted', false);
+    }
+
+    public function triggerReservationRejected()
+    {
+        $this->fireModelEvent('reservationRejected', false);
     }
 }

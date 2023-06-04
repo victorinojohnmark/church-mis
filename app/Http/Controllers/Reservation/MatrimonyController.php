@@ -57,10 +57,9 @@ class MatrimonyController extends Controller
         $matrimony->accepted_message = $request->accepted_message;
         $matrimony->save();
 
-        //trigger some events
-        //do someting
+        $matrimony->triggerReservationAccepted();
 
-        session()->flash('success', 'The matrimony reservation has been accepted');
+        session()->flash('success', 'The matrimony reservation has been accepted, an email notification will be sent to the client');
         return redirect()->back();
     }
 
@@ -72,10 +71,9 @@ class MatrimonyController extends Controller
         $matrimony->rejection_message = $request->rejection_message;
         $matrimony->save();
 
-        //trigger some events
-        //do someting
+        $matrimony->triggerReservationRejected();
 
-        session()->flash('warning', 'The matrimony reservation has been rejected');
+        session()->flash('success', 'The matrimony reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
 }

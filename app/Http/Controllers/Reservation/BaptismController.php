@@ -63,7 +63,7 @@ class BaptismController extends Controller
         //trigger some events
         $baptism->triggerReservationAccepted();
 
-        session()->flash('success', 'The baptism reservation has been accepted');
+        session()->flash('success', 'The baptism reservation has been accepted, an email notification will be sent to the client');
         return redirect()->back();
     }
 
@@ -76,9 +76,9 @@ class BaptismController extends Controller
         $baptism->save();
 
         //trigger some events
-        //do someting
+        $baptism->triggerReservationRejected();
 
-        session()->flash('warning', 'The baptism reservation has been rejected');
+        session()->flash('warning', 'The baptism reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
 }

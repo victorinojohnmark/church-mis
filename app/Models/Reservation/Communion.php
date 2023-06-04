@@ -13,7 +13,7 @@ class Communion extends Model
 
     protected $fillable = ['name', 'date', 'birth_date', 'fathers_name', 'mothers_name', 'present_address', 'contact_number', 'created_by_id'];
 
-    protected $observables = ['reservationAccepted'];
+    protected $observables = ['reservationAccepted', 'reservationRejected'];
 
     public function createdBy()
     {
@@ -23,5 +23,10 @@ class Communion extends Model
     public function triggerReservationAccepted()
     {
         $this->fireModelEvent('reservationAccepted', false);
+    }
+
+    public function triggerReservationRejected()
+    {
+        $this->fireModelEvent('reservationRejected', false);
     }
 }

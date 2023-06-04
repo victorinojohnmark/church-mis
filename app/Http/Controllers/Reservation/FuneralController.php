@@ -63,10 +63,9 @@ class FuneralController extends Controller
         $funeral->accepted_message = $request->accepted_message;
         $funeral->save();
 
-        //trigger some events
-        //do someting
+        $funeral->triggerReservationAccepted();
 
-        session()->flash('success', 'The funeral reservation has been accepted');
+        session()->flash('success', 'The funeral reservation has been accepted, an email notification will be sent to the client');
         return redirect()->back();
     }
 
@@ -78,10 +77,9 @@ class FuneralController extends Controller
         $funeral->rejection_message = $request->rejection_message;
         $funeral->save();
 
-        //trigger some events
-        //do someting
+        $funeral->triggerReservationRejected();
 
-        session()->flash('warning', 'The funeral reservation has been rejected');
+        session()->flash('success', 'The funeral reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
 }

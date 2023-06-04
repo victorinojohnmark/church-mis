@@ -58,10 +58,9 @@ class BlessingController extends Controller
         $blessing->accepted_message = $request->accepted_message;
         $blessing->save();
 
-        //trigger some events
-        //do someting
+        $blessing->triggerReservationAccepted();
 
-        session()->flash('success', 'The blessing reservation has been accepted');
+        session()->flash('success', 'The blessing reservation has been accepted, an email notification will be sent to the client');
         return redirect()->back();
     }
 
@@ -73,10 +72,9 @@ class BlessingController extends Controller
         $blessing->rejection_message = $request->rejection_message;
         $blessing->save();
 
-        //trigger some events
-        //do someting
+        $blessing->triggerReservationRejected();
 
-        session()->flash('warning', 'The blessing reservation has been rejected');
+        session()->flash('success', 'The blessing reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
 }

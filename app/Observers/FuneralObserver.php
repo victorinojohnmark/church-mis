@@ -4,6 +4,8 @@ namespace App\Observers;
 use App\Models\Reservation\Funeral;
 use App\Models\Client;
 use App\Notifications\FuneralAcceptNotification;
+use App\Notifications\FuneralRejectNotification;
+
 
 class FuneralObserver
 {
@@ -12,5 +14,12 @@ class FuneralObserver
         //get client and notify
         $client = Client::findOrFail($funeral->created_by_id);
         $client->notify(new FuneralAcceptNotification($funeral));
+    }
+
+    public function reservationRejected(Funeral $funeral)
+    {
+        //get client and notify
+        $client = Client::findOrFail($funeral->created_by_id);
+        $client->notify(new FuneralRejectNotification($funeral));
     }
 }

@@ -57,10 +57,9 @@ class CommunionController extends Controller
         $communion->accepted_message = $request->accepted_message;
         $communion->save();
 
-        //trigger some events
-        //do someting
+        $communion->triggerReservationAccepted();
 
-        session()->flash('success', 'The communion reservation has been accepted');
+        session()->flash('success', 'The communion reservation has been accepted, an email notification will be sent to the client');
         return redirect()->back();
     }
 
@@ -72,10 +71,9 @@ class CommunionController extends Controller
         $communion->rejection_message = $request->rejection_message;
         $communion->save();
 
-        //trigger some events
-        //do someting
+        $communion->triggerReservationRejected();
 
-        session()->flash('warning', 'The communion reservation has been rejected');
+        session()->flash('success', 'The communion reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
 }

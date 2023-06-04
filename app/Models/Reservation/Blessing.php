@@ -13,7 +13,7 @@ class Blessing extends Model
 
     protected $fillable = ['name', 'blessing_type', 'date', 'time', 'religion', 'address', 'landmark', 'contact_number', 'created_by_id'];
 
-    protected $observables = ['reservationAccepted'];
+    protected $observables = ['reservationAccepted', 'reservationRejected'];
 
     public function createdBy()
     {
@@ -23,5 +23,10 @@ class Blessing extends Model
     public function triggerReservationAccepted()
     {
         $this->fireModelEvent('reservationAccepted', false);
+    }
+
+    public function triggerReservationRejected()
+    {
+        $this->fireModelEvent('reservationRejected', false);
     }
 }
