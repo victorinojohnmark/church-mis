@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Event;
 
 
 #Models
-use App\Models\Baptism;
+use App\Models\Reservation\Baptism;
+use App\Models\Reservation\Confirmation;
+use App\Models\Reservation\Communion;
+use App\Models\Reservation\Matrimony;
+use App\Models\Reservation\Blessing;
+use App\Models\Reservation\Funeral;
 use App\Models\DocumentRequest;
 use App\Models\DocumentRequest\DocumentRequestBaptism;
 use App\Models\DocumentRequest\DocumentRequestConfirmation;
@@ -18,11 +23,14 @@ use App\Models\DocumentRequest\DocumentRequestMatrimony;
 use App\Models\DocumentRequest\DocumentRequestBlessing;
 use App\Models\DocumentRequest\DocumentRequestDeath;
 
-
-
-
 #Observers
 use App\Observers\BaptismObserver;
+use App\Observers\ConfirmationObserver;
+use App\Observers\CommunionObserver;
+use App\Observers\MatrimonyObserver;
+use App\Observers\BlessingObserver;
+use App\Observers\FuneralObserver;
+
 use App\Observers\DocumentRequestObserver;
 use App\Observers\DocumentRequestBaptismObserver;
 use App\Observers\DocumentRequestConfirmationObserver;
@@ -50,7 +58,14 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         DocumentRequest::observe(DocumentRequestObserver::class);
+        
         Baptism::observe(BaptismObserver::class);
+        Confirmation::observe(ConfirmationObserver::class);
+        Communion::observe(CommunionObserver::class);
+        Matrimony::observe(MatrimonyObserver::class);
+        Blessing::observe(BlessingObserver::class);
+        Funeral::observe(FuneralObserver::class);
+
         DocumentRequestBaptism::observe(DocumentRequestBaptismObserver::class);
         DocumentRequestConfirmation::observe(DocumentRequestConfirmationObserver::class);
         DocumentRequestCommunion::observe(DocumentRequestCommunionObserver::class);

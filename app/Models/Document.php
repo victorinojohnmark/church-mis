@@ -11,8 +11,5 @@ class Document extends Model
 
     protected $fillable = ['user_id', 'document_type', 'filename', 'date'];
 
-    public function client()
-    {
-        return $this->belongsTo(Client::class, 'user_id');
-    }
+    
 }

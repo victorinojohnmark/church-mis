@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Observers;
-use App\Models\Baptism;
+use App\Models\Reservation\Baptism;
 use App\Models\Client;
 use App\Notifications\BaptismAcceptNotification;
 

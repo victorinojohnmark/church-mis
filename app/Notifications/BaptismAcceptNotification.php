@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-use App\Models\Baptism;
+use App\Models\Reservation\Baptism;
 
 class BaptismAcceptNotification extends Notification implements ShouldQueue
 {
@@ -47,7 +47,7 @@ class BaptismAcceptNotification extends Notification implements ShouldQueue
         return [
             'title' => 'Baptism reservation accepted',
             'message' => 'Your baptism reservation for ' . $this->baptism->name . ' has been accepted.',
-            'link' => env('APP_URL', 'localhost') . 'user/baptisms'
+            'link' => env('APP_URL', 'localhost') . '/user/baptisms'
         ];
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Reservation;
+
+use App\Models\Client;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Baptism extends Model
+class Communion extends Model
 {
     use HasFactory;
 
@@ -22,5 +24,4 @@ class Baptism extends Model
     {
         $this->fireModelEvent('reservationAccepted', false);
     }
-
 }
