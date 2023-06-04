@@ -27,7 +27,7 @@ class DocumentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'user_id' => ['required'],
+            'name' => ['required'],
             'document_type' => ['required'],
             'filename' => ['required', 'image', 'max:5120'],
             'date' => ['required', 'date']
@@ -40,13 +40,13 @@ class DocumentController extends Controller
         $file->storeAs('public/documents', $filename, 'local');
 
         $document = Document::create([
-            'user_id' => $request->user_id,
+            'name' => $request->name,
             'document_type' => $request->document_type,
             'filename' => $filename,
             'date' => $request->date
         ]);
 
-        session()->flash('success', 'Request submitted successfully.');
+        session()->flash('success', 'Document added successfully.');
         return redirect()->back();
     }
 

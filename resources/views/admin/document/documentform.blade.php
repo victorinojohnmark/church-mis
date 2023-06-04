@@ -3,13 +3,7 @@
     <div class="col-md-12">
         <div class="mb-3">
             <label class="form-label">Name</label>
-            <select name="user_id" class="form-control" required>
-                <option selected disabled>Select here...</option>
-                @forelse ($clients as $client)
-                <option value="{{ $client->id }}">{{ $client->name }}</option>
-                @empty
-                @endforelse
-            </select>
+            <input type="text" name="name" class="form-control" required>
         </div>
     </div>
 
