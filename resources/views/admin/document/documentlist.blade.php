@@ -36,20 +36,19 @@
                 <th>Name</th>
                 <th>Document</th>
                 <th>Date</th>
-                <th>File</th>
                 <th>Option</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($documents as $document)
                 <tr>
-                    <td>{{ $document->client->name }}</td>
+                    <td>{{ $document->name }}</td>
                     <td>{{ $document->document_type }}</td>
                     <td>{{ $document->date }}</td>
                     <td>
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDocumentView{{ $document->id }}">View</button>
                         <div class="modal fade" id="modalDocumentView{{ $document->id }}" tabindex="-1" aria-labelledby="modalDocumentView{{ $document->id }}Label" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                               <div class="modal-content">
                                 <div class="modal-header">
                                   <h1 class="modal-title fs-5" id="modalDocumentView{{ $document->id }}Label">View Document</h1>
@@ -57,18 +56,16 @@
                                 </div>
                         
                                 <div class="modal-body">
-                                    <img class="img-responsive" src="{{ '/storage/documents/' . $document->filename }}">
+                                    <img class="img-fluid w-100" src="{{ '/storage/documents/' . $document->filename }}">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 </div>
                         
                               </div>
                             </div>
                         </div>
                     </td>
-                    <td></td>
                 </tr>
             @empty
                 
