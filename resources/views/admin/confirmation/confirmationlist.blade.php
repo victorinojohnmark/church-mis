@@ -11,6 +11,7 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Confirmation Date</th>
             <th>Birth Date</th>
             <th>Submitted At</th>
             <th>Options</th>
@@ -29,6 +30,7 @@
                     <span class="badge bg-warning">Pending</span>
                 @endif
             </td>
+            <td>{{ $confirmation->date }}</td>
             <td>{{ $confirmation->birth_date }}</td>
             <td>{{ $confirmation->created_at }}</td>
             <td>

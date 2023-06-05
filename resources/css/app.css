@@ -58,4 +58,9 @@ footer {
 
 .dataTables_filter, .dataTables_paginate {
     float: right !important;
+    margin-bottom: 10px;
+}
+
+.dataTables_filter {
+    margin-right: 0px;
 }

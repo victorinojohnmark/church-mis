@@ -3,35 +3,59 @@
 @section('title', 'Report - Clients')
 
 @section('content')
-@include('admin.reservation.reservation-menu')
 {{-- <div class="py-3">
-
+    
 </div> --}}
-<table id="clients-table" class="table table-hover table-bordered">
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="table-responsive pt-2">
+    <table id="document-table" class="table table-hover table-bordered">
+    
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Contact #</th>
+                <th>Email Address</th>
+                <th>Date Registered</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($clients as $client)
+                <tr>
+                    <td>{!! $client->name !!}</td>
+                    <td>{!! $client->contact_number !!}</td>
+                    <td>{!! $client->email !!}</td>
+                    <td>{!! $client->created_at->format('Y-m-d') !!}</td>
+                </tr>
+            @empty
+                
+            @endforelse
+        </tbody>
         
-    </tbody>
-</table>
+    </table>
+</div>
+
+{{-- <a href="{{ route('report-clientlist') }}" class="btn btn-primary">Refresh List</a> --}}
 
 @endsection
 
 
 @push('scripts')
-    <link rel="stylesheet" href="/vendor/datatables/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="/vendor/datatables.net/datatables.min.css">
 @endpush
 
 @push('scripts')
-    <script src="/vendor/jquery/jquery-3.5.1.js"></script>
-    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/vendor/datatables/dataTables.bootstrap5.min.js"></script>
+    <script src="/vendor/datatables.net/datatables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#clients-table').DataTable();
+            $('#document-table').DataTable({
+                oLanguage: {
+                    sSearch: "Quick Search"
+                },
+                dom: 'Blfrtip',
+                buttons: [
+                    'copy', 'excel', 'print'
+                ]
+            });
+
 
         });
     </script>

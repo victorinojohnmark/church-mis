@@ -102,7 +102,16 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
 
     ### REPORT ###
     Route::group(['prefix' => 'reports'], function() {
-        Route::any('/documents', [App\Http\Controllers\Report\DocumentReportController::class, 'index'])->name('report-documentlist');
+        Route::any('/event-reservation/clients', [App\Http\Controllers\Report\ClientReportController::class, 'index'])->name('report-clientlist');
+        Route::any('/event-reservation/documents', [App\Http\Controllers\Report\DocumentReportController::class, 'index'])->name('report-documentlist');
+        Route::any('/event-reservation/eventreservations', [App\Http\Controllers\Report\BaptismEventReportController::class, 'index'])->name('report-eventreservationlist');
+        Route::any('/event-reservation/baptisms', [App\Http\Controllers\Report\BaptismEventReportController::class, 'index'])->name('report-baptismlist');
+        Route::any('/event-reservation/confirmations', [App\Http\Controllers\Report\ConfirmationEventReportController::class, 'index'])->name('report-confirmationlist');
+        Route::any('/event-reservation/communions', [App\Http\Controllers\Report\CommunionEventReportController::class, 'index'])->name('report-communionlist');
+        Route::any('/event-reservation/matrimonies', [App\Http\Controllers\Report\MatrimonyEventReportController::class, 'index'])->name('report-matrimonylist');
+        Route::any('/event-reservation/blessings', [App\Http\Controllers\Report\BlessingEventReportController::class, 'index'])->name('report-blessinglist');
+        Route::any('/event-reservation/funerals', [App\Http\Controllers\Report\FuneralEventReportController::class, 'index'])->name('report-funerallist');
+
     });
 
 });

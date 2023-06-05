@@ -21,6 +21,17 @@ class Funeral extends Model
         return $this->belongsTo(Client::class, 'created_by_id');
     }
 
+    public function getStatusAttribute()
+    {
+        if($this->is_accepted){
+            return 'Accepted';
+        } elseif($this->is_rejected) {
+            return 'Rejected';
+        } else {
+            return 'Pending';
+        }
+    }
+
     public function triggerReservationAccepted()
     {
         $this->fireModelEvent('reservationAccepted', false);
