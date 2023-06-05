@@ -29,7 +29,8 @@
                 </span>
             @enderror
       
-          <button class="w-100 btn btn-primary w-auto" type="submit">Log in</button>
+          <button class="btn btn-primary w-auto me-2" type="submit">Log in</button>
+          <a href="{{ route('password.request') }}" class="bt btn-default w-auto">Forgot Password</a>
 
           
         </form>
