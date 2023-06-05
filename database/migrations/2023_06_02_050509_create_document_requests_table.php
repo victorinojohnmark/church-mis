@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('document_type', 50);
             $table->date('requested_date');
             $table->string('status')->default('Pending');
-            $table->boolean('is_active')->default(true)->after('status');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
