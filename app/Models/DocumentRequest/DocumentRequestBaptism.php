@@ -31,6 +31,19 @@ class DocumentRequestBaptism extends Model
         return $this->belongsTo(Client::class, 'user_id');
     }
 
+    public function getStatusAttribute()
+    {
+        if($this->is_active) {
+            if($this->is_ready) {
+                return 'Ready for pick up';
+            } else {
+                return 'Pending';
+            }
+        } else {
+            return 'Cancelled by Client';
+        }
+    }
+
     public function triggerSetReadyEvent()
     {
         $this->fireModelEvent('setReady', false);

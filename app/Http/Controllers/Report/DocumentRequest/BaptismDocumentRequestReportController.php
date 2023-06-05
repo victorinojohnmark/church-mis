@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Report;
+namespace App\Http\Controllers\Report\DocumentRequest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-use App\Models\Reservation\Baptism;
+use App\Models\DocumentRequest\DocumentRequestBaptism;
 
-class BaptismEventReportController extends Controller
+class BaptismDocumentRequestReportController extends Controller
 {
     public function index(Request $request)
     {
-
         if(!is_null($request->name) || (!is_null($request->baptism_start) && !is_null($request->baptism_end)) || (!is_null($request->daterange_start) && !is_null($request->daterange_end))) {
 
             $filters = [];
@@ -29,7 +28,7 @@ class BaptismEventReportController extends Controller
                 $startDate = Carbon::createFromFormat('Y-m-d', $request->baptism_start)->toDateString();
                 $endDate = Carbon::createFromFormat('Y-m-d', $request->baptism_end)->toDateString();
 
-                array_push($filters, ['date', '>=', $startDate], ['date', '<=', $endDate]);
+                array_push($filters, ['baptismal_date', '>=', $startDate], ['baptismal_date', '<=', $endDate]);
             }
 
             //Date Range
@@ -44,17 +43,15 @@ class BaptismEventReportController extends Controller
                 array_push($filters, ['created_at', '>=', $startDate], ['created_at', '<=', $endDate]);
             }
 
-            return view('admin.report.event-reservation.baptismlist', [
-                'baptisms' => Baptism::where($filters)->latest()->get()
+            return view('admin.report.document-request.baptismlist', [
+                'baptismRequests' => DocumentRequestBaptism::where($filters)->latest()->get()
             ]);
 
         }
-
+ 
         // Default
-        return view('admin.report.event-reservation.baptismlist', [
-            'baptisms' => Baptism::latest()->get()
+        return view('admin.report.document-request.baptismlist', [
+            'baptismRequests' => DocumentRequestBaptism::latest()->get()
         ]);
-
-        
     }
 }

@@ -1,33 +1,36 @@
 <?php
 
-namespace App\Http\Controllers\Report;
+namespace App\Http\Controllers\Report\EventReservation;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-use App\Models\Reservation\Funeral;
+use App\Models\Reservation\Blessing;
 
-class FuneralEventReportController extends Controller
+class BlessingEventReportController extends Controller
 {
     public function index(Request $request)
     {
 
-        if(!is_null($request->name) || (!is_null($request->funeral_start) && !is_null($request->funeral_end)) || (!is_null($request->daterange_start) && !is_null($request->daterange_end))) {
+        if(!is_null($request->name) || (!is_null($request->blessing_type)) || (!is_null($request->daterange_start) && !is_null($request->daterange_end))) {
 
             $filters = [];
 
             // Name
             !is_null($request->name) ? array_push($filters, ['name', 'like', '%'.$request->name.'%']) : null;
 
-            // Funeral Date
-            if(!is_null($request->funeral_start) || !is_null($request->funeral_end)){
+            // Blessing Type
+            !is_null($request->blessing_type) ? array_push($filters, ['blessing_type', '=', $request->blessing_type]) : null;
+
+            // Blessing Date
+            if(!is_null($request->blessing_start) || !is_null($request->blessing_end)){
                 $request->validate([
-                    'funeral_start' => 'date|required_with:funeral_end',
-                    'funeral_end' => 'date'
+                    'blessing_start' => 'date|required_with:blessing_end',
+                    'blessing_end' => 'date'
                 ]);
-                $startDate = Carbon::createFromFormat('Y-m-d', $request->funeral_start)->toDateString();
-                $endDate = Carbon::createFromFormat('Y-m-d', $request->funeral_end)->toDateString();
+                $startDate = Carbon::createFromFormat('Y-m-d', $request->blessing_start)->toDateString();
+                $endDate = Carbon::createFromFormat('Y-m-d', $request->blessing_end)->toDateString();
 
                 array_push($filters, ['date', '>=', $startDate], ['date', '<=', $endDate]);
             }
@@ -44,15 +47,15 @@ class FuneralEventReportController extends Controller
                 array_push($filters, ['created_at', '>=', $startDate], ['created_at', '<=', $endDate]);
             }
 
-            return view('admin.report.event-reservation.funerallist', [
-                'funerals' => Funeral::where($filters)->latest()->get()
+            return view('admin.report.event-reservation.blessinglist', [
+                'blessings' => Blessing::where($filters)->latest()->get()
             ]);
 
         }
 
         // Default
-        return view('admin.report.event-reservation.funerallist', [
-            'funerals' => Funeral::latest()->get()
+        return view('admin.report.event-reservation.blessinglist', [
+            'blessings' => Blessing::latest()->get()
         ]);
 
         

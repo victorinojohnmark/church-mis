@@ -1,36 +1,33 @@
 <?php
 
-namespace App\Http\Controllers\Report;
+namespace App\Http\Controllers\Report\EventReservation;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-use App\Models\Reservation\Blessing;
+use App\Models\Reservation\Confirmation;
 
-class BlessingEventReportController extends Controller
+class ConfirmationEventReportController extends Controller
 {
     public function index(Request $request)
     {
 
-        if(!is_null($request->name) || (!is_null($request->blessing_type)) || (!is_null($request->daterange_start) && !is_null($request->daterange_end))) {
+        if(!is_null($request->name) || (!is_null($request->confirmation_start) && !is_null($request->confirmation_end)) || (!is_null($request->daterange_start) && !is_null($request->daterange_end))) {
 
             $filters = [];
 
             // Name
             !is_null($request->name) ? array_push($filters, ['name', 'like', '%'.$request->name.'%']) : null;
 
-            // Blessing Type
-            !is_null($request->blessing_type) ? array_push($filters, ['blessing_type', '=', $request->blessing_type]) : null;
-
-            // Blessing Date
-            if(!is_null($request->blessing_start) || !is_null($request->blessing_end)){
+            // Confirmation Date
+            if(!is_null($request->confirmation_start) || !is_null($request->confirmation_end)){
                 $request->validate([
-                    'blessing_start' => 'date|required_with:blessing_end',
-                    'blessing_end' => 'date'
+                    'confirmation_start' => 'date|required_with:confirmation_end',
+                    'confirmation_end' => 'date'
                 ]);
-                $startDate = Carbon::createFromFormat('Y-m-d', $request->blessing_start)->toDateString();
-                $endDate = Carbon::createFromFormat('Y-m-d', $request->blessing_end)->toDateString();
+                $startDate = Carbon::createFromFormat('Y-m-d', $request->confirmation_start)->toDateString();
+                $endDate = Carbon::createFromFormat('Y-m-d', $request->confirmation_end)->toDateString();
 
                 array_push($filters, ['date', '>=', $startDate], ['date', '<=', $endDate]);
             }
@@ -47,15 +44,15 @@ class BlessingEventReportController extends Controller
                 array_push($filters, ['created_at', '>=', $startDate], ['created_at', '<=', $endDate]);
             }
 
-            return view('admin.report.event-reservation.blessinglist', [
-                'blessings' => Blessing::where($filters)->latest()->get()
+            return view('admin.report.event-reservation.confirmationlist', [
+                'confirmations' => Confirmation::where($filters)->latest()->get()
             ]);
 
         }
 
         // Default
-        return view('admin.report.event-reservation.blessinglist', [
-            'blessings' => Blessing::latest()->get()
+        return view('admin.report.event-reservation.confirmationlist', [
+            'confirmations' => Confirmation::latest()->get()
         ]);
 
         

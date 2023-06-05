@@ -102,15 +102,24 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
 
     ### REPORT ###
     Route::group(['prefix' => 'reports'], function() {
-        Route::any('/event-reservation/clients', [App\Http\Controllers\Report\ClientReportController::class, 'index'])->name('report-clientlist');
-        Route::any('/event-reservation/documents', [App\Http\Controllers\Report\DocumentReportController::class, 'index'])->name('report-documentlist');
-        Route::any('/event-reservation/eventreservations', [App\Http\Controllers\Report\BaptismEventReportController::class, 'index'])->name('report-eventreservationlist');
-        Route::any('/event-reservation/baptisms', [App\Http\Controllers\Report\BaptismEventReportController::class, 'index'])->name('report-baptismlist');
-        Route::any('/event-reservation/confirmations', [App\Http\Controllers\Report\ConfirmationEventReportController::class, 'index'])->name('report-confirmationlist');
-        Route::any('/event-reservation/communions', [App\Http\Controllers\Report\CommunionEventReportController::class, 'index'])->name('report-communionlist');
-        Route::any('/event-reservation/matrimonies', [App\Http\Controllers\Report\MatrimonyEventReportController::class, 'index'])->name('report-matrimonylist');
-        Route::any('/event-reservation/blessings', [App\Http\Controllers\Report\BlessingEventReportController::class, 'index'])->name('report-blessinglist');
-        Route::any('/event-reservation/funerals', [App\Http\Controllers\Report\FuneralEventReportController::class, 'index'])->name('report-funerallist');
+        Route::any('/clients', [App\Http\Controllers\Report\ClientReportController::class, 'index'])->name('report-clientlist');
+        Route::any('/documents', [App\Http\Controllers\Report\DocumentReportController::class, 'index'])->name('report-documentlist');
+
+        Route::any('/event-reservation', [App\Http\Controllers\Report\EventReservation\BaptismEventReportController::class, 'index'])->name('report-eventreservationlist');
+        Route::any('/event-reservation/baptisms', [App\Http\Controllers\Report\EventReservation\BaptismEventReportController::class, 'index'])->name('report-baptismlist');
+        Route::any('/event-reservation/confirmations', [App\Http\Controllers\Report\EventReservation\ConfirmationEventReportController::class, 'index'])->name('report-confirmationlist');
+        Route::any('/event-reservation/communions', [App\Http\Controllers\Report\EventReservation\CommunionEventReportController::class, 'index'])->name('report-communionlist');
+        Route::any('/event-reservation/matrimonies', [App\Http\Controllers\Report\EventReservation\MatrimonyEventReportController::class, 'index'])->name('report-matrimonylist');
+        Route::any('/event-reservation/blessings', [App\Http\Controllers\Report\EventReservation\BlessingEventReportController::class, 'index'])->name('report-blessinglist');
+        Route::any('/event-reservation/funerals', [App\Http\Controllers\Report\EventReservation\FuneralEventReportController::class, 'index'])->name('report-funerallist');
+
+        Route::any('/document-request', [App\Http\Controllers\Report\DocumentRequest\BaptismDocumentRequestReportController::class, 'index'])->name('report-docrequest');
+        Route::any('/document-request/baptisms', [App\Http\Controllers\Report\DocumentRequest\BaptismDocumentRequestReportController::class, 'index'])->name('report-docrequest-baptism');
+        Route::any('/document-request/confirmations', [App\Http\Controllers\Report\DocumentRequest\ConfirmationDocumentRequestReportController::class, 'index'])->name('report-docrequest-confirmation');
+        Route::any('/document-request/communions', [App\Http\Controllers\Report\DocumentRequest\CommunionDocumentRequestReportController::class, 'index'])->name('report-docrequest-communion');
+        Route::any('/document-request/matrimonies', [App\Http\Controllers\Report\DocumentRequest\MatrimonyDocumentRequestReportController::class, 'index'])->name('report-docrequest-matrimony');
+        Route::any('/document-request/blessings', [App\Http\Controllers\Report\DocumentRequest\BlessingDocumentRequestReportController::class, 'index'])->name('report-docrequest-blessing');
+        Route::any('/document-request/deaths', [App\Http\Controllers\Report\DocumentRequest\DeathDocumentRequestReportController::class, 'index'])->name('report-docrequest-death');
 
     });
 

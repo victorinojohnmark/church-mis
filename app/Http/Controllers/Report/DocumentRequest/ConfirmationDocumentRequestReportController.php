@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Report;
+namespace App\Http\Controllers\Report\DocumentRequest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-use App\Models\Reservation\Confirmation;
+use App\Models\DocumentRequest\DocumentRequestConfirmation;
 
-class ConfirmationEventReportController extends Controller
+class ConfirmationDocumentRequestReportController extends Controller
 {
     public function index(Request $request)
     {
-
         if(!is_null($request->name) || (!is_null($request->confirmation_start) && !is_null($request->confirmation_end)) || (!is_null($request->daterange_start) && !is_null($request->daterange_end))) {
 
             $filters = [];
@@ -20,7 +19,7 @@ class ConfirmationEventReportController extends Controller
             // Name
             !is_null($request->name) ? array_push($filters, ['name', 'like', '%'.$request->name.'%']) : null;
 
-            // Confirmation Date
+            // Baptismal Date
             if(!is_null($request->confirmation_start) || !is_null($request->confirmation_end)){
                 $request->validate([
                     'confirmation_start' => 'date|required_with:confirmation_end',
@@ -29,7 +28,7 @@ class ConfirmationEventReportController extends Controller
                 $startDate = Carbon::createFromFormat('Y-m-d', $request->confirmation_start)->toDateString();
                 $endDate = Carbon::createFromFormat('Y-m-d', $request->confirmation_end)->toDateString();
 
-                array_push($filters, ['date', '>=', $startDate], ['date', '<=', $endDate]);
+                array_push($filters, ['confirmation_date', '>=', $startDate], ['confirmation_date', '<=', $endDate]);
             }
 
             //Date Range
@@ -44,17 +43,15 @@ class ConfirmationEventReportController extends Controller
                 array_push($filters, ['created_at', '>=', $startDate], ['created_at', '<=', $endDate]);
             }
 
-            return view('admin.report.event-reservation.confirmationlist', [
-                'confirmations' => Confirmation::where($filters)->latest()->get()
+            return view('admin.report.document-request.confirmationlist', [
+                'confirmationRequests' => DocumentRequestConfirmation::where($filters)->latest()->get()
             ]);
 
         }
-
+ 
         // Default
-        return view('admin.report.event-reservation.confirmationlist', [
-            'confirmations' => Confirmation::latest()->get()
+        return view('admin.report.document-request.confirmationlist', [
+            'confirmationRequests' => DocumentRequestConfirmation::latest()->get()
         ]);
-
-        
     }
 }

@@ -23,7 +23,7 @@
     </div>
 
     <div class="col-md-6 mb-3">
-        <label class="form-label">Wedding Date</label>
+        <label class="form-label">Matrimony Date</label>
         <input type="date" name="wedding_date" value="{{ $matrimony->wedding_date }}" class="form-control" placeholder="..." required>
     </div>
 
