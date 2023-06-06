@@ -9,6 +9,13 @@ class EventController extends Controller
 {
     public function index()
     {
+        return view('eventlist', [
+            'events' => Event::latest()->get(),
+        ]);
+    }
+
+    public function adminindex()
+    {
         return view('admin.event.eventlist', [
             'events' => Event::latest()->get(),
             'event' => new Event()
@@ -77,9 +84,16 @@ class EventController extends Controller
         
     }
 
-    public function show(Request $request, Event $event)
+    public function adminshow(Request $request, Event $event)
     {
         return view('admin.event.eventshow', [
+            'event' => $event
+        ]);
+    }
+
+    public function show(Request $request, Event $event)
+    {
+        return view('eventshow', [
             'event' => $event
         ]);
     }

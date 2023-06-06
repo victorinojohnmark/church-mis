@@ -23,14 +23,17 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->name('eventlist');
+Route::get('/events/{event}', [App\Http\Controllers\EventController::class, 'show'])->name('eventshow');
+
 Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function() {
     //Admin Dashboard
     Route::get('/dashboard', function () { return view('admin.welcome'); });
 
     //Events
-    Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->name('eventlist');
+    Route::get('/events-list', [App\Http\Controllers\EventController::class, 'adminindex'])->name('admin-eventlist');
     Route::post('/events', [App\Http\Controllers\EventController::class, 'store'])->name('eventsave');
-    Route::get('/events/{event}', [App\Http\Controllers\EventController::class, 'show'])->name('eventshow');
+    Route::get('/events-list/{event}', [App\Http\Controllers\EventController::class, 'adminshow'])->name('admin-eventshow');
 
     //Clients
     Route::get('/clients', [App\Http\Controllers\ClientController::class, 'index'])->name('clientlist');
