@@ -64,3 +64,18 @@ footer {
 .dataTables_filter {
     margin-right: 0px;
 }
+
+.event-items:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.event-items > .dateWrapper {
+    display: none;
+}
+
+@media (min-width: 992px) { 
+    .event-items > .dateWrapper {
+        display: block;
+    }
+}

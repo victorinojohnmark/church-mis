@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 
 // Route::get('/admin', function () {
 //     return view('layouts/admin');
@@ -28,6 +26,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function() {
     //Admin Dashboard
     Route::get('/dashboard', function () { return view('admin.welcome'); });
+
+    //Events
+    Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->name('eventlist');
 
     //Clients
     Route::get('/clients', [App\Http\Controllers\ClientController::class, 'index'])->name('clientlist');
