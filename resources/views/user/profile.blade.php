@@ -23,6 +23,11 @@
                             </span>
                         @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" name="email" class="form-control" value="{{ old('name', $user->email) }}" readonly disabled>
+                    </div>
         
                     <div class="mb-3">
                         <label class="form-label">Birth Date</label>

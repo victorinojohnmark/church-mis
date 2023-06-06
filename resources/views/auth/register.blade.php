@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<div id="bg-register">
+    <img src="/img/bg-register.png" alt="bg login">
+</div>
 <div class="container">
-    <div class="form-register w-100 m-auto mt-5">
+    <div class="form-register w-100 m-auto mt-5 shadow-sm bg-body-tertiary">
         <form action="{{ route('register') }}" method="POST">
             @csrf
           <h3 class="mb-3 fw-normal text-right">Register</h3>
@@ -80,7 +83,7 @@
       
           <div class="d-flex inline-flex align-items-center">
             <button class="w-100 btn btn-primary w-auto" type="submit">Register</button>
-            <a href="#" class="px-2 text-decoration-none">Already registered?</a>
+            <a href="/login" class="px-2 text-decoration-none">Already registered?</a>
           </div>
         
           

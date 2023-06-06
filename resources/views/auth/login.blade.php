@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<div id="bg-login">
+    <img src="/img/bg-login.png" alt="bg login">
+</div>
 <div class="container">
-    <div class="form-signin w-100 m-auto mt-5">
+    <div class="form-signin w-100 m-auto mt-5 p-4 shadow-sm bg-body-tertiary">
         <form action="{{ route('login') }}" method="POST">
             @csrf
           <h3 class="mb-3 fw-normal text-right">Log in</h3>

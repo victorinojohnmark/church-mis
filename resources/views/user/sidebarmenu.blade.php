@@ -6,7 +6,7 @@
             <a href="{{ route('clientreservations') }}" class="list-group-item list-group-item-action py-2 {{ request()->routeIs('clientreservations') ? 'active' : '' }}">Reservations</a>
             <a href="{{ route('client-documentrequestlist') }}" class="list-group-item list-group-item-action py-2 {{ request()->routeIs('client-documentrequestlist') ? 'active' : '' }}">Document Requests</a>
             
-            <a href="#" class="list-group-item list-group-item-action py-2">Account Details</a>
+            <a href="{{ route('password.request') }}" class="list-group-item list-group-item-action py-2">Forgot Password</a>
         </div>
     </div>
 </div>
