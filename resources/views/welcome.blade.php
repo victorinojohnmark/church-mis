@@ -39,9 +39,7 @@
                 <div class="mb-3">
                     <div class="card-body">
                         <h5 class="card-title ms-1">Document Request</h5>
-                        <p class="card-text ms-1">Paragraph of text beneath the heading to explain the heading. Here is
-                            just
-                            a bit more text.</p>
+                        <p class="card-text ms-1">Request your document with a simple form and recieve notifications when its ready</p>
                         <a href="{{ route('client-documentrequestlist') }}" class="btn btn-warning mt-1">Submit a request</a>
                     </div>
                 </div>
@@ -51,9 +49,7 @@
                 <div class="mb-3">
                     <div class="card-body">
                         <h5 class="card-title ms-1">Event Reservation</h5>
-                        <p class="card-text ms-1">Paragraph of text beneath the heading to explain the heading. Here is
-                            just
-                            a bit more text.</p>
+                        <p class="card-text ms-1">Reservation of events like Baptism, Confirmation, Communion and etc.</p>
                         <a href="{{ route('clientreservations') }}" class="btn btn-warning mt-1">Create reservation</a>
                     </div>
                 </div>

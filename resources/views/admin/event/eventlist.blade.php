@@ -13,7 +13,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
     
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('eventsave') }}" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     @include('admin.event.eventform')
                 </div>
