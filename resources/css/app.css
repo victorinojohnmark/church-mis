@@ -74,8 +74,29 @@ footer {
     display: none;
 }
 
+.event-items .event-date {
+    display: block;
+}
+
+.tox-promotion {
+    display: none;
+}
+
+#eventBody img{
+    max-width: 100%;
+}
+
 @media (min-width: 992px) { 
     .event-items > .dateWrapper {
         display: block;
     }
+
+    .event-items  .event-date {
+        display: none;
+    }
 }
+
+@media (min-width: 576px) {
+    
+ }
+

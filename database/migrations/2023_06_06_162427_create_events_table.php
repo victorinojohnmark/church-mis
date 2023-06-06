@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->date('event_date');
             $table->string('banner_image');
-            $table->binary('body');
+            $table->longText('body');
             $table->timestamps();
         });
     }

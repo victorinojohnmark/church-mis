@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
 
     //Events
     Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->name('eventlist');
+    Route::post('/events', [App\Http\Controllers\EventController::class, 'store'])->name('eventsave');
+    Route::get('/events/{event}', [App\Http\Controllers\EventController::class, 'show'])->name('eventshow');
 
     //Clients
     Route::get('/clients', [App\Http\Controllers\ClientController::class, 'index'])->name('clientlist');

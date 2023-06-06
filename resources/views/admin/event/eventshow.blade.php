@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'Events Posting')
+@section('title', $event->title)
 
 @section('content')
 <div class="py-3">
-    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createEventModal">Create Event</button>
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createEventModal">Update</button>
     <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="createEventModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
@@ -13,7 +13,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
     
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('eventsave') }}" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     @include('admin.event.eventform')
                 </div>
@@ -27,32 +27,16 @@
         </div>
     </div>
 </div>
-<div class="table-responsive">
-    <table id="events-table" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Event Date</th>
-                <th>Created at</th>
-                <th>Option</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($events as $event)
-                <tr>
-                    <td>{!! $event->title !!}</td>
-                    <td>{!! $event->event_date !!}</td>
-                    <td>{!! $event->created_at->format('Y-m-d') !!}</td>
-                    <td>
-                        <a href="{{ route('eventshow', ['event' => $event->id]) }}" class="btn btn-primary btn-sm">View</a>
-                    </td>
-                </tr>
-            @empty
-                
-            @endforelse
-        </tbody>
-    </table>
+
+<div class="py-3">
+    <img src="{{ '/storage/event-banners/' . $event->banner_image }}" class="img-fluid" alt="banner">
 </div>
+
+<div id="eventBody" class="py-3 mb-3">
+    {!! $event->body !!}
+</div>
+
+<a href="{{ route('eventlist') }}" class="btn btn-success mb-3">Back to Event List</a>
 
 @endsection
 
