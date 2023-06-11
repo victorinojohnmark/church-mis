@@ -31,7 +31,7 @@ class DocumentRequestMatrimonyReadyNotification extends Notification implements 
                     ->subject('Matrimony document request for '. $this->documentRequestMatrimony->grooms_name . ' and ' . $this->documentRequestMatrimony->brides_name)
                     ->greeting('Good day '. $this->documentRequestMatrimony->createdBy->name)
                     ->line('Your document request for ' . $this->documentRequestMatrimony->grooms_name . ' and ' . $this->documentRequestMatrimony->brides_name . ' is now ready for pick up.')
-                    ->action('View request', url('/user/documentrequestmatrimonyies'))
+                    ->action('View request', env('APP_URL', 'localhost') . '/user/documentrequestmatrimonies')
                     ->line('Please prepare the following requirements: PSA and Valid ID for verification.')
                     ->line('Request Fee: Php 0.00');
     }

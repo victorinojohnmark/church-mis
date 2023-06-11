@@ -39,7 +39,7 @@ class BaptismRejectNotification extends Notification implements ShouldQueue
                     ->subject('Baptism Reservation for '. $this->baptism->name)
                     ->greeting('Good day '. $this->baptism->createdBy->name)
                     ->line('Your baptism reservation for ' . $this->baptism->name . ' has been rejected.')
-                    ->action('View reservation', url('/user/baptisms'))
+                    ->action('View reservation', env('APP_URL', 'localhost') . '/user/baptisms')
                     ->line('Admin Message: ' . $this->baptism->rejection_message);
     }
 

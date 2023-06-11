@@ -33,7 +33,7 @@ class FuneralAcceptNotification extends Notification implements ShouldQueue
                     ->subject('Funeral Reservation for '. $this->funeral->name)
                     ->greeting('Good day '. $this->funeral->createdBy->name)
                     ->line('Your funeral reservation for ' . $this->funeral->name . ' has been accepted.')
-                    ->action('View reservation', url('/user/funerals'))
+                    ->action('View reservation', env('APP_URL', 'localhost') . '/user/funerals')
                     ->line('Admin Message: ' . $this->funeral->accepted_message);
     }
 

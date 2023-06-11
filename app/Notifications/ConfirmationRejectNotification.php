@@ -39,7 +39,7 @@ class ConfirmationRejectNotification extends Notification implements ShouldQueue
                     ->subject('Confirmation Reservation for '. $this->confirmation->name)
                     ->greeting('Good day '. $this->confirmation->createdBy->name)
                     ->line('Your confirmation reservation for ' . $this->confirmation->name . ' has been rejected.')
-                    ->action('View reservation', url('/user/confirmations'))
+                    ->action('View reservation', env('APP_URL', 'localhost') . '/user/confirmations')
                     ->line('Admin Message: ' . $this->confirmation->rejection_message);
     }
 

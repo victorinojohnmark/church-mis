@@ -31,7 +31,7 @@ class DocumentRequestBlessingReadyNotification extends Notification implements S
                     ->subject('Blessing document request for '. $this->documentRequestBlessing->name)
                     ->greeting('Good day '. $this->documentRequestBlessing->createdBy->name)
                     ->line('Your document request for ' . $this->documentRequestBlessing->name . ' is now ready for pick up.')
-                    ->action('View request', url('/user/documentrequestblessings'))
+                    ->action('View request', env('APP_URL', 'localhost') . '/user/documentrequestblessings')
                     ->line('Please prepare a copy of your Valid ID for verification.')
                     ->line('Request Fee: Php 0.00');
     }

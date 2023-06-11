@@ -33,7 +33,7 @@ class MatrimonyAcceptNotification extends Notification implements ShouldQueue
                     ->subject('Matrimony Reservation for '. $this->matrimony->grooms_name . ' and ' . $this->matrimony->brides_name)
                     ->greeting('Good day '. $this->matrimony->createdBy->name)
                     ->line('Your matrimony reservation for ' . $this->matrimony->grooms_name . ' and ' . $this->matrimony->brides_name . ' has been accepted.')
-                    ->action('View reservation', url('/user/matrimonies'))
+                    ->action('View reservation', env('APP_URL', 'localhost') . '/user/matrimonies')
                     ->line('Admin Message: ' . $this->matrimony->accepted_message);
     }
 

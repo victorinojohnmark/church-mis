@@ -39,7 +39,7 @@ class CommunionRejectNotification extends Notification implements ShouldQueue
                     ->subject('Communion Reservation for '. $this->communion->name)
                     ->greeting('Good day '. $this->communion->createdBy->name)
                     ->line('Your communion reservation for ' . $this->communion->name . ' has been rejected.')
-                    ->action('View reservation', url('/user/communions'))
+                    ->action('View reservation', env('APP_URL', 'localhost') . '/user/communions')
                     ->line('Admin Message: ' . $this->communion->rejection_message);
     }
 

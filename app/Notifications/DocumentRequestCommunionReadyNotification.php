@@ -31,7 +31,7 @@ class DocumentRequestCommunionReadyNotification extends Notification implements 
                     ->subject('Communion document request for '. $this->documentRequestCommunion->name)
                     ->greeting('Good day '. $this->documentRequestCommunion->createdBy->name)
                     ->line('Your document request for ' . $this->documentRequestCommunion->name . ' is now ready for pick up.')
-                    ->action('View request', url('/user/documentrequestcommunions'))
+                    ->action('View request', env('APP_URL', 'localhost') . '/user/documentrequestcommunions')
                     ->line('Please prepare the following requirements: PSA and Valid ID for verification.')
                     ->line('Request Fee: Php 0.00');
     }

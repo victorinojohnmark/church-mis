@@ -32,7 +32,7 @@ class DocumentRequestReadyNotification extends Notification
                     ->subject('Document Request for '. $this->documentRequest->name)
                     ->greeting('Good day '. $this->documentRequest->createdBy->name)
                     ->line('Your document request for ' . $this->documentRequest->name . ' is now ready for pick up.')
-                    ->action('View request', url('/user/documentrequest'))
+                    ->action('View request', env('APP_URL', 'localhost') . '/user/documentrequest')
                     ->line('Please prepare the following requirements: PSA and Valid ID.')
                     ->line('Payment details here');
     }

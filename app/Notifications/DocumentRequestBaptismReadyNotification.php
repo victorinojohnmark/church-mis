@@ -39,7 +39,7 @@ class DocumentRequestBaptismReadyNotification extends Notification implements Sh
                     ->subject('Baptism document request for '. $this->documentRequestBaptism->name)
                     ->greeting('Good day '. $this->documentRequestBaptism->createdBy->name)
                     ->line('Your document request for ' . $this->documentRequestBaptism->name . ' is now ready for pick up.')
-                    ->action('View request', url('/user/documentrequestbaptisms'))
+                    ->action('View request', env('APP_URL', 'localhost') . '/user/documentrequestbaptisms')
                     ->line('Please prepare the following requirements: PSA and Valid ID for verification.')
                     ->line('Request Fee: Php 0.00');
     }

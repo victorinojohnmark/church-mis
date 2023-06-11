@@ -33,7 +33,7 @@ class CommunionAcceptNotification extends Notification implements ShouldQueue
                     ->subject('Communion Reservation for '. $this->communion->name)
                     ->greeting('Good day '. $this->communion->createdBy->name)
                     ->line('Your communion reservation for ' . $this->communion->name . ' has been accepted.')
-                    ->action('View reservation', url('/user/communions'))
+                    ->action('View reservation', env('APP_URL', 'localhost') . '/user/communions')
                     ->line('Admin Message: ' . $this->communion->accepted_message);
     }
 

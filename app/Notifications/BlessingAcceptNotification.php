@@ -33,7 +33,7 @@ class BlessingAcceptNotification extends Notification implements ShouldQueue
                     ->subject('Blessing Reservation for '. $this->blessing->name)
                     ->greeting('Good day '. $this->blessing->createdBy->name)
                     ->line('Your blessing reservation for ' . $this->blessing->name . ' has been accepted.')
-                    ->action('View reservation', url('/user/blessings'))
+                    ->action('View reservation', env('APP_URL', 'localhost') . '/user/blessings')
                     ->line('Admin Message: ' . $this->blessing->accepted_message);
     }
 
