@@ -35,7 +35,7 @@
 
                         <div class="dropdown-menu dropdown-menu-end mt-0 rounded-0" aria-labelledby="navbarDropdown" data-bs-offset="10,5">
                             @if (Auth::user()->is_admin) 
-                                <a class="dropdown-item" href="#">Admin Dashboard</a>
+                                <a class="dropdown-item" href="/admin/dashboard">Admin Dashboard</a>
                             @else
                                 <a class="dropdown-item" href="{{ route('userprofile') }}">My Profile</a>
                                 <a class="dropdown-item" href="{{ route('client-documentrequestlist') }}">My Requests</a>
