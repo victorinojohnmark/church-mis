@@ -9,6 +9,7 @@ class EventController extends Controller
 {
     public function index()
     {
+        dd(Event::latest()->get()->count());
         return view('eventlist', [
             'events' => Event::latest()->get(),
         ]);

@@ -2,72 +2,42 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row mt-3">
-        <div class="col-md-8 py-3">
-            <h2 class="d-inline">Events</h2>
-            <hr>
-            @forelse($events as $event)
-                <div class="row event-items p-3 py-4">
-                    <div class="col-md-2 dateWrapper">
-                        <div class="overflow-hidden w-100" style="max-width: 100px;">
-                            <h4 class="bg-success text-center text-white p-3 mb-0 rounded-top">
-                                {{ \Carbon\Carbon::parse($event->event_date)->format('M') }}
-                            </h4>
-                            <span
-                                class="d-block bg-white p-3 text-center text-dark w-100 rounded-bottom border border-1 border-dark border-top-0 fs-5 fw-semibold">{{ \Carbon\Carbon::parse($event->event_date)->format('d') }}</span>
-                        </div>
+<div class="py-3">
+    <div id="eventsWrapper">
+        <div class="container bg-body-secondary">
+          <div class="p-3">
+            <h3 class="text-center">Announcements</h3>
+            <div class="row">
+              @forelse ($events as $event)
+              <div class="col-md-4 py-3">
+                <div class="eventCard position-relative">
+                  <div class="bannerCard">
+                    <img src="{{ '/storage/event-banners/' . $event->banner_image }}" class="img-fluid" alt="">
+                    <div class="dateCard d-flex flex-column z-1 position-absolute top-0" style="width: 55px;">
+                      <div class="date w-100 d-flex justify-content-center align-items-center text-center" style="height: 55px;">
+                        <span class="fs-4 fw-semibold text-white">{{ \Carbon\Carbon::parse($event->event_date)->format('d') }}</span>
+                      </div>
+                      <div class="month w-100 d-flex flex-column justify-content-center align-items-center text-center" style="height: 55px;">
+                        <span class="fs-5 fw-semibold text-white">{{ \Carbon\Carbon::parse($event->event_date)->format('M') }}</span>
+                        <span class="fs-6 fw-semibold text-white">{{ \Carbon\Carbon::parse($event->event_date)->format('Y') }}</span>
+                      </div>
                     </div>
-
-                    <div class="col-md-10">
-                        <div class="imageWrapper overflow-hidden w-100 mb-3" style="max-height: 400px;">
-                            <img src="{{ '/storage/event-banners/' . $event->banner_image }}"
-                                class="img-fluid" alt="banner">
-                        </div>
-                        <h5 class="fw-bold">{!! $event->title !!}</h5>
-                        <small class="event-date text-secondary">Date of Event: {{ $event->event_date }}</small>
-                        <p class="card-text ms-1 mb-1 fs-6 fw-normal">{!! $event->body_excerpt !!} <a
-                                href="{{ route('eventshow', ['event' => $event->id]) }}"
-                                class="d-inline">Read more</a></p>
-
-
-                    </div>
+                  </div>
+      
+                  <div class="contextCard bg-white p-4">
+                    <h3 class="fs-3">{!! $event->title !!}</h3>
+                    <p>{!! $event->body_excerpt !!}</p>
+                    <a href="{{ route('eventshow', ['event' => $event->id]) }}" class="btn btn-warning rounded-pill text-white px-5 text-center mx-auto d-table w-auto">Read More</a>
+                  </div>
                 </div>
-            @empty
-                <p>No event postings yet</p>
-            @endforelse
-
+              </div>
+              @empty
+                  
+              @endforelse
+            </div>
+          </div>
         </div>
-
-        <div class="col-md-4 py-3">
-            <div class="">
-              <div class="card mb-3 rounded-0">
-                <div class="mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title ms-1">Document Request</h5>
-                        <p class="card-text ms-1">Paragraph of text beneath the heading to explain the heading. Here is
-                            just
-                            a bit more text.</p>
-                        <a href="{{ route('client-documentrequestlist') }}" class="btn btn-warning mt-1">Submit a request</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card rounded-0">
-                <div class="mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title ms-1">Event Reservation</h5>
-                        <p class="card-text ms-1">Paragraph of text beneath the heading to explain the heading. Here is
-                            just
-                            a bit more text.</p>
-                        <a href="{{ route('clientreservations') }}" class="btn btn-warning mt-1">Create reservation</a>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
-
+      </div>
 </div>
 
 @endsection

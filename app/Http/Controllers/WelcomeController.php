@@ -10,7 +10,7 @@ class WelcomeController extends Controller
     public function index()
     {
         return view('welcome', [
-            'events' => Event::latest()->limit(3)->get()
+            'events' => Event::latest()->limit(6)->get()
         ]);
     }
 }

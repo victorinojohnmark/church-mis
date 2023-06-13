@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;700&display=swap');
+
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Inter', sans-serif;
 }
 
 main {
@@ -12,8 +16,43 @@ footer {
     flex-shrink: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Slab';
+}
+
+.font-roboto-slab {
+    font-family: 'Roboto Slab';
+}
+
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+
+#publicNavBar {
+    background-color: #39B5A4;
+}
+
+.eventCard .bannerCard {
+    height: 300px;
+}
+
+.eventCard .bannerCard img {
+    object-fit: cover;
+    max-height: 300px;
+    height: 100%;
+    width: 100%;
+}
+
+.eventCard .bannerCard .dateCard .date {
+    background: rgba(255, 136, 0, 0.5);
+}
+
+.eventCard .bannerCard .dateCard .month {
+    background: rgba(2, 104, 2, 0.5);
+}
+
 .form-signin {
-    max-width: 330px;
+    max-width: 500px;
     padding: 15px;
 }
 
