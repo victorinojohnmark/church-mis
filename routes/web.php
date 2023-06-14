@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('root');
 
+Route::get('/client-forgotpassword', [App\Http\Controller\WelcomeController::class, 'clientforgotpassword'])->name('client-forgotpassword');
+Route::post('/client-resetpassword', [App\Http\Controller\WelcomeController::class, 'clientresetpassword'])->name('client-resetpassword');
+
 // Route::get('/admin', function () {
 //     return view('layouts/admin');
 // });
@@ -22,6 +25,8 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name(
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/client-forgotpassword', [App\Http\Controller\WelcomeController::class, 'clientforgotpassword'])->name('client-forgotpassword');
 
 Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->name('eventlist');
 Route::get('/events/{event}', [App\Http\Controllers\EventController::class, 'show'])->name('eventshow');

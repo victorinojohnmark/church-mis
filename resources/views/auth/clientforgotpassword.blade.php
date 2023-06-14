@@ -8,18 +8,14 @@
 <div class="">
     <div class="container">
         <h3 class="text-center mt-5 text-white fw-bold">SAINT GREGORY <br> THE GREAT PARISH CHURCH</h3>
-        <div class="form-signin w-100 m-auto mt-3 p-5 shadow-sm bg-body-tertiary rounded-3">
+        <div class="form-signin w-100 m-auto mt-3 p-4 shadow-sm bg-body-tertiary rounded-3">
             
             <form action="{{ route('login') }}" method="POST">
                 @csrf
               {{-- <h3 class="mb-3 fw-normal text-right">Log in</h3> --}}
                 <div class="d-flex flex-row justify-content-center align-items-center text-center mb-3">
-                    @if (Auth::id())
-                        <a href="/user/profile" class="flex-fill bg-warning text-decoration-none p-3 text-white">MY PROFILE</a>
-                    @else
-                        <a href="/login" class="flex-fill bg-warning text-decoration-none p-3 text-white">LOGIN</a>
-                    @endif
-                    <a href="/password/reset" class="flex-fill bg-secondary-subtle text-decoration-none p-3 text-white">FORGOT PASSWORD</a>
+                    <a href="/login" class="flex-fill bg-secondary-subtle text-decoration-none p-3 text-white">LOGIN</a>
+                    <a href="#" class="flex-fill bg-warning text-decoration-none p-3 text-white">FORGOT PASSWORD</a>
                 </div>
 
                 <div class="mb-2">

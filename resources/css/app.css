@@ -44,11 +44,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .eventCard .bannerCard .dateCard .date {
-    background: rgba(255, 136, 0, 0.5);
+    background: rgba(171, 82, 0, 0.7);
 }
 
 .eventCard .bannerCard .dateCard .month {
-    background: rgba(2, 104, 2, 0.5);
+    background: rgba(40, 84, 48, 0.7);
 }
 
 .form-signin {
@@ -161,5 +161,22 @@ h1, h2, h3, h4, h5, h6 {
     .event-items  .event-date {
         display: none;
     }
+}
+ul#userSidebar {
+    padding-left: 0;
+}
+
+ul#userSidebar li {
+    list-style-type: none;
+}
+
+ul#userSidebar li a {
+    text-decoration: none;
+    display: block;
+}
+
+ul#userSidebar li a.active, ul#userSidebar li a:hover {
+    background-color: #3CB3A3;
+    color: white !important;
 }
 

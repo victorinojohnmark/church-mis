@@ -9,7 +9,7 @@
             <div id="content" class="px-3">
                 <form action="{{ route('userprofileupdate') }}" method="POST">
                 @csrf
-                <h1>Profile</h1>
+                <h1 style="color: #39B5A4;">Profile</h1>
                 <hr>
                 @include('layouts.message')
                   <h5 class="mb-3 fw-normal text-right">Personal Information</h5>

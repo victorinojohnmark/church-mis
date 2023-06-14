@@ -15,7 +15,7 @@
                 {!! $event->body !!}
             </div>
             
-            <a href="{{ route('eventlist') }}" class="btn btn-success mb-3">Back to Event List</a>
+            <a href="{{ route('eventlist') }}" class="btn btn-success mb-3">View Event List</a>
 
         </div>
     </div>

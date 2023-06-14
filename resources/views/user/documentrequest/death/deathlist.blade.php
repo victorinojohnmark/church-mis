@@ -7,7 +7,7 @@
 
         <div class="col-md-9">
             <div id="content" class="px-3">
-                <h1>Death Document Requests</h1>
+                <h1 style="color: #39B5A4;">Death Document Requests</h1>
                 <hr>
                 @include('layouts.message')
                 @include('user.documentrequest.menu')
