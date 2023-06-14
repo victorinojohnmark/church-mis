@@ -85,8 +85,8 @@
                 </div> --}}
 
                 <div class="mb-3">
-                    <h4 class="text-dark fw-bold mb-2 font-inter">FORGOT PASSWORD?</h4>
-                    <p class="text-secondary">Enter your email address and we'll send you instructions on how to reset your password.</p>
+                    <h4 class="text-dark fw-bold mb-2 font-inter">RESET PASSWORD</h4>
+                    <p class="text-secondary">Please set your new password</p>
                 </div>
 
                 <div class="mb-3">
