@@ -92,7 +92,7 @@
     <h3 class="text-center mt-5 text-white fw-bold">SAINT GREGORY <br> THE GREAT PARISH CHURCH</h3>
     <div class="form-signin w-100 m-auto mt-3 mb-3 p-5 shadow-sm bg-body-tertiary rounded-3">
         <h3 class="mb-3 fw-normal text-right fw-bold font-inter text-center" style="color: #39B5A4;">SIGN UP</h3>
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('register') }}" method="POST">
             @csrf
 
             <div class="mb-3">
