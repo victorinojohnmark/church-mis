@@ -7,25 +7,22 @@
 
 </div> --}}
 
-{{ dd($notifications) }}
-<table id="notification-table" class="table table-hover table-bordered">
+{{-- {{ dd($notifications) }} --}}
+<table id="notification-table" class="table table-bordered">
     <thead>
         <tr>
             <th>Message</th>
             <th>Date</th>
-            
         </tr>
     </thead>
     <tbody>
-        @forelse($baptisms as $baptism)
-            <tr>
-                <td>{{ $baptism->date }}</td>
-                <td>{{ $baptism->birth_date }}</td>
-                <td>{{ $baptism->created_at }}</td>
-
-            </tr>
+        @forelse ($notifications as $notification)
+        <tr>
+            <td>{!! $notification->data['message'] !!}</td>
+            <td>{!! $notification->created_at !!}</td>
+        </tr>
         @empty
-
+            
         @endforelse
     </tbody>
 </table>

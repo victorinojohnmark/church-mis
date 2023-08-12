@@ -3,12 +3,22 @@
 namespace App\Observers;
 use App\Models\Reservation\Matrimony;
 use App\Models\Client;
+use App\Models\User;
 use App\Notifications\MatrimonyAcceptNotification;
 use App\Notifications\MatrimonyRejectNotification;
-
+use App\Notifications\Reservation\NewMatrimonyNotification;
 
 class MatrimonyObserver
 {
+    public function created(Matrimony $matrimony)
+    {
+        $admins = User::admin()->get();
+
+        foreach ($admins as $admin) {
+            $admin->notify(new NewMatrimonyNotification($matrimony));
+        }
+    }
+
     public function reservationAccepted(Matrimony $matrimony)
     {
         //get client and notify

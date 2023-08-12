@@ -29,7 +29,7 @@ class NewReservationNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                     ->subject('New reservation from ' . $this->detail['user'])
-                    ->greeting('Good day '. $this->detail['admin'])
+                    ->greeting('Good day!')
                     ->line('Reservation of ' . $this->detail['transaction'] . ' was requested by ' . $this->detail['user'] . ' on ' . $this->detail['date'])
                     ->action('View Baptism Reservations List', env('APP_URL', 'localhost') . $this->detail['url']);
     }

@@ -24,6 +24,11 @@ class User extends Authenticatable implements CanResetPassword
 
     public function scopeClient($query)
     {
-        $query->where('is_admin', false);
+        return $query->where('is_admin', false);
+    }
+
+    public function scopeAdmin($query)
+    {
+        return $query->where('is_admin', true);
     }
 }

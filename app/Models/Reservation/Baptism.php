@@ -17,7 +17,7 @@ class Baptism extends Model
 
     public function createdBy()
     {
-        return $this->belongsTo(Client::class, 'created_by_id');
+        return $this->belongsTo(Client::class, 'created_by_id', 'id');
     }
 
     public function getStatusAttribute()

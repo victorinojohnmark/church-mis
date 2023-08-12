@@ -6,26 +6,17 @@ use App\Models\Client;
 use App\Models\User;
 use App\Notifications\BaptismAcceptNotification;
 use App\Notifications\BaptismRejectNotification;
-use App\Notifications\NewReservationNotification;
-
+use App\Notifications\Reservation\NewBaptismNotification;
 
 class BaptismObserver
 {
     public function created(Baptism $baptism) {
         
 
-        $admins = User::where('is_admin', false)->get();
+        $admins = User::admin()->get();
 
         foreach ($admins as $admin) {
-            $detail = [
-                'user' => $baptism->createdBy->name,
-                'admin' => $admin->name,
-                'transaction' => 'Baptism',
-                'date' => $baptism->date,
-                'url' => '/admin/baptisms'
-            ];
-
-            $admin->notify(new NewReservationNotification($detail));
+            $admin->notify(new NewBaptismNotification($baptism));
         }
     }
 

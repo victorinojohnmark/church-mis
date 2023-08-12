@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::get('/dashboard', function () { return view('admin.welcome'); });
 
     //Notification
-    Route::get('/notification', [App\Http\Controllers\AdminNotificationController::class, 'index'])->name('admin-notificationlist');
+    Route::get('/notifications', [App\Http\Controllers\AdminNotificationController::class, 'index'])->name('admin-notificationlist');
 
     //Events
     Route::get('/events-list', [App\Http\Controllers\EventController::class, 'adminindex'])->name('admin-eventlist');
