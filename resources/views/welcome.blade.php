@@ -13,26 +13,32 @@
   <div class="container bg-body-secondary">
     <div class="p-3">
       <h3 class="text-center">Announcements</h3>
-      <div class="row">
+      <div class="grid">
         @forelse ($events as $event)
-        <div class="col-md-4 py-3">
+        <div class="col-md-4 p-3 grid-item">
           <div class="eventCard position-relative">
             <div class="bannerCard">
               <img src="{{ '/storage/event-banners/' . $event->banner_image }}" class="img-fluid" alt="">
               <div class="dateCard d-flex flex-column z-1 position-absolute top-0" style="width: 55px;">
                 <div class="date w-100 d-flex justify-content-center align-items-center text-center" style="height: 55px;">
-                  <span class="fs-4 fw-semibold text-white">{{ \Carbon\Carbon::parse($event->event_date)->format('d') }}</span>
+                  <span class="fs-4 fw-semibold text-white">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</span>
                 </div>
                 <div class="month w-100 d-flex flex-column justify-content-center align-items-center text-center" style="height: 55px;">
-                  <span class="fs-5 fw-semibold text-white">{{ \Carbon\Carbon::parse($event->event_date)->format('M') }}</span>
-                  <span class="fs-6 fw-semibold text-white">{{ \Carbon\Carbon::parse($event->event_date)->format('Y') }}</span>
+                  <span class="fs-5 fw-semibold text-white">{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</span>
+                  <span class="fs-6 fw-semibold text-white">{{ \Carbon\Carbon::parse($event->start_date)->format('Y') }}</span>
                 </div>
               </div>
             </div>
 
             <div class="contextCard bg-white p-4">
-              <h3 class="fs-3">{!! $event->title !!}</h3>
-              <p>{!! $event->body_excerpt !!}</p>
+              <h3 class="fs-3">
+                {!! $event->title !!}
+              </h3>
+
+              @if ($event->start_date && $event->end_date)
+                  <div class="badge bg-success d-inline mb-3">{{ \Carbon\Carbon::parse($event->start_date)->format('M d, Y') }} to {{ \Carbon\Carbon::parse($event->end_date)->format('M d, Y') }}</div>
+              @endif
+              <p class="pt-1">{!! $event->body_excerpt !!}</p>
               <a href="{{ route('eventshow', ['event' => $event->id]) }}" class="btn btn-warning rounded-pill text-white px-5 text-center mx-auto d-table w-auto">Read More</a>
             </div>
           </div>
@@ -105,3 +111,15 @@
 </div> --}}
 @endsection
 
+
+@push('scripts')
+<script src="/vendor/jquery/jquery-3.5.1.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+<script>
+  $('.grid').masonry({
+  // options
+  itemSelector: '.grid-item',
+});
+</script>
+@endpush

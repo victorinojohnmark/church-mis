@@ -5,7 +5,7 @@
     <input type="hidden" name="requested_date" value="{{ $baptismRequest->id ? $baptismRequest->requested_date : date('Y-m-d') }}">
 
     <div class="col-md-8">
-        <label class="form-label">Name</label>
+        <label class="form-label">Name of the Baby</label>
         <input type="text" name="name" class="form-control mb-3" value="{{ $baptismRequest->id ? $baptismRequest->name : '' }}" placeholder="..." {{ $baptismRequest->is_ready ? 'readonly' : 'required' }}>
     </div>
 

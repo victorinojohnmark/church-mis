@@ -37,17 +37,32 @@ class FuneralController extends Controller
             'cemetery' => ['required'], 
             'funeraria' => ['required'], 
             'contact_person' => ['required'], 
-            'contact_number' => ['required'], 
+            'contact_number' => ['required','digits:11'], 
             'created_by_id' => ['required'],
         ]);
 
         if($request->id) {
+            //check first if date is already taken
+            $isDateTaken = Funeral::where('date', $data['date'])->where('id','!=', $request->id)->exists();
+            if($isDateTaken) {
+                session()->flash('danger', 'Date submitted was already taken');
+                return redirect()->back();
+            }
+
             $funeraria = Funeral::findOrFail($request->id);
             $funeraria->fill($data);
             $funeraria->save();
 
             session()->flash('success', 'Funeral Mass Reservation updated successfully.');
         } else {
+
+            //check first if date is already taken
+            $isDateTaken = Funeral::where('date', $data['date'])->exists();
+            if($isDateTaken) {
+                session()->flash('danger', 'Date submitted was already taken');
+                return redirect()->back();
+            }
+
             $funeraria = Funeral::Create($data);
             session()->flash('success', 'Funeral Mass Reservation created successfully.');
         }

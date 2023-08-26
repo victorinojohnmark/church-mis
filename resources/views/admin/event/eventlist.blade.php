@@ -41,7 +41,7 @@
             @forelse ($events as $event)
                 <tr>
                     <td>{!! $event->title !!}</td>
-                    <td>{!! $event->event_date !!}</td>
+                    <td>{!! $event->start_date !!}{!! $event->end_date ? ' to ' . $event->end_date : '' !!}</td>
                     <td>{!! $event->created_at->format('Y-m-d') !!}</td>
                     <td>
                         <a href="{{ route('admin-eventshow', ['event' => $event->id]) }}" class="btn btn-primary btn-sm">View</a>

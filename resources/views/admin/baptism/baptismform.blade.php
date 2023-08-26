@@ -3,7 +3,7 @@
     <input type="hidden" name="created_by_id" value="{{ $baptism->created_by_id }}">
     <input type="hidden" name="id" value="{{ $baptism->id }}">
     <div class="col-md-12 mb-3">
-        <label class="form-label">Name</label>
+        <label class="form-label">Name of the Baby</label>
         <input type="text" name="name" value="{{ $baptism->name }}" class="form-control" placeholder="..." readonly>
     </div>
 

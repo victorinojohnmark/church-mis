@@ -31,17 +31,31 @@ class CommunionController extends Controller
             'fathers_name' => ['required'],
             'mothers_name' => ['required'],
             'present_address' => ['required'],
-            'contact_number' => ['required'],
+            'contact_number' => ['required','digits:11'],
             'created_by_id' => ['required']
         ]);
 
         if($request->id) {
+            //check first if date is already taken
+            $isDateTaken = Communion::where('date', $data['date'])->where('id','!=', $request->id)->exists();
+            if($isDateTaken) {
+                session()->flash('danger', 'Date submitted was already taken');
+                return redirect()->back();
+            }
+
             $communion = Communion::findOrFail($request->id);
             $communion->fill($data);
             $communion->save();
 
             session()->flash('success', 'Communion Reservation updated successfully.');
         } else {
+            //check first if date is already taken
+            $isDateTaken = Communion::where('date', $data['date'])->exists();
+            if($isDateTaken) {
+                session()->flash('danger', 'Date submitted was already taken');
+                return redirect()->back();
+            }
+
             $communion = Communion::create($data);
             session()->flash('success', 'Communion Reservation created successfully.');
         }

@@ -31,17 +31,33 @@ class MatrimonyController extends Controller
             'brides_name' => ['required'],
             'brides_birth_date' => ['required', 'date'],
             'wedding_date' => ['required', 'date'],
-            'contact_number' => ['required'],
+            'contact_number' => ['required','digits:11'],
             'created_by_id' => ['required']
         ]);
 
         if($request->id) {
+
+            //check first if date is already taken
+            $isDateTaken = Matrimony::where('wedding_date', $data['wedding_date'])->where('id','!=', $request->id)->exists();
+            if($isDateTaken) {
+                session()->flash('danger', 'Wedding date submitted was already taken');
+                return redirect()->back();
+            }
+
             $matrimony = Matrimony::findOrFail($request->id);
             $matrimony->fill($data);
             $matrimony->save();
 
             session()->flash('success', 'Matrimony Reservation updated successfully.');
         } else {
+
+            //check first if date is already taken
+            $isDateTaken = Matrimony::where('wedding_date', $data['wedding_date'])->exists();
+            if($isDateTaken) {
+                session()->flash('danger', 'Wedding date submitted was already taken');
+                return redirect()->back();
+            }
+
             $matrimony = Matrimony::create($data);
             session()->flash('success', 'Matrimony Reservation created successfully.');
         }
