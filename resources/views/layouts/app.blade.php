@@ -31,6 +31,7 @@
         </div>
     </footer>
     @vite(['resources/js/app.js'])
+    @vite(['resources/js/custom.js'])
     @stack('scripts')
 </body>
 </html>

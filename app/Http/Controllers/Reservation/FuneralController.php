@@ -25,12 +25,12 @@ class FuneralController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'date' => ['required', 'date'], 
-            'time' => ['required'], 
+            // 'date' => ['required', 'date'], 
+            // 'time' => ['required'], 
             'name' => ['required'], 
             'age' => ['required'], 
             'status' => ['required'], 
-            'religion' => ['required'], 
+            // 'religion' => ['required'], 
             'address' => ['required'], 
             'date_of_death' => ['required', 'date'],
             'cause_of_death' => ['required'], 
@@ -43,11 +43,11 @@ class FuneralController extends Controller
 
         if($request->id) {
             //check first if date is already taken
-            $isDateTaken = Funeral::where('date', $data['date'])->where('id','!=', $request->id)->exists();
-            if($isDateTaken) {
-                session()->flash('danger', 'Date submitted was already taken');
-                return redirect()->back();
-            }
+            // $isDateTaken = Funeral::where('date', $data['date'])->where('id','!=', $request->id)->exists();
+            // if($isDateTaken) {
+            //     session()->flash('danger', 'Date submitted was already taken');
+            //     return redirect()->back();
+            // }
 
             $funeraria = Funeral::findOrFail($request->id);
             $funeraria->fill($data);
@@ -57,11 +57,11 @@ class FuneralController extends Controller
         } else {
 
             //check first if date is already taken
-            $isDateTaken = Funeral::where('date', $data['date'])->exists();
-            if($isDateTaken) {
-                session()->flash('danger', 'Date submitted was already taken');
-                return redirect()->back();
-            }
+            // $isDateTaken = Funeral::where('date', $data['date'])->exists();
+            // if($isDateTaken) {
+            //     session()->flash('danger', 'Date submitted was already taken');
+            //     return redirect()->back();
+            // }
 
             $funeraria = Funeral::Create($data);
             session()->flash('success', 'Funeral Mass Reservation created successfully.');

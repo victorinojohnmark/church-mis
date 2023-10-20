@@ -25,7 +25,7 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-md-6 mb-3">
+                                            {{-- <div class="col-md-6 mb-3">
                                                 <label class="form-label">Date of Mass</label>
                                                 <input type="date" name="date" class="form-control" placeholder="..." required>
                                             </div>
@@ -33,7 +33,7 @@
                                             <div class="col-md-6 mb-3">
                                                 <label class="form-label">Time</label>
                                                 <input type="time" name="time" class="form-control" placeholder="..." required>
-                                            </div>
+                                            </div> --}}
                                         
                                             <div class="col-md-12 mb-3">
                                                 <label class="form-label">Name</label>
@@ -61,10 +61,10 @@
                                         
                                             
                                         
-                                            <div class="col-md-6 mb-3">
+                                            {{-- <div class="col-md-6 mb-3">
                                                 <label class="form-label">Religion</label>
                                                 <input type="text" name="religion" class="form-control" placeholder="..." required>
-                                            </div>
+                                            </div> --}}
                                         
                                             <div class="col-md-12 mb-3">
                                                 <label class="form-label">Address</label>

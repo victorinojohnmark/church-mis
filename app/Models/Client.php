@@ -32,5 +32,10 @@ class Client extends Model
         return $this->hasMany(Communion::class, 'created_by_id');
     }
 
+    public function scopeNotAdmin($query)
+    {
+        return $query->where('is_admin', false);
+    }
+
     
 }

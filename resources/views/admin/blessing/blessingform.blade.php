@@ -32,10 +32,10 @@
         <input type="time" name="time" value="{{ $blessing->time }}" class="form-control" placeholder="..." readonly>
     </div>
 
-    <div class="col-md-6 mb-3">
+    {{-- <div class="col-md-6 mb-3">
         <label class="form-label">Religion</label>
         <input type="text" name="religion" value="{{ $blessing->religion }}" class="form-control" placeholder="..." readonly>
-    </div>
+    </div> --}}
 
     <div class="col-md-12 mb-3">
         <label class="form-label">Address</label>

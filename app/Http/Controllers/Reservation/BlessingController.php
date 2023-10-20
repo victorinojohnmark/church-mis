@@ -29,7 +29,7 @@ class BlessingController extends Controller
             'blessing_type' => ['required'], 
             'date' => ['required', 'date'], 
             'time' => ['required'], 
-            'religion' => ['required'], 
+            // 'religion' => ['required'], 
             'address' => ['nullable'], 
             'landmark' => ['nullable'], 
             'contact_number' => ['required','digits:11'], 

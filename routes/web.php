@@ -124,7 +124,7 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     ### REPORT ###
     Route::group(['prefix' => 'reports'], function() {
         Route::any('/clients', [App\Http\Controllers\Report\ClientReportController::class, 'index'])->name('report-clientlist');
-        Route::any('/documents', [App\Http\Controllers\Report\DocumentReportController::class, 'index'])->name('report-documentlist');
+        // Route::any('/documents', [App\Http\Controllers\Report\DocumentReportController::class, 'index'])->name('report-documentlist');
 
         Route::any('/event-reservation', [App\Http\Controllers\Report\EventReservation\BaptismEventReportController::class, 'index'])->name('report-eventreservationlist');
         Route::any('/event-reservation/baptisms', [App\Http\Controllers\Report\EventReservation\BaptismEventReportController::class, 'index'])->name('report-baptismlist');

@@ -31,7 +31,7 @@ class DocumentRequestDeathController extends Controller
             'name' => ['required'],
             'age' => ['required'],
             'status' => ['required'],
-            'religion' => ['required'],
+            // 'religion' => ['required'],
             'date_of_death' => ['required', 'date'],
             'cause_of_death' => ['required'],
             'address' => ['required'],

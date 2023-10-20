@@ -38,10 +38,10 @@
         </select>
     </div>
 
-    <div class="col-md-4">
+    {{-- <div class="col-md-4">
         <label class="form-label">Religion</label>
         <input type="text" name="religion" class="form-control mb-3" value="{{ $deathRequest->id ? $deathRequest->religion : '' }}" placeholder="..." {{ $deathRequest->is_ready ? 'readonly' : 'required' }}>
-    </div>
+    </div> --}}
 
     <div class="col-md-12">
         <hr>

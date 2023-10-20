@@ -12,7 +12,7 @@ class ClientReportController extends Controller
     public function index()
     {
         return view('admin.report.clientlist', [
-            'clients' => Client::orderBy('name')->get()
+            'clients' => Client::notAdmin()->orderBy('name')->get()
         ]);
     }
 }
