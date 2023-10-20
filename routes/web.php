@@ -58,27 +58,33 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     // Baptism Doc Request
     Route::get('/documentrequestbaptisms', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'index'])->name('documentrequestbaptismlist');
     Route::post('/documentrequestbaptisms-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'setReady'])->name('documentrequestbaptismsetready');
+    Route::post('/documentrequestbaptisms-reject', [App\Http\Controllers\DocumentRequest\DocumentRequestBaptismController::class, 'reject'])->name('documentrequestbaptismreject');
 
     // Confirmation Doc Request
     Route::get('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'index'])->name('documentrequestconfirmationlist');
     Route::post('/documentrequestconfirmations-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'setReady'])->name('documentrequestconfirmationsetready');
+    Route::post('/documentrequestconfirmations-reject', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'reject'])->name('documentrequestconfirmationreject');
 
     // Communion Doc Request
     Route::get('/documentrequestcommunions', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'index'])->name('documentrequestcommunionlist');
     Route::post('/documentrequestcommunions-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'setReady'])->name('documentrequestcommunionsetready');
+    Route::post('/documentrequestcommunions-reject', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'reject'])->name('documentrequestcommunionreject');
     
     // Matrimony Doc Request
     Route::get('/documentrequestmatrimonies', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'index'])->name('documentrequestmatrimonylist');
     Route::post('/documentrequestmatrimonies-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'setReady'])->name('documentrequestmatrimonysetready');
+    Route::post('/documentrequestmatrimonies-reject', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'reject'])->name('documentrequestmatrimonyreject');
 
 
     // Blessing Doc Request
     Route::get('/documentrequestblessing', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'index'])->name('documentrequestblessinglist');
     Route::post('/documentrequestblessing-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'setReady'])->name('documentrequestblessingsetready');
+    Route::post('/documentrequestblessings-reject', [App\Http\Controllers\DocumentRequest\DocumentRequestBlessingController::class, 'reject'])->name('documentrequestblessingreject');
 
     // Death Doc Request
     Route::get('/documentrequestdeath', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'index'])->name('documentrequestdeathlist');
     Route::post('/documentrequestdeath-setready', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'setReady'])->name('documentrequestdeathsetready');
+    Route::post('/documentrequestdeaths-reject', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'reject'])->name('documentrequestdeathreject');
 
 
     ### EVENT RESERVATION ###

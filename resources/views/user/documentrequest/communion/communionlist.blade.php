@@ -51,26 +51,26 @@
                                         <td>
                                             {{ $communionRequest->name }}
                                             @if ($communionRequest->is_active)
-                                                @if ($communionRequest->is_ready)
+                                                @if ($communionRequest->is_rejected)
+                                                    <span class="badge bg-danger">Rejected</span>
+                                                @elseif ($communionRequest->is_ready)
                                                     <span class="badge bg-success">Ready for pick up</span>
                                                 @else
-                                                    <span class="badge bg-warning">Pending</span>
+                                                    <span class="badge bg-warning">Pendings</span>
                                                 @endif
                                             @else
-                                            <span class="badge bg-danger">Cancelled by Client</span>
+                                                <span class="badge bg-danger">Cancelled by Client</span>
                                             @endif
                                         </td>
                                         <td>{{ $communionRequest->communion_date }}</td>
                                         <td>{{ $communionRequest->requested_date }}</td>
                                         <td>
-                                            @if ($communionRequest->is_active)
+                                            @if ($communionRequest->is_active && !$communionRequest->is_ready && !$communionRequest->is_rejected)
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#communionDocumentRequestModal{{ $communionRequest->id }}">{{ $communionRequest->is_ready ? 'View' : 'Update' }}</button>
                                                 @include('user.documentrequest.communion.communionmodal')
 
-                                                @if (!$communionRequest->is_ready)
-                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#communionCancelDocumentRequestModal{{ $communionRequest->id }}">Cancel Request</button>
-                                                    @include('user.documentrequest.communion.communioncancelmodal')
-                                                @endif
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#communionCancelDocumentRequestModal{{ $communionRequest->id }}">Cancel Request</button>
+                                                @include('user.documentrequest.communion.communioncancelmodal')
 
                                             @else
                                                 <button disabled="disabled" class="btn btn-secondary btn-sm">N/A</button>

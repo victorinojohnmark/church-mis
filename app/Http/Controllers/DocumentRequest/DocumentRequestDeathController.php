@@ -36,7 +36,7 @@ class DocumentRequestDeathController extends Controller
             'cause_of_death' => ['required'],
             'address' => ['required'],
             'contact_person' => ['required'],
-            'contact_number' => ['required'],
+            'contact_number' => ['required','digits:11'],
             'requested_date' => ['required', 'date']
         ]);
 
@@ -63,12 +63,17 @@ class DocumentRequestDeathController extends Controller
     {
         $documentRequestDeath = DocumentRequestDeath::findOrFail($request->id);
 
-        $documentRequestDeath->is_active = false;
-        $documentRequestDeath->save();
+        if($documentRequestDeath->is_active && !$documentRequestDeath->is_rejected) {
+            $documentRequestDeath->is_active = false;
+            $documentRequestDeath->save();
 
-        session()->flash('warning', 'Your request has been successfully cancelled');
-        return redirect()->back();
-
+            session()->flash('warning', 'Your request has been successfully cancelled');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', 'Invalid, Death document request has been cancelled or rejected.');
+            return redirect()->back();
+        }
+        
     }
 
     public function setReady(Request $request)
@@ -85,6 +90,25 @@ class DocumentRequestDeathController extends Controller
             return redirect()->back();
         } else {
             session()->flash('danger', 'Invalid, Death document request has been cancelled.');
+            return redirect()->back();
+        }
+    }
+
+    public function reject(Request $request)
+    {
+        $documentRequestDeath = DocumentRequestDeath::findOrFail($request->id);
+
+        if($documentRequestDeath->is_active && !$documentRequestDeath->is_rejected) {
+            $documentRequestDeath->is_rejected = true;
+            $documentRequestDeath->rejection_message = $request->rejection_message;
+            $documentRequestDeath->save();
+
+            $documentRequestDeath->triggerRejectEvent();
+
+            session()->flash('success', 'Death document request rejected, email notification will be sent to the client');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', 'Invalid, Death document request has been cancelled or rejected.');
             return redirect()->back();
         }
     }

@@ -5,8 +5,9 @@ namespace App\Observers;
 use App\Models\DocumentRequest\DocumentRequestMatrimony;
 use App\Models\Client;
 use App\Models\User;
-use App\Notifications\DocumentRequestMatrimonyReadyNotification;
 use App\Notifications\DocumentRequest\NewMatrimonyNotification;
+use App\Notifications\DocumentRequestMatrimonyReadyNotification;
+use App\Notifications\DocumentRequestMatrimonyRejectNotification;
 
 class DocumentRequestMatrimonyObserver
 {
@@ -24,5 +25,11 @@ class DocumentRequestMatrimonyObserver
     {
         $client = Client::findOrFail($documentRequestMatrimony->user_id);
         $client->notify(new DocumentRequestMatrimonyReadyNotification($documentRequestMatrimony));
+    }
+
+    public function reject(DocumentRequestMatrimony $documentRequestMatrimony)
+    {
+        $client = Client::findOrFail($documentRequestMatrimony->user_id);
+        $client->notify(new DocumentRequestMatrimonyRejectNotification($documentRequestMatrimony));
     }
 }

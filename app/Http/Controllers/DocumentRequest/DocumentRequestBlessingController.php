@@ -32,7 +32,7 @@ class DocumentRequestBlessingController extends Controller
             'blessing_type' => ['required'],
             'blessing_date' => ['required', 'date'],
             'address' => ['required'],
-            'contact_number' => ['required'],
+            'contact_number' => ['required','digits:11'],
             'requested_date' => ['required', 'date']
         ]);
 
@@ -59,11 +59,16 @@ class DocumentRequestBlessingController extends Controller
     {
         $documentRequestblessing = DocumentRequestBlessing::findOrFail($request->id);
 
-        $documentRequestblessing->is_active = false;
-        $documentRequestblessing->save();
+        if($documentRequestblessing->is_active && !$documentRequestblessing->is_rejected) {
+            $documentRequestblessing->is_active = false;
+            $documentRequestblessing->save();
 
-        session()->flash('warning', 'Your request has been successfully cancelled');
-        return redirect()->back();
+            session()->flash('warning', 'Your request has been successfully cancelled');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', 'Invalid, Blessing document request has been cancelled or rejected.');
+            return redirect()->back();
+        }
 
     }
 
@@ -81,6 +86,25 @@ class DocumentRequestBlessingController extends Controller
             return redirect()->back();
         } else {
             session()->flash('danger', 'Invalid, Blessing document request has been cancelled.');
+            return redirect()->back();
+        }
+    }
+
+    public function reject(Request $request)
+    {
+        $documentRequestBlessing = DocumentRequestBlessing::findOrFail($request->id);
+
+        if($documentRequestBlessing->is_active && !$documentRequestBlessing->is_rejected) {
+            $documentRequestBlessing->is_rejected = true;
+            $documentRequestBlessing->rejection_message = $request->rejection_message;
+            $documentRequestBlessing->save();
+
+            $documentRequestBlessing->triggerRejectEvent();
+
+            session()->flash('success', 'Blessing document request rejected, email notification will be sent to the client');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', 'Invalid, Blessing document request has been cancelled or rejected.');
             return redirect()->back();
         }
     }

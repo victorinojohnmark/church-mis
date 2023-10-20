@@ -53,13 +53,15 @@
                                         <td>
                                             {{ $blessingRequest->name }}
                                             @if ($blessingRequest->is_active)
-                                                @if ($blessingRequest->is_ready)
+                                                @if ($blessingRequest->is_rejected)
+                                                    <span class="badge bg-danger">Rejected</span>
+                                                @elseif ($blessingRequest->is_ready)
                                                     <span class="badge bg-success">Ready for pick up</span>
                                                 @else
-                                                    <span class="badge bg-warning">Pending</span>
+                                                    <span class="badge bg-warning">Pendings</span>
                                                 @endif
                                             @else
-                                            <span class="badge bg-danger">Cancelled by Client</span>
+                                                <span class="badge bg-danger">Cancelled by Client</span>
                                             @endif
                                         </td>
                                         <td>{{ $blessingRequest->blessing_date }}</td>
@@ -67,14 +69,12 @@
                                         <td>{{ $blessingRequest->createdBy->name }}</td>
                                         <td>{{ $blessingRequest->requested_date }}</td>
                                         <td>
-                                            @if ($blessingRequest->is_active)
+                                            @if ($blessingRequest->is_active && !$blessingRequest->is_rejected && !$blessingRequest->is_ready)
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#blessingDocumentRequestModal{{ $blessingRequest->id }}">{{ $blessingRequest->is_ready ? 'View' : 'Update' }}</button>
                                                 @include('user.documentrequest.blessing.blessingmodal')
 
-                                                @if (!$blessingRequest->is_ready)
-                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#blessingCancelDocumentRequestModal{{ $blessingRequest->id }}">Cancel Request</button>
-                                                    @include('user.documentrequest.blessing.blessingcancelmodal')
-                                                @endif
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#blessingCancelDocumentRequestModal{{ $blessingRequest->id }}">Cancel Request</button>
+                                                @include('user.documentrequest.blessing.blessingcancelmodal')
                                             @else
                                                 <button disabled="disabled" class="btn btn-secondary btn-sm">N/A</button>
                                             @endif

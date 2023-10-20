@@ -5,8 +5,9 @@ namespace App\Observers;
 use App\Models\DocumentRequest\DocumentRequestDeath;
 use App\Models\Client;
 use App\Models\User;
-use App\Notifications\DocumentRequestDeathReadyNotification;
 use App\Notifications\DocumentRequest\NewDeathNotification;
+use App\Notifications\DocumentRequestDeathReadyNotification;
+use App\Notifications\DocumentRequestDeathRejectNotification;
 
 class DocumentRequestDeathObserver
 {
@@ -24,5 +25,11 @@ class DocumentRequestDeathObserver
     {
         $client = Client::findOrFail($documentRequestDeath->user_id);
         $client->notify(new DocumentRequestDeathReadyNotification($documentRequestDeath));
+    }
+
+    public function reject(DocumentRequestDeath $documentRequestDeath)
+    {
+        $client = Client::findOrFail($documentRequestDeath->user_id);
+        $client->notify(new DocumentRequestDeathRejectNotification($documentRequestDeath));
     }
 }

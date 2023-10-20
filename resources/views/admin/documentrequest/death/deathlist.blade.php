@@ -21,13 +21,15 @@
                     <td>
                         {{ $deathRequest->name }}
                         @if ($deathRequest->is_active)
-                            @if ($deathRequest->is_ready)
+                            @if ($deathRequest->is_rejected)
+                                <span class="badge bg-danger">Rejected</span>
+                            @elseif ($deathRequest->is_ready)
                                 <span class="badge bg-success">Ready for pick up</span>
                             @else
-                                <span class="badge bg-warning">Pending</span>
+                                <span class="badge bg-warning">Pendings</span>
                             @endif
                         @else
-                        <span class="badge bg-danger">Cancelled by Client</span>
+                            <span class="badge bg-danger">Cancelled by Client</span>
                         @endif
                     </td>
                     <td>{{ $deathRequest->date_of_death }}</td>
@@ -35,8 +37,9 @@
                     <td>
                         @include('admin.documentrequest.death.deathmodal')
 
-                        @if ($deathRequest->is_active && !$deathRequest->is_ready)
+                        @if ($deathRequest->is_active && !$deathRequest->is_ready && !$deathRequest->is_rejected)
                             @include('admin.documentrequest.death.deathreadymodal')
+                            @include('admin.documentrequest.death.deathrejectmodal')
                         @endif
                         
                     </td>

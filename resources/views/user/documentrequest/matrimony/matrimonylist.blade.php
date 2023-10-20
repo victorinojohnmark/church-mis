@@ -52,13 +52,15 @@
                                         <td>
                                             {{ $matrimonyRequest->grooms_name }} / {{ $matrimonyRequest->brides_name }}
                                             @if ($matrimonyRequest->is_active)
-                                                @if ($matrimonyRequest->is_ready)
+                                                @if ($matrimonyRequest->is_rejected)
+                                                    <span class="badge bg-danger">Rejected</span>
+                                                @elseif ($matrimonyRequest->is_ready)
                                                     <span class="badge bg-success">Ready for pick up</span>
                                                 @else
-                                                    <span class="badge bg-warning">Pending</span>
+                                                    <span class="badge bg-warning">Pendings</span>
                                                 @endif
                                             @else
-                                            <span class="badge bg-danger">Cancelled by Client</span>
+                                                <span class="badge bg-danger">Cancelled by Client</span>
                                             @endif
                                         </td>
                                         <td>{{ $matrimonyRequest->matrimony_date }}</td>
@@ -67,14 +69,12 @@
                                         <td>
                                             
 
-                                            @if ($matrimonyRequest->is_active)
+                                            @if ($matrimonyRequest->is_active && !$matrimonyRequest->is_ready && !$matrimonyRequest->is_rejected)
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#matrimonyDocumentRequestModal{{ $matrimonyRequest->id }}">{{ $matrimonyRequest->is_ready ? 'View' : 'Update' }}</button>
                                                 @include('user.documentrequest.matrimony.matrimonymodal')
 
-                                                @if (!$matrimonyRequest->is_ready)
-                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#matrimonyCancelDocumentRequestModal{{ $matrimonyRequest->id }}">Cancel Request</button>
-                                                    @include('user.documentrequest.matrimony.matrimonycancelmodal')
-                                                @endif
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#matrimonyCancelDocumentRequestModal{{ $matrimonyRequest->id }}">Cancel Request</button>
+                                                @include('user.documentrequest.matrimony.matrimonycancelmodal')
                                             @else
                                                 <button disabled="disabled" class="btn btn-secondary btn-sm">N/A</button>
                                             @endif

@@ -18,10 +18,12 @@ class DocumentRequestBlessing extends Model
         'blessing_date',
         'address',
         'contact_number',
-        'requested_date'
+        'requested_date',
+        'is_rejected',
+        'rejection_message'
     ];
 
-    protected $observables = ['setReady'];
+    protected $observables = ['setReady', 'reject'];
 
     public function createdBy()
     {
@@ -31,11 +33,14 @@ class DocumentRequestBlessing extends Model
     public function getStatusAttribute()
     {
         if($this->is_active) {
-            if($this->is_ready) {
+            if($this->is_rejected) {
+                return 'Rejected';
+            } elseif($this->is_ready) {
                 return 'Ready for pick up';
             } else {
-                return 'Pending';
+                return 'Pendings';
             }
+            
         } else {
             return 'Cancelled by Client';
         }
@@ -44,5 +49,10 @@ class DocumentRequestBlessing extends Model
     public function triggerSetReadyEvent()
     {
         $this->fireModelEvent('setReady', false);
+    }
+
+    public function triggerRejectEvent()
+    {
+        $this->fireModelEvent('reject', false);
     }
 }

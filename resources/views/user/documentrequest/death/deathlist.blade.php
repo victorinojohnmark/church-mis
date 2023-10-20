@@ -51,13 +51,15 @@
                                         <td>
                                             {{ $deathRequest->name }}
                                             @if ($deathRequest->is_active)
-                                                @if ($deathRequest->is_ready)
+                                                @if ($deathRequest->is_rejected)
+                                                    <span class="badge bg-danger">Rejected</span>
+                                                @elseif ($deathRequest->is_ready)
                                                     <span class="badge bg-success">Ready for pick up</span>
                                                 @else
-                                                    <span class="badge bg-warning">Pending</span>
+                                                    <span class="badge bg-warning">Pendings</span>
                                                 @endif
                                             @else
-                                            <span class="badge bg-danger">Cancelled by Client</span>
+                                                <span class="badge bg-danger">Cancelled by Client</span>
                                             @endif
                                         </td>
                                         <td>{{ $deathRequest->date_of_death }}</td>
@@ -65,14 +67,12 @@
                                         <td>
                                             
 
-                                            @if ($deathRequest->is_active)
+                                            @if ($deathRequest->is_active && !$deathRequest->is_ready && !$deathRequest->is_rejected)
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#deathDocumentRequestModal{{ $deathRequest->id }}">{{ $deathRequest->is_ready ? 'View' : 'Update' }}</button>
                                                 @include('user.documentrequest.death.deathmodal')
 
-                                                @if (!$deathRequest->is_ready)
-                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deathCancelDocumentRequestModal{{ $deathRequest->id }}">Cancel Request</button>
-                                                    @include('user.documentrequest.death.deathcancelmodal')
-                                                @endif
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deathCancelDocumentRequestModal{{ $deathRequest->id }}">Cancel Request</button>
+                                                @include('user.documentrequest.death.deathcancelmodal')
                                             @else
                                                 <button disabled="disabled" class="btn btn-secondary btn-sm">N/A</button>
                                             @endif

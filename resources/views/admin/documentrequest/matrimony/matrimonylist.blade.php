@@ -22,13 +22,15 @@
                     <td>
                         {{ $matrimonyRequest->grooms_name }} / {{ $matrimonyRequest->brides_name }}
                         @if ($matrimonyRequest->is_active)
-                            @if ($matrimonyRequest->is_ready)
+                            @if ($matrimonyRequest->is_rejected)
+                                <span class="badge bg-danger">Rejected</span>
+                            @elseif ($matrimonyRequest->is_ready)
                                 <span class="badge bg-success">Ready for pick up</span>
                             @else
-                                <span class="badge bg-warning">Pending</span>
+                                <span class="badge bg-warning">Pendings</span>
                             @endif
                         @else
-                        <span class="badge bg-danger">Cancelled by Client</span>
+                            <span class="badge bg-danger">Cancelled by Client</span>
                         @endif
                     </td>
                     <td>{{ $matrimonyRequest->matrimony_date }}</td>
@@ -37,8 +39,9 @@
                     <td>
                         
                         @include('admin.documentrequest.matrimony.matrimonymodal')
-                        @if ($matrimonyRequest->is_active && !$matrimonyRequest->is_ready)
+                        @if ($matrimonyRequest->is_active && !$matrimonyRequest->is_ready && !$matrimonyRequest->is_rejected)
                             @include('admin.documentrequest.matrimony.matrimonyreadymodal')
+                            @include('admin.documentrequest.matrimony.matrimonyrejectmodal')
                         @endif
                     </td>
                 </tr>

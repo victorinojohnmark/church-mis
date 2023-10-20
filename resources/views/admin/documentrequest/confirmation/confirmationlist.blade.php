@@ -21,13 +21,15 @@
                     <td>
                         {{ $confirmationRequest->name }}
                         @if ($confirmationRequest->is_active)
-                            @if ($confirmationRequest->is_ready)
+                            @if ($confirmationRequest->is_rejected)
+                                <span class="badge bg-danger">Rejected</span>
+                            @elseif ($confirmationRequest->is_ready)
                                 <span class="badge bg-success">Ready for pick up</span>
                             @else
-                                <span class="badge bg-warning">Pending</span>
+                                <span class="badge bg-warning">Pendings</span>
                             @endif
                         @else
-                        <span class="badge bg-danger">Cancelled by Client</span>
+                            <span class="badge bg-danger">Cancelled by Client</span>
                         @endif
                     </td>
                     <td>{{ $confirmationRequest->confirmation_date }}</td>
@@ -35,8 +37,9 @@
                     <td>
                         @include('admin.documentrequest.confirmation.confirmationmodal')
 
-                        @if ($confirmationRequest->is_active && !$confirmationRequest->is_ready)
+                        @if ($confirmationRequest->is_active && !$confirmationRequest->is_ready && !$confirmationRequest->is_rejected)
                             @include('admin.documentrequest.confirmation.confirmationreadymodal')
+                            @include('admin.documentrequest.confirmation.confirmationrejectmodal')
                         @endif
                         
                     </td>

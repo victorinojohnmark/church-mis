@@ -51,13 +51,15 @@
                                         <td>
                                             {{ $confirmationRequest->name }}
                                             @if ($confirmationRequest->is_active)
-                                                @if ($confirmationRequest->is_ready)
+                                                @if ($confirmationRequest->is_rejected)
+                                                    <span class="badge bg-danger">Rejected</span>
+                                                @elseif ($confirmationRequest->is_ready)
                                                     <span class="badge bg-success">Ready for pick up</span>
                                                 @else
-                                                    <span class="badge bg-warning">Pending</span>
+                                                    <span class="badge bg-warning">Pendings</span>
                                                 @endif
                                             @else
-                                            <span class="badge bg-danger">Cancelled by Client</span>
+                                                <span class="badge bg-danger">Cancelled by Client</span>
                                             @endif
                                         </td>
                                         <td>{{ $confirmationRequest->confirmational_date }}</td>
@@ -65,14 +67,12 @@
                                         <td>
                                             
 
-                                            @if ($confirmationRequest->is_active)
+                                            @if ($confirmationRequest->is_active && !$confirmationRequest->is_ready && !$confirmationRequest->is_rejected)
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationDocumentRequestModal{{ $confirmationRequest->id }}">{{ $confirmationRequest->is_ready ? 'View' : 'Update' }}</button>
                                                 @include('user.documentrequest.confirmation.confirmationmodal')
 
-                                                @if (!$confirmationRequest->is_ready)
-                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationCancelDocumentRequestModal{{ $confirmationRequest->id }}">Cancel Request</button>
-                                                    @include('user.documentrequest.confirmation.confirmationcancelmodal')
-                                                @endif
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationCancelDocumentRequestModal{{ $confirmationRequest->id }}">Cancel Request</button>
+                                                @include('user.documentrequest.confirmation.confirmationcancelmodal')
                                             @else
                                                 <button disabled="disabled" class="btn btn-secondary btn-sm">N/A</button>
                                             @endif

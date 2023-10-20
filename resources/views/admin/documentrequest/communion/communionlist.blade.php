@@ -21,13 +21,15 @@
                     <td>
                         {{ $communionRequest->name }}
                         @if ($communionRequest->is_active)
-                            @if ($communionRequest->is_ready)
+                            @if ($communionRequest->is_rejected)
+                                <span class="badge bg-danger">Rejected</span>
+                            @elseif ($communionRequest->is_ready)
                                 <span class="badge bg-success">Ready for pick up</span>
                             @else
-                                <span class="badge bg-warning">Pending</span>
+                                <span class="badge bg-warning">Pendings</span>
                             @endif
                         @else
-                        <span class="badge bg-danger">Cancelled by Client</span>
+                            <span class="badge bg-danger">Cancelled by Client</span>
                         @endif
                     </td>
                     <td>{{ $communionRequest->communion_date }}</td>
@@ -35,8 +37,9 @@
                     <td>
                         @include('admin.documentrequest.communion.communionmodal')
 
-                        @if ($communionRequest->is_active && !$communionRequest->is_ready)
+                        @if ($communionRequest->is_active && !$communionRequest->is_ready && !$communionRequest->is_rejected)
                             @include('admin.documentrequest.communion.communionreadymodal')
+                            @include('admin.documentrequest.communion.communionrejectmodal')
                         @endif
                         
                     </td>

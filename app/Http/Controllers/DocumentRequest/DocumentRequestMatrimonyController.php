@@ -33,7 +33,7 @@ class DocumentRequestMatrimonyController extends Controller
             'brides_name' => ['required'],
             'brides_birth_date' => ['required', 'date'],
             'matrimony_date' => ['required', 'date'],
-            'contact_number' => ['required'],
+            'contact_number' => ['required','digits:11'],
             'address' => ['required'],
             'requested_date' => ['required', 'date'],
         ]);
@@ -61,11 +61,16 @@ class DocumentRequestMatrimonyController extends Controller
     {
         $documentRequestmatrimony = DocumentRequestMatrimony::findOrFail($request->id);
 
-        $documentRequestmatrimony->is_active = false;
-        $documentRequestmatrimony->save();
+        if($documentRequestmatrimony->is_active && !$documentRequestmatrimony->is_rejected) {
+            $documentRequestmatrimony->is_active = false;
+            $documentRequestmatrimony->save();
 
-        session()->flash('warning', 'Your request has been successfully cancelled');
-        return redirect()->back();
+            session()->flash('warning', 'Your request has been successfully cancelled');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', 'Invalid, Matrimony document request has been cancelled or rejected.');
+            return redirect()->back();
+        }
 
     }
 
@@ -83,6 +88,25 @@ class DocumentRequestMatrimonyController extends Controller
             return redirect()->back();
         } else {
             session()->flash('danger', 'Invalid, Matrimony document request has been cancelled.');
+            return redirect()->back();
+        }
+    }
+
+    public function reject(Request $request)
+    {
+        $documentRequestMatrimony = DocumentRequestMatrimony::findOrFail($request->id);
+
+        if($documentRequestMatrimony->is_active && !$documentRequestMatrimony->is_rejected) {
+            $documentRequestMatrimony->is_rejected = true;
+            $documentRequestMatrimony->rejection_message = $request->rejection_message;
+            $documentRequestMatrimony->save();
+
+            $documentRequestMatrimony->triggerRejectEvent();
+
+            session()->flash('success', 'Matrimony document request rejected, email notification will be sent to the client');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', 'Invalid, Matrimony document request has been cancelled or rejected.');
             return redirect()->back();
         }
     }

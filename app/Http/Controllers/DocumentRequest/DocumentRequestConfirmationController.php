@@ -32,7 +32,7 @@ class DocumentRequestConfirmationController extends Controller
             'user_id' => ['required', 'integer'],
             'name' => ['required'],
             'birth_date' => ['required', 'date'],
-            'contact_number' => ['required'],
+            'contact_number' => ['required','digits:11'],
             'confirmation_date' => ['required', 'date'],
             'father_name' => ['required'],
             'mother_name' => ['required'],
@@ -64,11 +64,16 @@ class DocumentRequestConfirmationController extends Controller
     {
         $documentRequestConfirmation = DocumentRequestConfirmation::findOrFail($request->id);
 
-        $documentRequestConfirmation->is_active = false;
-        $documentRequestConfirmation->save();
+        if($documentRequestConfirmation->is_active && !$documentRequestConfirmation->is_rejected) {
+            $documentRequestConfirmation->is_active = false;
+            $documentRequestConfirmation->save();
 
-        session()->flash('warning', 'Your request has been successfully cancelled');
-        return redirect()->back();
+            session()->flash('warning', 'Your request has been successfully cancelled');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', 'Invalid, Confirmation document request has been cancelled or rejected.');
+            return redirect()->back();
+        }
 
     }
 
@@ -86,6 +91,25 @@ class DocumentRequestConfirmationController extends Controller
             return redirect()->back();
         } else {
             session()->flash('danger', 'Invalid, Confirmation document request has been cancelled.');
+            return redirect()->back();
+        }
+    }
+
+    public function reject(Request $request)
+    {
+        $documentRequestConfirmation = DocumentRequestConfirmation::findOrFail($request->id);
+
+        if($documentRequestConfirmation->is_active && !$documentRequestConfirmation->is_rejected) {
+            $documentRequestConfirmation->is_rejected = true;
+            $documentRequestConfirmation->rejection_message = $request->rejection_message;
+            $documentRequestConfirmation->save();
+
+            $documentRequestConfirmation->triggerRejectEvent();
+
+            session()->flash('success', 'Confirmation document request rejected, email notification will be sent to the client');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', 'Invalid, Confirmation document request has been cancelled or rejected.');
             return redirect()->back();
         }
     }

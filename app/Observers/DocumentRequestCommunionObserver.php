@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\User;
 use App\Notifications\DocumentRequest\NewCommunionNotification;
 use App\Notifications\DocumentRequestCommunionReadyNotification;
+use App\Notifications\DocumentRequestCommunionRejectNotification;
 
 class DocumentRequestCommunionObserver
 {
@@ -24,5 +25,11 @@ class DocumentRequestCommunionObserver
     {
         $client = Client::findOrFail($documentRequestCommunion->user_id);
         $client->notify(new DocumentRequestCommunionReadyNotification($documentRequestCommunion));
+    }
+
+    public function reject(DocumentRequestCommunion $documentRequestCommunion)
+    {
+        $client = Client::findOrFail($documentRequestCommunion->user_id);
+        $client->notify(new DocumentRequestCommunionRejectNotification($documentRequestCommunion));
     }
 }

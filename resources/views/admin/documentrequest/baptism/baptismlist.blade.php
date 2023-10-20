@@ -21,13 +21,15 @@
                     <td>
                         {{ $baptismRequest->name }}
                         @if ($baptismRequest->is_active)
-                            @if ($baptismRequest->is_ready)
+                            @if ($baptismRequest->is_rejected)
+                                <span class="badge bg-danger">Rejected</span>
+                            @elseif ($baptismRequest->is_ready)
                                 <span class="badge bg-success">Ready for pick up</span>
                             @else
-                                <span class="badge bg-warning">Pending</span>
+                                <span class="badge bg-warning">Pendings</span>
                             @endif
                         @else
-                        <span class="badge bg-danger">Cancelled by Client</span>
+                            <span class="badge bg-danger">Cancelled by Client</span>
                         @endif
                     </td>
                     <td>{{ $baptismRequest->baptismal_date }}</td>
@@ -35,8 +37,9 @@
                     <td>
                         @include('admin.documentrequest.baptism.baptismmodal')
 
-                        @if ($baptismRequest->is_active && !$baptismRequest->is_ready)
+                        @if ($baptismRequest->is_active && !$baptismRequest->is_ready && !$baptismRequest->is_rejected)
                             @include('admin.documentrequest.baptism.baptismreadymodal')
+                            @include('admin.documentrequest.baptism.baptismrejectmodal')
                         @endif
                         
                     </td>

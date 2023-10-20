@@ -23,13 +23,15 @@
                     <td>
                         {{ $blessingRequest->name }}
                         @if ($blessingRequest->is_active)
-                            @if ($blessingRequest->is_ready)
+                            @if ($blessingRequest->is_rejected)
+                                <span class="badge bg-danger">Rejected</span>
+                            @elseif ($blessingRequest->is_ready)
                                 <span class="badge bg-success">Ready for pick up</span>
                             @else
-                                <span class="badge bg-warning">Pending</span>
+                                <span class="badge bg-warning">Pendings</span>
                             @endif
                         @else
-                        <span class="badge bg-danger">Cancelled by Client</span>
+                            <span class="badge bg-danger">Cancelled by Client</span>
                         @endif
                     </td>
                     <td>{{ $blessingRequest->blessing_date }}</td>
@@ -38,8 +40,9 @@
                     <td>{{ $blessingRequest->requested_date }}</td>
                     <td>
                         @include('admin.documentrequest.blessing.blessingmodal')
-                        @if ($blessingRequest->is_active && !$blessingRequest->is_ready)
+                        @if ($blessingRequest->is_active && !$blessingRequest->is_ready && !$blessingRequest->is_rejected)
                             @include('admin.documentrequest.blessing.blessingreadymodal')
+                            @include('admin.documentrequest.blessing.blessingrejectmodal')
                         @endif
                     </td>
                 </tr>

@@ -23,7 +23,7 @@ class DocumentRequestMatrimony extends Model
         'requested_date'
     ];
 
-    protected $observables = ['setReady'];
+    protected $observables = ['setReady', 'reject'];
 
     public function createdBy()
     {
@@ -33,11 +33,14 @@ class DocumentRequestMatrimony extends Model
     public function getStatusAttribute()
     {
         if($this->is_active) {
-            if($this->is_ready) {
+            if($this->is_rejected) {
+                return 'Rejected';
+            } elseif($this->is_ready) {
                 return 'Ready for pick up';
             } else {
-                return 'Pending';
+                return 'Pendings';
             }
+            
         } else {
             return 'Cancelled by Client';
         }
@@ -46,5 +49,10 @@ class DocumentRequestMatrimony extends Model
     public function triggerSetReadyEvent()
     {
         $this->fireModelEvent('setReady', false);
+    }
+
+    public function triggerRejectEvent()
+    {
+        $this->fireModelEvent('reject', false);
     }
 }

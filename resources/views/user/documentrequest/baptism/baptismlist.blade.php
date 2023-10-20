@@ -51,26 +51,26 @@
                                         <td>
                                             {{ $baptismRequest->name }}
                                             @if ($baptismRequest->is_active)
-                                                @if ($baptismRequest->is_ready)
+                                                @if ($baptismRequest->is_rejected)
+                                                    <span class="badge bg-danger">Rejected</span>
+                                                @elseif ($baptismRequest->is_ready)
                                                     <span class="badge bg-success">Ready for pick up</span>
                                                 @else
-                                                    <span class="badge bg-warning">Pending</span>
+                                                    <span class="badge bg-warning">Pendings</span>
                                                 @endif
                                             @else
-                                            <span class="badge bg-danger">Cancelled by Client</span>
+                                                <span class="badge bg-danger">Cancelled by Client</span>
                                             @endif
                                         </td>
                                         <td>{{ $baptismRequest->baptismal_date }}</td>
                                         <td>{{ $baptismRequest->requested_date }}</td>
                                         <td>
-                                            @if ($baptismRequest->is_active)
+                                            @if ($baptismRequest->is_active && !$baptismRequest->is_rejected && !$baptismRequest->is_ready)
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#baptismDocumentRequestModal{{ $baptismRequest->id }}">{{ $baptismRequest->is_ready ? 'View' : 'Update' }}</button>
                                                 @include('user.documentrequest.baptism.baptismmodal')
 
-                                                @if (!$baptismRequest->is_ready)
-                                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#baptismCancelDocumentRequestModal{{ $baptismRequest->id }}">Cancel Request</button>
-                                                    @include('user.documentrequest.baptism.baptismcancelmodal')
-                                                @endif
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#baptismCancelDocumentRequestModal{{ $baptismRequest->id }}">Cancel Request</button>
+                                                @include('user.documentrequest.baptism.baptismcancelmodal')
 
                                             @else
                                                 <button disabled="disabled" class="btn btn-secondary btn-sm">N/A</button>
