@@ -32,17 +32,31 @@ class BlessingController extends Controller
             'religion' => ['required'], 
             'address' => ['nullable'], 
             'landmark' => ['nullable'], 
-            'contact_number' => ['required'], 
+            'contact_number' => ['required','digits:11'], 
             'created_by_id' => ['required']
         ]);
 
         if($request->id) {
+            //check first if date is already taken
+            $isDateTaken = Blessing::where('date', $data['date'])->where('id','!=', $request->id)->exists();
+            if($isDateTaken) {
+                session()->flash('danger', 'Date submitted was already taken');
+                return redirect()->back();
+            }
+
             $blessing = Blessing::findOrFail($request->id);
             $blessing->fill($data);
             $blessing->save();
 
             session()->flash('success', 'Blessing Reservation updated successfully.');
         } else {
+            //check first if date is already taken
+            $isDateTaken = Blessing::where('date', $data['date'])->exists();
+            if($isDateTaken) {
+                session()->flash('danger', 'Date submitted was already taken');
+                return redirect()->back();
+            }
+
             $blessing = Blessing::Create($data);
             session()->flash('success', 'Blessing Reservation created successfully.');
         }

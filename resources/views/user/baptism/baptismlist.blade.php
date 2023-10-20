@@ -26,7 +26,7 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-md-12 mb-3">
-                                                <label class="form-label">Name</label>
+                                                <label class="form-label">Name of the Baby</label>
                                                 <input type="text" name="name" class="form-control" placeholder="..." required>
                                             </div>
 

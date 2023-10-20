@@ -19,7 +19,12 @@
 
     <div class="col-md-4 mb-3">
         <label class="form-label">Event Date</label>
-        <input type="date" name="event_date" class="form-control mb-3" value="{{ $event->id ? $event->event_date : '' }}">
+        {{-- <input type="date" name="event_date" class="form-control mb-3" value="{{ $event->id ? $event->event_date : '' }}"> --}}
+        <div class="input-group">
+            <input type="date" class="form-control" name="start_date" value="{{ $event->id ? $event->start_date : '' }}">
+            <span class="input-group-text">to</span>
+            <input type="date" class="form-control" name="end_date" value="{{ $event->id ? $event->end_date : '' }}">
+          </div>
     </div>
 
     <div class="col-md-12 mb-3">

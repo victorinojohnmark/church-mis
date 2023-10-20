@@ -11,7 +11,7 @@ class Event extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id', 'title', 'event_date', 'banner_image', 'body'];
+    protected $fillable = ['user_id', 'title', 'start_date', 'end_date', 'banner_image', 'body'];
 
     public function getBodyExcerptAttribute()
     {

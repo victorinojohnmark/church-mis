@@ -47,9 +47,9 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     //Clients
     Route::get('/clients', [App\Http\Controllers\ClientController::class, 'index'])->name('clientlist');
 
-    //Documents
-    Route::get('/documents', [App\Http\Controllers\DocumentController::class, 'index'])->name('documentlist');
-    Route::post('/documents', [App\Http\Controllers\DocumentController::class, 'store'])->name('documentsave');
+    // //Documents
+    // Route::get('/documents', [App\Http\Controllers\DocumentController::class, 'index'])->name('documentlist');
+    // Route::post('/documents', [App\Http\Controllers\DocumentController::class, 'store'])->name('documentsave');
 
     
     ### DOCUMENT REQUEST ###

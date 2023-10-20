@@ -27,10 +27,12 @@ class EventController extends Controller
     {
 
          if($request->id) {
+
             $data = $request->validate([
                 'user_id' => ['required', 'integer'],
                 'title' => ['required'],
-                'event_date' => ['required', 'date'],
+                'start_date' => ['required', 'date'],
+                'end_date' => ['nullable', 'date'],
                 'banner_image' => ['nullable', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
                 'body' => ['required']
             ]);
@@ -58,8 +60,9 @@ class EventController extends Controller
             $data = $request->validate([
                 'user_id' => ['required', 'integer'],
                 'title' => ['required'],
-                'event_date' => ['required', 'date'],
-                'banner_image' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
+                'start_date' => ['required', 'date'],
+                'end_date' => ['nullable', 'date'],
+                'banner_image' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:5120'],
                 'body' => ['required']
             ]);
 

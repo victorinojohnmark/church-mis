@@ -20,8 +20,8 @@ class UserSeeder extends Seeder
             'birth_date' => '2023-05-23',
             'address' => 'Cavite',
             'contact_number' => '091234567890',
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('P@ssw0rd'),
+            'email' => 'saintgregoryparish.indang@gmail.com',
+            'password' => Hash::make('password'),
             'is_admin' => true
         ]);
     }

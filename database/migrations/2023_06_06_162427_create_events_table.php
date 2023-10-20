@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedMediumInteger('user_id');
             $table->string('title');
-            $table->date('event_date');
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
             $table->string('banner_image');
             $table->longText('body');
             $table->timestamps();
