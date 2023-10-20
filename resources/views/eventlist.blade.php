@@ -28,11 +28,13 @@
                     <h3 class="fs-3">{!! $event->title !!}</h3>
                     <p>{!! $event->body_excerpt !!}</p>
                     <a href="{{ route('eventshow', ['event' => $event->id]) }}" class="btn btn-warning rounded-pill text-white px-5 text-center mx-auto d-table w-auto">Read More</a>
+                    
                   </div>
                 </div>
               </div>
+              
               @empty
-                  
+              <p>No event posting yet. </p> 
               @endforelse
             </div>
           </div>

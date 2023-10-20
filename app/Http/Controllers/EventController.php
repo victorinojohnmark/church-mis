@@ -98,4 +98,13 @@ class EventController extends Controller
             'event' => $event
         ]);
     }
+
+    public function destroy(Request $request, Event $event)
+    {
+        $event->delete();
+
+        session()->flash('success', 'Event post deleted successfully.');
+        return redirect()->back();
+
+    }
 }

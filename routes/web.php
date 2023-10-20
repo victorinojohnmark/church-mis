@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     //Events
     Route::get('/events-list', [App\Http\Controllers\EventController::class, 'adminindex'])->name('admin-eventlist');
     Route::post('/events', [App\Http\Controllers\EventController::class, 'store'])->name('eventsave');
+    Route::get('/events/delete{event}', [App\Http\Controllers\EventController::class, 'destroy'])->name('admin-eventdestroy');
     Route::get('/events-list/{event}', [App\Http\Controllers\EventController::class, 'adminshow'])->name('admin-eventshow');
 
     //Clients

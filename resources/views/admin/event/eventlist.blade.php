@@ -45,6 +45,8 @@
                     <td>{!! $event->created_at->format('Y-m-d') !!}</td>
                     <td>
                         <a href="{{ route('admin-eventshow', ['event' => $event->id]) }}" class="btn btn-primary btn-sm">View</a>
+
+                        <a href="{{ route('admin-eventdestroy', ['event' => $event->id]) }}" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             @empty

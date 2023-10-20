@@ -38,7 +38,7 @@
           </div>
         </div>
         @empty
-            
+        <p>No event posting yet. </p>
         @endforelse
       </div>
     </div>
