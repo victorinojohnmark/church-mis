@@ -49,11 +49,6 @@
                                                 <label class="form-label">Time</label>
                                                 <input type="time" name="time" class="form-control" placeholder="..." required>
                                             </div>
-    
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Religion</label>
-                                                <input type="text" name="religion" class="form-control" placeholder="..." required>
-                                            </div>
 
                                             <div class="col-md-6 mb-3">
                                                 <label class="form-label">Contact Number</label>

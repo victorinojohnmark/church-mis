@@ -32,11 +32,6 @@
         <input type="time" name="time" value="{{ $blessing->time }}" class="form-control" placeholder="..." required>
     </div>
 
-    {{-- <div class="col-md-6 mb-3">
-        <label class="form-label">Religion</label>
-        <input type="text" name="religion" value="{{ $blessing->religion }}" class="form-control" placeholder="..." required>
-    </div> --}}
-
     <div class="col-md-12 mb-3">
         <label class="form-label">Address</label>
         <textarea name="address" class="form-control" cols="30" rows="5">{{ $blessing->address }}</textarea>
