@@ -13,14 +13,14 @@
             <form action="{{ route('login') }}" method="POST">
                 @csrf
               {{-- <h3 class="mb-3 fw-normal text-right">Log in</h3> --}}
-                <div class="d-flex flex-row justify-content-center align-items-center text-center mb-3">
+                {{-- <div class="d-flex flex-row justify-content-center align-items-center text-center mb-3">
                     @if (Auth::id())
                         <a href="/user/profile" class="flex-fill bg-warning text-decoration-none p-3 text-white">MY PROFILE</a>
                     @else
                         <a href="/login" class="flex-fill bg-warning text-decoration-none p-3 text-white">LOGIN</a>
                     @endif
                     <a href="/password/reset" class="flex-fill bg-secondary-subtle text-decoration-none p-3 text-white">FORGOT PASSWORD</a>
-                </div>
+                </div> --}}
 
                 <div class="mb-2">
                     <label class="form-label text-black fw-semibold">Email Address</label>
@@ -45,8 +45,9 @@
                 @enderror
           
               <button class="btn btn-warning w-100 me-2 rounded-3 text-white p-3" type="submit">LOGIN</button>
-              {{-- <a href="{{ route('password.request') }}" class="bt btn-default w-auto">Forgot Password</a> --}}
-    
+              <a href="{{ route('password.request') }}" class="d-block my-3 mx-auto text-center text-decoration-none ">Forgot Password</a>
+              <hr>
+              <a href="{{ route('register') }}" class="btn btn-success d-block w-75 my-0 mx-auto rounded-3 text-white p-3">REGISTER</a>
               
             </form>
     

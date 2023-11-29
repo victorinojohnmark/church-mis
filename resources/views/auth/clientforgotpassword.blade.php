@@ -13,10 +13,10 @@
             <form action="{{ route('login') }}" method="POST">
                 @csrf
               {{-- <h3 class="mb-3 fw-normal text-right">Log in</h3> --}}
-                <div class="d-flex flex-row justify-content-center align-items-center text-center mb-3">
+                {{-- <div class="d-flex flex-row justify-content-center align-items-center text-center mb-3">
                     <a href="/login" class="flex-fill bg-secondary-subtle text-decoration-none p-3 text-white">LOGIN</a>
                     <a href="#" class="flex-fill bg-warning text-decoration-none p-3 text-white">FORGOT PASSWORD</a>
-                </div>
+                </div> --}}
 
                 <div class="mb-2">
                     <label class="form-label text-black fw-semibold">Email Address</label>

@@ -23,9 +23,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('login') }}">Log in</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('register') }}">Register</a>
-                    </li>
+                    </li> --}}
                 @else
 
                     <li class="nav-item dropdown">

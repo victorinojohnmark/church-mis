@@ -16,7 +16,7 @@
     <main>
         @yield('content')
     </main>
-    <footer class="bg-dark py-4 mt-auto w-full">
+    {{-- <footer class="bg-dark py-4 mt-auto w-full">
         <div class="container px-5">
             <div class="row align-items-center justify-content-between flex-column flex-sm-row">
                 <div class="col-auto">
@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
     @vite(['resources/js/app.js'])
     @vite(['resources/js/custom.js'])
     @stack('scripts')
