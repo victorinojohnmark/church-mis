@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label text-black fw-semibold">Email Address</label>
+                    {{-- <label class="form-label text-black fw-semibold">Email Address</label> --}}
                     <input type="email" name="email" class="form-control rounded p-3 @error('email') is-invalid @enderror" placeholder="Enter Email Address" required>
 
                     @error('email')
@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label text-black fw-semibold">Password</label>
+                    {{-- <label class="form-label text-black fw-semibold">Password</label> --}}
                     <input type="password" name="password" class="form-control rounded p-3 @error('password') is-invalid @enderror" placeholder="Enter Password" required>
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label text-blac fw-semibold">Confirm Password</label>
+                    {{-- <label class="form-label text-blac fw-semibold">Confirm Password</label> --}}
                     <input id="password-confirm" type="password" class="form-control rounded p-3" placeholder="Enter Confirm Password" name="password_confirmation" required autocomplete="new-password">
                 </div>
     

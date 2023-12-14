@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label class="form-label text-black fw-semibold">Email Address</label>
+                    {{-- <label class="form-label text-black fw-semibold">Email Address</label> --}}
                     <input type="email" name="email" class="form-control rounded p-3 @error('email') is-invalid @enderror" placeholder="Enter Email Address" required>
 
                     @error('email')

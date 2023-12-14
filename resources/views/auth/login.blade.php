@@ -23,12 +23,12 @@
                 </div> --}}
 
                 <div class="mb-2">
-                    <label class="form-label text-black fw-semibold">Email Address</label>
+                    {{-- <label class="form-label text-black fw-semibold">Email Address</label> --}}
                     <input type="email" name="email" class="form-control rounded p-3" placeholder="Enter Email Address" required>
                 </div>
     
                 <div class="mb-3">
-                    <label class="form-label text-black fw-semibold">Password</label>
+                    {{-- <label class="form-label text-black fw-semibold">Password</label> --}}
                     <input type="password" name="password" class="form-control rounded p-3" placeholder="Enter Password" required>
                 </div>
     
