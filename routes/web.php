@@ -26,6 +26,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendar.index');
+
 Route::get('/client-forgotpassword', [App\Http\Controllers\WelcomeController::class, 'clientforgotpassword'])->name('client-forgotpassword');
 
 Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->name('eventlist');
