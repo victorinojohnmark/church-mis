@@ -28,12 +28,17 @@ class DocumentRequestCommunionReadyNotification extends Notification implements 
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject('Communion document request for '. $this->documentRequestCommunion->name)
+                    ->subject('First Communion document request for '. $this->documentRequestCommunion->name)
                     ->greeting('Good day '. $this->documentRequestCommunion->createdBy->name)
                     ->line('Your document request for ' . $this->documentRequestCommunion->name . ' is now ready for pick up.')
+                    ->line('Note:')
+                    ->line('- First Communion Certificate (with fee)')
+                    ->line('- All the transactions are in Cash.')
+                    ->line('')
+                    ->line('Requirements:')
+                    ->line('- Birth Certificate')
                     ->action('View request', env('APP_URL', 'localhost') . '/user/documentrequestcommunions')
-                    ->line('Please prepare the following requirements: PSA and Valid ID for verification.')
-                    ->line('Request Fee: Php 0.00');
+                    ;
     }
 
 

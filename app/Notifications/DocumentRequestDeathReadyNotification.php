@@ -39,9 +39,10 @@ class DocumentRequestDeathReadyNotification extends Notification implements Shou
                     ->subject('Death document request for '. $this->documentRequestDeath->name)
                     ->greeting('Good day '. $this->documentRequestDeath->createdBy->name)
                     ->line('Your document request for ' . $this->documentRequestDeath->name . ' is now ready for pick up.')
+                    ->line('Requirements:')
+                    ->line('- Death Certificate')
                     ->action('View request', env('APP_URL', 'localhost') . '/user/documentrequestdeaths')
-                    ->line('Please prepare the following requirements: PSA and Valid ID for verification.')
-                    ->line('Request Fee: Php 0.00');
+                    ;
     }
 
     /**

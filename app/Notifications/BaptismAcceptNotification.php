@@ -33,8 +33,17 @@ class BaptismAcceptNotification extends Notification implements ShouldQueue
                     ->subject('Baptism Reservation for '. $this->baptism->name)
                     ->greeting('Good day '. $this->baptism->createdBy->name)
                     ->line('Your baptism reservation for ' . $this->baptism->name . ' has been accepted.')
+                    
+                    ->line('Admin Message: ' . $this->baptism->accepted_message)
+                    ->line('Note:')
+                    ->line('- Regular and Special Baptism (with fees)')
+                    ->line('- All transactions are in Cash.')
+                    ->line('')
+                    ->line('Requirements:')
+                    ->line('- Birth Certificate of the Child')
+                    ->line('- Marriage Contract of the Parents (if married)')
                     ->action('View reservation', env('APP_URL', 'localhost') . '/user/baptisms')
-                    ->line('Admin Message: ' . $this->baptism->accepted_message);
+                    ;
     }
 
     /**

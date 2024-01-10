@@ -31,9 +31,14 @@ class DocumentRequestConfirmationReadyNotification extends Notification implemen
                     ->subject('Confirmation document request for '. $this->documentRequestConfirmation->name)
                     ->greeting('Good day '. $this->documentRequestConfirmation->createdBy->name)
                     ->line('Your document request for ' . $this->documentRequestConfirmation->name . ' is now ready for pick up.')
+                    ->line('Note:')
+                    ->line('- Confirmation Certificate (with fee)')
+                    ->line('- All the transactions are in Cash.')
+                    ->line('')
+                    ->line('Requirements:')
+                    ->line('- Birth Certificate')
                     ->action('View request', env('APP_URL', 'localhost') . '/user/documentrequestconfirmations')
-                    ->line('Please prepare the following requirements: PSA and Valid ID for verification.')
-                    ->line('Request Fee: Php 0.00');
+                    ;
     }
 
 
