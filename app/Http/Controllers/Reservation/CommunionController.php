@@ -84,7 +84,7 @@ class CommunionController extends Controller
             session()->flash('success', 'Communion Reservation created successfully.');
         }
 
-        return redirect()->back();
+        return redirect()->route('clientcommunion');
     }
 
     public function acceptreservation(Request $request)
