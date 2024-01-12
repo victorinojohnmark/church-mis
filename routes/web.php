@@ -165,10 +165,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
     //baptism
     Route::get('/baptisms', [App\Http\Controllers\Reservation\BaptismController::class, 'index'])->name('clientbaptism');
+    Route::get('/baptisms/create', [App\Http\Controllers\Reservation\BaptismController::class, 'create'])->name('clientbaptismcreate');
+    Route::get('/baptisms/{baptism}', [App\Http\Controllers\Reservation\BaptismController::class, 'show'])->name('clientbaptismshow');
     Route::post('/baptisms', [App\Http\Controllers\Reservation\BaptismController::class, 'store'])->name('clientbaptismsave');
 
     //communion
     Route::get('/communions', [App\Http\Controllers\Reservation\CommunionController::class, 'index'])->name('clientcommunion');
+    Route::get('/communions/create', [App\Http\Controllers\Reservation\CommunionController::class, 'create'])->name('clientcommunioncreate');
+    Route::get('/communions/{communion}', [App\Http\Controllers\Reservation\CommunionController::class, 'show'])->name('clientcommunionshow');
     Route::post('/communions', [App\Http\Controllers\Reservation\CommunionController::class, 'store'])->name('clientcommunionsave');
 
     //confirmation
