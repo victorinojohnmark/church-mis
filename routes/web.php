@@ -177,6 +177,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
     //confirmation
     Route::get('/confirmations', [App\Http\Controllers\Reservation\ConfirmationController::class, 'index'])->name('clientconfirmation');
+    Route::get('/confirmations/create', [App\Http\Controllers\Reservation\ConfirmationController::class, 'create'])->name('clientconfirmationcreate');
+    Route::get('/confirmations/{confirmation}', [App\Http\Controllers\Reservation\ConfirmationController::class, 'show'])->name('clientconfirmationshow');
     Route::post('/confirmations', [App\Http\Controllers\Reservation\ConfirmationController::class, 'store'])->name('clientconfirmationsave');
 
     //matrimony
