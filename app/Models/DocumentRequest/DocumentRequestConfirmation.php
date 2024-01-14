@@ -17,6 +17,8 @@ class DocumentRequestConfirmation extends Model
         'confirmation_date',
         'contact_number',
         'birth_date',
+        'sex',
+        'relationship',
         'father_name',
         'mother_name',
         'address',

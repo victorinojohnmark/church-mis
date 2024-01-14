@@ -24,6 +24,34 @@
         <input type="text" name="contact_number" class="form-control mb-3" value="{{ $communionRequest->id ? $communionRequest->contact_number : '' }}" placeholder="..." {{ $communionRequest->is_ready ? 'readonly' : 'required' }}>
     </div>
 
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Sex</label>
+        <select name="sex" id="sex" class="form-control">
+            @php
+                $sex = ['Male', 'Female']
+            @endphp
+            @forelse ($sex as $item)
+                <option {{ $communionRequest && $communionRequest->sex == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Relationship</label>
+        <select name="relationship" id="relationship" class="form-control">
+            @php
+                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling']
+            @endphp
+            @forelse ($relationship as $item)
+                <option {{ $communionRequest && $communionRequest->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
     <div class="col-md-12">
         <hr>
     </div>
