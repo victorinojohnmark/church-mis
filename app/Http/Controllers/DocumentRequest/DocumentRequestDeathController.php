@@ -24,6 +24,26 @@ class DocumentRequestDeathController extends Controller
         }
     }
 
+    public function show(Request $request, DocumentRequestDeath $deathRequest)
+    {
+        if(auth()->user()->id == $deathRequest->user_id) {
+            return view('user.documentrequest.death.deathview', [
+                'deathRequest' => $deathRequest
+            ]);
+        } else {
+            abort(404);
+        }
+        
+    }
+
+    public function create(Request $request)
+    {
+        return view('user.documentrequest.death.deathcreate', [
+            'deathRequest' => new DocumentRequestDeath()
+        ]);
+        
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -49,12 +69,12 @@ class DocumentRequestDeathController extends Controller
             }
 
             session()->flash('success', 'Death document request updated successfully.');
-            return redirect()->back();
+            return redirect()->route('client-documentrequestdeathlist');
         } else {
             $documentRequestDeath = DocumentRequestDeath::create($data);
 
             session()->flash('success', 'Death document request submitted successfully.');
-            return redirect()->back();
+            return redirect()->route('client-documentrequestdeathlist');
         }
 
     }

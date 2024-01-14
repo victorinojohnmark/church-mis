@@ -12,28 +12,7 @@
                 @include('layouts.message')
                 @include('user.documentrequest.menu')
                 <div class="py-3">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deathDocumentRequestModal"><i class="fa-solid fa-plus"></i> Add Request</button>
-                    <div class="modal fade" id="deathDocumentRequestModal" tabindex="-1" aria-labelledby="documentRequestModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="deathDocumentRequestModalLabel">Death Document Request Form</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                    
-                            <form action="{{ route('client-documentrequestdeathsave') }}" method="POST" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    @include('user.documentrequest.death.deathform')
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </form>
-                    
-                            </div>
-                        </div>
-                    </div>
+                    <a href="{{ route('client-documentrequestdeathcreate') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Request</a>
 
                     <div class="table-responsive">
                         <table id="deathrequests-table" class="table table-hover">
@@ -68,8 +47,7 @@
                                             
 
                                             @if ($deathRequest->is_active && !$deathRequest->is_ready && !$deathRequest->is_rejected)
-                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#deathDocumentRequestModal{{ $deathRequest->id }}">{{ $deathRequest->is_ready ? 'View' : 'Update' }}</button>
-                                                @include('user.documentrequest.death.deathmodal')
+                                                <a href="{{ route('client-documentrequestdeathshow', ['deathRequest' => $deathRequest->id]) }}" class="btn btn-primary btn-sm">{{ $deathRequest->is_ready ? 'View' : 'Update' }}</a>
 
                                                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deathCancelDocumentRequestModal{{ $deathRequest->id }}">Cancel Request</button>
                                                 @include('user.documentrequest.death.deathcancelmodal')

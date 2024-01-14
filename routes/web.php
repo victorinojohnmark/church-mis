@@ -241,6 +241,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
     //Death Document Request
     Route::get('/documentrequestdeath', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'index'])->name('client-documentrequestdeathlist');
+    Route::get('/documentrequestdeath/create', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'create'])->name('client-documentrequestdeathcreate');
+    Route::get('/documentrequestdeath/{deathRequest}', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'show'])->name('client-documentrequestdeathshow');
     Route::post('/documentrequestdeath', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'store'])->name('client-documentrequestdeathsave');
     Route::post('/canceldocumentrequestdeath', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'cancel'])->name('client-canceldocumentrequestdeath');
 
