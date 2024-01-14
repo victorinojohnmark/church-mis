@@ -229,6 +229,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
     //Matrimony Document Request
     Route::get('/documentrequestmatrimonies', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'index'])->name('client-documentrequestmatrimonylist');
+    Route::get('/documentrequestmatrimonies/create', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'create'])->name('client-documentrequestmatrimonycreate');
+    Route::get('/documentrequestmatrimonies/{matrimonyRequest}', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'show'])->name('client-documentrequestmatrimonyshow');
     Route::post('/documentrequestmatrimonies', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'store'])->name('client-documentrequestmatrimonysave');
     Route::post('/canceldocumentrequestmatrimony', [App\Http\Controllers\DocumentRequest\DocumentRequestMatrimonyController::class, 'cancel'])->name('client-canceldocumentrequestmatrimony');
 

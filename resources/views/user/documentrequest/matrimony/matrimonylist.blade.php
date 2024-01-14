@@ -7,33 +7,12 @@
 
         <div class="col-md-9">
             <div id="content" class="px-3">
-                <h1 style="color: #39B5A4;">Matrimony Document Requests</h1>
+                <h1 style="color: #39B5A4;">Wedding Document Requests</h1>
                 <hr>
                 @include('layouts.message')
                 @include('user.documentrequest.menu')
                 <div class="py-3">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#matrimonyDocumentRequestModal"><i class="fa-solid fa-plus"></i> Add Request</button>
-                    <div class="modal fade" id="matrimonyDocumentRequestModal" tabindex="-1" aria-labelledby="documentRequestModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="matrimonyDocumentRequestModalLabel">Matrimony Document Request Form</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                    
-                            <form action="{{ route('client-documentrequestmatrimonysave') }}" method="POST" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    @include('user.documentrequest.matrimony.matrimonyform')
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </form>
-                    
-                            </div>
-                        </div>
-                    </div>
+                    <a href="{{ route('client-documentrequestmatrimonycreate') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Request</a>
 
                     <div class="table-responsive-sm">
                         <table id="matrimonyrequests-table" class="table table-hover">
@@ -70,8 +49,7 @@
                                             
 
                                             @if ($matrimonyRequest->is_active && !$matrimonyRequest->is_ready && !$matrimonyRequest->is_rejected)
-                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#matrimonyDocumentRequestModal{{ $matrimonyRequest->id }}">{{ $matrimonyRequest->is_ready ? 'View' : 'Update' }}</button>
-                                                @include('user.documentrequest.matrimony.matrimonymodal')
+                                                <a href="{{ route('client-documentrequestmatrimonyshow', ['matrimonyRequest' => $matrimonyRequest->id]) }}" class="btn btn-primary btn-sm">{{ $matrimonyRequest->is_ready ? 'View' : 'Update' }}</a>
 
                                                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#matrimonyCancelDocumentRequestModal{{ $matrimonyRequest->id }}">Cancel Request</button>
                                                 @include('user.documentrequest.matrimony.matrimonycancelmodal')

@@ -24,6 +24,26 @@ class DocumentRequestMatrimonyController extends Controller
         }
     }
 
+    public function show(Request $request, DocumentRequestMatrimony $matrimonyRequest)
+    {
+        if(auth()->user()->id == $matrimonyRequest->user_id) {
+            return view('user.documentrequest.matrimony.matrimonyview', [
+                'matrimonyRequest' => $matrimonyRequest
+            ]);
+        } else {
+            abort(404);
+        }
+        
+    }
+
+    public function create(Request $request)
+    {
+        return view('user.documentrequest.matrimony.matrimonycreate', [
+            'matrimonyRequest' => new DocumentRequestMatrimony()
+        ]);
+        
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -46,13 +66,13 @@ class DocumentRequestMatrimonyController extends Controller
                 $documentRequestmatrimony->save();
             }
 
-            session()->flash('success', 'matrimony document request updated successfully.');
-            return redirect()->back();
+            session()->flash('success', 'Wedding document request updated successfully.');
+            return redirect()->route('client-documentrequestmatrimonylist');
         } else {
             $documentRequestmatrimony = DocumentRequestMatrimony::create($data);
 
-            session()->flash('success', 'matrimony document request submitted successfully.');
-            return redirect()->back();
+            session()->flash('success', 'Wedding document request submitted successfully.');
+            return redirect()->route('client-documentrequestmatrimonylist');
         }
 
     }
