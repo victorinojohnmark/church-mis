@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('title', 'Welcome')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -24,7 +22,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 
 @push('css')
@@ -37,4 +34,27 @@
     .skyblue { color: #87CEEB; }
     .violet { color: #EE82EE; }
 </style>
+@endpush
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+<script>
+    $(document).ready(function () {
+        var calendar = $('#calendar').fullCalendar({
+            editable:true,
+            header:{
+                left:'prev,next today',
+                center:'title',
+                right:'month,agendaWeek,agendaDay'
+            },
+            events:'/calendar',
+            selectable:true,
+            selectHelper: true,
+            editable:false,
+        });
+    });
+    </script>
+
 @endpush

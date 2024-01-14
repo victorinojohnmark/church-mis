@@ -11,6 +11,7 @@
     </div> --}}
 
     <ul id="userSidebar" class="mb-3">
+        <li><a href="{{ route('user.calendar.index') }}" class="py-2 px-3 mb-2 text-dark rounded-pill {{ request()->routeIs('user.calendar.index') ? 'active' : '' }}"><i class="fas fa-calendar me-2"></i> Calendar</a></li>
         <li><a href="{{ route('userprofile') }}" class="py-2 px-3 mb-2 text-dark rounded-pill {{ request()->routeIs('userprofile') ? 'active' : '' }}"><i class="fas fa-user me-2"></i> Profile</a></li>
         <li><a href="{{ route('usernotification') }}" class="py-2 px-3 mb-2 text-dark rounded-pill {{ request()->routeIs('usernotification') ? 'active' : '' }}"><i class="fas fa-bell me-2"></i> Inbox</a></li>
         <li><a href="{{ route('clientreservations') }}" class="py-2 px-3 mb-2 text-dark rounded-pill {{ request()->routeIs('clientreservations') ? 'active' : '' }}"><i class="fas fa-calendar me-2"></i> Event Reservations</a></li>

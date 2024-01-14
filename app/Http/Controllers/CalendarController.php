@@ -41,7 +41,8 @@ class CalendarController extends Controller
                 'id' => $baptism->id,
                 'title' => 'Baptism event for ' . $baptism->name,
                 'start' => $baptism->date,
-                'end' => $baptism->date
+                'end' => $baptism->date,
+                'color' => '#FF0000'
             ]);
         }
 
@@ -54,7 +55,8 @@ class CalendarController extends Controller
                 'id' => $blessing->id,
                 'title' => 'Blessing event for ' . $blessing->name,
                 'start' => $blessing->date,
-                'end' => $blessing->date
+                'end' => $blessing->date,
+                'color' => '#00FF00'
             ]);
         }
 
@@ -67,7 +69,8 @@ class CalendarController extends Controller
                 'id' => $communion->id,
                 'title' => 'Communion event for ' . $communion->name,
                 'start' => $communion->date,
-                'end' => $communion->date
+                'end' => $communion->date,
+                'color' => '#0000FF'
             ]);
         }
 
@@ -80,7 +83,8 @@ class CalendarController extends Controller
                 'id' => $confirmation->id,
                 'title' => 'Confirmation event for ' . $confirmation->name,
                 'start' => $confirmation->date,
-                'end' => $confirmation->date
+                'end' => $confirmation->date,
+                'color' => '#FFA500'
             ]);
         }
 
@@ -93,7 +97,8 @@ class CalendarController extends Controller
                 'id' => $funeral->id,
                 'title' => 'Funeral event for ' . $funeral->name,
                 'start' => $funeral->date,
-                'end' => $funeral->date
+                'end' => $funeral->date,
+                'color' => '#87CEEB'
             ]);
         }
 
@@ -106,7 +111,8 @@ class CalendarController extends Controller
                 'id' => $matrimony->id,
                 'title' => 'Matrimony event for ' . $matrimony->grooms_name . ' & ' . $matrimony->brides_name,
                 'start' => $matrimony->wedding_date,
-                'end' => $matrimony->wedding_date
+                'end' => $matrimony->wedding_date,
+                'color' => '#EE82EE'
             ]);
         }
 
@@ -115,5 +121,23 @@ class CalendarController extends Controller
         return $data;
 
 
+    }
+
+    public function userCalender(Request $request)
+    {
+        if ($request->ajax()) {
+            return response()->json($this->cleanEvents($request));
+        }
+
+        return view('user.calendar');
+    }
+
+    public function adminCalender(Request $request)
+    {
+        if ($request->ajax()) {
+            return response()->json($this->cleanEvents($request));
+        }
+
+        return view('admin.calendar');
     }
 }
