@@ -6,6 +6,8 @@ use App\Models\Reservation\Blessing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Validator;
 
 class BlessingController extends Controller
 {
@@ -22,18 +24,47 @@ class BlessingController extends Controller
         }
     }
 
+    public function show(Request $request, Blessing $blessing)
+    {
+        return view('user.blessing.blessingview', [
+            'blessing' => $blessing
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        return view('user.blessing.blessingcreate', [
+            'blessing' => new Blessing()
+        ]);
+    }
+
     public function store(Request $request)
     {
+        Validator::extend('not_on_monday', function ($attribute, $value, $parameters, $validator) {
+            return Date::parse($value)->dayOfWeek !== 1; // 1 represents Monday
+        });
+
+        Validator::extend('time_range', function ($attribute, $value, $parameters, $validator) {
+            $startTime = strtotime('08:00');
+            $endTime = strtotime('17:00');
+            $selectedTimestamp = strtotime($value);
+        
+            return $selectedTimestamp >= $startTime && $selectedTimestamp <= $endTime;
+        });
+
         $data = $request->validate([
             'name' => ['required'], 
             'blessing_type' => ['required'], 
-            'date' => ['required', 'date'], 
-            'time' => ['required'], 
-            // 'religion' => ['required'], 
+            'date' => ['required', 'date', 'after_or_equal:' . Date::today(), 'not_on_monday'], 
+            'time' => ['required', 'time_range'],
             'address' => ['nullable'], 
             'landmark' => ['nullable'], 
             'contact_number' => ['required','digits:11'], 
             'created_by_id' => ['required']
+        ], [
+            'date.after_or_equal' => 'The date field should not be older that today.',
+            'date.not_on_monday' => 'Date reservation for mondays is not valid.',
+            'time.time_range' => 'Time reservation should be between 8:00am to 5:00pm.'
         ]);
 
         if($request->id) {
@@ -41,7 +72,7 @@ class BlessingController extends Controller
             $isDateTaken = Blessing::where('date', $data['date'])->where('id','!=', $request->id)->exists();
             if($isDateTaken) {
                 session()->flash('danger', 'Date submitted was already taken');
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
 
             $blessing = Blessing::findOrFail($request->id);
@@ -54,7 +85,7 @@ class BlessingController extends Controller
             $isDateTaken = Blessing::where('date', $data['date'])->exists();
             if($isDateTaken) {
                 session()->flash('danger', 'Date submitted was already taken');
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
 
             $blessing = Blessing::Create($data);

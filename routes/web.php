@@ -189,10 +189,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
     //blessing
     Route::get('/blessings', [App\Http\Controllers\Reservation\BlessingController::class, 'index'])->name('clientblessing');
+    Route::get('/blessing/create', [App\Http\Controllers\Reservation\BlessingController::class, 'create'])->name('clientblessingcreate');
+    Route::get('/blessing/{blessing}', [App\Http\Controllers\Reservation\BlessingController::class, 'show'])->name('clientblessingshow');
     Route::post('/blessings', [App\Http\Controllers\Reservation\BlessingController::class, 'store'])->name('clientblessingsave');
 
     //funeral
     Route::get('/funerals', [App\Http\Controllers\Reservation\FuneralController::class, 'index'])->name('clientfuneral');
+    Route::get('/funeral/create', [App\Http\Controllers\Reservation\FuneralController::class, 'create'])->name('clientfuneralcreate');
+    Route::get('/funeral/{funeral}', [App\Http\Controllers\Reservation\FuneralController::class, 'show'])->name('clientfuneralshow');
     Route::post('/funerals', [App\Http\Controllers\Reservation\FuneralController::class, 'store'])->name('clientfuneralsave');
 
 

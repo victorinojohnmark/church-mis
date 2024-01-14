@@ -1,8 +1,8 @@
 <div class="row">
     @csrf
-    <input type="hidden" name="created_by_id" value="{{ $blessing->created_by_id }}">
-    <input type="hidden" name="id" value="{{ $blessing->id }}">
-    
+    <input type="hidden" name="created_by_id" value="{{ $blessing->created_by_id ?? Auth::id() }}">
+    <input type="hidden" name="id" value="{{ $blessing->id ?? null }}">
+
     <div class="col-md-12 mb-3">
         <div class="p-3 bg-body-secondary rounded">
             <small><i class="fa-solid fa-circle-info text-primary"></i>
@@ -13,7 +13,7 @@
 
     <div class="col-md-12 mb-3">
         @php
-            $types = ['House', 'Apartment', 'Business', 'Car'];
+            $types = ['House', 'Business'];
         @endphp
         <label class="form-label">Type</label>
         <select name="blessing_type" class="form-control" required>
@@ -27,32 +27,32 @@
 
     <div class="col-md-12 mb-3">
         <label class="form-label">Name</label>
-        <input type="text" name="name" value="{{ $blessing->name }}" class="form-control" placeholder="..." required>
+        <input type="text" name="name" value="{{ old('name', $blessing->name ?? null) }}" class="form-control" placeholder="..." required>
     </div>
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Date</label>
-        <input type="date" name="date" value="{{ $blessing->date }}" class="form-control" placeholder="..." required>
+        <input type="date" name="date" value="{{ old('date', $blessing->date ?? null) }}" class="form-control" placeholder="..." required>
     </div>
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Time</label>
-        <input type="time" name="time" value="{{ $blessing->time }}" class="form-control" placeholder="..." required>
+        <input type="time" name="time" value="{{ old('time', $blessing->time ?? null) }}" class="form-control" placeholder="..." required>
     </div>
 
     <div class="col-md-12 mb-3">
         <label class="form-label">Address</label>
-        <textarea name="address" class="form-control" cols="30" rows="5">{{ $blessing->address }}</textarea>
+        <textarea name="address" class="form-control" cols="30" rows="5">{{ old('address', $blessing->address ?? null) }}</textarea>
     </div>
 
     <div class="col-md-12 mb-3">
         <label class="form-label">Landmark</label>
-        <input type="text" name="landmark" value="{{ $blessing->landmark }}" class="form-control" placeholder="...">
+        <input type="text" name="landmark" value="{{ old('landmark', $blessing->landmark ?? null) }}" class="form-control" placeholder="...">
     </div>
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Contact Number</label>
-        <input type="text" name="contact_number" value="{{ $blessing->contact_number }}" class="form-control" placeholder="..." required>
+        <input type="text" name="contact_number" value="{{ old('contact_number', $blessing->contact_number ?? null) }}" class="form-control" placeholder="..." required>
     </div>
 
     

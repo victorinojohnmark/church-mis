@@ -35,7 +35,7 @@ class CommunionController extends Controller
     public function create(Request $request)
     {
         return view('user.communion.communioncreate', [
-            'commmunion' => new Communion()
+            'communion' => new Communion()
         ]);
     }
 

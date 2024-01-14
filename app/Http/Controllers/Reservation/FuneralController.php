@@ -22,11 +22,25 @@ class FuneralController extends Controller
         }
     }
 
+    public function show(Request $request, Funeral $funeral)
+    {
+        return view('user.funeral.funeralview', [
+            'funeral' => $funeral
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        return view('user.funeral.funeralcreate', [
+            'funeral' => new Funeral()
+        ]);
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([
-            // 'date' => ['required', 'date'], 
-            // 'time' => ['required'], 
+            'date' => ['required', 'date'], 
+            'time' => ['required'], 
             'name' => ['required'], 
             'age' => ['required'], 
             'status' => ['required'], 
