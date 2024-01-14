@@ -43,7 +43,7 @@
                             <td>{{ $funeral->age }}</td>
                             <td>{{ $funeral->address }}</td>
                             <td>
-                                <a href="{{ route('clientfuneralsave', ['funeral' => $funeral->id]) }}" class="btn btn-primary btn-sm">View</a>
+                                <a href="{{ route('clientfuneralshow', ['funeral' => $funeral->id]) }}" class="btn btn-primary btn-sm">View</a>
                             </td>
                         </tr>
                         @empty
