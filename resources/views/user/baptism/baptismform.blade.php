@@ -5,8 +5,8 @@
     <div class="col-md-12 mb-3">
         <div class="p-3 bg-body-secondary rounded">
             <small><i class="fa-solid fa-circle-info text-primary"></i>
+                <strong>Event Reservation is close on mondays.</strong>
                 Sundays at 10am for Regular reservation and Tuesday to Saturday 8-5pm for special schedules.
-                <strong>Church Office and Event Reservation is close on mondays.</strong>
             </small>
         </div>
     </div>

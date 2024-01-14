@@ -183,6 +183,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
     //matrimony
     Route::get('/matrimonies', [App\Http\Controllers\Reservation\MatrimonyController::class, 'index'])->name('clientmatrimony');
+    Route::get('/matrimonies/create', [App\Http\Controllers\Reservation\MatrimonyController::class, 'create'])->name('clientmatrimonycreate');
+    Route::get('/matrimonies/{matrimony}', [App\Http\Controllers\Reservation\MatrimonyController::class, 'show'])->name('clientmatrimonyshow');
     Route::post('/matrimonies', [App\Http\Controllers\Reservation\MatrimonyController::class, 'store'])->name('clientmatrimonysave');
 
     //blessing

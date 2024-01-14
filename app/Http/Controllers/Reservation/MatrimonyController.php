@@ -6,6 +6,9 @@ use App\Models\Reservation\Matrimony;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class MatrimonyController extends Controller
 {
@@ -22,17 +25,53 @@ class MatrimonyController extends Controller
        }
     }
 
+    public function show(Request $request, Matrimony $matrimony)
+    {
+        return view('user.matrimony.matrimonyview', [
+            'matrimony' => $matrimony
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        return view('user.matrimony.matrimonycreate', [
+            'matrimony' => new Matrimony()
+        ]);
+    }
+
     public function store(Request $request)
     {
         // dd($request->all());
+        // dd($request->route('matrimony'));
+
+        // Add custom validation rules
+        Validator::extend('not_past_date', function ($attribute, $value, $parameters, $validator) {
+            return Carbon::parse($value)->isToday() || Carbon::parse($value)->isFuture();
+        });
+
+        Validator::extend('day_of_week', function ($attribute, $value, $parameters, $validator) {
+            $allowedDays = $parameters;
+            $formattedDay = Carbon::parse($value)->format('D');
+            // dd($formattedDay); // Debugging statement
+        
+            return in_array($formattedDay, $allowedDays);
+        });
+
         $data = $request->validate([
             'grooms_name' => ['required'],
             'grooms_birth_date' => ['required', 'date'],
             'brides_name' => ['required'],
             'brides_birth_date' => ['required', 'date'],
-            'wedding_date' => ['required', 'date'],
-            'contact_number' => ['required','digits:11'],
+            'wedding_date' => ['required', 'date', 'day_of_week:Tue,Wed,Thu,Fri,Sat', 'not_past_date', 
+                                Rule::unique('matrimonies', 'wedding_date')->ignore($request->id)],
+            'time' => ['required', 'in:07:30,09:00,10:30,16:00'],
+            'contact_number' => ['required', 'digits:11'],
             'created_by_id' => ['required']
+        ], [
+            'wedding_date.day_of_week' => 'The wedding date must be a Tuesday, Wednesday, Thursday, Friday, or Saturday.',
+            'wedding_date.not_past_date' => 'The wedding date must be today or in the future.',
+            'wedding_date.unique' => 'There is already a wedding scheduled for the selected date.',
+            'time.in' => 'Invalid time selected.',
         ]);
 
         if($request->id) {

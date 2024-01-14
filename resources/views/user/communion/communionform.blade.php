@@ -5,10 +5,11 @@
     <div class="col-md-12 mb-3">
         <div class="p-3 bg-body-secondary rounded">
             <small><i class="fa-solid fa-circle-info text-primary"></i>
-                <strong>Church Office and Event Reservations is close on mondays.</strong>
+                <strong>Event Reservations is close on mondays.</strong>
             </small>
         </div>
     </div>
+    
     <div class="col-md-12 mb-3">
         <label class="form-label">Name</label>
         <input type="text" name="name" value="{{ old('name', $communion->name ?? null) }}" class="form-control" placeholder="..." required>

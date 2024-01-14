@@ -7,65 +7,12 @@
 
         <div class="col-md-9">
             <div id="content" class="px-3">
-                <h1 style="color: #39B5A4;">Matrimony</h1>
+                <h1 style="color: #39B5A4;">Wedding</h1>
                 <hr>
                 @include('layouts.message')
                 @include('user.reservations.reservation-menu')
                 <div class="py-3">
-                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#matrimonyFormModal">Create Matrimony Reservation</button>
-                    <div class="modal fade" id="matrimonyFormModal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5">Matrimony Reservation Form</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="created_by_id" value="{{ Auth::id() }}">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Groom's Name</label>
-                                                <input type="text" name="grooms_name" class="form-control" placeholder="..." required>
-                                            </div>
-
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Groom's Birth Date</label>
-                                                <input type="date" name="grooms_birth_date" class="form-control" placeholder="..." required>
-                                            </div>
-
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Bride's Name</label>
-                                                <input type="text" name="brides_name" class="form-control" placeholder="..." required>
-                                            </div>
-
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Bride's Birth Date</label>
-                                                <input type="date" name="brides_birth_date" class="form-control" placeholder="..." required>
-                                            </div>
-
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Matrimony Date</label>
-                                                <input type="date" name="wedding_date" class="form-control" placeholder="..." required>
-                                            </div>
-
-                                            <div class="col-md-6 mb-3">
-                                                <label class="form-label">Contact Number</label>
-                                                <input type="text" name="contact_number" class="form-control" placeholder="..." required>
-                                            </div>
-
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="{{ route('clientmatrimonycreate') }}" class="btn btn-success btn-sm">Create Wedding Reservation</a>
                 </div>
                 <table id="baptism-table" class="table table-hover table-bordered">
                     <thead>
@@ -92,25 +39,7 @@
                             <td>{{ $matrimony->wedding_date }}</td>
                             <td>{{ $matrimony->created_at }}</td>
                             <td>
-                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#matrimonyModal{{ $matrimony->id }}">View</button>
-                                <div class="modal fade" id="matrimonyModal{{ $matrimony->id }}" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5">Matrimony Reservation Form</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-                                            <form action="{{ route('clientmatrimonysave') }}" method="post">
-                                                <div class="modal-body">
-                                                    @include('user.matrimony.matrimonyform')
-                                                <div class="modal-footer">
-                                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a href="{{ route('clientmatrimonyshow', ['matrimony' => $matrimony->id]) }}" class="btn btn-primary btn-sm">View</a>
                             </td>
                         </tr>
                         @empty
