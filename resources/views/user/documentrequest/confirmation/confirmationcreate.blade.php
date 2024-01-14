@@ -7,17 +7,16 @@
 
         <div class="col-md-9">
             <div id="content" class="px-3">
-                <h1 style="color: #39B5A4;">Baptism Document Requests</h1>
+                <h1 style="color: #39B5A4;">Confirmation Document Requests</h1>
                 <hr>
                 @include('layouts.message')
                 @include('user.reservations.reservation-menu')
                 <div class="py-3">
-                    <a href="{{ route('client-documentrequestbaptismlist') }}" class="btn btn-success btn-sm" >Back to List</a>
+                    <a href="{{ route('client-documentrequestconfirmationlist') }}" class="btn btn-success btn-sm" >Back to List</a>
                 </div>
-                <form action="{{ route('client-documentrequestbaptismsave', ['baptismRequest' => $baptismRequest->id]) }}" method="post">
-                    @include('user.documentrequest.baptism.baptismform')
-                    <input type="hidden" name="created_by_id" value="{{ Auth::id() }}">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <form action="{{ route('client-documentrequestconfirmationsave') }}" method="post">
+                    @include('user.documentrequest.confirmation.confirmationform')
+                    <button type="submit" class="btn btn-primary mb-3">Submit</button>
                 </form>
             </div>
         </div>

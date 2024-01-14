@@ -26,12 +26,34 @@ class DocumentRequestConfirmationController extends Controller
         }
     }
 
+    public function show(Request $request, DocumentRequestConfirmation $confirmationRequest)
+    {
+        if(auth()->user()->id == $confirmationRequest->user_id) {
+            return view('user.documentrequest.confirmation.confirmationview', [
+                'confirmationRequest' => $confirmationRequest
+            ]);
+        } else {
+            abort(404);
+        }
+        
+    }
+
+    public function create(Request $request)
+    {
+        return view('user.documentrequest.confirmation.confirmationcreate', [
+            'confirmationRequest' => new DocumentRequestConfirmation()
+        ]);
+        
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([
             'user_id' => ['required', 'integer'],
             'name' => ['required'],
             'birth_date' => ['required', 'date'],
+            'sex' => ['required', 'in:Male,Female'],
+            'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling'],
             'contact_number' => ['required','digits:11'],
             'confirmation_date' => ['required', 'date'],
             'father_name' => ['required'],
@@ -50,12 +72,12 @@ class DocumentRequestConfirmationController extends Controller
             }
 
             session()->flash('success', 'Confirmation document request updated successfully.');
-            return redirect()->back();
+            return redirect()->route('client-documentrequestconfirmationlist');
         } else {
             $documentRequestConfirmation = DocumentRequestConfirmation::create($data);
 
             session()->flash('success', 'Confirmation document request submitted successfully.');
-            return redirect()->back();
+            return redirect()->route('client-documentrequestconfirmationlist');
         }
 
     }

@@ -12,28 +12,7 @@
                 @include('layouts.message')
                 @include('user.documentrequest.menu')
                 <div class="py-3">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationDocumentRequestModal"><i class="fa-solid fa-plus"></i> Add Request</button>
-                    <div class="modal fade" id="confirmationDocumentRequestModal" tabindex="-1" aria-labelledby="documentRequestModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="confirmationDocumentRequestModalLabel">Confirmation Document Request Form</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                    
-                            <form action="{{ route('client-documentrequestconfirmationsave') }}" method="POST" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    @include('user.documentrequest.confirmation.confirmationform')
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </form>
-                    
-                            </div>
-                        </div>
-                    </div>
+                    <a href="{{ route('client-documentrequestconfirmationcreate') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Request</a>
 
                     <div class="table-responsive">
                         <table id="confirmationrequests-table" class="table table-hover">
@@ -62,14 +41,13 @@
                                                 <span class="badge bg-danger">Cancelled by Client</span>
                                             @endif
                                         </td>
-                                        <td>{{ $confirmationRequest->confirmational_date }}</td>
+                                        <td>{{ $confirmationRequest->confirmation_date }}</td>
                                         <td>{{ $confirmationRequest->requested_date }}</td>
                                         <td>
                                             
 
                                             @if ($confirmationRequest->is_active && !$confirmationRequest->is_ready && !$confirmationRequest->is_rejected)
-                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationDocumentRequestModal{{ $confirmationRequest->id }}">{{ $confirmationRequest->is_ready ? 'View' : 'Update' }}</button>
-                                                @include('user.documentrequest.confirmation.confirmationmodal')
+                                                <a href="{{ route('client-documentrequestconfirmationshow', ['confirmationRequest' => $confirmationRequest]) }}" class="btn btn-primary btn-sm">{{ $confirmationRequest->is_ready ? 'View' : 'Update' }}</a>
 
                                                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationCancelDocumentRequestModal{{ $confirmationRequest->id }}">Cancel Request</button>
                                                 @include('user.documentrequest.confirmation.confirmationcancelmodal')

@@ -7,7 +7,7 @@
     <div class="col-md-12 mb-3">
         <div class="p-3 bg-body-secondary rounded">
             <small><i class="fa-solid fa-circle-info text-primary"></i>
-                <strong>Church Office is close on mondays 8:00AM to 5:00PM.</strong>
+                <strong>The Church Office is closed on Mondays and opens from Tuesdays to Saturdays, 8:00 AM to 5:00 PM.</strong>
             </small>
         </div>
     </div>

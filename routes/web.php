@@ -215,6 +215,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
     //Confirmation Document Request
     Route::get('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'index'])->name('client-documentrequestconfirmationlist');
+    Route::get('/documentrequestconfirmations/create', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'create'])->name('client-documentrequestconfirmationcreate');
+    Route::get('/documentrequestconfirmations/{confirmationRequest}', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'show'])->name('client-documentrequestconfirmationshow');
     Route::post('/documentrequestconfirmations', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'store'])->name('client-documentrequestconfirmationsave');
     Route::post('/canceldocumentrequestconfirmation', [App\Http\Controllers\DocumentRequest\DocumentRequestConfirmationController::class, 'cancel'])->name('client-canceldocumentrequestconfirmation');
 
