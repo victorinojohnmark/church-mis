@@ -18,6 +18,34 @@
     </div>
 
     <div class="col-md-6 mb-3">
+        <label class="form-label">Sex</label>
+        <select name="sex" id="sex" class="form-control" readonly disabled>
+            @php
+                $sex = ['Male', 'Female']
+            @endphp
+            @forelse ($sex as $item)
+                <option {{ $confirmation && $confirmation->sex == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Relationship</label>
+        <select name="relationship" id="relationship" class="form-control" readonly disabled>
+            @php
+                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling']
+            @endphp
+            @forelse ($relationship as $item)
+                <option {{ $confirmation && $confirmation->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
         <label class="form-label">Father's Name</label>
         <input type="text" name="fathers_name" value="{{ $confirmation->fathers_name }}" class="form-control" placeholder="..." readonly>
     </div>

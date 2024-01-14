@@ -3,7 +3,7 @@
     <input type="hidden" name="created_by_id" value="{{ $funeral->created_by_id }}">
     <input type="hidden" name="id" value="{{ $funeral->id }}">
 
-    {{-- <div class="col-md-6 mb-3">
+    <div class="col-md-6 mb-3">
         <label class="form-label">Date of Mass</label>
         <input type="date" name="date" value="{{ $funeral->date }}" class="form-control" placeholder="..." readonly>
     </div>
@@ -11,7 +11,7 @@
     <div class="col-md-6 mb-3">
         <label class="form-label">Time</label>
         <input type="time" name="time" value="{{ $funeral->time }}" class="form-control" placeholder="..." readonly>
-    </div> --}}
+    </div>
 
     <div class="col-md-12 mb-3">
         <label class="form-label">Name</label>
@@ -31,6 +31,34 @@
         <select name="status" class="form-control" readonly>
             @forelse ($statuses as $status)
                 <option value="{{ $status }}" {{ $funeral->status == $status ? 'selected' : '' }}>{{ $status }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Sex</label>
+        <select name="sex" id="sex" class="form-control" readonly disabled>
+            @php
+                $sex = ['Male', 'Female']
+            @endphp
+            @forelse ($sex as $item)
+                <option {{ $funeral && $funeral->sex == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Relationship</label>
+        <select name="relationship" id="relationship" class="form-control" readonly disabled>
+            @php
+                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling']
+            @endphp
+            @forelse ($relationship as $item)
+                <option {{ $funeral && $funeral->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
             @empty
                 
             @endforelse

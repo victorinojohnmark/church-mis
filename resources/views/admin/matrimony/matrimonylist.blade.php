@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Matrimony')
+@section('title', 'Wedding')
 
 @section('content')
 @include('admin.reservation.reservation-menu')
@@ -10,7 +10,7 @@
 <table id="matrimony-table" class="table table-hover table-bordered">
     <thead>
         <tr>
-            <th>Broom and Bride's Name</th>
+            <th>Groom and Bride's Name</th>
             <th>Wedding Date</th>
             <th>Submitted At</th>
             <th>Options</th>

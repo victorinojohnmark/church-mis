@@ -1,11 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'Baptism')
+@section('title', 'Calendar')
 
 @section('content')
 <div class="container">
     <div class="p-3">
-      <h3 class="text-center">Calendar</h3>
       <div id='calendar' class="bg-body-secondary p-3 mb-3"></div>
         <ul class="list-group col-md-4">
             <li class="list-group-item"><span class="red">&#8226;</span> <span class="font-weight-bold">Baptism</span></li>
