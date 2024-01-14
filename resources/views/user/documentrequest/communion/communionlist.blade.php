@@ -12,28 +12,8 @@
                 @include('layouts.message')
                 @include('user.documentrequest.menu')
                 <div class="py-3">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#communionDocumentRequestModal"><i class="fa-solid fa-plus"></i> Add Request</button>
-                    <div class="modal fade" id="communionDocumentRequestModal" tabindex="-1" aria-labelledby="documentRequestModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="communionDocumentRequestModalLabel">Communion Document Request Form</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                    
-                            <form action="{{ route('client-documentrequestcommunionsave') }}" method="POST" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    @include('user.documentrequest.communion.communionform')
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                </div>
-                            </form>
-                    
-                            </div>
-                        </div>
-                    </div>
+                    <a href="{{ route('client-documentrequestcommunioncreate') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Request</a>
+
 
                     <div class="table-responsive">
                         <table id="communionrequests-table" class="table table-hover">
@@ -66,8 +46,7 @@
                                         <td>{{ $communionRequest->requested_date }}</td>
                                         <td>
                                             @if ($communionRequest->is_active && !$communionRequest->is_ready && !$communionRequest->is_rejected)
-                                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#communionDocumentRequestModal{{ $communionRequest->id }}">{{ $communionRequest->is_ready ? 'View' : 'Update' }}</button>
-                                                @include('user.documentrequest.communion.communionmodal')
+                                                <a href="{{ route('client-documentrequestcommunionshow', ['communionRequest' => $communionRequest->id]) }}" class="btn btn-primary btn-sm">{{ $communionRequest->is_ready ? 'View' : 'Update' }}</a>
 
                                                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#communionCancelDocumentRequestModal{{ $communionRequest->id }}">Cancel Request</button>
                                                 @include('user.documentrequest.communion.communioncancelmodal')

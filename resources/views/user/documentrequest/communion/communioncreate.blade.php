@@ -10,7 +10,7 @@
                 <h1 style="color: #39B5A4;">Communion Document Requests</h1>
                 <hr>
                 @include('layouts.message')
-                @include('user.reservations.reservation-menu')
+                @include('user.documentrequest.menu')
                 <div class="py-3">
                     <a href="{{ route('client-documentrequestcommunionlist') }}" class="btn btn-success btn-sm" >Back to List</a>
                 </div>

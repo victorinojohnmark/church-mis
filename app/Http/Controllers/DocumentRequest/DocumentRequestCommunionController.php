@@ -24,6 +24,26 @@ class DocumentRequestCommunionController extends Controller
         }
     }
 
+    public function show(Request $request, DocumentRequestCommunion $communionRequest)
+    {
+        if(auth()->user()->id == $communionRequest->user_id) {
+            return view('user.documentrequest.communion.communionview', [
+                'communionRequest' => $communionRequest
+            ]);
+        } else {
+            abort(404);
+        }
+        
+    }
+
+    public function create(Request $request)
+    {
+        return view('user.documentrequest.communion.communioncreate', [
+            'communionRequest' => new DocumentRequestCommunion()
+        ]);
+        
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([

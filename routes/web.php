@@ -222,6 +222,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
     //Communion Document Request
     Route::get('/documentrequestcommunions', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'index'])->name('client-documentrequestcommunionlist');
+    Route::get('/documentrequestcommunions/create', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'create'])->name('client-documentrequestcommunioncreate');
+    Route::get('/documentrequestcommunions/{communionRequest}', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'show'])->name('client-documentrequestcommunionshow');
     Route::post('/documentrequestcommunions', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'store'])->name('client-documentrequestcommunionsave');
     Route::post('/canceldocumentrequestcommunion', [App\Http\Controllers\DocumentRequest\DocumentRequestCommunionController::class, 'cancel'])->name('client-canceldocumentrequestcommunion');
 
