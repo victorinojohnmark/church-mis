@@ -26,12 +26,35 @@ class DocumentRequestBaptismController extends Controller
         }
     }
 
+    public function show(Request $request, DocumentRequestBaptism $baptismRequest)
+    {
+        if(auth()->user()->id == $baptismRequest->user_id) {
+            return view('user.documentrequest.baptism.baptismview', [
+                'baptismRequest' => $baptismRequest
+            ]);
+        } else {
+            abort(404);
+        }
+        
+    }
+
+    public function create(Request $request)
+    {
+        return view('user.documentrequest.baptism.baptismcreate', [
+            'baptismRequest' => new DocumentRequestBaptism()
+        ]);
+        
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([
             'user_id' => ['required', 'integer'],
             'name' => ['required'],
             'birth_date' => ['required', 'date'],
+            'birth_place' => ['required', 'max:255'],
+            'sex' => ['required', 'in:Male,Female'],
+            'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling'],
             'contact_number' => ['required','digits:11'],
             'baptismal_date' => ['required', 'date'],
             'father_name' => ['required'],
@@ -50,12 +73,12 @@ class DocumentRequestBaptismController extends Controller
             }
 
             session()->flash('success', 'Baptism document request updated successfully.');
-            return redirect()->back();
+            return redirect()->route('client-documentrequestbaptismlist');
         } else {
             $documentRequestBaptism = DocumentRequestBaptism::create($data);
 
             session()->flash('success', 'Baptism document request submitted successfully.');
-            return redirect()->back();
+            return redirect()->route('client-documentrequestbaptismlist');
         }
 
     }
