@@ -180,3 +180,7 @@ ul#userSidebar li a.active, ul#userSidebar li a:hover {
     color: white !important;
 }
 
+.fc-day-grid-event .fc-content {
+    white-space: inherit !important;
+}
+

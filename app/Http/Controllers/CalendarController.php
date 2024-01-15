@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 use App\Models\Reservation\Baptism;
 use App\Models\Reservation\Blessing;
@@ -10,6 +11,7 @@ use App\Models\Reservation\Communion;
 use App\Models\Reservation\Confirmation;
 use App\Models\Reservation\Funeral;
 use App\Models\Reservation\Matrimony;
+
 
 class CalendarController extends Controller
 {
@@ -54,7 +56,7 @@ class CalendarController extends Controller
             array_push($data, [
                 'id' => $blessing->id,
                 'title' => 'Blessing event for ' . $blessing->name,
-                'start' => $blessing->date,
+                'start' => $blessing->date . ' ' . $blessing->time,
                 'end' => $blessing->date,
                 'color' => '#00FF00'
             ]);
@@ -96,7 +98,7 @@ class CalendarController extends Controller
             array_push($data, [
                 'id' => $funeral->id,
                 'title' => 'Funeral event for ' . $funeral->name,
-                'start' => $funeral->date,
+                'start' => $funeral->date . ' ' . $funeral->time,
                 'end' => $funeral->date,
                 'color' => '#87CEEB'
             ]);
@@ -110,7 +112,7 @@ class CalendarController extends Controller
             array_push($data, [
                 'id' => $matrimony->id,
                 'title' => 'Matrimony event for ' . $matrimony->grooms_name . ' & ' . $matrimony->brides_name,
-                'start' => $matrimony->wedding_date,
+                'start' => $matrimony->wedding_date . ' ' . $matrimony->time,
                 'end' => $matrimony->wedding_date,
                 'color' => '#EE82EE'
             ]);
