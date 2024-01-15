@@ -9,15 +9,19 @@
             <div id="content" class="px-3">
                 <h1 style="color: #39B5A4;">Calendar</h1>
                 <hr>
-                <div id='calendar' class="mb-3"></div>
-                <ul class="list-group col-md-4">
-                    <li class="list-group-item"><span class="red">&#8226;</span> <span class="font-weight-bold">Baptism</span></li>
-                    <li class="list-group-item"><span class="green">&#8226;</span> <span class="font-weight-bold">Blessing</span></li>
-                    <li class="list-group-item"><span class="blue">&#8226;</span> <span class="font-weight-bold">Communion</span></li>
-                    <li class="list-group-item"><span class="orange">&#8226;</span> <span class="font-weight-bold">Confirmation</span></li>
-                    <li class="list-group-item"><span class="skyblue">&#8226;</span> <span class="font-weight-bold">Funeral</span></li>
-                    <li class="list-group-item"><span class="violet">&#8226;</span> <span class="font-weight-bold">Wedding</span></li>
-                </ul>
+                <div class="row">
+                    <div id='calendar' class="mb-3 col-md-10"></div>
+                    <div class="col-md-2">
+                        <ul class="list-group">
+                            <li class="list-group-item"><span class="red">&#8226;</span> <span class="font-weight-bold">Baptism</span></li>
+                            <li class="list-group-item"><span class="green">&#8226;</span> <span class="font-weight-bold">Blessing</span></li>
+                            <li class="list-group-item"><span class="blue">&#8226;</span> <span class="font-weight-bold">Communion</span></li>
+                            <li class="list-group-item"><span class="orange">&#8226;</span> <span class="font-weight-bold">Confirmation</span></li>
+                            <li class="list-group-item"><span class="skyblue">&#8226;</span> <span class="font-weight-bold">Funeral</span></li>
+                            <li class="list-group-item"><span class="violet">&#8226;</span> <span class="font-weight-bold">Wedding</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -53,6 +57,7 @@
             selectable:true,
             selectHelper: true,
             editable:false,
+            timeFormat: 'hh(:mm) A'
         });
     });
     </script>

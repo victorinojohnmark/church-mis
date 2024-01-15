@@ -15,11 +15,13 @@ class BlessingController extends Controller
     {
         if(Auth::user()->is_admin){
             return view('admin.blessing.blessinglist', [
-                'blessings' => Blessing::latest()->get()
+                'blessings' => Blessing::latest()->get(),
+                'notificationCount' => count(auth()->user()->notifications)
             ]);
         } else {
             return view('user.blessing.blessinglist', [
-                'blessings' => Blessing::where('created_by_id', Auth::id())->get()
+                'blessings' => Blessing::where('created_by_id', Auth::id())->get(),
+                'notificationCount' => count(auth()->user()->notifications)
             ]);
         }
     }
@@ -27,7 +29,8 @@ class BlessingController extends Controller
     public function show(Request $request, Blessing $blessing)
     {
         return view('user.blessing.blessingview', [
-            'blessing' => $blessing
+            'blessing' => $blessing,
+            'notificationCount' => count(auth()->user()->notifications)
         ]);
     }
 

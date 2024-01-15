@@ -16,11 +16,13 @@ class BaptismController extends Controller
     {
         if(Auth::user()->is_admin){
             return view('admin.baptism.baptismlist', [
-                'baptisms' => Baptism::latest()->get()
+                'baptisms' => Baptism::latest()->get(),
+                'notificationCount' => auth()->user()->unreadNotifications()->count()
             ]);
         } else {
             return view('user.baptism.baptismlist', [
-                'baptisms' => Baptism::where('created_by_id', Auth::id())->get()
+                'baptisms' => Baptism::where('created_by_id', Auth::id())->get(),
+                'notificationCount' => auth()->user()->unreadNotifications()->count()
             ]);
         }
         
@@ -31,7 +33,8 @@ class BaptismController extends Controller
     {
         if(auth()->user()->id == $baptism->created_by_id) {
             return view('user.baptism.baptismview', [
-                'baptism' => $baptism
+                'baptism' => $baptism,
+                'notificationCount' => count(auth()->user()->notifications)
             ]);
         } else {
             abort(404);

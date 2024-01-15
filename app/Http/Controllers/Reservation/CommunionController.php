@@ -16,11 +16,13 @@ class CommunionController extends Controller
     {
         if(Auth::user()->is_admin) {
             return view('admin.communion.communionlist', [
-                'communions' => Communion::latest()->get()
+                'communions' => Communion::latest()->get(),
+                'notificationCount' => count(auth()->user()->notifications)
             ]);
         } else {
             return view('user.communion.communionlist', [
-                'communions' => Communion::where('created_by_id', Auth::id())->get()
+                'communions' => Communion::where('created_by_id', Auth::id())->get(),
+                'notificationCount' => count(auth()->user()->notifications)
             ]);
         }
     }
