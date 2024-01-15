@@ -41,6 +41,20 @@
     </div>
 
     <div class="col-md-6 mb-3">
+        <label class="form-label">Relationship</label>
+        <select name="relationship" id="relationship" class="form-control">
+            @php
+                $relationship = ['Mother', 'Father', 'Spouse']
+            @endphp
+            @forelse ($relationship as $item)
+                <option {{ $matrimony && $matrimony->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
         <label class="form-label">Contact Number</label>
         <input type="text" name="contact_number" value="{{ old('contact_number', $matrimony->contact_number ?? null) }}" class="form-control" placeholder="..." required>
     </div>

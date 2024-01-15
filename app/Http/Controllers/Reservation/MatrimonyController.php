@@ -64,7 +64,8 @@ class MatrimonyController extends Controller
             'brides_birth_date' => ['required', 'date'],
             'wedding_date' => ['required', 'date', 'day_of_week:Tue,Wed,Thu,Fri,Sat', 'not_past_date', 
                                 Rule::unique('matrimonies', 'wedding_date')->ignore($request->id)],
-            'time' => ['required', 'in:07:30,09:00,10:30,16:00'],
+            'time' => ['required', 'in:07:30,09:00,10:30,16:00,07:30:00,09:00:00,10:30:00,16:00:00'],
+            'relationship' => ['required', 'in:Mother,Father,Spouse'],
             'contact_number' => ['required', 'digits:11'],
             'created_by_id' => ['required']
         ], [
