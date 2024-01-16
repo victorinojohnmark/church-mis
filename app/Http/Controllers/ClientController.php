@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\EventReservation;
 
+use App\Models\Client;
+
 class ClientController extends Controller
 {
     /**
@@ -37,10 +39,12 @@ class ClientController extends Controller
 
     public function reservation()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         $eventReservations = EventReservation::where('user_id', Auth::id())->get();
 
         return view('user.eventreservation', [
-            'eventReservations' => $eventReservations
+            'eventReservations' => $eventReservations,
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 }

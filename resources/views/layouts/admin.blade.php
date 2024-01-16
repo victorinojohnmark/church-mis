@@ -20,7 +20,21 @@
             @include('layouts.admin-sidebar')
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
-                <h1>@yield('title')</h1>
+                <h1></h1>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>@yield('title')</h1>
+                    <!-- Bell Icon with Notification Count -->
+                    @if (isset($notificationCount))
+                    <a href="{{ route('admin-notificationlist') }}" class="">
+                        <div class="position-relative" style="padding-right: 12px;">
+                            <i class="fas fa-bell pr-3" style="font-size: 25px;"></i>
+                            <span class="notification-pill badge bg-danger rounded-circle">{{ $notificationCount }}</span>
+                        </div>
+                        
+                    </a>
+                    @endif
+                    
+                </div>
                 <hr> @include('layouts.message')
 
                 @yield('content')

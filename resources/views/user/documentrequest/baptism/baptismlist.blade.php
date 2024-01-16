@@ -13,7 +13,7 @@
                     <a href="{{ route('usernotification') }}" class="">
                         <div class="position-relative" style="padding-right: 12px;">
                             <i class="fas fa-bell pr-3" style="font-size: 25px;"></i>
-                            <span class="notification-pill badge bg-danger rounded-circle">3</span>
+                            <span class="notification-pill badge bg-danger rounded-circle">{{ $notificationCount }}</span>
                         </div>
                         
                     </a>
