@@ -10,34 +10,41 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\Client;
+
 class CommunionController extends Controller
 {
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(Auth::user()->is_admin) {
             return view('admin.communion.communionlist', [
                 'communions' => Communion::latest()->get(),
-                'notificationCount' => count(auth()->user()->notifications)
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             return view('user.communion.communionlist', [
                 'communions' => Communion::where('created_by_id', Auth::id())->get(),
-                'notificationCount' => count(auth()->user()->notifications)
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         }
     }
 
     public function show(Request $request, Communion $communion)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.communion.communionview', [
-            'communion' => $communion
+            'communion' => $communion,
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.communion.communioncreate', [
-            'communion' => new Communion()
+            'communion' => new Communion(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 

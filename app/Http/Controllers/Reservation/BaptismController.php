@@ -8,21 +8,23 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Reservation\Baptism;
+use App\Models\Client;
 
 class BaptismController extends Controller
 {
 
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(Auth::user()->is_admin){
             return view('admin.baptism.baptismlist', [
                 'baptisms' => Baptism::latest()->get(),
-                'notificationCount' => auth()->user()->unreadNotifications()->count()
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             return view('user.baptism.baptismlist', [
                 'baptisms' => Baptism::where('created_by_id', Auth::id())->get(),
-                'notificationCount' => auth()->user()->unreadNotifications()->count()
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         }
         
@@ -31,10 +33,11 @@ class BaptismController extends Controller
 
     public function show(Request $request, Baptism $baptism)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(auth()->user()->id == $baptism->created_by_id) {
             return view('user.baptism.baptismview', [
                 'baptism' => $baptism,
-                'notificationCount' => count(auth()->user()->notifications)
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             abort(404);
@@ -44,8 +47,10 @@ class BaptismController extends Controller
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.baptism.baptismcreate', [
-            'baptism' => new Baptism()
+            'baptism' => new Baptism(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
         
     }

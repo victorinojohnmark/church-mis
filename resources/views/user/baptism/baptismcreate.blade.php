@@ -7,7 +7,17 @@
 
         <div class="col-md-9">
             <div id="content" class="px-3">
-                <h1 style="color: #39B5A4;">Baptism</h1>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 style="color: #39B5A4;">Baptism</h1>
+                    <!-- Bell Icon with Notification Count -->
+                    <a href="{{ route('usernotification') }}" class="">
+                        <div class="position-relative" style="padding-right: 12px;">
+                            <i class="fas fa-bell pr-3" style="font-size: 25px;"></i>
+                            <span class="notification-pill badge bg-danger rounded-circle">3</span>
+                        </div>
+                        
+                    </a>
+                </div>
                 <hr>
                 @include('layouts.message')
                 @include('user.reservations.reservation-menu')

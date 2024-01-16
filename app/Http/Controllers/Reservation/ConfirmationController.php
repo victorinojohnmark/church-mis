@@ -10,32 +10,41 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\Client;
+
 class ConfirmationController extends Controller
 {
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(Auth::user()->is_admin) {
             return view('admin.confirmation.confirmationlist', [
-                'confirmations' => Confirmation::latest()->get()
+                'confirmations' => Confirmation::latest()->get(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             return view('user.confirmation.confirmationlist', [
-                'confirmations' => Confirmation::where('created_by_id', Auth::id())->get()
+                'confirmations' => Confirmation::where('created_by_id', Auth::id())->get(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         }
     }
 
     public function show(Request $request, Confirmation $confirmation)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.confirmation.confirmationview', [
-            'confirmation' => $confirmation
+            'confirmation' => $confirmation,
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.confirmation.confirmationcreate', [
-            'confirmation' => new Confirmation()
+            'confirmation' => new Confirmation(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 

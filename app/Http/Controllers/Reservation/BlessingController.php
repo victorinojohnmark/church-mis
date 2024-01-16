@@ -9,35 +9,41 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\Client;
+
 class BlessingController extends Controller
 {
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(Auth::user()->is_admin){
             return view('admin.blessing.blessinglist', [
                 'blessings' => Blessing::latest()->get(),
-                'notificationCount' => count(auth()->user()->notifications)
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             return view('user.blessing.blessinglist', [
                 'blessings' => Blessing::where('created_by_id', Auth::id())->get(),
-                'notificationCount' => count(auth()->user()->notifications)
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         }
     }
 
     public function show(Request $request, Blessing $blessing)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.blessing.blessingview', [
             'blessing' => $blessing,
-            'notificationCount' => count(auth()->user()->notifications)
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.blessing.blessingcreate', [
-            'blessing' => new Blessing()
+            'blessing' => new Blessing(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 

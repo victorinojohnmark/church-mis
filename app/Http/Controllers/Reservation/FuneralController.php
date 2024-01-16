@@ -10,32 +10,40 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+use App\Models\Client;
 class FuneralController extends Controller
 {
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(Auth::user()->is_admin) {
             return view('admin.funeral.funerallist', [
-                'funerals' => Funeral::latest()->get()
+                'funerals' => Funeral::latest()->get(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             return view('user.funeral.funerallist', [
-                'funerals' => Funeral::where('created_by_id', Auth::id())->get()
+                'funerals' => Funeral::where('created_by_id', Auth::id())->get(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         }
     }
 
     public function show(Request $request, Funeral $funeral)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.funeral.funeralview', [
-            'funeral' => $funeral
+            'funeral' => $funeral,
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.funeral.funeralcreate', [
-            'funeral' => new Funeral()
+            'funeral' => new Funeral(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 

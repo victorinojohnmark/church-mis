@@ -184,3 +184,9 @@ ul#userSidebar li a.active, ul#userSidebar li a:hover {
     white-space: inherit !important;
 }
 
+.notification-pill {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+}

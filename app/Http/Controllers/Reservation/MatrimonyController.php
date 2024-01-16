@@ -10,32 +10,41 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+use App\Models\Client;
+
 class MatrimonyController extends Controller
 {
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
        if(Auth::user()->is_admin){
             return view('admin.matrimony.matrimonylist', [
-                'matrimonies' => Matrimony::latest()->get()
+                'matrimonies' => Matrimony::latest()->get(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
        } else {
             return view('user.matrimony.matrimonylist', [
-                'matrimonies' => Matrimony::where('created_by_id', Auth::id())->get()
+                'matrimonies' => Matrimony::where('created_by_id', Auth::id())->get(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
        }
     }
 
     public function show(Request $request, Matrimony $matrimony)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.matrimony.matrimonyview', [
-            'matrimony' => $matrimony
+            'matrimony' => $matrimony,
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.matrimony.matrimonycreate', [
-            'matrimony' => new Matrimony()
+            'matrimony' => new Matrimony(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
     }
 
