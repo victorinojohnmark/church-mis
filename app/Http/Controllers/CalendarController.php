@@ -42,7 +42,7 @@ class CalendarController extends Controller
             array_push($data, [
                 'id' => $baptism->id,
                 'title' => 'Baptism event for ' . $baptism->name,
-                'start' => $baptism->date,
+                'start' => $baptism->date . ' ' . $baptism->time,
                 'end' => $baptism->date,
                 'color' => '#FF0000'
             ]);
@@ -111,7 +111,7 @@ class CalendarController extends Controller
         foreach ($matrimonys as $matrimony) {
             array_push($data, [
                 'id' => $matrimony->id,
-                'title' => 'Matrimony event for ' . $matrimony->grooms_name . ' & ' . $matrimony->brides_name,
+                'title' => 'Wedding event for ' . $matrimony->grooms_name . ' & ' . $matrimony->brides_name,
                 'start' => $matrimony->wedding_date . ' ' . $matrimony->time,
                 'end' => $matrimony->wedding_date,
                 'color' => '#EE82EE'

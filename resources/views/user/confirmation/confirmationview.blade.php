@@ -14,7 +14,7 @@
                 <div class="py-3">
                     <a href="{{ route('clientconfirmation') }}" class="btn btn-success btn-sm" >Back to List</a>
                 </div>
-                <form action="{{ route('clientconfirmationsave', ['confirmation' => $confirmation->id]) }}" method="post">
+                <form action="{{ route('clientconfirmationsave', ['confirmation' => $confirmation->id]) }}" method="post" enctype="multipart/form-data">
                     @include('user.confirmation.confirmationform')
                     <button type="submit" class="btn btn-primary mb-3">Submit</button>
                 </form>

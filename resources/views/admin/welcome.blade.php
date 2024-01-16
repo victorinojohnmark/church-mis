@@ -6,14 +6,6 @@
 <div class="container">
     <div class="p-3">
       <div id='calendar' class="bg-body-secondary p-3 mb-3"></div>
-        <ul class="list-group col-md-4">
-            <li class="list-group-item"><span class="red">&#8226;</span> <span class="font-weight-bold">Baptism</span></li>
-            <li class="list-group-item"><span class="green">&#8226;</span> <span class="font-weight-bold">Blessing</span></li>
-            <li class="list-group-item"><span class="blue">&#8226;</span> <span class="font-weight-bold">Communion</span></li>
-            <li class="list-group-item"><span class="orange">&#8226;</span> <span class="font-weight-bold">Confirmation</span></li>
-            <li class="list-group-item"><span class="skyblue">&#8226;</span> <span class="font-weight-bold">Funeral</span></li>
-            <li class="list-group-item"><span class="violet">&#8226;</span> <span class="font-weight-bold">Wedding</span></li>
-        </ul>
     </div>
 
     
@@ -50,6 +42,7 @@
             selectable:true,
             selectHelper: true,
             editable:false,
+            timeFormat: 'hh(:mm) A'
         });
     });
     </script>

@@ -11,7 +11,7 @@
                 <hr>
                 <div class="row">
                     <div id='calendar' class="mb-3 col-md-10"></div>
-                    <div class="col-md-2">
+                    {{-- <div class="col-md-2">
                         <ul class="list-group">
                             <li class="list-group-item"><span class="red">&#8226;</span> <span class="font-weight-bold">Baptism</span></li>
                             <li class="list-group-item"><span class="green">&#8226;</span> <span class="font-weight-bold">Blessing</span></li>
@@ -20,7 +20,7 @@
                             <li class="list-group-item"><span class="skyblue">&#8226;</span> <span class="font-weight-bold">Funeral</span></li>
                             <li class="list-group-item"><span class="violet">&#8226;</span> <span class="font-weight-bold">Wedding</span></li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

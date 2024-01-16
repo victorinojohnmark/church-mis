@@ -9,7 +9,7 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Desired Date</label>
-        <input type="date" name="date" value="{{ $baptism->date }}" class="form-control" placeholder="..." readonly>
+        <input type="date" name="date" value="{{ $baptism->date }}" min="<?= date('Y-m-d'); ?>" class="form-control" placeholder="..." readonly>
     </div>
 
     <div class="col-md-6 mb-3">

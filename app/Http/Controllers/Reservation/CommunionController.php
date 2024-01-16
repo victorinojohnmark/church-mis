@@ -49,37 +49,45 @@ class CommunionController extends Controller
 
         $data = $request->validate([
             'name' => ['required'],
-            'date' => ['required', 'date', 'after_or_equal:' . Date::today(), 'not_on_monday'],
-            'birth_date' => ['required', 'date'],
-            'fathers_name' => ['required'],
-            'mothers_name' => ['required'],
+            // 'date' => ['required', 'date', 'after_or_equal:' . Date::today(), 'not_on_monday'],
+            // 'birth_date' => ['required', 'date'],
+            // 'fathers_name' => ['required'],
+            // 'mothers_name' => ['required'],
             'present_address' => ['required'],
             'contact_number' => ['required','digits:11'],
-            'created_by_id' => ['required']
+            'created_by_id' => ['required'],
+            'file' => 'required|mimes:xls,xlsx,csv'
         ], [
             'date.after_or_equal' => 'The date field should not be older that today.',
             'date.not_on_monday' => 'Date reservation for mondays is not valid.'
         ]);
 
         if($request->id) {
-            //check first if date is already taken
-            $isDateTaken = Communion::where('date', $data['date'])->where('id','!=', $request->id)->exists();
-            if($isDateTaken) {
-                session()->flash('danger', 'Date submitted was already taken');
-                return redirect()->back();
-            }
 
             $communion = Communion::findOrFail($request->id);
             $communion->fill($data);
+            
+            if($request->hasFile('file')) {
+                $uniqueFilename = uniqid() . '_' . $request->file('file')->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('uploads', $uniqueFilename, 'public');
+                $communion->file = $filePath;
+            }
+
             $communion->save();
 
             session()->flash('success', 'Communion Reservation updated successfully.');
         } else {
             //check first if date is already taken
-            $isDateTaken = Communion::where('date', $data['date'])->exists();
-            if($isDateTaken) {
-                session()->flash('danger', 'Date submitted was already taken');
-                return redirect()->back();
+            // $isDateTaken = Communion::where('date', $data['date'])->exists();
+            // if($isDateTaken) {
+            //     session()->flash('danger', 'Date submitted was already taken');
+            //     return redirect()->back();
+            // }
+
+            if($request->hasFile('file')) {
+                $uniqueFilename = uniqid() . '_' . $request->file('file')->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('uploads', $uniqueFilename, 'public');
+                $data['file'] = $filePath;
             }
 
             $communion = Communion::create($data);

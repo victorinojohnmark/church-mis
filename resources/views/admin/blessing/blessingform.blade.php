@@ -24,7 +24,7 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Date</label>
-        <input type="date" name="date" value="{{ $blessing->date }}" class="form-control" placeholder="..." readonly>
+        <input type="date" name="date" min="<?= date('Y-m-d'); ?>" value="{{ $blessing->date }}" class="form-control" placeholder="..." readonly>
     </div>
 
     <div class="col-md-6 mb-3">
