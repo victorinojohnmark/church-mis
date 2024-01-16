@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\DocumentRequest\DocumentRequestConfirmation;
+use App\Models\Client;
 
 class DocumentRequestConfirmationController extends Controller
 {
@@ -14,23 +15,28 @@ class DocumentRequestConfirmationController extends Controller
 
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(Auth::user()->is_admin) {
             return view('admin.documentrequest.confirmation.confirmationlist', [
-                'confirmationRequests' => DocumentRequestConfirmation::latest()->get()
+                'confirmationRequests' => DocumentRequestConfirmation::latest()->get(),
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
         } else {
             return view('user.documentrequest.confirmation.confirmationlist', [
                 'confirmationRequests' => DocumentRequestConfirmation::where('user_id', Auth::id())->get(),
-                'confirmationRequest' => new DocumentRequestConfirmation()
+                'confirmationRequest' => new DocumentRequestConfirmation(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         }
     }
 
     public function show(Request $request, DocumentRequestConfirmation $confirmationRequest)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(auth()->user()->id == $confirmationRequest->user_id) {
             return view('user.documentrequest.confirmation.confirmationview', [
-                'confirmationRequest' => $confirmationRequest
+                'confirmationRequest' => $confirmationRequest,
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             abort(404);
@@ -40,8 +46,10 @@ class DocumentRequestConfirmationController extends Controller
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.documentrequest.confirmation.confirmationcreate', [
-            'confirmationRequest' => new DocumentRequestConfirmation()
+            'confirmationRequest' => new DocumentRequestConfirmation(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
         
     }

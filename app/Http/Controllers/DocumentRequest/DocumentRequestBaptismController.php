@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\DocumentRequest\DocumentRequestBaptism;
+use App\Models\Client;
 
 class DocumentRequestBaptismController extends Controller
 {
@@ -14,23 +15,28 @@ class DocumentRequestBaptismController extends Controller
 
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(Auth::user()->is_admin) {
             return view('admin.documentrequest.baptism.baptismlist', [
-                'baptismRequests' => DocumentRequestBaptism::latest()->get()
+                'baptismRequests' => DocumentRequestBaptism::latest()->get(),
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
         } else {
             return view('user.documentrequest.baptism.baptismlist', [
                 'baptismRequests' => DocumentRequestBaptism::where('user_id', Auth::id())->get(),
-                'baptismRequest' => new DocumentRequestBaptism()
+                'baptismRequest' => new DocumentRequestBaptism(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         }
     }
 
     public function show(Request $request, DocumentRequestBaptism $baptismRequest)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(auth()->user()->id == $baptismRequest->user_id) {
             return view('user.documentrequest.baptism.baptismview', [
-                'baptismRequest' => $baptismRequest
+                'baptismRequest' => $baptismRequest,
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             abort(404);
@@ -40,8 +46,10 @@ class DocumentRequestBaptismController extends Controller
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.documentrequest.baptism.baptismcreate', [
-            'baptismRequest' => new DocumentRequestBaptism()
+            'baptismRequest' => new DocumentRequestBaptism(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
         
     }

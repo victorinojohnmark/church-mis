@@ -20,7 +20,7 @@ class MatrimonyController extends Controller
        if(Auth::user()->is_admin){
             return view('admin.matrimony.matrimonylist', [
                 'matrimonies' => Matrimony::latest()->get(),
-                'notificationCount' => $client->unreadNotifications->count()
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
        } else {
             return view('user.matrimony.matrimonylist', [

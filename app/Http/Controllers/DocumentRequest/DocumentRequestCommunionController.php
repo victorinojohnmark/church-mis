@@ -7,28 +7,34 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\DocumentRequest\DocumentRequestCommunion;
+use App\Models\Client;
 
 class DocumentRequestCommunionController extends Controller
 {
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(Auth::user()->is_admin) {
             return view('admin.documentrequest.communion.communionlist', [
-                'communionRequests' => DocumentRequestCommunion::latest()->get()
+                'communionRequests' => DocumentRequestCommunion::latest()->get(),
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
         } else {
             return view('user.documentrequest.communion.communionlist', [
                 'communionRequests' => DocumentRequestCommunion::where('user_id', Auth::id())->get(),
-                'communionRequest' => new DocumentRequestCommunion()
+                'communionRequest' => new DocumentRequestCommunion(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         }
     }
 
     public function show(Request $request, DocumentRequestCommunion $communionRequest)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(auth()->user()->id == $communionRequest->user_id) {
             return view('user.documentrequest.communion.communionview', [
-                'communionRequest' => $communionRequest
+                'communionRequest' => $communionRequest,
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             abort(404);
@@ -38,8 +44,10 @@ class DocumentRequestCommunionController extends Controller
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.documentrequest.communion.communioncreate', [
-            'communionRequest' => new DocumentRequestCommunion()
+            'communionRequest' => new DocumentRequestCommunion(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
         
     }

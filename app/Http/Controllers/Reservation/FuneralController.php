@@ -19,7 +19,7 @@ class FuneralController extends Controller
         if(Auth::user()->is_admin) {
             return view('admin.funeral.funerallist', [
                 'funerals' => Funeral::latest()->get(),
-                'notificationCount' => $client->unreadNotifications->count()
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
         } else {
             return view('user.funeral.funerallist', [

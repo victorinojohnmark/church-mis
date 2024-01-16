@@ -19,7 +19,7 @@ class BaptismController extends Controller
         if(Auth::user()->is_admin){
             return view('admin.baptism.baptismlist', [
                 'baptisms' => Baptism::latest()->get(),
-                'notificationCount' => $client->unreadNotifications->count()
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
         } else {
             return view('user.baptism.baptismlist', [

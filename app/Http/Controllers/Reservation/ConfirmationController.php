@@ -20,7 +20,7 @@ class ConfirmationController extends Controller
         if(Auth::user()->is_admin) {
             return view('admin.confirmation.confirmationlist', [
                 'confirmations' => Confirmation::latest()->get(),
-                'notificationCount' => $client->unreadNotifications->count()
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
         } else {
             return view('user.confirmation.confirmationlist', [

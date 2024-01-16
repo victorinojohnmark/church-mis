@@ -20,7 +20,7 @@ class CommunionController extends Controller
         if(Auth::user()->is_admin) {
             return view('admin.communion.communionlist', [
                 'communions' => Communion::latest()->get(),
-                'notificationCount' => $client->unreadNotifications->count()
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
         } else {
             return view('user.communion.communionlist', [

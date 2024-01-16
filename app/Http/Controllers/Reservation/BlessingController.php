@@ -19,7 +19,7 @@ class BlessingController extends Controller
         if(Auth::user()->is_admin){
             return view('admin.blessing.blessinglist', [
                 'blessings' => Blessing::latest()->get(),
-                'notificationCount' => $client->unreadNotifications->count()
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
         } else {
             return view('user.blessing.blessinglist', [

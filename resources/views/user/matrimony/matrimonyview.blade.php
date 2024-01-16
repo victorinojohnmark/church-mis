@@ -15,7 +15,6 @@
                             <i class="fas fa-bell pr-3" style="font-size: 25px;"></i>
                             <span class="notification-pill badge bg-danger rounded-circle">{{ $notificationCount }}</span>
                         </div>
-                        
                     </a>
                 </div>
                 <hr>

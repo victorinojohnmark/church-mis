@@ -7,28 +7,34 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\DocumentRequest\DocumentRequestDeath;
+use App\Models\Client;
 
 class DocumentRequestDeathController extends Controller
 {
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(Auth::user()->is_admin) {
             return view('admin.documentrequest.death.deathlist', [
-                'deathRequests' => DocumentRequestDeath::latest()->get()
+                'deathRequests' => DocumentRequestDeath::latest()->get(),
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
         } else {
             return view('user.documentrequest.death.deathlist', [
                 'deathRequests' => DocumentRequestDeath::where('user_id', Auth::id())->get(),
-                'deathRequest' => new DocumentRequestDeath()
+                'deathRequest' => new DocumentRequestDeath(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         }
     }
 
     public function show(Request $request, DocumentRequestDeath $deathRequest)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(auth()->user()->id == $deathRequest->user_id) {
             return view('user.documentrequest.death.deathview', [
-                'deathRequest' => $deathRequest
+                'deathRequest' => $deathRequest,
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             abort(404);
@@ -38,8 +44,10 @@ class DocumentRequestDeathController extends Controller
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.documentrequest.death.deathcreate', [
-            'deathRequest' => new DocumentRequestDeath()
+            'deathRequest' => new DocumentRequestDeath(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
         
     }

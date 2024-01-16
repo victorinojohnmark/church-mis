@@ -7,28 +7,34 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\DocumentRequest\DocumentRequestMatrimony;
+use App\Models\Client;
 
 class DocumentRequestMatrimonyController extends Controller
 {
     public function index()
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(Auth::user()->is_admin) {
             return view('admin.documentrequest.matrimony.matrimonylist', [
-                'matrimonyRequests' => DocumentRequestMatrimony::latest()->get()
+                'matrimonyRequests' => DocumentRequestMatrimony::latest()->get(),
+                'notificationCount' => auth()->user()->unreadNotifications->count()
             ]);
         } else {
             return view('user.documentrequest.matrimony.matrimonylist', [
                 'matrimonyRequests' => DocumentRequestMatrimony::where('user_id', Auth::id())->get(),
-                'matrimonyRequest' => new DocumentRequestMatrimony()
+                'matrimonyRequest' => new DocumentRequestMatrimony(),
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         }
     }
 
     public function show(Request $request, DocumentRequestMatrimony $matrimonyRequest)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         if(auth()->user()->id == $matrimonyRequest->user_id) {
             return view('user.documentrequest.matrimony.matrimonyview', [
-                'matrimonyRequest' => $matrimonyRequest
+                'matrimonyRequest' => $matrimonyRequest,
+                'notificationCount' => $client->unreadNotifications->count()
             ]);
         } else {
             abort(404);
@@ -38,8 +44,10 @@ class DocumentRequestMatrimonyController extends Controller
 
     public function create(Request $request)
     {
+        $client = Client::findOrFail(auth()->user()->id);
         return view('user.documentrequest.matrimony.matrimonycreate', [
-            'matrimonyRequest' => new DocumentRequestMatrimony()
+            'matrimonyRequest' => new DocumentRequestMatrimony(),
+            'notificationCount' => $client->unreadNotifications->count()
         ]);
         
     }
