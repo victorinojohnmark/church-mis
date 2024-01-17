@@ -15,6 +15,7 @@
                         <tr>
                             <th>Message</th>
                             <th>Date</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +23,9 @@
                         <tr>
                             <td>{!! $notification->data['message'] !!}</td>
                             <td>{!! $notification->created_at->diffForHumans() !!}</td>
+                            <td>
+                                <a href="/user/notifications/{{ $notification->id }}/delete" class="text-danger">Delete</a>
+                            </td>
                         </tr>
                         @empty
                             
