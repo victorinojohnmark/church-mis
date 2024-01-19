@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Communion Document Requests')
+@section('title', 'First Communion Document Requests')
 
 @section('content')
 @include('admin.documentrequest.menu')

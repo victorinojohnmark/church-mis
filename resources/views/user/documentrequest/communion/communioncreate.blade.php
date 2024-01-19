@@ -8,7 +8,7 @@
         <div class="col-md-9">
             <div id="content" class="px-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h1 style="color: #39B5A4;">Communion Document Requests</h1>
+                    <h1 style="color: #39B5A4;">First Communion Document Requests</h1>
                     <!-- Bell Icon with Notification Count -->
                     <a href="{{ route('usernotification') }}" class="">
                         <div class="position-relative" style="padding-right: 12px;">

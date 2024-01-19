@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Communion')
+@section('title', 'First Communion')
 
 @section('content')
 @include('admin.reservation.reservation-menu')
