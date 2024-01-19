@@ -29,7 +29,7 @@
 
     <div class="col-md-4">
         <label class="form-label">Age</label>
-        <input type="number" name="age" class="form-control mb-3" value="{{ old('age', $deathRequest->age ?? null) }}" placeholder="..." {{ $deathRequest->is_ready ? 'readonly' : 'required' }}>
+        <input type="number" name="age" class="form-control mb-3" min="1" value="{{ old('age', $deathRequest->age ?? null) }}" placeholder="..." {{ $deathRequest->is_ready ? 'readonly' : 'required' }}>
     </div>
 
     <div class="col-md-4">

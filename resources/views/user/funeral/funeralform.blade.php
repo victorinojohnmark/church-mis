@@ -28,7 +28,7 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Age</label>
-        <input type="number" name="age" value="{{ old('age', $funeral->age ?? null) }}" class="form-control" placeholder="..." required>
+        <input type="number" name="age" min="1" value="{{ old('age', $funeral->age ?? null) }}" class="form-control" placeholder="..." required>
     </div>
 
     <div class="col-md-6 mb-3">
