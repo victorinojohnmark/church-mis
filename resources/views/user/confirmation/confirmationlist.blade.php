@@ -21,9 +21,9 @@
                 <hr>
                 @include('layouts.message')
                 @include('user.reservations.reservation-menu')
-                <div class="py-3">
+                <div class="py-3 d-flex justify-content-between align-items-center">
                     <a href="{{ route('clientconfirmationcreate') }}" class="btn btn-success btn-sm">Create Confirmation Reservation</a>
-                    
+                    <a href="/forms/confirmation-format.xlsx" class="btn btn-success btn-sm">Download Form</a>
                 </div>
                 <table id="confirmation-table" class="table table-hover table-bordered">
                     <thead>
