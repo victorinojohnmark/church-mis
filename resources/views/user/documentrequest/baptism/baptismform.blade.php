@@ -52,7 +52,7 @@
         <select name="relationship" id="relationship" class="form-control">
             <option value="{{ null }}" disabled selected>Select here...</option>
             @php
-                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling']
+                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling', 'Myself']
             @endphp
             @forelse ($relationship as $item)
                 <option {{ $baptismRequest && $baptismRequest->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>

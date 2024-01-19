@@ -21,6 +21,11 @@ class Funeral extends Model
         return $this->belongsTo(Client::class, 'created_by_id', 'id');
     }
 
+    public function scopeAccepted($query)
+    {
+        return $query->where('is_accepted', true);
+    }
+
     public function getStatusAttribute()
     {
         if($this->is_accepted){

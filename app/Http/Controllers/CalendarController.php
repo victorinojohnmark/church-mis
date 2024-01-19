@@ -34,7 +34,7 @@ class CalendarController extends Controller
         //fetch all reservation and consolidate on $data 
 
         //baptism 
-        $baptisms = Baptism::whereDate('date', '>=', $request->start)
+        $baptisms = Baptism::accepted()->whereDate('date', '>=', $request->start)
             ->whereDate('date', '<=', $request->end)
             ->get();
 
@@ -48,7 +48,7 @@ class CalendarController extends Controller
             ]);
         }
 
-        $blessings = Blessing::whereDate('date', '>=', $request->start)
+        $blessings = Blessing::accepted()->whereDate('date', '>=', $request->start)
             ->whereDate('date', '<=', $request->end)
             ->get();
 
@@ -62,7 +62,7 @@ class CalendarController extends Controller
             ]);
         }
 
-        $communions = Communion::whereDate('date', '>=', $request->start)
+        $communions = Communion::accepted()->whereDate('date', '>=', $request->start)
             ->whereDate('date', '<=', $request->end)
             ->get();
 
@@ -76,7 +76,7 @@ class CalendarController extends Controller
             ]);
         }
 
-        $confirmations = Confirmation::whereDate('date', '>=', $request->start)
+        $confirmations = Confirmation::accepted()->whereDate('date', '>=', $request->start)
             ->whereDate('date', '<=', $request->end)
             ->get();
 
@@ -90,7 +90,7 @@ class CalendarController extends Controller
             ]);
         }
 
-        $funerals = Funeral::whereDate('date', '>=', $request->start)
+        $funerals = Funeral::accepted()->whereDate('date', '>=', $request->start)
             ->whereDate('date', '<=', $request->end)
             ->get();
 
@@ -104,7 +104,7 @@ class CalendarController extends Controller
             ]);
         }
 
-        $matrimonys = Matrimony::whereDate('wedding_date', '>=', $request->start)
+        $matrimonys = Matrimony::accepted()->whereDate('wedding_date', '>=', $request->start)
             ->whereDate('wedding_date', '<=', $request->end)
             ->get();
 

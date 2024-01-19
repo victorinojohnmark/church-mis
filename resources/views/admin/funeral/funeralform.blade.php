@@ -55,7 +55,7 @@
         <label class="form-label">Relationship</label>
         <select name="relationship" id="relationship" class="form-control" readonly disabled>
             @php
-                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling']
+                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling', 'Myself']
             @endphp
             @forelse ($relationship as $item)
                 <option {{ $funeral && $funeral->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>

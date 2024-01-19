@@ -45,7 +45,7 @@
         <select name="relationship" id="relationship" class="form-control">
             <option value="{{ null }}" disabled selected>Select here...</option>
             @php
-                $relationship = ['Mother', 'Father', 'Spouse']
+                $relationship = ['Mother', 'Father', 'Spouse', 'Myself']
             @endphp
             @forelse ($relationship as $item)
                 <option {{ $matrimony && $matrimony->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
