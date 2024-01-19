@@ -5,7 +5,7 @@
     <div class="col-md-12 mb-3">
         <div class="p-3 bg-body-secondary rounded">
             <small><i class="fa-solid fa-circle-info text-primary"></i>
-                <strong>Event Reservations is close on mondays.</strong>
+                <strong>Only the catechist can reserve and upload file.</strong>
             </small>
         </div>
     </div>
