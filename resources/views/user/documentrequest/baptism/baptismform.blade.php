@@ -35,6 +35,7 @@
     <div class="col-md-6 mb-3">
         <label class="form-label">Sex</label>
         <select name="sex" id="sex" class="form-control">
+            <option value="{{ null }}" disabled selected>Select here...</option>
             @php
                 $sex = ['Male', 'Female']
             @endphp
@@ -49,6 +50,7 @@
     <div class="col-md-6 mb-3">
         <label class="form-label">Relationship</label>
         <select name="relationship" id="relationship" class="form-control">
+            <option value="{{ null }}" disabled selected>Select here...</option>
             @php
                 $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling']
             @endphp
