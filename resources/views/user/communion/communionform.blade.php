@@ -47,7 +47,7 @@
 
     <div class="col-md-12 mb-3">
         <label for="inputFile">Upload File</label><br>
-        <input type="file" name="file" class="form-control-file" id="inputFile" accept=".xls, .xlsx, .csv" required>
+        <input type="file" name="file" class="form-control-file" id="inputFile" accept=".csv" required>
         @if ($communion->file)
         <a href="/storage/{{ $communion->file }}">Download File</a>
         @endif
