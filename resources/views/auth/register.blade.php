@@ -116,6 +116,21 @@
             </div>
 
             <div class="mb-3">
+                <label class="form-label text-dark fw-semibold">Sex</label>
+                <select name="sex" id="sex" class="form-control rounded p-3">
+                    <option value="{{ null }}" disabled selected>Select here...</option>
+                    @php
+                        $sex = ['Male', 'Female']
+                    @endphp
+                    @forelse ($sex as $item)
+                        <option>{{ $item }}</option>
+                    @empty
+                        
+                    @endforelse
+                </select>
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label text-dark fw-semibold">Address</label>
                 <textarea name="address" class="form-control rounded p-3" placeholder="Enter Home Address" required>{{ old('address') }}</textarea>
                 @error('address')

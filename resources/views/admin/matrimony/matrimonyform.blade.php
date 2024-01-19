@@ -28,6 +28,26 @@
     </div>
 
     <div class="col-md-6 mb-3">
+        <label class="form-label">Time</label>
+        <input type="time" name="time" value="{{ old('time', $matrimony->time ?? null) }}" class="form-control" placeholder="..." readonly>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Relationship</label>
+        <select name="relationship" id="relationship" class="form-control" disabled readonly>
+            <option value="{{ null }}" disabled selected>Select here...</option>
+            @php
+                $relationship = ['Mother', 'Father', 'Spouse', 'Myself']
+            @endphp
+            @forelse ($relationship as $item)
+                <option {{ $matrimony && $matrimony->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
         <label class="form-label">Contact Number</label>
         <input type="text" name="contact_number" value="{{ $matrimony->contact_number }}" class="form-control" placeholder="..." readonly>
     </div>

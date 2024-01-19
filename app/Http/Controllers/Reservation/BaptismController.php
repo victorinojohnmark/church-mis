@@ -117,7 +117,7 @@ class BaptismController extends Controller
             'contact_number' => ['required','digits:11'],
             'created_by_id' => ['required']
         ], [
-            'date.special_date' => 'The selected date and time is not valid for the given conditions.'
+            'date.special_date' => 'The selected date and time are not applicable.'
         ]);
         
         if($request->id) {

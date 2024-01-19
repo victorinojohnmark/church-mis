@@ -38,10 +38,40 @@
         </select>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Sex</label>
+        <select name="sex" id="sex" class="form-control" readonly disabled>
+            <option value="{{ null }}" disabled selected>Select here...</option>
+            @php
+                $sex = ['Male', 'Female']
+            @endphp
+            @forelse ($sex as $item)
+                <option {{ $deathRequest && $deathRequest->sex == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Relationship</label>
+        <select name="relationship" id="relationship" class="form-control" readonly disabled>
+            <option value="{{ null }}" disabled selected>Select here...</option>
+            @php
+                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling', 'Myself']
+            @endphp
+            @forelse ($relationship as $item)
+                <option {{ $deathRequest && $deathRequest->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
+    {{-- <div class="col-md-4">
         <label class="form-label">Religion</label>
         <input type="text" name="religion" class="form-control mb-3" value="{{ $deathRequest->id ? $deathRequest->religion : '' }}" placeholder="..." readonly>
-    </div>
+    </div> --}}
 
     <div class="col-md-12">
         <hr>
