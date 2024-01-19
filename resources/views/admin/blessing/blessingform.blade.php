@@ -32,7 +32,7 @@
         <input type="time" name="time" value="{{ $blessing->time }}" class="form-control" placeholder="..." readonly>
     </div>
 
-    <div class="col-md-6 mb-3">
+    {{-- <div class="col-md-6 mb-3">
         <label class="form-label">Sex</label>
         <select name="sex" id="sex" class="form-control" readonly disabled>
             @php
@@ -58,7 +58,7 @@
                 
             @endforelse
         </select>
-    </div>
+    </div> --}}
 
     {{-- <div class="col-md-6 mb-3">
         <label class="form-label">Religion</label>
