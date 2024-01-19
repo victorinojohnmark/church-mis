@@ -27,6 +27,7 @@
     <div class="col-md-6 mb-3">
         <label class="form-label">Sex</label>
         <select name="sex" id="sex" class="form-control">
+            <option value="{{ null }}" disabled selected>Select here...</option>
             @php
                 $sex = ['Male', 'Female']
             @endphp
@@ -41,6 +42,7 @@
     <div class="col-md-6 mb-3">
         <label class="form-label">Relationship</label>
         <select name="relationship" id="relationship" class="form-control">
+            <option value="{{ null }}" disabled selected>Select here...</option>
             @php
                 $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling']
             @endphp
@@ -76,7 +78,7 @@
         <input type="text" name="purpose" class="form-control mb-3" value="{{ old('purpose', $communionRequest->purpose ?? null) }}" placeholder="..." {{ $communionRequest->is_ready ? 'readonly' : 'required' }}>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12 mb-3">
         <div class="p-3 bg-body-secondary rounded">
             <small><i class="fa-solid fa-circle-info text-primary"></i>
                 You might receive the document within the day. You’ll receive an email advisory when it’s ready for pick up.

@@ -21,7 +21,7 @@
                 <hr>
                 @include('layouts.message')
                 @include('user.reservations.reservation-menu')
-                <div class="py-3">
+                <div class="py-3 mb-3">
                     <a href="{{ route('client-documentrequestconfirmationlist') }}" class="btn btn-success btn-sm" >Back to List</a>
                 </div>
                 <form action="{{ route('client-documentrequestconfirmationsave', ['confirmationRequest' => $confirmationRequest->id]) }}" method="post">

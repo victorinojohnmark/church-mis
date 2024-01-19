@@ -21,7 +21,7 @@
                 <hr>
                 @include('layouts.message')
                 @include('user.documentrequest.menu')
-                <div class="py-3">
+                <div class="py-3 mb-3">
                     <a href="{{ route('client-documentrequestcommunionlist') }}" class="btn btn-success btn-sm" >Back to List</a>
                 </div>
                 <form action="{{ route('client-documentrequestcommunionsave') }}" method="post">
