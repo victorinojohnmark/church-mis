@@ -62,6 +62,7 @@ class DocumentRequestDeathController extends Controller
             // 'religion' => ['required'],
             'sex' => ['required', 'in:Male,Female'],
             'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling,Other'],
+            'other_relationship' => ['required_if:relationship,Other'],
             'date_of_death' => ['required', 'date'],
             'cause_of_death' => ['required'],
             'address' => ['required'],

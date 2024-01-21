@@ -19,6 +19,7 @@ class DocumentRequestDeath extends Model
         // 'religion',
         'sex',
         'relationship',
+        'other_relationship',
         'date_of_death',
         'cause_of_death',
         'address',

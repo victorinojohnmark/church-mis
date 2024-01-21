@@ -40,5 +40,23 @@
 
 @push('scripts')
     <script src="/vendor/jquery/jquery-3.5.1.js"></script>
+    <script>
+        function toggleRelationshipDetail() {
+            var relationshipValue = document.getElementById('relationship').value;
+            var otherRelationshipInput = document.getElementById('other_relationship');
     
+            if (relationshipValue === 'Other') {
+                otherRelationshipInput.disabled = false;
+                otherRelationshipInput.required = true;
+                otherRelationshipInput.style.display = 'block';
+            } else {
+                otherRelationshipInput.disabled = true;
+                otherRelationshipInput.required = false;
+                otherRelationshipInput.style.display = 'none';
+            }
+        }
+    
+        // Initial state
+        toggleRelationshipDetail();
+    </script>
 @endpush

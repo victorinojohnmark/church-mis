@@ -38,7 +38,7 @@
         </select>
     </div>
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
         <label class="form-label">Sex</label>
         <select name="sex" id="sex" class="form-control" readonly disabled>
             <option value="{{ null }}" disabled selected>Select here...</option>
@@ -53,12 +53,12 @@
         </select>
     </div>
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
         <label class="form-label">Relationship</label>
-        <select name="relationship" id="relationship" class="form-control" readonly disabled>
+        <select name="relationship" id="relationship" class="form-control" onchange="toggleRelationshipDetail()" disabled>
             <option value="{{ null }}" disabled selected>Select here...</option>
             @php
-                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling', 'Myself']
+                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling', 'Other']
             @endphp
             @forelse ($relationship as $item)
                 <option {{ $deathRequest && $deathRequest->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
@@ -67,6 +67,13 @@
             @endforelse
         </select>
     </div>
+    
+    @if ($deathRequest->other_relationship)
+    <div class="col-md-4 mb-3">
+        <label class="form-label">&nbsp;</label>
+        <input type="text" name="other_relationship" id="other_relationship" value="{{ old('other_relationship', $deathRequest->other_relationship ?? null) }}" class="form-control" placeholder="Relationship Detail" readonly>
+    </div>
+    @endif
 
     {{-- <div class="col-md-4">
         <label class="form-label">Religion</label>
