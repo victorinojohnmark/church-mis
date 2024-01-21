@@ -11,7 +11,7 @@ class Funeral extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date', 'time', 'name', 'age', 'sex', 'relationship', 'status', 'religion', 
+    protected $fillable = ['date', 'time', 'name', 'age', 'sex', 'relationship', 'other_relationship', 'status', 'religion', 
     'address', 'date_of_death', 'cause_of_death', 'cemetery', 'funeraria', 'contact_person', 'contact_number', 'created_by_id'];
 
     protected $observables = ['reservationAccepted', 'reservationRejected'];

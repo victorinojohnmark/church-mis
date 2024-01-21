@@ -11,7 +11,7 @@ class Matrimony extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['grooms_name', 'grooms_birth_date', 'brides_name', 'brides_birth_date', 'relationship', 'wedding_date', 'time', 'contact_number', 'created_by_id'];
+    protected $fillable = ['grooms_name', 'grooms_birth_date', 'brides_name', 'brides_birth_date', 'relationship', 'other_relationship', 'wedding_date', 'time', 'contact_number', 'created_by_id'];
 
     protected $observables = ['reservationAccepted', 'reservationRejected'];
 

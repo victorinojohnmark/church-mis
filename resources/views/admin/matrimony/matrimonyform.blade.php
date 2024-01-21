@@ -32,12 +32,12 @@
         <input type="time" name="time" value="{{ old('time', $matrimony->time ?? null) }}" class="form-control" placeholder="..." readonly>
     </div>
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
         <label class="form-label">Relationship</label>
-        <select name="relationship" id="relationship" class="form-control" disabled readonly>
+        <select name="relationship" id="relationship" class="form-control" onchange="toggleRelationshipDetail()" disabled>
             <option value="{{ null }}" disabled selected>Select here...</option>
             @php
-                $relationship = ['Mother', 'Father', 'Spouse', 'Myself']
+                $relationship = ['Mother', 'Father', 'Spouse', 'Other']
             @endphp
             @forelse ($relationship as $item)
                 <option {{ $matrimony && $matrimony->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
@@ -46,6 +46,13 @@
             @endforelse
         </select>
     </div>
+    
+    @if ($matrimony->other_relationship)
+    <div class="col-md-4 mb-3">
+        <label class="form-label">&nbsp;</label>
+        <input type="text" name="other_relationship" id="other_relationship" value="{{ old('other_relationship', $matrimony->other_relationship ?? null) }}" class="form-control" placeholder="Relationship Detail" readonly>
+    </div>
+    @endif
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Contact Number</label>

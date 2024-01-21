@@ -40,9 +40,9 @@
         <small>Available Time: 7:30 AM, 9:00 AM, 10:30 AM and 4:00 PM</small>
     </div>
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
         <label class="form-label">Relationship</label>
-        <select name="relationship" id="relationship" class="form-control">
+        <select name="relationship" id="relationship" class="form-control" onchange="toggleRelationshipDetail()">
             <option value="{{ null }}" disabled selected>Select here...</option>
             @php
                 $relationship = ['Mother', 'Father', 'Spouse', 'Other']
@@ -53,6 +53,11 @@
                 
             @endforelse
         </select>
+    </div>
+    
+    <div class="col-md-4 mb-3">
+        <label class="form-label">&nbsp;</label>
+        <input type="text" name="other_relationship" id="other_relationship" value="{{ old('other_relationship', $matrimony->other_relationship ?? null) }}" class="form-control" placeholder="Relationship Detail" {{ $matrimony && $matrimony->relationship !== 'Other' ? 'disabled' : '' }} {{ $matrimony && $matrimony->relationship === 'Other' ? 'required' : '' }}>
     </div>
 
     <div class="col-md-6 mb-3">

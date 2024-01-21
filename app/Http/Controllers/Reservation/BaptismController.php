@@ -106,6 +106,7 @@ class BaptismController extends Controller
             'time' => ['required'],
             'sex' => ['required', 'in:Male,Female'],
             'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling,Other'],
+            'other_relationship' => ['required_if:relationship,Other'],
             'birth_date' => ['required', 'date'],
             'place_of_birth' => ['required'],
             'is_special' => ['sometimes', 'boolean'],
@@ -122,7 +123,8 @@ class BaptismController extends Controller
             
             //check first if date is already taken
             $isDateTaken = Baptism::where('date', $data['date'])->where('id','!=', $request->id)->exists();
-            if($isDateTaken) {
+            $isSpecial = $request->is_special ?? false;
+            if($isSpecial && $isDateTaken) {
                 session()->flash('danger', 'Date submitted was already taken');
                 return redirect()->back()->withInput();
             }
@@ -138,6 +140,7 @@ class BaptismController extends Controller
             $isDateTaken = Baptism::where('date', $data['date'])->exists();
             $isSpecial = $request->is_special ?? false;
 
+            // dd($isSpecial && $isDateTaken);
             if($isSpecial && $isDateTaken) {
                 session()->flash('danger', 'Date submitted was already taken');
                 return redirect()->back()->withInput();

@@ -75,6 +75,7 @@ class MatrimonyController extends Controller
                                 Rule::unique('matrimonies', 'wedding_date')->ignore($request->id)],
             'time' => ['required', 'in:07:30,09:00,10:30,16:00,07:30:00,09:00:00,10:30:00,16:00:00'],
             'relationship' => ['required', 'in:Mother,Father,Spouse,Other'],
+            'other_relationship' => ['required_if:relationship,Other'],
             'contact_number' => ['required', 'digits:11'],
             'created_by_id' => ['required']
         ], [

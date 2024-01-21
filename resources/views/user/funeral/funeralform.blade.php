@@ -46,9 +46,9 @@
         </select>
     </div>
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
         <label class="form-label">Relationship</label>
-        <select name="relationship" id="relationship" class="form-control">
+        <select name="relationship" id="relationship" class="form-control" onchange="toggleRelationshipDetail()">
             <option value="{{ null }}" disabled selected>Select here...</option>
             @php
                 $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling', 'Other']
@@ -60,8 +60,13 @@
             @endforelse
         </select>
     </div>
+    
+    <div class="col-md-4 mb-3">
+        <label class="form-label">&nbsp;</label>
+        <input type="text" name="other_relationship" id="other_relationship" value="{{ old('other_relationship', $funeral->other_relationship ?? null) }}" class="form-control" placeholder="Relationship Detail" {{ $funeral && $funeral->relationship !== 'Other' ? 'disabled' : '' }} {{ $funeral && $funeral->relationship === 'Other' ? 'required' : '' }}>
+    </div>
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
         @php
             $statuses = ['Single', 'Married'];
         @endphp

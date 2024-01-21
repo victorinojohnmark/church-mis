@@ -17,7 +17,7 @@
         <input type="date" name="birth_date" value="{{ $baptism->birth_date }}" class="form-control" placeholder="..." readonly>
     </div>
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
         <label class="form-label">Sex</label>
         <select name="sex" id="sex" class="form-control" readonly disabled>
             @php
@@ -31,11 +31,12 @@
         </select>
     </div>
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
         <label class="form-label">Relationship</label>
-        <select name="relationship" id="relationship" class="form-control" readonly disabled>
+        <select name="relationship" id="relationship" class="form-control" onchange="toggleRelationshipDetail()" readonyl  disabled>
+            <option value="{{ null }}" disabled selected>Select here...</option>
             @php
-                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling', 'Myself']
+                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling', 'Other']
             @endphp
             @forelse ($relationship as $item)
                 <option {{ $baptism && $baptism->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
@@ -44,6 +45,13 @@
             @endforelse
         </select>
     </div>
+    
+    @if ($baptism->other_relationship)
+    <div class="col-md-4 mb-3">
+        <label class="form-label">&nbsp;</label>
+        <input type="text" name="other_relationship" id="other_relationship" value="{{ old('other_relationship', $baptism->other_relationship ?? null) }}" class="form-control" placeholder="Relationship Detail" {{ $baptism && $baptism->relationship === 'Other' ? 'required' : '' }} disabled>
+    </div>
+    @endif
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Father's Name</label>
