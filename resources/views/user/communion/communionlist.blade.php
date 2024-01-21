@@ -23,7 +23,7 @@
                 @include('user.reservations.reservation-menu')
                 <div class="py-3 d-flex justify-content-between align-items-center">
                     <a href="{{ route('clientcommunioncreate') }}" class="btn btn-success btn-sm">Create Communion Reservation</a>
-                    <a href="/forms/first-communion-format.xlsx" class="btn btn-success btn-sm">Download Form</a>
+                    
                 </div>
                 <table id="communion-table" class="table table-hover table-bordered">
                     <thead>

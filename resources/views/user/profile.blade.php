@@ -38,6 +38,20 @@
                             </span>
                         @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Sex</label>
+                        <select name="sex" id="sex" class="form-control" required>
+                            @php
+                                $sex = ['Male', 'Female']
+                            @endphp
+                            @forelse ($sex as $item)
+                                <option {{ $user && $user->sex == $item ? 'selected' : '' }}>{{ $item }}</option>
+                            @empty
+                                
+                            @endforelse
+                        </select>
+                    </div>
         
                     <div class="mb-3">
                         <label class="form-label">Address</label>

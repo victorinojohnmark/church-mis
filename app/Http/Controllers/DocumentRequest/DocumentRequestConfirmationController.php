@@ -61,7 +61,7 @@ class DocumentRequestConfirmationController extends Controller
             'name' => ['required'],
             'birth_date' => ['required', 'date'],
             'sex' => ['required', 'in:Male,Female'],
-            'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling'],
+            'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling,Myself'],
             'contact_number' => ['required','digits:11'],
             'confirmation_date' => ['required', 'date'],
             'father_name' => ['required'],

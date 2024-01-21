@@ -68,7 +68,7 @@ class FuneralController extends Controller
             'name' => ['required'], 
             'age' => ['required'], 
             'sex' => ['required', 'in:Male,Female'],
-            'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling'],
+            'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling,Other'],
             'status' => ['required'], 
             // 'religion' => ['required'], 
             'address' => ['required'], 

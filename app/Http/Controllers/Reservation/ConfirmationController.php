@@ -66,7 +66,8 @@ class ConfirmationController extends Controller
             'file' => 'required|mimes:csv'
         ], [
             'date.after_or_equal' => 'The date field should not be older that today.',
-            'date.not_on_monday' => 'Date reservation for mondays is not valid.'
+            'date.not_on_monday' => 'Date reservation for mondays is not valid.',
+            'file.mimes' => 'The file type must be in .csv.'
         ]);
 
         if($request->id) {

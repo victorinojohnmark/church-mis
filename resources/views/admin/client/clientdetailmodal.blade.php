@@ -17,6 +17,10 @@
                     <p class="fs-5">{{ $client->birth_date }}</p>
                 </div>
                 <div>
+                    <label class="text-secondary">Sex</label>
+                    <p class="fs-5">{{ $client->sex }}</p>
+                </div>
+                <div>
                     <label class="text-secondary">Address</label>
                     <p class="fs-5">{{ $client->address }}</p>
                 </div>

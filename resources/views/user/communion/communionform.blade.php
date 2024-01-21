@@ -46,6 +46,10 @@
     </div>
 
     <div class="col-md-12 mb-3">
+        <a href="/forms/first-communion-format.xlsx" class="btn btn-success btn-sm">Download Form</a>
+    </div>
+
+    <div class="col-md-12 mb-3">
         <label for="inputFile">Upload File</label><br>
         <input type="file" name="file" class="form-control-file" id="inputFile" accept=".csv" required>
         @if ($communion->file)

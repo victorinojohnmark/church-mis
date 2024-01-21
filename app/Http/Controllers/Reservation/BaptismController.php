@@ -57,8 +57,6 @@ class BaptismController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-
         $request->merge([
             'is_special' => $request->has('is_special') && $request->input('is_special') === 'on'
         ]);
@@ -107,7 +105,7 @@ class BaptismController extends Controller
             'date' => ['required', 'date', 'special_date'],
             'time' => ['required'],
             'sex' => ['required', 'in:Male,Female'],
-            'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling'],
+            'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling,Other'],
             'birth_date' => ['required', 'date'],
             'place_of_birth' => ['required'],
             'is_special' => ['sometimes', 'boolean'],
@@ -138,7 +136,9 @@ class BaptismController extends Controller
 
             //check first if date is already taken
             $isDateTaken = Baptism::where('date', $data['date'])->exists();
-            if($isDateTaken) {
+            $isSpecial = $request->is_special ?? false;
+
+            if($isSpecial && $isDateTaken) {
                 session()->flash('danger', 'Date submitted was already taken');
                 return redirect()->back()->withInput();
             }

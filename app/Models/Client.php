@@ -15,7 +15,7 @@ class Client extends Model
 
     protected $table = 'users';
 
-    protected $fillable = ['name', 'birth_date', 'address', 'contact_number', 'email', 'password'];
+    protected $fillable = ['name', 'birth_date', 'address', 'contact_number', 'sex' , 'email', 'password'];
 
     public function scopeList($query)
     {
