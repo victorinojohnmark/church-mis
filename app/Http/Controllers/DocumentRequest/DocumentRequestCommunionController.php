@@ -59,6 +59,8 @@ class DocumentRequestCommunionController extends Controller
             'name' => ['required'],
             'birth_date' => ['required', 'date'],
             'contact_number' => ['required','digits:11'],
+            'sex' => ['required', 'in:Male,Female'],
+            'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling,Myself'],
             'communion_date' => ['required', 'date'],
             'father_name' => ['required'],
             'mother_name' => ['required'],
@@ -76,12 +78,12 @@ class DocumentRequestCommunionController extends Controller
             }
 
             session()->flash('success', 'Communion document request updated successfully.');
-            return redirect()->back();
+            return redirect()->route('client-documentrequestcommunionlist');
         } else {
             $documentRequestcommunion = DocumentRequestCommunion::create($data);
 
             session()->flash('success', 'Communion document request submitted successfully.');
-            return redirect()->back();
+            return redirect()->route('client-documentrequestcommunionlist');
         }
 
     }

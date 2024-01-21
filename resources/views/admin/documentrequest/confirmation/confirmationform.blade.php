@@ -24,6 +24,36 @@
         <input type="text" name="contact_number" class="form-control mb-3" value="{{ $confirmationRequest->id ? $confirmationRequest->contact_number : '' }}" placeholder="..." readonly>
     </div>
 
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Sex</label>
+        <select name="sex" id="sex" class="form-control" readonly disabled>
+            <option value="{{ null }}" disabled selected>Select here...</option>
+            @php
+                $sex = ['Male', 'Female']
+            @endphp
+            @forelse ($sex as $item)
+                <option {{ $confirmationRequest && $confirmationRequest->sex == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Relationship</label>
+        <select name="relationship" id="relationship" class="form-control" readonly disabled>
+            <option value="{{ null }}" disabled selected>Select here...</option>
+            @php
+                $relationship = ['Grandmother', 'Grandfather', 'Mother', 'Father', 'Sibling', 'Myself']
+            @endphp
+            @forelse ($relationship as $item)
+                <option {{ $confirmationRequest && $confirmationRequest->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>
+            @empty
+                
+            @endforelse
+        </select>
+    </div>
+
     <div class="col-md-12">
         <hr>
     </div>
