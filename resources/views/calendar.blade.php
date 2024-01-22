@@ -20,32 +20,27 @@
 
 @endsection
 
-@push('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
-@endpush
-
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
 <script>
-    $(document).ready(function () {
-        var calendar = $('#calendar').fullCalendar({
-            editable:true,
-            header:{
-                left:'prev,next today',
-                center:'title',
-                right:'month,agendaWeek,agendaDay'
+    document.addEventListener('DOMContentLoaded', function() {
+        const calendarEl = document.getElementById('calendar')
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: '/calendar',
+            eventTimeFormat: { // like '14:30:00'
+                hour: '2-digit',
+                minute: '2-digit',
+                meridiem: true
             },
-            events:'/calendar',
-            selectable:true,
-            selectHelper: true,
-            editable:false,
-            
-            
-            
-        });
-    });
-    </script>
-
+            dayMaxEventRows: true, // for all non-TimeGrid views
+            views: {
+                timeGrid: {
+                dayMaxEventRows: 3 // adjust to 6 only for timeGridWeek/timeGridDay
+                }
+            }
+        })
+        calendar.render()
+      })
+</script>
 @endpush

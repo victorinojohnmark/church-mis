@@ -24,7 +24,9 @@ class CalendarController extends Controller
             return response()->json($this->cleanEvents($request));
         }
 
-        return view('calendar');
+        return response()->json($this->cleanEvents($request));
+
+        // return view('calendar');
     }
 
     public function cleanEvents(Request $request)
