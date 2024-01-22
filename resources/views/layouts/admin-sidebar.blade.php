@@ -55,7 +55,7 @@
                           </svg>                                            
                         Document Requests
                     </a>
-                    <a href="/admin/notifications/get-notification/event" class="notificationBadgeEvent badge bg-danger rounded-pill text-decoration-none">0</a>
+                    <a href="/admin/notifications/get-notification/document_request" class="notificationBadgeDocumentRequest badge bg-danger rounded-pill text-decoration-none">0</a>
                 </span>
                 
             </li>
@@ -67,7 +67,7 @@
                           </svg>                      
                         Event Reservations
                     </a>
-                    <a href="/admin/notifications/get-notification/document_request" class="notificationBadgeEvent badge bg-danger rounded-pill text-decoration-none">0</a>
+                    <a href="/admin/notifications/get-notification/event" class="notificationBadgeEvent badge bg-danger rounded-pill text-decoration-none">0</a>
                 </span>
                 
                 
