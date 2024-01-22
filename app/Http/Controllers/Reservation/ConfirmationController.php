@@ -63,7 +63,7 @@ class ConfirmationController extends Controller
             'present_address' => ['required'],
             'contact_number' => ['required', 'digits:11'],
             'created_by_id' => ['required'],
-            'file' => 'required|mimes:csv'
+            'file' => 'required|mimes:.csv'
         ], [
             'date.after_or_equal' => 'The date field should not be older that today.',
             'date.not_on_monday' => 'Date reservation for mondays is not valid.',
