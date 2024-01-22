@@ -68,6 +68,7 @@ class MatrimonyController extends Controller
             'grooms_birth_date' => ['required', 'date'],
             'brides_name' => ['required'],
             'brides_birth_date' => ['required', 'date'],
+            'time' => ['required', 'in:07:30,09:00,10:30,16:00,07:30:00,09:00:00,10:30:00,16:00:00'],
             'wedding_date' => [
                 'required',
                 'date',
@@ -79,7 +80,6 @@ class MatrimonyController extends Controller
                             ->where('time', $request->time);
                     }),
             ],
-            'time' => ['required', 'in:07:30,09:00,10:30,16:00,07:30:00,09:00:00,10:30:00,16:00:00'],
             'relationship' => ['required', 'in:Mother,Father,Spouse,Other'],
             'other_relationship' => ['required_if:relationship,Other'],
             'contact_number' => ['required', 'digits:11'],
@@ -94,10 +94,10 @@ class MatrimonyController extends Controller
         if($request->id) {
 
             //check first if date is already taken
-            $isDateTaken = Matrimony::where('wedding_date', $data['wedding_date'])->where('id','!=', $request->id)->exists();
+            $isDateTaken = Matrimony::where('wedding_date', $data['wedding_date'])->where('time', $data['time'])->where('id','!=', $request->id)->exists();
             if($isDateTaken) {
                 session()->flash('danger', 'Wedding date submitted was already taken');
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
 
             $matrimony = Matrimony::findOrFail($request->id);
@@ -108,17 +108,17 @@ class MatrimonyController extends Controller
         } else {
 
             //check first if date is already taken
-            $isDateTaken = Matrimony::where('wedding_date', $data['wedding_date'])->exists();
+            $isDateTaken = Matrimony::where('wedding_date', $data['wedding_date'])->where('time', $data['time'])->exists();
             if($isDateTaken) {
                 session()->flash('danger', 'Wedding date submitted was already taken');
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
 
             $matrimony = Matrimony::create($data);
             session()->flash('success', 'Matrimony Reservation created successfully.');
         }
 
-        return redirect()->back();
+        return redirect()->route('clientmatrimony');
     }
 
     public function acceptreservation(Request $request)
