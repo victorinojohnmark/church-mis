@@ -36,6 +36,7 @@ class NewBaptismNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'New Baptism Document Request for '. $this->documentRequestBaptism->name,
             'message' => 'Baptism Document Request for '. $this->documentRequestBaptism->name .' was requested',
             'link' => env('APP_URL', 'localhost') . '/admin/documentrequestbaptisms'

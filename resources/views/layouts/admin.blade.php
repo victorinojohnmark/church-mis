@@ -58,6 +58,29 @@
             }
         }
     </script>
+    <script>
+        // Function to fetch notification count and update the badge
+        async function updateNotificationBadge(apiUrl, badgeSelector) {
+          try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+      
+            // Update the badge value with the fetched count
+            const badgeElement = document.querySelector(badgeSelector);
+            if (badgeElement) {
+              badgeElement.textContent = data.count;
+            }
+          } catch (error) {
+            console.error('Error fetching notification count:', error);
+          }
+        }
+      
+        // Fetch and update Event notification count
+        updateNotificationBadge('/admin/notifications/get-notification-count/event', '.notificationBadgeEvent');
+      
+        // Fetch and update Document Request notification count
+        updateNotificationBadge('/admin/notifications/get-notification-count/document_request', '.notificationBadgeDocumentRequest');
+      </script>
 </body>
 
 </html>

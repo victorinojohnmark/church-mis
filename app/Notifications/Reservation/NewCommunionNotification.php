@@ -43,6 +43,7 @@ class NewCommunionNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'New Holy First Communion Reservation for '. $this->communion->name,
             'message' => 'Holy First Communion reservation for '. $this->communion->name .' was requested',
             'link' => env('APP_URL', 'localhost') . '/admin/communions'

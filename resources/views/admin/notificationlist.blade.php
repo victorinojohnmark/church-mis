@@ -13,13 +13,17 @@
         <tr>
             <th>Message</th>
             <th>Date</th>
+            <th>Option</th>
         </tr>
     </thead>
     <tbody>
         @forelse ($notifications as $notification)
         <tr>
             <td>{!! $notification->data['message'] !!}</td>
-            <td>{!! $notification->created_at !!}</td>
+            <td>{!! $notification->created_at->diffForHumans() !!}</td>
+            <td>
+                <a href="/admin/notifications/{{ $notification->id }}/delete" class="text-danger">Delete</a>
+            </td>
         </tr>
         @empty
             

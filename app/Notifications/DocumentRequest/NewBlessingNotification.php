@@ -37,6 +37,7 @@ class NewBlessingNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'New Blessing Document Request for '. $this->documentRequestBlessing->name,
             'message' => 'Blessing Document Request for '. $this->documentRequestBlessing->name .' was requested',
             'link' => env('APP_URL', 'localhost') . '/admin/documentrequestblessings'

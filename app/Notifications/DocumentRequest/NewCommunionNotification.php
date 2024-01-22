@@ -36,6 +36,7 @@ class NewCommunionNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'New Communion Document Request for '. $this->documentRequestCommunion->name,
             'message' => 'Communion Document Request for '. $this->documentRequestCommunion->name .' was requested',
             'link' => env('APP_URL', 'localhost') . '/admin/documentrequestcommunions'

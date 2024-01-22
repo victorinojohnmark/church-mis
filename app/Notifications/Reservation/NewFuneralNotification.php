@@ -36,6 +36,7 @@ class NewFuneralNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'New Funeral Reservation for '. $this->funeral->name,
             'message' => 'Funeral reservation for '. $this->funeral->name .' was requested',
             'link' => env('APP_URL', 'localhost') . '/admin/funerals'

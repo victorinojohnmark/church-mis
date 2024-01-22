@@ -36,6 +36,7 @@ class NewConfirmationNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'New Confirmation Document Request for '. $this->documentRequestConfirmation->name,
             'message' => 'Confirmation Document Request for '. $this->documentRequestConfirmation->name .' was requested',
             'link' => env('APP_URL', 'localhost') . '/admin/documentrequestconfirmations'

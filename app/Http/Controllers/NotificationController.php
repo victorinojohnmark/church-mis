@@ -39,7 +39,7 @@ class NotificationController extends Controller
     {
         $client = Client::findOrFail(Auth::id());
         // Fetch the count of notifications based on the event_type
-        $notificationCount = $client->notifications()
+        $notificationCount = $client->unreadNotifications()
             ->whereJsonContains('data->type', $event_type)
             ->count();
 
@@ -50,7 +50,7 @@ class NotificationController extends Controller
     {
         $client = Client::findOrFail(Auth::id());
         // Fetch notification records based on the event_type
-        $notifications = $client->notifications()
+        $notifications = $client->unreadNotifications()
             ->whereJsonContains('data->type', $event_type)
             ->get();
 

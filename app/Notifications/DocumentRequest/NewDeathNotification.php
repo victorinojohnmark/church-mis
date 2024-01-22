@@ -36,6 +36,7 @@ class NewDeathNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'New Death Document Request for '. $this->documentRequestDeath->name,
             'message' => 'Death Document Request for '. $this->documentRequestDeath->name .' was requested',
             'link' => env('APP_URL', 'localhost') . '/admin/documentrequestdeaths'

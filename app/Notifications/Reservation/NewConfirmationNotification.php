@@ -37,6 +37,7 @@ class NewConfirmationNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'New Confirmation Reservation for '. $this->confirmation->name,
             'message' => 'Confirmation reservation for '. $this->confirmation->name .' was requested',
             'link' => env('APP_URL', 'localhost') . '/admin/confirmations'

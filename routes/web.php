@@ -42,6 +42,9 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
 
     //Notification
     Route::get('/notifications', [App\Http\Controllers\AdminNotificationController::class, 'index'])->name('admin-notificationlist');
+    Route::get('/notifications/{notification}/delete', [App\Http\Controllers\AdminNotificationController::class, 'destroy'])->name('admin-notificationdelete');
+    Route::get('/notifications/get-notification-count/{event}', [App\Http\Controllers\AdminNotificationController::class, 'getEventNotificationCount'])->name('admin-getEventNotificationCount');
+    Route::get('/notifications/get-notification/{event_type}', [App\Http\Controllers\AdminNotificationController::class, 'getEventNotification'])->name('admin-getEventNotification');
 
     //Events
     Route::get('/events-list', [App\Http\Controllers\EventController::class, 'adminindex'])->name('admin-eventlist');

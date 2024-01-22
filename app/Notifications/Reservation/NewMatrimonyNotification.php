@@ -37,6 +37,7 @@ class NewMatrimonyNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'New Matrimony Reservation for '. $this->matrimony->name,
             'message' => 'Matrimony reservation for '. $this->matrimony->name .' was requested',
             'link' => env('APP_URL', 'localhost') . '/admin/matrimonies'
