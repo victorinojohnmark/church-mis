@@ -10,13 +10,13 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 style="color: #39B5A4;">Baptism Document Requests</h1>
                     <!-- Bell Icon with Notification Count -->
-                    <a href="{{ route('usernotification') }}" class="">
+                    {{-- <a href="{{ route('usernotification') }}" class="">
                         <div class="position-relative" style="padding-right: 12px;">
                             <i class="fas fa-bell pr-3" style="font-size: 25px;"></i>
                             <span class="notification-pill badge bg-danger rounded-circle">{{ $notificationCount }}</span>
                         </div>
                         
-                    </a>
+                    </a> --}}
                 </div>
                 
                 <hr>

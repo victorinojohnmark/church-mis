@@ -34,4 +34,28 @@ class NotificationController extends Controller
             return redirect()->back()->with('error', 'Notification not found.');
         }
     }
+
+    public function getEventNotificationCount($event_type)
+    {
+        $client = Client::findOrFail(Auth::id());
+        // Fetch the count of notifications based on the event_type
+        $notificationCount = $client->notifications()
+            ->whereJsonContains('data->type', $event_type)
+            ->count();
+
+        return response()->json(['count' => $notificationCount]);
+    }
+
+    public function getEventNotification($event_type)
+    {
+        $client = Client::findOrFail(Auth::id());
+        // Fetch notification records based on the event_type
+        $notifications = $client->notifications()
+            ->whereJsonContains('data->type', $event_type)
+            ->get();
+
+        return view('user.notificationlist', [
+            'notifications' => $notifications,
+        ]);
+    }
 }

@@ -45,6 +45,7 @@ class ConfirmationAcceptNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'Confirmation reservation accepted',
             'message' => 'Your confirmation reservation for ' . $this->confirmation->name . ' has been accepted.',
             'link' => env('APP_URL', 'localhost') . '/user/confirmations'

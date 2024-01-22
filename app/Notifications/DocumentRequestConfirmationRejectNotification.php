@@ -51,6 +51,7 @@ class DocumentRequestConfirmationRejectNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Comfirmation document request for '. $this->documentRequestConfirmation->name,
             'message' => 'Your confirmation document request for ' . $this->documentRequestConfirmation->name . ' has been rejected.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestconfirmations'

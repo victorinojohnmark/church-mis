@@ -40,6 +40,7 @@ class DocumentRequestMatrimonyReadyNotification extends Notification implements 
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Matrimony document requested is ready',
             'message' => 'Your matrimony document request for ' . $this->documentRequestMatrimony->grooms_name . ' and ' . $this->documentRequestMatrimony->brides_name . ' is now ready for pick up.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestmatrimonies'

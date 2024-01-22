@@ -51,6 +51,7 @@ class DocumentRequestDeathRejectNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Death document request for '. $this->documentRequestDeath->name,
             'message' => 'Your death document request for ' . $this->documentRequestDeath->name . ' has been rejected.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestdeaths'

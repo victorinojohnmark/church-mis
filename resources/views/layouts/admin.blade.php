@@ -24,7 +24,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h1>@yield('title')</h1>
                     <!-- Bell Icon with Notification Count -->
-                    @if (isset($notificationCount))
+                    {{-- @if (isset($notificationCount))
                     <a href="{{ route('admin-notificationlist') }}" class="">
                         <div class="position-relative" style="padding-right: 12px;">
                             <i class="fas fa-bell pr-3" style="font-size: 25px;"></i>
@@ -32,7 +32,7 @@
                         </div>
                         
                     </a>
-                    @endif
+                    @endif --}}
                     
                 </div>
                 <hr> @include('layouts.message')

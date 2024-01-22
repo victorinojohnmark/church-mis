@@ -45,6 +45,7 @@ class DocumentRequestReadyNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Document requested is ready',
             'message' => 'Your document request for ' . $this->documentRequest->name . ' is now ready for pick up.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequest'

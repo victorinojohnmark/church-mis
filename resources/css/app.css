@@ -175,7 +175,7 @@ ul#userSidebar li a {
     display: block;
 }
 
-ul#userSidebar li a.active, ul#userSidebar li a:hover {
+ul#userSidebar li > a.active, ul#userSidebar li > a:hover, ul#userSidebar li > span:hover, ul#userSidebar li > span:hover a {
     background-color: #3CB3A3;
     color: white !important;
 }

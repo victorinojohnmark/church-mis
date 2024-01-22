@@ -45,6 +45,7 @@ class DocumentRequestConfirmationReadyNotification extends Notification implemen
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Confirmation document requested is ready',
             'message' => 'Your confirmation document request for ' . $this->documentRequestConfirmation->name . ' is now ready for pick up.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestconfirmations'

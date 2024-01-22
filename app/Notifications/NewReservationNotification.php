@@ -42,6 +42,7 @@ class NewReservationNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'New ' . $this->detail['transaction'] . ' reservation accepted',
             'message' => $this->detail['transaction'] . ' reservation was requested by ' . $this->detail['user'] . ' on ' . $this->detail['date'],
             'link' => env('APP_URL', 'localhost') . $this->detail['url']

@@ -45,6 +45,7 @@ class CommunionAcceptNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'Communion reservation accepted',
             'message' => 'Your communion reservation for ' . $this->communion->name . ' has been accepted.',
             'link' => env('APP_URL', 'localhost') . '/user/communions'

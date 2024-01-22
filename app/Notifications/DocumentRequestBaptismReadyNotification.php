@@ -58,6 +58,7 @@ class DocumentRequestBaptismReadyNotification extends Notification implements Sh
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Baptism document requested is ready',
             'message' => 'Your baptism document request for ' . $this->documentRequestBaptism->name . ' is now ready for pick up.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestbaptisms'

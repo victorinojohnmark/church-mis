@@ -43,6 +43,7 @@ class FuneralAcceptNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'Funeral reservation accepted',
             'message' => 'Your funeral reservation for ' . $this->funeral->name . ' has been accepted.',
             'link' => env('APP_URL', 'localhost') . '/user/funerals'

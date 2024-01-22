@@ -51,6 +51,7 @@ class ConfirmationRejectNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'Confirmation reservation rejected',
             'message' => 'Your confirmation reservation for ' . $this->confirmation->name . ' has been rejected.',
             'link' => env('APP_URL', 'localhost') . '/user/confirmations'

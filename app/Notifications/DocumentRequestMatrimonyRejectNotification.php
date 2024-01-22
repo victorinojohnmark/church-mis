@@ -51,6 +51,7 @@ class DocumentRequestMatrimonyRejectNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Matrimony document request for '. $this->documentRequestMatrimony->name,
             'message' => 'Your matrimony document request for ' . $this->documentRequestMatrimony->grooms_name . ' and ' . $this->documentRequestMatrimony->brides_name . ' has been rejected.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestmatrimonies'

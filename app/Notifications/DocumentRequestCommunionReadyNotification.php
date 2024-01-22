@@ -45,6 +45,7 @@ class DocumentRequestCommunionReadyNotification extends Notification implements 
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Communion document requested is ready',
             'message' => 'Your communion document request for ' . $this->documentRequestCommunion->name . ' is now ready for pick up.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestcommunions'

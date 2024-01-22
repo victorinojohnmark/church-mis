@@ -51,6 +51,7 @@ class CommunionRejectNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'Communion reservation rejected',
             'message' => 'Your communion reservation for ' . $this->communion->name . ' has been rejected.',
             'link' => env('APP_URL', 'localhost') . '/user/communions'

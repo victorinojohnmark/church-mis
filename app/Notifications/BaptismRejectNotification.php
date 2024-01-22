@@ -51,6 +51,7 @@ class BaptismRejectNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'Baptism reservation rejected',
             'message' => 'Your baptism reservation for ' . $this->baptism->name . ' has been rejected.',
             'link' => env('APP_URL', 'localhost') . '/user/baptisms'

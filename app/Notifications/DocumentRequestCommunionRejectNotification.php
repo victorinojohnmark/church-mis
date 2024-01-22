@@ -51,6 +51,7 @@ class DocumentRequestCommunionRejectNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Communion document request for '. $this->documentRequestCommunion->name,
             'message' => 'Your communion document request for ' . $this->documentRequestCommunion->name . ' has been rejected.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestcommunions'

@@ -51,6 +51,7 @@ class DocumentRequestBlessingRejectNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Blessing document request for '. $this->documentRequestBlessing->name,
             'message' => 'Your blessing document request for ' . $this->documentRequestBlessing->name . ' has been rejected.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestblessings'

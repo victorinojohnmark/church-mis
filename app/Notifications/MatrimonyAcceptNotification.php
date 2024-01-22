@@ -56,6 +56,7 @@ class MatrimonyAcceptNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'Matrimony reservation accepted',
             'message' => 'Your matrimony reservation for ' . $this->matrimony->grooms_name . ' and ' . $this->matrimony->brides_name . ' has been accepted.',
             'link' => env('APP_URL', 'localhost') . '/user/matrimonies'

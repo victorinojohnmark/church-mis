@@ -53,6 +53,7 @@ class DocumentRequestDeathReadyNotification extends Notification implements Shou
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Death document requested is ready',
             'message' => 'Your Death document request for ' . $this->documentRequestDeath->name . ' is now ready for pick up.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestdeaths'

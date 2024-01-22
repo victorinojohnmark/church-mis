@@ -40,6 +40,7 @@ class DocumentRequestBlessingReadyNotification extends Notification implements S
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'document_request',
             'title' => 'Blessing document requested is ready',
             'message' => 'Your blessing document request for ' . $this->documentRequestBlessing->name . ' is now ready for pick up.',
             'link' => env('APP_URL', 'localhost') . '/user/documentrequestblessings'

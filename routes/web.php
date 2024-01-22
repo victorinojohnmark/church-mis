@@ -166,6 +166,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     //notification
     Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('usernotification');
     Route::get('/notifications/{notification}/delete', [App\Http\Controllers\NotificationController::class, 'destroy'])->name('usernotificationdelete');
+    Route::get('/notifications/get-notification-count/{event}', [App\Http\Controllers\NotificationController::class, 'getEventNotificationCount'])->name('getEventNotificationCount');
+    Route::get('/notifications/get-notification/{event_type}', [App\Http\Controllers\NotificationController::class, 'getEventNotification'])->name('getEventNotification');
 
     //reservation
     Route::get('/reservations', [App\Http\Controllers\ClientController::class, 'reservation'])->name('clientreservations');

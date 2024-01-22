@@ -45,6 +45,7 @@ class BlessingAcceptNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
+            'type' => 'event',
             'title' => 'Blessing reservation accepted',
             'message' => 'Your blessing reservation for ' . $this->blessing->name . ' has been accepted.',
             'link' => env('APP_URL', 'localhost') . '/user/blessings'
