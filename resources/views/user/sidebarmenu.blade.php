@@ -22,7 +22,7 @@
         </li>
         <li>
             <span class="w-100 py-2 px-3 mb-2 text-dark rounded-pill d-inline-flex justify-content-between align-items-center {{ request()->routeIs('client-documentrequestlist') ? 'active' : '' }}">
-                <a href="{{ route('clientreservations') }}" class="text-decoration-none text-dark"><i class="fas fa-calendar me-2"></i> Document Request</a>
+                <a href="{{ route('client-documentrequestlist') }}" class="text-decoration-none text-dark"><i class="fas fa-calendar me-2"></i> Document Request</a>
                 <a href="/user/notifications/get-notification/document_request" class="notificationBadgeDocumentRequest badge bg-danger rounded-pill">0</a>
             </span>
         </li>

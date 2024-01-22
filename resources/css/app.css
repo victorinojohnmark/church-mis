@@ -180,9 +180,16 @@ ul#userSidebar li > a.active, ul#userSidebar li > a:hover, ul#userSidebar li > s
     color: white !important;
 }
 
-/* .fc-day-grid-event .fc-content {
-    white-space: inherit !important;
-} */
+.fc-daygrid-event {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fc-daygrid-event .fc-event-title {
+    white-space: normal !important;
+    /* display: block; */
+    /* background-color: red !important; */
+}
 
 .notification-pill {
     position: absolute;
