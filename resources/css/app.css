@@ -183,6 +183,7 @@ ul#userSidebar li > a.active, ul#userSidebar li > a:hover, ul#userSidebar li > s
 .fc-daygrid-event {
     display: flex;
     flex-wrap: wrap;
+    font-size: 8.5px;
 }
 
 .fc-daygrid-event .fc-event-title {

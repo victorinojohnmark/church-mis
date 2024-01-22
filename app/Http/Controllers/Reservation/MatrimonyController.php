@@ -50,8 +50,6 @@ class MatrimonyController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        // dd($request->route('matrimony'));
 
         // Add custom validation rules
         Validator::extend('not_past_date', function ($attribute, $value, $parameters, $validator) {
@@ -61,7 +59,6 @@ class MatrimonyController extends Controller
         Validator::extend('day_of_week', function ($attribute, $value, $parameters, $validator) {
             $allowedDays = $parameters;
             $formattedDay = Carbon::parse($value)->format('D');
-            // dd($formattedDay); // Debugging statement
         
             return in_array($formattedDay, $allowedDays);
         });
@@ -71,8 +68,17 @@ class MatrimonyController extends Controller
             'grooms_birth_date' => ['required', 'date'],
             'brides_name' => ['required'],
             'brides_birth_date' => ['required', 'date'],
-            'wedding_date' => ['required', 'date', 'day_of_week:Tue,Wed,Thu,Fri,Sat', 'not_past_date', 
-                                Rule::unique('matrimonies', 'wedding_date')->ignore($request->id)],
+            'wedding_date' => [
+                'required',
+                'date',
+                'day_of_week:Tue,Wed,Thu,Fri,Sat',
+                'not_past_date',
+                Rule::unique('matrimonies')->ignore($request->id)
+                    ->where(function ($query) use ($request) {
+                        return $query->where('wedding_date', $request->wedding_date)
+                            ->where('time', $request->time);
+                    }),
+            ],
             'time' => ['required', 'in:07:30,09:00,10:30,16:00,07:30:00,09:00:00,10:30:00,16:00:00'],
             'relationship' => ['required', 'in:Mother,Father,Spouse,Other'],
             'other_relationship' => ['required_if:relationship,Other'],
@@ -81,7 +87,7 @@ class MatrimonyController extends Controller
         ], [
             'wedding_date.day_of_week' => 'The wedding date must be a Tuesday, Wednesday, Thursday, Friday, or Saturday.',
             'wedding_date.not_past_date' => 'The wedding date must be today or in the future.',
-            'wedding_date.unique' => 'There is already a wedding scheduled for the selected date.',
+            'wedding_date.unique' => 'There is already a wedding scheduled for the selected date and time.',
             'time.in' => 'Invalid time selected.',
         ]);
 

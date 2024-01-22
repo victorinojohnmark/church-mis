@@ -62,52 +62,45 @@ class FuneralController extends Controller
         });
 
         $data = $request->validate([
-            'date' => ['required', 'date', 'after_or_equal:' . Date::today(), 'not_on_monday',
-                        Rule::unique('funerals', 'date')->ignore($request->id)], 
-            'time' => ['required', 'time_range'], 
-            'name' => ['required'], 
-            'age' => ['required'], 
+            'date' => [
+                'required',
+                'date',
+                'after_or_equal:' . Date::today(),
+                'not_on_monday',
+                Rule::unique('funerals')->ignore($request->id)
+                    ->where(function ($query) use ($request) {
+                        return $query->where('date', $request->date)
+                            ->where('time', $request->time);
+                    }),
+            ],
+            'time' => ['required', 'time_range'],
+            'name' => ['required'],
+            'age' => ['required'],
             'sex' => ['required', 'in:Male,Female'],
             'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling,Other'],
             'other_relationship' => ['required_if:relationship,Other'],
-            'status' => ['required'], 
-            // 'religion' => ['required'], 
-            'address' => ['required'], 
+            'status' => ['required'],
+            'address' => ['required'],
             'date_of_death' => ['required', 'date'],
-            'cause_of_death' => ['required'], 
-            'cemetery' => ['required'], 
-            'funeraria' => ['required'], 
-            'contact_person' => ['required'], 
-            'contact_number' => ['required','digits:11'], 
+            'cause_of_death' => ['required'],
+            'cemetery' => ['required'],
+            'funeraria' => ['required'],
+            'contact_person' => ['required'],
+            'contact_number' => ['required', 'digits:11'],
             'created_by_id' => ['required'],
         ], [
-            'date.after_or_equal' => 'The date field should not be older that today.',
-            'date.not_on_monday' => 'Date reservation for mondays is not valid.',
-            'time.time_range' => 'Time reservation should be between 8:00am to 5:00pm.'
+            'date.after_or_equal' => 'The date field should not be older than today.',
+            'date.not_on_monday' => 'Date reservation for Mondays is not valid.',
+            'time.time_range' => 'Time reservation should be between 8:00 am to 5:00 pm.',
         ]);
 
         if($request->id) {
-            //check first if date is already taken
-            // $isDateTaken = Funeral::where('date', $data['date'])->where('id','!=', $request->id)->exists();
-            // if($isDateTaken) {
-            //     session()->flash('danger', 'Date submitted was already taken');
-            //     return redirect()->back();
-            // }
-
             $funeraria = Funeral::findOrFail($request->id);
             $funeraria->fill($data);
             $funeraria->save();
 
             session()->flash('success', 'Funeral Mass Reservation updated successfully.');
         } else {
-
-            //check first if date is already taken
-            // $isDateTaken = Funeral::where('date', $data['date'])->exists();
-            // if($isDateTaken) {
-            //     session()->flash('danger', 'Date submitted was already taken');
-            //     return redirect()->back();
-            // }
-
             $funeraria = Funeral::Create($data);
             session()->flash('success', 'Funeral Mass Reservation created successfully.');
         }
