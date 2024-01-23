@@ -31,7 +31,7 @@
 
     <div class="col-md-12 mb-3">
         <label for="inputFile">Upload File</label><br>
-        <input type="file" name="file" class="form-control-file" id="inputFile" accept=".csv" required>
+        <input type="file" name="file" class="form-control-file" id="inputFile" accept=".xls, .xlsx, .csv" required>
         @if ($confirmation->file)
         <a href="/storage/{{ $confirmation->file }}">Download File</a>
         @endif
