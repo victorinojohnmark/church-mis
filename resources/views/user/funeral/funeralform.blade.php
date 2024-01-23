@@ -24,6 +24,7 @@
     <div class="col-md-6 mb-3">
         <label class="form-label">Time</label>
         <input type="time" name="time" value="{{ old('time', $funeral->time ?? null) }}" class="form-control" placeholder="..." required>
+        <small>Available Time: 1:00PM, 2:00 PM, 3:00 PM</small>
     </div>
 
     <div class="col-md-6 mb-3">

@@ -29,6 +29,7 @@
                         <tr>
                             <th>Groom and Bride's Name</th>
                             <th>Wedding Date</th>
+                            <th>Time</th>
                             <th>Submitted At</th>
                             <th>Options</th>
                         </tr>
@@ -47,6 +48,7 @@
                                 @endif
                             </td>
                             <td>{{ $matrimony->wedding_date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($matrimony->time)->format('h:i A') }}</td>
                             <td>{{ $matrimony->created_at }}</td>
                             <td>
                                 <a href="{{ route('clientmatrimonyshow', ['matrimony' => $matrimony->id]) }}" class="btn btn-primary btn-sm">View</a>

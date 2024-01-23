@@ -49,7 +49,7 @@
                                 @endif
                             </td>
                             <td>{{ $funeral->date }}</td>
-                            <td>{{ $funeral->time }}</td>
+                            <td>{{ \Carbon\Carbon::parse($funeral->time)->format('h:i A') }}</td>
                             <td>{{ $funeral->age }}</td>
                             <td>{{ $funeral->address }}</td>
                             <td>

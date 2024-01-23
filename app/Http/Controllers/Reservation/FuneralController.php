@@ -53,13 +53,13 @@ class FuneralController extends Controller
             return Date::parse($value)->dayOfWeek !== 1; // 1 represents Monday
         });
 
-        Validator::extend('time_range', function ($attribute, $value, $parameters, $validator) {
-            $startTime = strtotime('08:00');
-            $endTime = strtotime('17:00');
-            $selectedTimestamp = strtotime($value);
+        // Validator::extend('time_range', function ($attribute, $value, $parameters, $validator) {
+        //     $startTime = strtotime('08:00');
+        //     $endTime = strtotime('17:00');
+        //     $selectedTimestamp = strtotime($value);
         
-            return $selectedTimestamp >= $startTime && $selectedTimestamp <= $endTime;
-        });
+        //     return $selectedTimestamp >= $startTime && $selectedTimestamp <= $endTime;
+        // });
 
         $data = $request->validate([
             'date' => [
@@ -73,7 +73,7 @@ class FuneralController extends Controller
                             ->where('time', $request->time);
                     }),
             ],
-            'time' => ['required', 'time_range'],
+            'time' => ['required', 'in:13:00,14:00,15:00,13:00:00,14:00:00,15:00:00'],
             'name' => ['required'],
             'age' => ['required'],
             'sex' => ['required', 'in:Male,Female'],
@@ -91,7 +91,8 @@ class FuneralController extends Controller
         ], [
             'date.after_or_equal' => 'The date field should not be older than today.',
             'date.not_on_monday' => 'Date reservation for Mondays is not valid.',
-            'time.time_range' => 'Time reservation should be between 8:00 am to 5:00 pm.',
+            'date.unique' => 'Date and time has already been taken.'
+            // 'time.time_range' => 'Time reservation should be between 8:00 am to 5:00 pm.',
         ]);
 
         if($request->id) {
