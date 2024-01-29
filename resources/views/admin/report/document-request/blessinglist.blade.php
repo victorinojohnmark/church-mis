@@ -65,7 +65,7 @@
             <th>Blessing Date</th>
             <th>Type</th>
             <th>Contact #</th>
-            <th>Status</th>
+            {{-- <th>Status</th> --}}
             <th>Requested Date</th>
             <th>Submitted By</th>
         </tr>
@@ -77,7 +77,7 @@
                 <td>{!! $blessingRequest->blessing_date !!}</td>
                 <td>{!! $blessingRequest->blessing_type !!}</td>
                 <td>{!! $blessingRequest->contact_number !!}</td>
-                <td>{!! $blessingRequest->status !!}</td>
+                {{-- <td>{!! $blessingRequest->status !!}</td> --}}
                 <td>{!! $blessingRequest->created_at->format('Y-m-d') !!}</td>
                 <td>{!! $blessingRequest->createdBy->name !!}</td>
             </tr>

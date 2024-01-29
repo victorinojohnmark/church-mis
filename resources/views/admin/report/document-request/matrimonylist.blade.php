@@ -56,7 +56,7 @@
             <th>Bride's Name</th>
             <th>Matrimony Date</th>
             <th>Contact #</th>
-            <th>Status</th>
+            {{-- <th>Status</th> --}}
             <th>Requested Date</th>
             <th>Submitted By</th>
         </tr>
@@ -68,7 +68,7 @@
                 <td>{!! $matrimonyRequest->brides_name !!}</td>
                 <td>{!! $matrimonyRequest->matrimony_date !!}</td>
                 <td>{!! $matrimonyRequest->contact_number !!}</td>
-                <td>{!! $matrimonyRequest->status !!}</td>
+                {{-- <td>{!! $matrimonyRequest->status !!}</td> --}}
                 <td>{!! $matrimonyRequest->created_at->format('Y-m-d') !!}</td>
                 <td>{!! $matrimonyRequest->createdBy->name !!}</td>
             </tr>

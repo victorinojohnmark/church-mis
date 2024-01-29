@@ -50,7 +50,7 @@
             <th>Name</th>
             <th>Confirmation Date</th>
             <th>Contact #</th>
-            <th>Status</th>
+            {{-- <th>Status</th> --}}
             <th>Purpose</th>
             <th>Requested Date</th>
             <th>Submitted By</th>
@@ -62,7 +62,7 @@
                 <td>{!! $confirmationRequest->name !!}</td>
                 <td>{!! $confirmationRequest->confirmation_date !!}</td>
                 <td>{!! $confirmationRequest->contact_number !!}</td>
-                <td>{!! $confirmationRequest->status !!}</td>
+                {{-- <td>{!! $confirmationRequest->status !!}</td> --}}
                 <td>{!! $confirmationRequest->purpose !!}</td>
                 <td>{!! $confirmationRequest->created_at->format('Y-m-d') !!}</td>
                 <td>{!! $confirmationRequest->createdBy->name !!}</td>

@@ -50,7 +50,7 @@
             <th>Name</th>
             <th>Baptismal Date</th>
             <th>Contact #</th>
-            <th>Status</th>
+            {{-- <th>Status</th> --}}
             <th>Purpose</th>
             <th>Requested Date</th>
             <th>Submitted By</th>
@@ -62,7 +62,7 @@
                 <td>{!! $baptismRequest->name !!}</td>
                 <td>{!! $baptismRequest->baptismal_date !!}</td>
                 <td>{!! $baptismRequest->contact_number !!}</td>
-                <td>{!! $baptismRequest->status !!}</td>
+                {{-- <td>{!! $baptismRequest->status !!}</td> --}}
                 <td>{!! $baptismRequest->purpose !!}</td>
                 <td>{!! $baptismRequest->created_at->format('Y-m-d') !!}</td>
                 <td>{!! $baptismRequest->createdBy->name !!}</td>

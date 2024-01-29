@@ -51,7 +51,7 @@
             <th>Date of Death</th>
             <th>Cause of Death</th>
             <th>Contact #</th>
-            <th>Status</th>
+            {{-- <th>Status</th> --}}
             <th>Requested Date</th>
             <th>Submitted By</th>
         </tr>
@@ -63,7 +63,7 @@
                 <td>{!! $deathRequest->date_of_death !!}</td>
                 <td>{!! $deathRequest->cause_of_death !!}</td>
                 <td>{!! $deathRequest->contact_number !!}</td>
-                <td>{!! $deathRequest->status !!}</td>
+                {{-- <td>{!! $deathRequest->status !!}</td> --}}
                 <td>{!! $deathRequest->created_at->format('Y-m-d') !!}</td>
                 <td>{!! $deathRequest->createdBy->name !!}</td>
             </tr>

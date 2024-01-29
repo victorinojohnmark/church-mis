@@ -50,7 +50,7 @@
             <th>Name</th>
             <th>Communion Date</th>
             <th>Contact #</th>
-            <th>Status</th>
+            {{-- <th>Status</th> --}}
             <th>Purpose</th>
             <th>Requested Date</th>
             <th>Submitted By</th>
@@ -62,7 +62,7 @@
                 <td>{!! $communionRequest->name !!}</td>
                 <td>{!! $communionRequest->communion_date !!}</td>
                 <td>{!! $communionRequest->contact_number !!}</td>
-                <td>{!! $communionRequest->status !!}</td>
+                {{-- <td>{!! $communionRequest->status !!}</td> --}}
                 <td>{!! $communionRequest->purpose !!}</td>
                 <td>{!! $communionRequest->created_at->format('Y-m-d') !!}</td>
                 <td>{!! $communionRequest->createdBy->name !!}</td>
