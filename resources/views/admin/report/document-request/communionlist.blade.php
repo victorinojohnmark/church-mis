@@ -96,7 +96,20 @@
                 },
                 dom: 'Blfrtip',
                 buttons: [
-                    'copy', 'excel', 'print'
+                    {
+                        extend: 'copy',
+                        text: 'Copy'
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'Excel',
+                        title: 'Saint Gregory the Great Parish Church' // Set your desired title here
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        title: 'Saint Gregory the Great Parish Church'
+                    }
                 ]
             });
 
