@@ -136,4 +136,12 @@ class FuneralController extends Controller
         session()->flash('success', 'The funeral reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
+
+    public function destroy($id)
+    {
+        Funeral::where('id', $id)->delete();
+
+        session()->flash('success', 'Deleted Successfully');
+        return back();
+    }
 }

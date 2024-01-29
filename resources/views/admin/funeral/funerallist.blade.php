@@ -46,6 +46,14 @@
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#funeralRejectModal{{ $funeral->id }}">Reject</button>
                     @include('admin.funeral.funeralrejectmodal')
                 @endif
+
+                @if ($funeral->is_accepted)
+                    <form action="{{ route('funeral.delete', $funeral->id) }}" method="POST" enctype="multipart/form-data">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                @endif
             </td>
         </tr>
         @empty

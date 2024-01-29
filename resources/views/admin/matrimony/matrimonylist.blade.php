@@ -42,6 +42,14 @@
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#matrimonyRejectModal{{ $matrimony->id }}">Reject</button>
                     @include('admin.matrimony.matrimonyrejectmodal')
                 @endif
+
+                @if ($matrimony->is_accepted)
+                    <form action="{{ route('matrimony.delete', $matrimony->id) }}" method="POST" enctype="multipart/form-data">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                @endif
             </td>
         </tr>
         @empty

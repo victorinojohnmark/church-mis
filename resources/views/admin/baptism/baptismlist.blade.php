@@ -44,6 +44,14 @@
                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#baptismRejectModal{{ $baptism->id }}">Reject</button>
                         @include('admin.baptism.baptismrejectmodal')
                     @endif
+
+                    @if ($baptism->is_accepted)
+                        <form action="{{ route('baptism.delete', $baptism->id) }}" method="POST" enctype="multipart/form-data">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    @endif
                 </td>
             </tr>
         @empty

@@ -182,4 +182,12 @@ class BaptismController extends Controller
         session()->flash('warning', 'The baptism reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
+
+    public function destroy($id)
+    {
+        Baptism::where('id', $id)->delete();
+
+        session()->flash('success', 'Deleted Successfully');
+        return back();
+    }
 }

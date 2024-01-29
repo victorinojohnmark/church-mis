@@ -102,11 +102,13 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::get('/baptisms', [App\Http\Controllers\Reservation\BaptismController::class, 'index'])->name('baptismlist');
     Route::post('/baptismaccept', [App\Http\Controllers\Reservation\BaptismController::class, 'acceptreservation'])->name('baptismaccept');
     Route::post('/baptismreject', [App\Http\Controllers\Reservation\BaptismController::class, 'rejectreservation'])->name('baptismreject');
+    Route::delete('/baptism/{id}/delete', [App\Http\Controllers\Reservation\BaptismController::class, 'destroy'])->name('baptism.delete');
 
     //Communion
     Route::get('/communions', [App\Http\Controllers\Reservation\CommunionController::class, 'index'])->name('communionlist');
     Route::post('/communionaccept', [App\Http\Controllers\Reservation\CommunionController::class, 'acceptreservation'])->name('communionaccept');
     Route::post('/communionreject', [App\Http\Controllers\Reservation\CommunionController::class, 'rejectreservation'])->name('communionreject');
+    Route::delete('/communion/{id}/delete', [App\Http\Controllers\Reservation\CommunionController::class, 'destroy'])->name('communion.delete');
 
     //Confirmation
     Route::get('/confirmations', [App\Http\Controllers\Reservation\ConfirmationController::class, 'index'])->name('confirmationlist');
@@ -117,16 +119,19 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::get('/matrimonies', [App\Http\Controllers\Reservation\MatrimonyController::class, 'index'])->name('matrimonylist');
     Route::post('/matrimonyaccept', [App\Http\Controllers\Reservation\MatrimonyController::class, 'acceptreservation'])->name('matrimonyaccept');
     Route::post('/matrimonyreject', [App\Http\Controllers\Reservation\MatrimonyController::class, 'rejectreservation'])->name('matrimonyreject');
+    Route::delete('/matrimony/{id}/delete', [App\Http\Controllers\Reservation\MatrimonyController::class, 'destroy'])->name('matrimony.delete');
 
     //Blessing
     Route::get('/blessings', [App\Http\Controllers\Reservation\BlessingController::class, 'index'])->name('blessinglist');
     Route::post('/blessingaccept', [App\Http\Controllers\Reservation\BlessingController::class, 'acceptreservation'])->name('blessingaccept');
     Route::post('/blessingreject', [App\Http\Controllers\Reservation\BlessingController::class, 'rejectreservation'])->name('blessingreject');
+    Route::delete('/blessing/{id}/delete', [App\Http\Controllers\Reservation\BlessingController::class, 'destroy'])->name('blessing.delete');
 
     //Funeral
     Route::get('/funerals', [App\Http\Controllers\Reservation\FuneralController::class, 'index'])->name('funerallist');
     Route::post('/funeralaccept', [App\Http\Controllers\Reservation\FuneralController::class, 'acceptreservation'])->name('funeralaccept');
     Route::post('/funeralreject', [App\Http\Controllers\Reservation\FuneralController::class, 'rejectreservation'])->name('funeralreject');
+    Route::delete('/funeral/{id}/delete', [App\Http\Controllers\Reservation\FuneralController::class, 'destroy'])->name('funeral.delete');
 
 
     ### REPORT ###

@@ -148,4 +148,12 @@ class MatrimonyController extends Controller
         session()->flash('success', 'The matrimony reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
+
+    public function destroy($id)
+    {
+        Matrimony::where('id', $id)->delete();
+
+        session()->flash('success', 'Deleted Successfully');
+        return back();
+    }
 }

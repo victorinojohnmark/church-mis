@@ -12,7 +12,6 @@ class BaptismEventReportController extends Controller
 {
     public function index(Request $request)
     {
-
         if(!is_null($request->name) || (!is_null($request->baptism_start) && !is_null($request->baptism_end)) || (!is_null($request->daterange_start) && !is_null($request->daterange_end))) {
 
             $filters = [];
