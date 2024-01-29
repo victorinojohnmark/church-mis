@@ -87,7 +87,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .badge, .form-control, .form-select, .btn, .modal-content {
     border-radius: 0;
+    border: 1px solid gray;
 }
+
 
 .dataTables_info, .dataTables_paginate, .dt-buttons, .dataTables_length, .dataTables_filter {
     display: inline-block !important;
