@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md shadow-sm" id="publicNavBar" aria-label="Fourth navbar example">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img src="/img/logo.png" class="img-fluid" alt="Logo" style="height: 35px;">
+            <img src="/img/new-logo.jpg" class="img-fluid" alt="Logo" style="height: 35px;">
             <span class="text-white fw-bold">{{ request()->routeIs('root') ? '' : 'St. Gregory the Great Parish' }}</span></a>
         <i class="fa fas-copy"></i> 
         <button class="navbar-toggler rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"

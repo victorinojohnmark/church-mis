@@ -117,16 +117,11 @@
 
             <div class="mb-3">
                 <label class="form-label text-dark fw-semibold">Sex</label>
-                <select name="sex" id="sex" class="form-control rounded p-3">
-                    <option value="{{ null }}" disabled selected>Select here...</option>
-                    @php
-                        $sex = ['Male', 'Female']
-                    @endphp
-                    @forelse ($sex as $item)
-                        <option>{{ $item }}</option>
-                    @empty
-                        
-                    @endforelse
+                <select name="sex" id="sex" class="form-control rounded p-3" value="{{ old('sex') }}">
+                    <option value="" disabled {{ old('sex') == '' ? 'selected' : '' }}>Select here...</option>
+                        <option value="Male" {{ old('sex') == 'Male' ? 'selected' : '' }}>Male</option>
+                        <option value="Female" {{ old('sex') == 'Female' ? 'selected' : '' }}>Female</option>
+                    </select>
                 </select>
             </div>
 
