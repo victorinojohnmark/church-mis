@@ -34,11 +34,11 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end mt-0 rounded-0" aria-labelledby="navbarDropdown" data-bs-offset="10,5">
-                            @if (Auth::user()->is_admin) 
+                            @if (Auth::user()->role == 'Admin') 
                                 <a class="dropdown-item" href="/admin/dashboard">Admin Dashboard</a>
                                 <a class="dropdown-item" href="/password/reset">Reset Password</a>
                                 
-                            @else
+                            @elseif (Auth::user()->role == null)
                                 <a class="dropdown-item" href="{{ route('userprofile') }}">My Profile</a>
                                 <a class="dropdown-item" href="{{ route('client-documentrequestlist') }}">My Requests</a>
                                 <a class="dropdown-item" href="{{ route('clientreservations') }}">My Reservations</a>
