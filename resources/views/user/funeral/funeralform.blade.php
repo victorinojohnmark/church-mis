@@ -23,8 +23,14 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Time</label>
-        <input type="time" name="time" value="{{ old('time', $funeral->time ?? null) }}" class="form-control" placeholder="..." required>
+        <input type="time" name="time" value="{{ old('time', $funeral->time ?? null) }}" class="form-control" placeholder="..." id="customTime" list="customTimes" required>
         <small>Available Time: 1:00PM, 2:00 PM, 3:00 PM</small>
+
+        <datalist id="customTimes">
+            <option value="13:00">
+            <option value="14:00">
+            <option value="15:00">
+        </datalist>
     </div>
 
     <div class="col-md-6 mb-3">

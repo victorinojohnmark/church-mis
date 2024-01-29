@@ -36,8 +36,15 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Time</label>
-        <input type="time" name="time" value="{{ old('time', $matrimony->time ?? null) }}" class="form-control" placeholder="..." required>
+        <input type="time" name="time" value="{{ old('time', $matrimony->time ?? null) }}" class="form-control" placeholder="..." id="customTime" list="customTimes" required>
         <small>Available Time: 7:30 AM, 9:00 AM, 10:30 AM and 4:00 PM</small>
+
+        <datalist id="customTimes">
+            <option value="07:30">
+            <option value="09:30">
+            <option value="10:30">
+            <option value="16:00">
+        </datalist>
     </div>
 
     <div class="col-md-4 mb-3">
@@ -45,7 +52,7 @@
         <select name="relationship" id="relationship" class="form-control" onchange="toggleRelationshipDetail()">
             <option value="{{ null }}" disabled selected>Select here...</option>
             @php
-                $relationship = ['Mother', 'Father', 'Spouse', 'Other']
+                $relationship = ['Mother', 'Father', 'Bride/Groom', 'Other']
             @endphp
             @forelse ($relationship as $item)
                 <option {{ $matrimony && $matrimony->relationship == $item ? 'selected' : '' }}>{{ $item }}</option>

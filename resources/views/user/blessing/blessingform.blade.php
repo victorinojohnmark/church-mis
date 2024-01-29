@@ -37,7 +37,19 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Time</label>
-        <input type="time" name="time" value="{{ old('time', $blessing->time ?? null) }}" class="form-control" placeholder="..." required>
+        <input type="time" name="time" value="{{ old('time', $blessing->time ?? null) }}" class="form-control" placeholder="..." id="customTime" list="customTimes" required>
+
+        <datalist id="customTimes">
+            <option value="08:00">
+            <option value="09:00">
+            <option value="10:00">
+            <option value="11:00">
+            <option value="12:00">
+            <option value="13:00">
+            <option value="14:00">
+            <option value="15:00">
+            <option value="16:00">
+        </datalist>
     </div>
 
     <div class="col-md-12 mb-3">
