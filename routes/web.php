@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Catechist\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -262,6 +263,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
     Route::get('/documentrequestdeath/{deathRequest}', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'show'])->name('client-documentrequestdeathshow');
     Route::post('/documentrequestdeath', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'store'])->name('client-documentrequestdeathsave');
     Route::post('/canceldocumentrequestdeath', [App\Http\Controllers\DocumentRequest\DocumentRequestDeathController::class, 'cancel'])->name('client-canceldocumentrequestdeath');
+});
 
-
+Route::group(['middleware' => ['auth', 'catechist'], 'prefix' => 'catechist'], function() {
+    Route::get('/first-communion-and-confirmation', [DashboardController::class, 'index'])->name('catechist.first_communion_and_confirmation');
 });
