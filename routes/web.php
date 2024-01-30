@@ -267,4 +267,5 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user'], function() {
 
 Route::group(['middleware' => ['auth', 'catechist'], 'prefix' => 'catechist'], function() {
     Route::get('/first-communion-and-confirmation', [DashboardController::class, 'index'])->name('catechist.first_communion_and_confirmation');
+    Route::post('/first-communion-and-confirmation/upload', [DashboardController::class, 'upload'])->name('catechist.first_communion_and_confirmation.upload');
 });
