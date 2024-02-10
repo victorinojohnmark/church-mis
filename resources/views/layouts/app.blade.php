@@ -11,25 +11,13 @@
   @stack('css')
 </head>
 <body>
-    @include('layouts.navbar')
+    <div id="app">
+      @include('layouts.navbar')
 
-    <main>
-        @yield('content')
-    </main>
-    {{-- <footer class="bg-dark py-4 mt-auto w-full">
-        <div class="container px-5">
-            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                <div class="col-auto">
-                    <div class="small m-0 text-white">Copyright © St. Gregory the Great Parish</div>
-                </div>
-                <div class="col-auto">
-                    <a class="link-light small" href="#!">Privacy</a>
-                    <span class="text-white mx-1">·</span>
-                    <a class="link-light small" href="#!">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer> --}}
+      <main>
+          @yield('content')
+      </main>
+    </div>
     @vite(['resources/js/app.js'])
     @vite(['resources/js/custom.js'])
     @stack('scripts')
@@ -49,12 +37,20 @@
             console.error('Error fetching notification count:', error);
           }
         }
-      
-        // Fetch and update Event notification count
-        updateNotificationBadge('/user/notifications/get-notification-count/event', '.notificationBadgeEvent');
-      
-        // Fetch and update Document Request notification count
-        updateNotificationBadge('/user/notifications/get-notification-count/document_request', '.notificationBadgeDocumentRequest');
+
+        const notificationBadge = document.querySelector('.notificationBadge');
+        const notificationBadgeDocumentRequest = document.querySelector('.notificationBadgeDocumentRequest');
+        
+        if (notificationBadge) {
+          // Fetch and update Event notification count
+          updateNotificationBadge('/user/notifications/get-notification-count/event', '.notificationBadgeEvent');
+        }
+
+        if(notificationBadgeDocumentRequest) {
+          // Fetch and update Document Request notification count
+          updateNotificationBadge('/user/notifications/get-notification-count/document_request', '.notificationBadgeDocumentRequest');
+        }
+        
       </script>
 </body>
 </html>

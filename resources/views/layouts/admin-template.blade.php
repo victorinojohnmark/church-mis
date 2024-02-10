@@ -12,7 +12,7 @@
     @vite(['resources/css/dashboard.css'])
 </head>
 
-<body>
+<body id="app">
     @include('layouts.admin-navbar')
 
     <div class="container-fluid">

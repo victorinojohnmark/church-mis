@@ -10,7 +10,8 @@
                 <h1 style="color: #39B5A4;">Calendar</h1>
                 <hr>
                 <div class="row">
-                    <div id='calendar' class="mb-3 col-md-12"></div>
+                    <reservation-calendar></reservation-calendar>
+                    {{-- <div id='calendar' class="mb-3 col-md-12"></div> --}}
                     {{-- <div class="col-md-2">
                         <ul class="list-group">
                             <li class="list-group-item"><span class="red">&#8226;</span> <span class="font-weight-bold">Baptism</span></li>
@@ -29,7 +30,7 @@
 @endsection
 
 @push('scripts')
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+{{-- <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const calendarEl = document.getElementById('calendar')
@@ -50,5 +51,5 @@
         })
         calendar.render()
       })
-</script>
+</script> --}}
 @endpush

@@ -18,9 +18,6 @@ class CalendarController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            // $data = Event::whereDate('start', '>=', $request->start)
-            //     ->whereDate('end',   '<=', $request->end)
-            //     ->get(['id', 'title', 'start', 'end']);
             return response()->json($this->cleanEvents($request));
         }
 
@@ -32,8 +29,6 @@ class CalendarController extends Controller
     public function cleanEvents(Request $request)
     {
         $data = [];
-
-        //fetch all reservation and consolidate on $data 
 
         //baptism 
         $baptisms = Baptism::accepted()->whereDate('date', '>=', $request->start)

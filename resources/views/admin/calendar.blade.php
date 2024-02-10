@@ -9,8 +9,6 @@
             <div id='calendar' class="mb-3 col-md-12"></div>
         </div>
     </div>
-
-    
 </div>
 
 @endsection
@@ -18,10 +16,7 @@
 @push('scripts')
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
 <script>
-    
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const calendarEl = document.getElementById('calendar')
+    const calendarEl = document.getElementById('calendar')
         const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             events: '/calendar',
@@ -38,6 +33,5 @@
             }
         })
         calendar.render()
-      })
 </script>
 @endpush
