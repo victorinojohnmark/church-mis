@@ -11,7 +11,7 @@
           <div class="modal-body">
             <!-- Your reservation form goes here -->
             <p>Selected Date: {{ selectedDate }}</p>
-            
+            <input type="date" class="form-control" name="date" :value="selectedDate" readonly>
           </div>
         </div>
       </div>
@@ -27,8 +27,7 @@ const { showModal, selectedDate } = defineProps({
         default: false
     },
     selectedDate: {
-        type: String,
-        required: true
+        type: String
     }
 })
 
@@ -41,3 +40,20 @@ function closeModal() {
 }
 
 </script>
+
+<style scoped>
+button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+}
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+</style>

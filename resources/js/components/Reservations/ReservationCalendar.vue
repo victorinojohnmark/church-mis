@@ -1,7 +1,8 @@
 <template>
   <div>
     <FullCalendar id="calendar" ref="refCalendar" :options="calendarOptions"></FullCalendar>
-    <ReservationModal :selectedDate="selectedDate" :showModal="showReservationModal" @closeModal="handleCloseModal" />
+    <ReservationModal v-if="selectedDate" :selectedDate="selectedDate" :showModal="showReservationModal" @closeModal="handleCloseModal" />
+    <input type="date" :value="selectedDate" >
   </div>
 </template>
 
@@ -14,17 +15,19 @@ import interactionPlugin from '@fullcalendar/interaction'
 import ReservationModal from './ReservationModal.vue';
 
 const refCalendar = ref(null);
-const selectedDate = ref(new Date().toDateString());
 const showReservationModal = ref(false)
 
-const handleDateSelect = (selectInfo) => {
-  selectedDate.value = selectInfo.startStr;
+const selectedDate = ref(null);
+
+const handleDateSelect = async (selectInfo) => {
   showReservationModal.value = true
 }
 
 const handleCloseModal = () => { 
   showReservationModal.value = false
 }
+
+
 
 const calendarOptions = ref({
     plugins: [ dayGridPlugin, interactionPlugin ],
@@ -66,6 +69,7 @@ const calendarOptions = ref({
     selectable: true,
     // select: handleDateSelect,
     select: function (arg) {
+      selectedDate.value = arg.startStr;
         if (arg.start && arg.end) {
           handleDateSelect(arg);
         } else {
