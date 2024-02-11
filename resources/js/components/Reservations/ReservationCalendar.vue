@@ -3,12 +3,12 @@
     <FullCalendar id="calendar" ref="refCalendar" :options="calendarOptions"></FullCalendar>
     <ReservationModal v-if="selectedDate" :selectedDate="selectedDate" :showModal="showReservationModal" @closeModal="handleCloseModal" />
     <input type="date" :value="selectedDate" >
+    
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import axios from 'axios'
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'

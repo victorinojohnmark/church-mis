@@ -1,6 +1,6 @@
 <template>
     <div ref="refModal" class="modal fade" tabindex="-1" role="dialog" :class="{ 'show': showModal }" :style="{ display: showModal ? 'block' : 'none' }">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Reservation Form</h5>
@@ -10,8 +10,20 @@
           </div>
           <div class="modal-body">
             <!-- Your reservation form goes here -->
-            <p>Selected Date: {{ selectedDate }}</p>
-            <input type="date" class="form-control" name="date" :value="selectedDate" readonly>
+            <!-- <p>Selected Date: {{ selectedDate }}</p>
+            <input type="date" class="form-control" name="date" :value="selectedDate" readonly> -->
+
+            <div class="d-flex gap-1 items-center">
+              <button type="button" class="btn btn-sm btn-danger">Baptism</button>
+              <button type="button" class="btn btn-sm btn-success">Blessing</button>
+              <button type="button" class="btn btn-sm btn-primary">Communion</button>
+              <button type="button" class="btn btn-sm btn-warning">Confirmation</button>
+              <button type="button" class="btn btn-sm btn-secondary">Funeral</button>
+              <button type="button" class="btn btn-sm btn-info">Wedding</button>
+            </div>
+
+
+
           </div>
         </div>
       </div>

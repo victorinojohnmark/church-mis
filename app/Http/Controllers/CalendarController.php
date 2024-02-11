@@ -97,7 +97,7 @@ class CalendarController extends Controller
                 'title' => 'Funeral event for ' . $funeral->name,
                 'start' => $funeral->date . ' ' . $funeral->time,
                 'end' => $funeral->date,
-                'color' => '#87CEEB'
+                'color' => '#6C757D'
             ]);
         }
 
@@ -111,7 +111,7 @@ class CalendarController extends Controller
                 'title' => 'Wedding event for ' . $matrimony->grooms_name . ' & ' . $matrimony->brides_name,
                 'start' => $matrimony->wedding_date . ' ' . $matrimony->time,
                 'end' => $matrimony->wedding_date,
-                'color' => '#EE82EE'
+                'color' => '#87CEEB'
             ]);
         }
 
