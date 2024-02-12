@@ -1,5 +1,5 @@
 <template>
-    <div ref="refModal" class="modal fade" tabindex="-1" role="dialog" :class="{ 'show': showModal }" :style="{ display: showModal ? 'block' : 'none' }">
+    <div class="modal fade" tabindex="-1" role="dialog" :class="{ 'show': showModal }" :style="{ display: showModal ? 'block' : 'none' }">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -13,15 +13,22 @@
             <!-- <p>Selected Date: {{ selectedDate }}</p>
             <input type="date" class="form-control" name="date" :value="selectedDate" readonly> -->
 
-            <div class="d-flex gap-1 items-center">
-              <button type="button" class="btn btn-sm btn-danger">Baptism</button>
-              <button type="button" class="btn btn-sm btn-success">Blessing</button>
-              <button type="button" class="btn btn-sm btn-primary">Communion</button>
-              <button type="button" class="btn btn-sm btn-warning">Confirmation</button>
-              <button type="button" class="btn btn-sm btn-secondary">Funeral</button>
-              <button type="button" class="btn btn-sm btn-info">Wedding</button>
+            <div class="d-flex gap-1 items-center mb-3">
+              <button type="button" class="btn btn-sm btn-danger" @click="showForm('baptism')">Baptism</button>
+              <button type="button" class="btn btn-sm btn-success" @click="showForm('blessing')">Blessing</button>
+              <button type="button" class="btn btn-sm btn-primary" @click="showForm('communion')">Communion</button>
+              <button type="button" class="btn btn-sm btn-warning" @click="showForm('confirmation')">Confirmation</button>
+              <button type="button" class="btn btn-sm btn-secondary" @click="showForm('funeral')">Funeral</button>
+              <button type="button" class="btn btn-sm btn-info" @click="showForm('wedding')">Wedding</button>
             </div>
 
+            <!-- Conditional rendering of forms -->
+            <div v-if="currentForm === 'baptism'"><BaptismForm /></div>
+            <div v-if="currentForm === 'blessing'">Blessing Form</div>
+            <div v-if="currentForm === 'communion'">Communion Form</div>
+            <div v-if="currentForm === 'confirmation'">Confirmation Form</div>
+            <div v-if="currentForm === 'funeral'">Funeral Form</div>
+            <div v-if="currentForm === 'wedding'">Wedding Form</div>
 
 
           </div>
@@ -32,6 +39,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import BaptismForm from './Forms/BaptismForm.vue'
 
 const { showModal, selectedDate } = defineProps({
     showModal: {
@@ -43,7 +51,11 @@ const { showModal, selectedDate } = defineProps({
     }
 })
 
-const refModal = ref()
+const currentForm = ref('baptism');
+
+const showForm = (form) => {
+  currentForm.value = form
+}
 
 const emit = defineEmits(['closeModal']);
 
