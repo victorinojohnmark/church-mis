@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12 mb-3">
             <div class="p-3 bg-body-secondary rounded">
-                <small><i class="fa-solid fa-circle-info text-primary"></i> <strong>Event Reservations is close on mondays.</strong> 
+                <small><i class="fa-solid fa-circle-info text-primary"></i> <strong>Event Reservations are closed on mondays.</strong> 
                 </small>
             </div>
 
@@ -60,6 +60,7 @@
         <div class="col-md-12 d-flex flex-column align-items-center gap-2 my-5">
             <i class="far fa-check-circle display-1 text-success"></i>
             <strong>Reservation submitted successfully</strong>
+            <small>You'll get notified once your reservation is approved.</small>
         </div>
     </div>
 </div>

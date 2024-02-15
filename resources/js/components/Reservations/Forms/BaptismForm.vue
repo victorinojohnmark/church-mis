@@ -3,10 +3,10 @@
     <div class="row">
         <div class="col-md-12 mb-3">
             <div class="p-3 bg-body-secondary rounded">
-                <small><i class="fa-solid fa-circle-info text-primary"></i> <strong>Event Reservation is closed on mondays.</strong> <br>Sundays at 10am for Regular reservation and Tuesday to Saturday 8-4pm for special schedules. 
+                <small><i class="fa-solid fa-circle-info text-primary"></i> <strong>Event Reservation <area shape="poly" coords="" href="" alt=""> closed on mondays.</strong> <br>Sundays at 10am for Regular reservation and Tuesday to Saturday 8-4pm for special schedules. 
                 </small>
             </div>
-<!-- 
+            <!-- 
             {{ refBaptism }}
             {{ selectedDate }} -->
         </div>
@@ -52,7 +52,6 @@
             <label class="form-label">Time</label>
             <input type="time" name="time" v-model="refBaptism.time" class="form-control" placeholder="..." required="">
             <small class="text-danger">{{ systemStore.error.baptism && systemStore.error.baptism.time ? systemStore.error.baptism.time[0] : '' }}</small>
-
         </div>
         <div class="col-md-12 mb-3"><label class="form-label">Place of Birth</label>
             <textarea name="place_of_birth" v-model="refBaptism.place_of_birth" class="form-control" cols="30" rows="2"></textarea>
@@ -106,6 +105,7 @@
         <div class="col-md-12 d-flex flex-column align-items-center gap-2 my-5">
             <i class="far fa-check-circle display-1 text-success"></i>
             <strong>Reservation submitted successfully</strong>
+            <small>You'll get notified once your reservation is approved.</small>
         </div>
     </div>
 </div>

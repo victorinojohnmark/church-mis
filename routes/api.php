@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\Events\BaptismController;
 use App\Http\Controllers\API\Events\BlessingController;
+use App\Http\Controllers\API\Events\MatrimonyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/baptisms', [BaptismController::class,'store']);
         Route::post('/blessings', [BlessingController::class,'store']);
+        Route::post('/weddings', [MatrimonyController::class,'store']);
     });
     
 });

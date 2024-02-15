@@ -80,7 +80,7 @@ class MatrimonyController extends Controller
                             ->where('time', $request->time);
                     }),
             ],
-            'relationship' => ['required', 'in:Mother,Father,Spouse,Other'],
+            'relationship' => ['required', 'in:Mother,Father,Partner,Other'],
             'other_relationship' => ['required_if:relationship,Other'],
             'contact_number' => ['required', 'digits:11'],
             'created_by_id' => ['required']
