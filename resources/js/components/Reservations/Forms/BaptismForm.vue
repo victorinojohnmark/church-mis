@@ -2,6 +2,7 @@
 <form v-if="!successRegistration" action="#" @submit.prevent="handleSubmit" method="post">
     <div class="row">
         <div class="col-md-12 mb-3">
+            <h5>Baptism Reservation Form</h5>
             <div class="p-3 bg-body-secondary rounded">
                 <small><i class="fa-solid fa-circle-info text-primary"></i> <strong>Event Reservation <area shape="poly" coords="" href="" alt=""> closed on mondays.</strong> <br>Sundays at 10am for Regular reservation and Tuesday to Saturday 8-4pm for special schedules. 
                 </small>

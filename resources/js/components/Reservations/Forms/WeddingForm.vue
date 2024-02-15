@@ -2,13 +2,14 @@
 <form v-if="!successRegistration" action="#" @submit.prevent="handleSubmit" method="post">
     <div class="row">
         <div class="col-md-12 mb-3">
+            <h5>Wedding Reservation Form</h5>
             <div class="p-3 bg-body-secondary rounded">
                 <small><i class="fa-solid fa-circle-info text-primary"></i> <strong>Event Reservations are closed on mondays.</strong> 
                 </small>
             </div>
 
-            {{ refWedding }}
-            {{ selectedDate }}
+            <!-- {{ refWedding }}
+            {{ selectedDate }} -->
         </div>
         <div class="col-md-6 mb-3">
             <label class="form-label">Groom's Name</label>
