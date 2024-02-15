@@ -84,7 +84,7 @@
 
         <div class="col-md-12 mb-3">
             <label class="form-label">Address</label>
-            <textarea name="address" class="form-control" v-model="refFuneral.address" cols="30" rows="5"></textarea>
+            <textarea name="address" class="form-control" v-model="refFuneral.address" cols="30" rows="2"></textarea>
             <small class="text-danger">{{ systemStore.error.funeral && systemStore.error.funeral.address ? systemStore.error.funeral.address[0] : '' }}</small>
         </div>
 
