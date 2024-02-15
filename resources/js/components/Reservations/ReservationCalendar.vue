@@ -25,6 +25,7 @@ const handleDateSelect = async (selectInfo) => {
 
 const handleCloseModal = () => { 
   showReservationModal.value = false
+  selectedDate.value = null
 }
 
 

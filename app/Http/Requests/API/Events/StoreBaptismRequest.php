@@ -5,27 +5,23 @@ namespace App\Http\Requests\API\Events;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+use App\Rules\BaptismSpecialDate;
+use App\Rules\BaptismSpecialTime;
+
 class StoreBaptismRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
     public function rules(): array
     {
         return [
             'name' => ['required'],
-            'date' => ['required', 'date'],
-            'time' => ['required'],
+            'date' => ['required', 'date', new BaptismSpecialDate()],
+            'time' => ['required', new BaptismSpecialTime()],
             'sex' => ['required', 'in:Male,Female'],
             'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling,Other'],
             'other_relationship' => ['required_if:relationship,Other'],

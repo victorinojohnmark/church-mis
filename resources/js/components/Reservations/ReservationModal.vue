@@ -10,8 +10,8 @@
           </div>
           <div class="modal-body">
             <!-- Your reservation form goes here -->
-            <!-- <p>Selected Date: {{ selectedDate }}</p>
-            <input type="date" class="form-control" name="date" :value="selectedDate" readonly> -->
+            <p>Selected Date: {{ selectedDate }}</p>
+            <input type="date" class="form-control" name="date" :value="selectedDate" readonly>
 
             <div class="d-flex gap-1 items-center mb-3">
               <button type="button" class="btn btn-sm btn-danger" @click="showForm('baptism')">Baptism</button>
@@ -23,7 +23,7 @@
             </div>
 
             <!-- Conditional rendering of forms -->
-            <div v-if="currentForm === 'baptism'"><BaptismForm /></div>
+            <div v-if="currentForm === 'baptism'" ><BaptismForm :selected-date="selectedDate" @event-created="handleReservationCreated" /></div>
             <div v-if="currentForm === 'blessing'">Blessing Form</div>
             <div v-if="currentForm === 'communion'">Communion Form</div>
             <div v-if="currentForm === 'confirmation'">Confirmation Form</div>
@@ -61,6 +61,10 @@ const emit = defineEmits(['closeModal']);
 
 function closeModal() {
   emit('closeModal');
+}
+
+const handleReservationCreated = () => {
+  closeModal();
 }
 
 </script>

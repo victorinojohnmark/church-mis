@@ -1,13 +1,14 @@
 <template>
-<form action="#" @submit.prevent="handleSubmit" method="post">
+<form v-if="!successRegistration" action="#" @submit.prevent="handleSubmit" method="post">
     <div class="row">
         <div class="col-md-12 mb-3">
             <div class="p-3 bg-body-secondary rounded">
                 <small><i class="fa-solid fa-circle-info text-primary"></i> <strong>Event Reservation is closed on mondays.</strong> Sundays at 10am for Regular reservation and Tuesday to Saturday 8-4pm for special schedules. 
                 </small>
             </div>
-
+<!-- 
             {{ refBaptism }}
+            {{ selectedDate }} -->
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Name of the Baby</label>
@@ -43,10 +44,10 @@
         </div>
         <div class="col-md-6 mb-3">
             <label class="form-label">Desired Date</label>
-            <input type="date" name="date" v-model="refBaptism.date" class="form-control" placeholder="..." required="">
+            <input type="date" name="date" ref="refDate" v-model="refBaptism.date" class="form-control" :min="getTodayDate()" placeholder="..." required="">
             <small class="text-danger">{{ systemStore.error.baptism && systemStore.error.baptism.date ? systemStore.error.baptism.date[0] : '' }}</small>
 
-            </div>
+        </div>
         <div class="col-md-6 mb-3">
             <label class="form-label">Time</label>
             <input type="time" name="time" v-model="refBaptism.time" class="form-control" placeholder="..." required="">
@@ -99,10 +100,19 @@
     </div> 
     <button type="submit" class="btn btn-primary mb-3">Submit</button>
 </form>
+
+<div v-if="successRegistration">
+    <div class="row">
+        <div class="col-md-12 d-flex flex-column align-items-center gap-2 my-5">
+            <i class="far fa-check-circle display-1 text-success"></i>
+            <strong>Reservation submitted successfully</strong>
+        </div>
+    </div>
+</div>
 </template>
 
 <script setup>
-import {ref, onMounted, computed} from 'vue'
+import {ref, onBeforeMount, computed, watch} from 'vue'
 import { useSystemStore } from '../../../store/system';;
 import ApiClient from '../../../helper/api'
 
@@ -110,6 +120,12 @@ const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute
 const api = new ApiClient()
 const model = 'baptism'
 const systemStore = useSystemStore()
+const successRegistration = ref(false)
+
+const { selectedDate } = defineProps({
+    selectedDate: String,
+    required: true
+})
 
 const refBaptism = ref({
     name: '',
@@ -129,19 +145,47 @@ const refBaptism = ref({
 
 const isOtherSelected = computed(() => refBaptism.value.relationship === 'Other');
 
+const emits = defineEmits(['eventCreated'])
+
 const handleSubmit = async () => {
+    // set static values
+    refBaptism.value.is_special = refBaptism.value.is_special ? true : false
+
     try {
-        refBaptism.value.is_special = refBaptism.value.is_special ? 1 : 0
+        console.log(refBaptism.value)
         const response = await window.axios.post('/api/events/baptisms', refBaptism.value)
 
         if(response) {
             console.log(response.data)
+            successRegistration.value = true
             systemStore.reset()
+            resetValues().then(() => {
+                setTimeout(() => {
+                    successRegistration.value = false
+                    emits('eventCreated')
+                }, 10000);
+            })
         }
 
     } catch (error) {
         handleError(error)
     }
+}
+
+const resetValues = async () => {
+    refBaptism.value.name = ''
+    refBaptism.value.sex = ''
+    refBaptism.value.relationship = ''
+    refBaptism.value.other_relationship = null
+    refBaptism.value.date = ''
+    refBaptism.value.time = ''
+    refBaptism.value.place_of_birth = ''
+    refBaptism.value.is_special = false
+    refBaptism.value.birth_date = ''
+    refBaptism.value.fathers_name = ''
+    refBaptism.value.mothers_name = ''
+    refBaptism.value.contact_number = ''
+    refBaptism.value.present_address = ''
 }
 
 const handleError = (error) => {
@@ -155,7 +199,33 @@ const handleError = (error) => {
     return error
 }
 
-onMounted(() => {
+const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let day = today.getDate();
+
+    // Adding leading zero for months/days less than 10
+    if (month < 10) {
+        month = '0' + month;
+    }
+    if (day < 10) {
+        day = '0' + day;
+    }
+
+    return `${year}-${month}-${day}`;
+}
+
+const handleDateChange = (e) => {
+    refBaptism.value.date = e.target.value
+    refDate.value.value = e.target.value
+    console.log(refDate.value)
+}
+
+
+
+onBeforeMount(() => {
     systemStore.reset()
+    refBaptism.value.date = selectedDate
 })
 </script>
