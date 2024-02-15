@@ -2,7 +2,7 @@
   <div>
     <FullCalendar id="calendar" ref="refCalendar" :options="calendarOptions"></FullCalendar>
     <ReservationModal v-if="selectedDate" :selectedDate="selectedDate" :showModal="showReservationModal" @closeModal="handleCloseModal" />
-    <input type="date" :value="selectedDate" >
+    <!-- <input type="date" :value="selectedDate" > -->
     
   </div>
 </template>
