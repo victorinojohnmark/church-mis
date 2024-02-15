@@ -27,7 +27,7 @@
             <div v-if="currentForm === 'blessing'"><BlessingForm :selected-date="selectedDate" @event-created="handleReservationCreated" /></div>
             <!-- <div v-if="currentForm === 'communion'">Communion Form</div> -->
             <!-- <div v-if="currentForm === 'confirmation'">Confirmation Form</div> -->
-            <div v-if="currentForm === 'funeral'">Funeral Form</div>
+            <div v-if="currentForm === 'funeral'"><FuneralForm :selected-date="selectedDate" @event-created="handleReservationCreated" /></div>
             <div v-if="currentForm === 'wedding'"><WeddingForm :selected-date="selectedDate" @event-created="handleReservationCreated" /></div>
 
 
@@ -42,6 +42,7 @@ import { ref } from 'vue';
 import BaptismForm from './Forms/BaptismForm.vue'
 import BlessingForm from './Forms/BlessingForm.vue'
 import WeddingForm from './Forms/WeddingForm.vue'
+import FuneralForm from './Forms/FuneralForm.vue'
 
 const { showModal, selectedDate } = defineProps({
     showModal: {

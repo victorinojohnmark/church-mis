@@ -22,8 +22,13 @@
     </div>
 
     <div class="col-md-6 mb-3">
-        <label class="form-label">Time</label>
-        <input type="time" name="time" value="{{ old('time', $funeral->time ?? null) }}" class="form-control" placeholder="..." required>
+        <label class="form-label">Time</label>>
+        <select name="time" id="time" class="form-control" required>
+            <option disabled="" value="">Select here...</option>
+            <option>1:00PM</option>
+            <option>2:00PM</option>
+            <option>3:00PM</option>
+        </select>
         <small>Available Time: 1:00PM, 2:00 PM, 3:00 PM</small>
     </div>
 
@@ -80,11 +85,6 @@
             @endforelse
         </select>
     </div>
-
-    {{-- <div class="col-md-6 mb-3">
-        <label class="form-label">Religion</label>
-        <input type="text" name="religion" value="{{ $funeral->religion }}" class="form-control" placeholder="..." required>
-    </div> --}}
 
     <div class="col-md-12 mb-3">
         <label class="form-label">Address</label>
