@@ -10,23 +10,23 @@
           </div>
           <div class="modal-body">
             <!-- Your reservation form goes here -->
-            <p>Selected Date: {{ selectedDate }}</p>
-            <input type="date" class="form-control" name="date" :value="selectedDate" readonly>
+            <!-- <p>Selected Date: {{ selectedDate }}</p> -->
+            <!-- <input type="date" class="form-control" name="date" :value="selectedDate" readonly> -->
 
             <div class="d-flex gap-1 items-center mb-3">
               <button type="button" class="btn btn-sm btn-danger" @click="showForm('baptism')">Baptism</button>
               <button type="button" class="btn btn-sm btn-success" @click="showForm('blessing')">Blessing</button>
-              <button type="button" class="btn btn-sm btn-primary" @click="showForm('communion')">Communion</button>
-              <button type="button" class="btn btn-sm btn-warning" @click="showForm('confirmation')">Confirmation</button>
+              <!-- <button type="button" class="btn btn-sm btn-primary" @click="showForm('communion')">Communion</button> -->
+              <!-- <button type="button" class="btn btn-sm btn-warning" @click="showForm('confirmation')">Confirmation</button> -->
               <button type="button" class="btn btn-sm btn-secondary" @click="showForm('funeral')">Funeral</button>
               <button type="button" class="btn btn-sm btn-info" @click="showForm('wedding')">Wedding</button>
             </div>
 
             <!-- Conditional rendering of forms -->
             <div v-if="currentForm === 'baptism'" ><BaptismForm :selected-date="selectedDate" @event-created="handleReservationCreated" /></div>
-            <div v-if="currentForm === 'blessing'">Blessing Form</div>
-            <div v-if="currentForm === 'communion'">Communion Form</div>
-            <div v-if="currentForm === 'confirmation'">Confirmation Form</div>
+            <div v-if="currentForm === 'blessing'"><BlessingForm :selected-date="selectedDate" @event-created="handleReservationCreated" /></div>
+            <!-- <div v-if="currentForm === 'communion'">Communion Form</div> -->
+            <!-- <div v-if="currentForm === 'confirmation'">Confirmation Form</div> -->
             <div v-if="currentForm === 'funeral'">Funeral Form</div>
             <div v-if="currentForm === 'wedding'">Wedding Form</div>
 
@@ -40,6 +40,7 @@
 <script setup>
 import { ref } from 'vue';
 import BaptismForm from './Forms/BaptismForm.vue'
+import BlessingForm from './Forms/BlessingForm.vue'
 
 const { showModal, selectedDate } = defineProps({
     showModal: {

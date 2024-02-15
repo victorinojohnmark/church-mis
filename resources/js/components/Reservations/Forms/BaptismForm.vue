@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12 mb-3">
             <div class="p-3 bg-body-secondary rounded">
-                <small><i class="fa-solid fa-circle-info text-primary"></i> <strong>Event Reservation is closed on mondays.</strong> Sundays at 10am for Regular reservation and Tuesday to Saturday 8-4pm for special schedules. 
+                <small><i class="fa-solid fa-circle-info text-primary"></i> <strong>Event Reservation is closed on mondays.</strong> <br>Sundays at 10am for Regular reservation and Tuesday to Saturday 8-4pm for special schedules. 
                 </small>
             </div>
 <!-- 

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\Events\BaptismController;
+use App\Http\Controllers\API\Events\BlessingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
         // });
 
         Route::post('/baptisms', [BaptismController::class,'store']);
+        Route::post('/blessings', [BlessingController::class,'store']);
     });
     
 });
