@@ -55,6 +55,13 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     //Clients
     Route::get('/clients', [App\Http\Controllers\ClientController::class, 'index'])->name('clientlist');
 
+    //Cathecists
+    Route::get('/cathecists', [App\Http\Controllers\CathecistController::class, 'index'])->name('cathecistlist');
+    Route::get('/cathecists/create', [App\Http\Controllers\CathecistController::class, 'create'])->name('cathecistcreate');
+    Route::get('/cathecists/{cathecist}', [App\Http\Controllers\CathecistController::class, 'show'])->name('cathecistshow');
+    Route::post('/cathecists', [App\Http\Controllers\CathecistController::class, 'store'])->name('catheciststore');
+    // Route::put('/cathecists/{cathecist}', [App\Http\Controllers\CathecistController::class, 'update'])->name('cathecistupdate');
+
     // //Documents
     // Route::get('/documents', [App\Http\Controllers\DocumentController::class, 'index'])->name('documentlist');
     // Route::post('/documents', [App\Http\Controllers\DocumentController::class, 'store'])->name('documentsave');

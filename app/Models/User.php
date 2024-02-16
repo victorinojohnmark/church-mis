@@ -13,7 +13,7 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 class User extends Authenticatable implements CanResetPassword
 {
     use HasApiTokens, HasFactory, Notifiable;
-    protected $fillable = ['name', 'birth_date', 'sex', 'address', 'contact_number', 'email', 'password', 'is_admin'];
+    protected $fillable = ['name', 'birth_date', 'sex', 'address', 'contact_number', 'email', 'password', 'is_admin', 'is_cathecist'];
 
     protected $hidden = ['password','remember_token'];
 
@@ -30,5 +30,10 @@ class User extends Authenticatable implements CanResetPassword
     public function scopeAdmin($query)
     {
         return $query->where('is_admin', true);
+    }
+
+    public function scopeCathecist($query)
+    {
+        return $query->where('is_cathecist', true);
     }
 }
