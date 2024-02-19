@@ -29,5 +29,6 @@ export default defineConfig({
     },
     optimizeDeps: {
         include: ['jquery'],
+        exclude: ['xlxs']
       }
 });

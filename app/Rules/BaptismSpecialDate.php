@@ -31,7 +31,7 @@ class BaptismSpecialDate implements ValidationRule
             if ($dayOfWeek >= 2 && $dayOfWeek <= 6) {
                 //do nothing
             } else {
-                $fail('Special reservation date for baptism must be between Tuesday and Saturday.');
+                $fail('Special reservation date for baptism must be between Tuesday to Saturday.');
             }
         } else {
             // Check if the date is a Sunday

@@ -10,8 +10,8 @@
 <form action="{{ route('catheciststore', ['id' => $cathecist->id]) }}" class="mb-3" method="post">
     @csrf
     <input type="hidden" name="id" value="{{ $cathecist->id }}">
-    <div class="d-flex flex-column">
-        <div class="mb-3">
+    <div class="row">
+        <div class="col-md-6 mb-3">
             <label class="form-label text-dark fw-semibold">Name</label>
             <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{ old('name', $cathecist->name) }}" required>
             @error('name')
@@ -21,7 +21,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="col-md-3 mb-3">
             <label class="form-label text-dark fw-semibold">Birth Date</label>
             <input type="date" name="birth_date" class="form-control" placeholder="Enter Birth Date" value="{{ old('birth_date', $cathecist->birth_date) }}" required>
             @error('birth_date')
@@ -31,7 +31,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="col-md-3 mb-3">
             <label class="form-label text-dark fw-semibold">Sex</label>
             <select name="sex" id="sex" class="form-control" required>
                 <option value="{{ null }}" disabled selected>Select here...</option>
@@ -46,7 +46,7 @@
             </select>
         </div>
 
-        <div class="mb-3">
+        <div class="col-md-6 mb-3">
             <label class="form-label text-dark fw-semibold">Address</label>
             <textarea name="address" class="form-control" placeholder="Enter Home Address" required>{{ old('address', $cathecist->address) }}</textarea>
             @error('address')
@@ -56,7 +56,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="col-md-6 mb-3">
             <label class="form-label text-dark fw-semibold">Contact Number</label>
             <input type="text" name="contact_number" class="form-control" placeholder="Enter Contact Number" value="{{ old('contact_number', $cathecist->contact_number) }}" required>
             @error('contact_number')
@@ -66,7 +66,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="col-md-4 mb-3">
             <label class="form-label text-dark fw-semibold">Email address</label>
             <input type="email" name="email" class="form-control" placeholder="Enter Email Address" value="{{ old('email', $cathecist->email) }}" required {{ $cathecist->id ? 'readonly' : null }}>
             @error('email')
@@ -77,7 +77,7 @@
         </div>
 
         @if (!$cathecist->id)
-        <div class="mb-3">
+        <div class="col-md-4 mb-3">
             <label class="form-label text-dark fw-semibold">Password</label>
             <input type="password" name="password" class="form-control" value="{{ old('password') }}" placeholder="Enter Password" required>
             @error('password')
@@ -87,7 +87,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+        <div class="col-md-4 mb-3">
             <label class="form-label text-dark fw-semibold">Confirm Password</label>
             <input type="password" name="password_confirmation" class="form-control" {{ old('password_confirmation') }} placeholder="Enter Confirm Password" required>
             @error('password-confirmation')
@@ -98,7 +98,7 @@
         </div>
         @endif
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
 
 

@@ -24,10 +24,7 @@
                 <div class="py-3">
                     <a href="{{ route('clientcommunion') }}" class="btn btn-success btn-sm" >Back to List</a>
                 </div>
-                <form action="{{ route('clientcommunionsave') }}" method="post" enctype="multipart/form-data">
-                    @include('user.communion.communionform')
-                    <button type="submit" class="btn btn-primary mb-3">Submit</button>
-                </form>
+                <communion-form></communion-form>
             </div>
         </div>
     </div>

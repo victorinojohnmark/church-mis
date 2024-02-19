@@ -1,5 +1,5 @@
 <div class="row">
-    @csrf
+    {{-- @csrf
     <input type="hidden" name="created_by_id" value="{{ $communion->created_by_id ?? Auth::id() }}">
     <input type="hidden" name="id" value="{{ $communion->id ?? null }}">
     <div class="col-md-12 mb-3">
@@ -14,26 +14,6 @@
         <label class="form-label">Name</label>
         <input type="text" name="name" value="{{ old('name', $communion->name ?? null) }}" class="form-control" placeholder="..." required>
     </div>
-
-    {{-- <div class="col-md-6 mb-3">
-        <label class="form-label">Desired Date</label>
-        <input type="date" name="date" value="{{ old('date', $communion->date ?? null) }}" class="form-control" placeholder="..." required>
-    </div>
-
-    <div class="col-md-6 mb-3">
-        <label class="form-label">Birth Date</label>
-        <input type="date" name="birth_date" value="{{ old('birth_date', $communion->birth_date ?? null) }}" class="form-control" placeholder="..." required>
-    </div>
-
-    <div class="col-md-6 mb-3">
-        <label class="form-label">Father's Name</label>
-        <input type="text" name="fathers_name" value="{{ old('fathers_name', $communion->fathers_name ?? null) }}" class="form-control" placeholder="..." required>
-    </div>
-
-    <div class="col-md-6 mb-3">
-        <label class="form-label">Mother's Name</label>
-        <input type="text" name="mothers_name" value="{{ old('mothers_name', $communion->mothers_name ?? null) }}" class="form-control" placeholder="..." required>
-    </div> --}}
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Contact #</label>
@@ -55,5 +35,7 @@
         @if ($communion->file)
         <a href="/storage/{{ $communion->file }}">Download File</a>
         @endif
-    </div>
+    </div> --}}
+
+    
 </div>
