@@ -1,8 +1,29 @@
 <template>
+    {{ refCommunionDetails }}
     <div class="row">
-        <div class="col-md-12 mb-3">
+        <div class="col-md-11 mb-3">
             <label for="inputFile">Upload File</label><br>
             <input type="file" @input="handleInputFile" name="file" class="form-control-file" id="inputFile" accept=".xls, .xlsx, .csv" required>
+        </div>
+
+        <div class="col-md-1 mb-3" v-if="refCommunionDetails.details">
+            <button type="button" class="btn btn-primary ml-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Save</button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to submit the list for Communion Reservation?</p>
+                    <p> Total number of people: <strong>{{ refCommunionDetails.details.length }}</strong></p>
+
+                </div>
+                </div>
+            </div>
+            </div>
         </div>
 
         <div class="col-md-12">
@@ -43,23 +64,6 @@ const refCommunionDetails = ref({
     file: null,
     details: null
 })
-
-// const dateParser = (value) => {
-//     const parts = value.split('/');
-//     let year = parseInt(parts[2]);
-
-//     // Logic to determine the correct year based on assumptions
-//     if (year < 100) {
-//         // Assuming a cutoff year, for example, 50 as the cutoff year
-//         year = year + 2000; // Assuming years less than 100 are in the 2000s
-//         // Alternatively, you can use some other logic to determine the year
-//     }
-
-//     const month = parts[0].padStart(2, '0');
-//     const day = parts[1].padStart(2, '0');
-//     console.log(`${month}/${day}/${year}`)
-//     return `${month}/${day}/${year}`;
-// };
 
 const dateParser = (value) => {
     const parts = value.split('/');
