@@ -7,13 +7,22 @@ use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\CommunionDetail;
+
 class Communion extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'date', 'birth_date', 'fathers_name', 'mothers_name', 'present_address', 'contact_number', 'created_by_id', 'file'];
+    protected $fillable = [
+        // 'name', 'date', 'birth_date', 'fathers_name', 'mothers_name', 'present_address', 'contact_number', 
+        'created_by_id', 'file'];
 
     protected $observables = ['reservationAccepted', 'reservationRejected'];
+
+    public function details()
+    {
+        return $this->hasMany(CommunionDetail::class);
+    }
 
     public function createdBy()
     {

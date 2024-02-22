@@ -7,7 +7,7 @@ use App\Http\Controllers\API\Events\BaptismController;
 use App\Http\Controllers\API\Events\BlessingController;
 use App\Http\Controllers\API\Events\MatrimonyController;
 use App\Http\Controllers\API\Events\FuneralController;
-
+use App\Http\Controllers\API\Events\CommunionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/blessings', [BlessingController::class,'store']);
         Route::post('/weddings', [MatrimonyController::class,'store']);
         Route::post('/funerals', [FuneralController::class,'store']);
+        Route::post('/communions', [CommunionController::class,'store']);
     });
     
 });

@@ -55,18 +55,18 @@ class CommunionController extends Controller
         });
 
         $data = $request->validate([
-            'name' => ['required'],
+            // 'name' => ['required'],
             // 'date' => ['required', 'date', 'after_or_equal:' . Date::today(), 'not_on_monday'],
             // 'birth_date' => ['required', 'date'],
             // 'fathers_name' => ['required'],
             // 'mothers_name' => ['required'],
-            'present_address' => ['required'],
-            'contact_number' => ['required','digits:11'],
+            // 'present_address' => ['required'],
+            // 'contact_number' => ['required','digits:11'],
             'created_by_id' => ['required'],
             'file' => 'required|mimes:xls,xlsx,csv'
         ], [
-            'date.after_or_equal' => 'The date field should not be older that today.',
-            'date.not_on_monday' => 'Date reservation for mondays is not valid.',
+            // 'date.after_or_equal' => 'The date field should not be older that today.',
+            // 'date.not_on_monday' => 'Date reservation for mondays is not valid.',
             'file.mimes' => 'The file type must be in .xls, .xlsx, .csv.'
         ]);
 

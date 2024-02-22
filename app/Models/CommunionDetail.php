@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CommunionDetails extends Model
+class CommunionDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'details', 'file'];
+    protected $fillable = ['name', 'birth_date', 'guardian', 'contact_number', 'present_address'];
 }

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('communion_details', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('brith_date');
+            $table->date('birth_date');
             $table->string('guardian');
             $table->string('contact_number');
-            $table->string('presernt_address');
+            $table->string('present_address');
             $table->timestamps();
         });
     }

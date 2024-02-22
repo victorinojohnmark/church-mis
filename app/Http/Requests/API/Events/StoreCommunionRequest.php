@@ -3,6 +3,7 @@
 namespace App\Http\Requests\API\Events;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
 
 class StoreCommunionRequest extends FormRequest
 {
@@ -17,18 +18,28 @@ class StoreCommunionRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'created_by_id' => 'required|exists:users,id',
             'file' => 'required|file', // Example rule for file upload, adjust as needed
             'details' => [
                 'required',
-                'array',
+                'json',
                 function ($attribute, $value, $fail) {
-                    foreach ($value as $detail) {
-                        $keys = ['name', 'birth_date', 'guardian', 'contact_no', 'address'];
-                        foreach ($keys as $key) {
-                            if (!array_key_exists($key, $detail) || empty($detail[$key])) {
-                                $fail("The $attribute array must have complete values for keys.");
-                                return;
-                            }
+                    $details = json_decode($value, true);
+                    if (json_last_error() !== JSON_ERROR_NONE) {
+                        $fail("The $attribute must be a valid JSON object.");
+                        return;
+                    }
+                    foreach ($details as $detail) {
+                        $validator = Validator::make($detail, [
+                            'name' => 'required',
+                            'birth_date' => 'required',
+                            'guardian' => 'required',
+                            'contact_number' => 'required',
+                            'present_address' => 'required',
+                        ]);
+                        if ($validator->fails()) {
+                            $fail("The $attribute must have complete values for keys.");
+                            return;
                         }
                     }
                 },
