@@ -1,28 +1,38 @@
 <template>
-    {{ refCommunionDetails }}
+    <!-- {{ refCommunionDetails }} -->
     <form @submit.prevent="handleSubmit">
         <div class="row">
-            <div class="col-md-11 mb-3">
+            <div class="col-md-10 mb-3">
                 <label for="inputFile">Upload File</label><br>
-                <input type="file" @input="handleInputFile" name="file" class="form-control-file" id="inputFile" accept=".xls, .xlsx, .csv" required>
+                <input type="file" @input="handleInputFile" ref="refInputFile" name="file" class="form-control-file" id="inputFile" accept=".xls, .xlsx, .csv" required>
                 <small class="text-danger">{{ systemStore.error.communion && systemStore.error.communion.present_address ? systemStore.error.communion.file[0] : '' }}</small>
 
             </div>
 
-            <div class="col-md-1 mb-3" v-if="refCommunionDetails.details">
-                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Save</button>
+            <div class="col-md-2 mb-3" >
+                <a href="/forms/first-communion-format.xlsx" class="btn btn-success btn-sm">Download Form</a>
+                <button v-if="showSubmitButton" type="button" class="btn btn-primary btn-sm" ref="refSubmitButton" data-bs-toggle="modal" data-bs-target="#commununionDetailModal">Save</button>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div v-if="refCommunionDetails.details" class="modal fade" id="commununionDetailModal" tabindex="-1" aria-labelledby="commununionDetailModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+                        <h1 class="modal-title fs-5" id="commununionDetailModalLabel">Confirmation</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" v-if="!successRegistration">
                         <p>Are you sure you want to submit the list for Communion Reservation?</p>
                         <p> Total number of people: <strong>{{ refCommunionDetails.details.length }}</strong></p>
                         <button type="submit" class="btn btn-primary btn-sm">Confirm Submit</button>
+                    </div>
+
+                    <div class="modal-body" v-if="successRegistration">
+                        <div class="row">
+                            <div class="col-md-12 d-flex flex-column align-items-center gap-2 my-5">
+                                <i class="far fa-check-circle display-1 text-success"></i>
+                                <strong>Communion Reservation submitted successfully</strong>
+                            </div>
+                        </div>
                     </div>
                     </div>
                 </div>
@@ -30,8 +40,6 @@
             </div>
 
             <div class="col-md-12">
-                {{ refCommunionDetails.details }}
-
                 <table class="table">
                 <thead>
                     <tr>
@@ -49,8 +57,8 @@
                         <td>{{ item.name }}</td>
                         <td>{{ item.birth_date }}</td>
                         <td>{{ item.guardian }}</td>
-                        <td>{{ item.contact_no }}</td>
-                        <td>{{ item.address }}</td>
+                        <td>{{ item.contact_number }}</td>
+                        <td>{{ item.present_address }}</td>
                     </tr>
                     
                 </tbody>
@@ -63,10 +71,14 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
 import XLSX from 'xlsx';
-import { useSystemStore } from '../../../store/system';;
+import { useSystemStore } from '../../../store/system';
+import { Modal } from 'bootstrap'
 
 const systemStore = useSystemStore()
 const successRegistration = ref(false)
+const refInputFile = ref()
+const refSubmitButton = ref()
+const showSubmitButton = ref(false)
 
 const refCommunionDetails = ref({
     file: null,
@@ -88,18 +100,15 @@ const handleSubmit = async () => {
         });
 
         if(response) {
-            console.log(response.data)
-            successRegistration.value = true
+            console.log(response)
             systemStore.reset()
-            resetValues().then(() => {
-                setTimeout(() => {
-                    successRegistration.value = false
-                    emits('eventCreated')
-                }, 10000);
-            })
+            refInputFile.value.disabled = true
+            showSubmitButton.value = false
+            successRegistration.value = true
         }
 
     } catch (error) {
+        console.log(error)
         handleError(error)
     }
 }
@@ -177,6 +186,9 @@ const handleInputFile = (e) => {
 
         // Assign JSON data to refCommunionDetails.value.details
         refCommunionDetails.value.details = jsonData;
+        if(refCommunionDetails.value.details.length > 0) {
+            showSubmitButton.value = true
+        }
     };
 
     // Read the file as binary data
@@ -184,8 +196,35 @@ const handleInputFile = (e) => {
 
 }
 
+const loadCommunionDetails = async () => {
+    let url = window.location.href;
+    let segments = url.split('/');
+    let lastSegment = segments[segments.length - 1];
+
+    // Check if the last segment is numeric
+    if (!isNaN(lastSegment)) {
+        // If numeric, treat it as an ID and fetch details
+        await window.axios.get('/api/events/communions/' + lastSegment).then((response) => {
+            // console.log(response);
+            refCommunionDetails.value.details = response.data.details;
+            refInputFile.value.disabled = true
+            showSubmitButton.value = false
+        });
+    } else {
+        // If not numeric, treat it as a 'create' action
+        console.log('Create new Communion');
+        // Add your logic for handling 'create' action here
+    }
+};
+
+// const toggleModal = () => {
+//   const modal = Modal(document.getElementById('commununionDetailModal'));
+//   modal.toggle();
+// };
+
 onBeforeMount(() => {
     systemStore.reset()
+    loadCommunionDetails()
 })
 
 </script>

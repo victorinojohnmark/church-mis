@@ -28,9 +28,9 @@
                 <table id="communion-table" class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Communion Date</th>
-                            <th>Birth Date</th>
+                            {{-- <th>Name</th> --}}
+                            {{-- <th>Communion Date</th> --}}
+                            {{-- <th>Birth Date</th> --}}
                             <th>Submitted At</th>
                             <th>Options</th>
                         </tr>
@@ -38,7 +38,7 @@
                     <tbody>
                         @forelse ($communions as $communion)
                         <tr>
-                            <td>
+                            {{-- <td>
                                 {{ $communion->name }}
                                 @if ($communion->is_accepted)
                                     <span class="badge bg-success">Accepted</span>
@@ -47,10 +47,10 @@
                                 @else
                                     <span class="badge bg-warning">Pending</span>
                                 @endif
-                            </td>
-                            <td>{{ $communion->date }}</td>
-                            <td>{{ $communion->birth_date }}</td>
-                            <td>{{ $communion->created_at }}</td>
+                            </td> --}}
+                            {{-- <td>{{ $communion->date }}</td> --}}
+                            {{-- <td>{{ $communion->birth_date }}</td> --}}
+                            <td>{{ $communion->created_at->format('Y-m-d h:i A') }}</td>
                             <td>
                                 <a href="{{ route('clientcommunionshow', ['communion' => $communion->id]) }}" class="btn btn-primary btn-sm">View</a>
                                 

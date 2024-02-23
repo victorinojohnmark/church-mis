@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/blessings', [BlessingController::class,'store']);
         Route::post('/weddings', [MatrimonyController::class,'store']);
         Route::post('/funerals', [FuneralController::class,'store']);
+        Route::get('/communions/{communion}', [CommunionController::class,'show']);
         Route::post('/communions', [CommunionController::class,'store']);
     });
     

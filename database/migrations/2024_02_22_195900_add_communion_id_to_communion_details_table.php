@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('communion_details', function (Blueprint $table) {
-            $table->unsignedMediumInteger('communion_id');
+            $table->unsignedMediumInteger('communion_id')->after('id');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('communion_details', function (Blueprint $table) {
-            //
+            $table->dropColumn('communion_id');
         });
     }
 };
