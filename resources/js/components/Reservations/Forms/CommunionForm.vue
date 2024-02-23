@@ -2,15 +2,15 @@
     <!-- {{ refCommunionDetails }} -->
     <form @submit.prevent="handleSubmit">
         <div class="row">
-            <div class="col-md-10 mb-3">
+            <div class="col-md-9 mb-3">
                 <label for="inputFile">Upload File</label><br>
                 <input type="file" @input="handleInputFile" ref="refInputFile" name="file" class="form-control-file" id="inputFile" accept=".xls, .xlsx, .csv" required>
                 <small class="text-danger">{{ systemStore.error.communion && systemStore.error.communion.present_address ? systemStore.error.communion.file[0] : '' }}</small>
 
             </div>
 
-            <div class="col-md-2 mb-3" >
-                <a href="/forms/first-communion-format.xlsx" class="btn btn-success btn-sm">Download Form</a>
+            <div class="col-md-3 mb-3" >
+                <a href="/forms/first-communion-format.xlsx" class="btn btn-success btn-sm">Download Form</a> &nbsp;
                 <button v-if="showSubmitButton" type="button" class="btn btn-primary btn-sm" ref="refSubmitButton" data-bs-toggle="modal" data-bs-target="#commununionDetailModal">Save</button>
                 <!-- Modal -->
                 <div v-if="refCommunionDetails.details" class="modal fade" id="commununionDetailModal" tabindex="-1" aria-labelledby="commununionDetailModalLabel" aria-hidden="true">
