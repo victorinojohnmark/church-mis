@@ -7,6 +7,8 @@ use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\ConfirmationDetail;
+
 class Confirmation extends Model
 {
     use HasFactory;
@@ -15,6 +17,11 @@ class Confirmation extends Model
 
     protected $observables = ['reservationAccepted', 'reservationRejected'];
 
+    public function details()
+    {
+        return $this->hasMany(ConfirmationDetail::class);
+    }
+    
     public function createdBy()
     {
         return $this->belongsTo(Client::class, 'created_by_id', 'id');

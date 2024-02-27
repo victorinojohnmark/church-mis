@@ -21,7 +21,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" v-if="!successRegistration">
-                        <p>Are you sure you want to submit the list for Communion Reservation?</p>
+                        <p>Are you sure you want to submit the list for Confirmation Reservation?</p>
                         <p> Total number of people: <strong>{{ refConfirmationDetails.details.length }}</strong></p>
                         <button type="submit" class="btn btn-primary btn-sm">Confirm Submit</button>
                     </div>
@@ -46,7 +46,10 @@
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Birth Date</th>
-                        <th scope="col">Guardian</th>
+                        <th scope="col">Father</th>
+                        <th scope="col">Mother</th>
+                        <th scope="col">Sponsor 1</th>
+                        <th scope="col">Sponsor 2</th>
                         <th scope="col">Contact Number</th>
                         <th scope="col">Address</th>
                     </tr>
@@ -56,7 +59,10 @@
                         <th scope="row">{{ index + 1 }}</th>
                         <td>{{ item.name }}</td>
                         <td>{{ item.birth_date }}</td>
-                        <td>{{ item.guardian }}</td>
+                        <td>{{ item.father }}</td>
+                        <td>{{ item.mother }}</td>
+                        <td>{{ item.sponsor_1 }}</td>
+                        <td>{{ item.sponsor_2 }}</td>
                         <td>{{ item.contact_number }}</td>
                         <td>{{ item.present_address }}</td>
                     </tr>
@@ -72,13 +78,13 @@
 import { ref, onBeforeMount } from 'vue'
 import XLSX from 'xlsx';
 import { useSystemStore } from '../../../store/system';
-import { Modal } from 'bootstrap'
 
 const systemStore = useSystemStore()
 const successRegistration = ref(false)
 const refInputFile = ref()
 const refSubmitButton = ref()
 const showSubmitButton = ref(false)
+const model = 'confirmation'
 
 const refConfirmationDetails = ref({
     file: null,
@@ -165,7 +171,7 @@ const handleInputFile = (e) => {
 
         // Convert sheet data to JSON, starting from the 3rd row (index 2)
         const jsonData = XLSX.utils.sheet_to_json(sheet, {
-            header: ["name", "birth_date", "guardian", "contact_number", "present_address"],
+            header: ["name", "birth_date", "father", "mother", "sponsor_1", "sponsor_2", "contact_number", "present_address"],
             range: 2,
             raw: false,
             defval: "",
@@ -178,6 +184,9 @@ const handleInputFile = (e) => {
             columnTypes: [
                 { type: 'string' },
                 { type: 'date', dateFormat: 'mm/dd/yyyy', parser: dateParser }, // Use custom date parser
+                { type: 'string' },
+                { type: 'string' },
+                { type: 'string' },
                 { type: 'string' },
                 { type: 'string' },
                 { type: 'string' }
@@ -196,7 +205,7 @@ const handleInputFile = (e) => {
 
 }
 
-const loadCommunionDetails = async () => {
+const loadConfirmationDetails = async () => {
     let url = window.location.href;
     let segments = url.split('/');
     let lastSegment = segments[segments.length - 1];
@@ -204,7 +213,7 @@ const loadCommunionDetails = async () => {
     // Check if the last segment is numeric
     if (!isNaN(lastSegment)) {
         // If numeric, treat it as an ID and fetch details
-        await window.axios.get('/api/events/communions/' + lastSegment).then((response) => {
+        await window.axios.get('/api/events/confirmations/' + lastSegment).then((response) => {
             // console.log(response);
             refConfirmationDetails.value.details = response.data.details;
             refInputFile.value.disabled = true
@@ -212,7 +221,7 @@ const loadCommunionDetails = async () => {
         });
     } else {
         // If not numeric, treat it as a 'create' action
-        console.log('Create new Communion');
+        console.log('Create new Confirmation');
         // Add your logic for handling 'create' action here
     }
 };
@@ -224,7 +233,7 @@ const loadCommunionDetails = async () => {
 
 onBeforeMount(() => {
     systemStore.reset()
-    loadCommunionDetails()
+    loadConfirmationDetails()
 })
 
 </script>

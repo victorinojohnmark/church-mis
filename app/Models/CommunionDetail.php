@@ -11,7 +11,7 @@ class CommunionDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['communion_id', 'name', 'birth_date', 'father', 'mother', 'sponsor_1', 'sponsor_2', 'contact_number', 'present_address'];
+    protected $fillable = ['communion_id', 'name', 'birth_date', 'guardian', 'contact_number', 'present_address'];
 
     public function communion()
     {

@@ -10,18 +10,25 @@
 <table id="confirmation-table" class="table table-hover table-bordered">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Confirmation Date</th>
-            <th>Birth Date</th>
-            <th>Submitted At</th>
+            {{-- <th>Name</th> --}}
+            {{-- <th>Confirmation Date</th> --}}
+            {{-- <th>Birth Date</th> --}}
+            <th>Date Submitted</th>
+            <th>Total Participant</th>
             <th>Options</th>
         </tr>
     </thead>
     <tbody>
         @forelse ($confirmations as $confirmation)
         <tr>
-            <td>
+            {{-- <td>
                 {{ $confirmation->name }}
+                
+            </td>
+            <td>{{ $confirmation->date }}</td>
+            <td>{{ $confirmation->birth_date }}</td> --}}
+            <td>
+                {{ $confirmation->created_at->format('Y-m-d h:i A') }}
                 @if ($confirmation->is_accepted)
                     <span class="badge bg-success">Accepted</span>
                 @elseif ($confirmation->is_rejected)
@@ -30,9 +37,7 @@
                     <span class="badge bg-warning">Pending</span>
                 @endif
             </td>
-            <td>{{ $confirmation->date }}</td>
-            <td>{{ $confirmation->birth_date }}</td>
-            <td>{{ $confirmation->created_at }}</td>
+            <td>{{ $confirmation->details->count() }}</td>
             <td>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationModal{{ $confirmation->id }}">View</button>
                 @include('admin.confirmation.confirmationmodal')

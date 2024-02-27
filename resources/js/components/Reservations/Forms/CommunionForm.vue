@@ -46,10 +46,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Birth Date</th>
-                        <th scope="col">Father</th>
-                        <th scope="col">Mother</th>
-                        <th scope="col">Sponsor 1</th>
-                        <th scope="col">Sponsor 2</th>
+                        <th scope="col">Guardian</th>
                         <th scope="col">Contact Number</th>
                         <th scope="col">Address</th>
                     </tr>
@@ -59,10 +56,7 @@
                         <th scope="row">{{ index + 1 }}</th>
                         <td>{{ item.name }}</td>
                         <td>{{ item.birth_date }}</td>
-                        <td>{{ item.father }}</td>
-                        <td>{{ item.mother }}</td>
-                        <td>{{ item.sponsor_1 }}</td>
-                        <td>{{ item.sponsor_2 }}</td>
+                        <td>{{ item.guardian }}</td>
                         <td>{{ item.contact_number }}</td>
                         <td>{{ item.present_address }}</td>
                     </tr>
@@ -84,6 +78,7 @@ const successRegistration = ref(false)
 const refInputFile = ref()
 const refSubmitButton = ref()
 const showSubmitButton = ref(false)
+const model = 'communion'
 
 const refCommunionDetails = ref({
     file: null,
@@ -170,7 +165,7 @@ const handleInputFile = (e) => {
 
         // Convert sheet data to JSON, starting from the 3rd row (index 2)
         const jsonData = XLSX.utils.sheet_to_json(sheet, {
-            header: ["name", "birth_date", "father", "mother", "sponsor_1", "sponsor_2", "contact_number", "present_address"],
+            header: ["name", "birth_date", "guardian", "contact_number", "present_address"],
             range: 2,
             raw: false,
             defval: "",
@@ -183,9 +178,6 @@ const handleInputFile = (e) => {
             columnTypes: [
                 { type: 'string' },
                 { type: 'date', dateFormat: 'mm/dd/yyyy', parser: dateParser }, // Use custom date parser
-                { type: 'string' },
-                { type: 'string' },
-                { type: 'string' },
                 { type: 'string' },
                 { type: 'string' },
                 { type: 'string' }

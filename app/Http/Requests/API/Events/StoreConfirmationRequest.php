@@ -5,7 +5,7 @@ namespace App\Http\Requests\API\Events;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 
-class StoreCommunionRequest extends FormRequest
+class StoreConfirmationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,7 +33,10 @@ class StoreCommunionRequest extends FormRequest
                         $validator = Validator::make($detail, [
                             'name' => 'required',
                             'birth_date' => 'required',
-                            'guardian' => 'required',
+                            'father' => 'required',
+                            'mother' => 'required',
+                            'sponsor_1' => 'required',
+                            'sponsor_2' => 'required',
                             'contact_number' => 'required',
                             'present_address' => 'required',
                         ]);
