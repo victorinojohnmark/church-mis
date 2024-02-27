@@ -13,7 +13,10 @@
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Birth Date</th>
-                            <th scope="col">Guardian</th>
+                            <th scope="col">Father</th>
+                            <th scope="col">Mother</th>
+                            <th scope="col">Sponsor 1</th>
+                            <th scope="col">Sponsor 2</th>
                             <th scope="col">Contact Number</th>
                             <th scope="col">Address</th>
                         </tr>
@@ -24,7 +27,10 @@
                             <th scope="row">{{ $loop->index + 1 }}</th>
                             <td>{{ $detail->name }}</td>
                             <td>{{ $detail->birth_date }}</td>
-                            <td>{{ $detail->guardian }}</td>
+                            <td>{{ $detail->father }}</td>
+                            <td>{{ $detail->mother }}</td>
+                            <td>{{ $detail->sponsor_1 }}</td>
+                            <td>{{ $detail->sponsor_2 }}</td>
                             <td>{{ $detail->contact_number }}</td>
                             <td>{{ $detail->present_address }}</td>
                         </tr>

@@ -19,7 +19,16 @@
         @forelse ($communions as $communion)
         <tr>
             
-            <td>{{ $communion->created_at->format('Y-m-d h:i A') }}</td>
+            <td>
+                {{ $communion->created_at->format('Y-m-d h:i A') }}
+                @if ($communion->is_accepted)
+                    <span class="badge bg-success">Accepted</span>
+                @elseif ($communion->is_rejected)
+                    <span class="badge bg-danger">Rejected</span>
+                @else
+                    <span class="badge bg-warning">Pending</span>
+                @endif
+            </td>
             <td>{{ $communion->details->count() }}</td>
             <td>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#communionModal{{ $communion->id }}">View</button>

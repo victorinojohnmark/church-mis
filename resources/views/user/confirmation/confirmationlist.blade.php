@@ -28,7 +28,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Birth Date</th>
+                            {{-- <th>Birth Date</th> --}}
                             <th>Submitted At</th>
                             <th>Options</th>
                         </tr>
@@ -36,8 +36,10 @@
                     <tbody>
                         @forelse ($confirmations as $confirmation)
                         <tr>
+                            {{-- <td>{{ $confirmation->name }}</td>
+                            <td>{{ $confirmation->birth_date }}</td> --}}
                             <td>
-                                {{ $confirmation->name }}
+                                {{ $confirmation->created_at->format('Y-m-d h:i A') }}
                                 @if ($confirmation->is_accepted)
                                     <span class="badge bg-success">Accepted</span>
                                 @elseif ($confirmation->is_rejected)
@@ -46,8 +48,6 @@
                                     <span class="badge bg-warning">Pending</span>
                                 @endif
                             </td>
-                            <td>{{ $confirmation->birth_date }}</td>
-                            <td>{{ $confirmation->created_at }}</td>
                             <td>
                                 <a href="{{ route('clientconfirmationshow', ['confirmation' => $confirmation->id]) }}" class="btn btn-primary btn-sm">View</a>
                             </td>

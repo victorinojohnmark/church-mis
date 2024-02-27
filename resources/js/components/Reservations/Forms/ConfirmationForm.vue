@@ -1,28 +1,28 @@
 <template>
-    <!-- {{ refCommunionDetails }} -->
+    <!-- {{ refConfirmationDetails }} -->
     <form @submit.prevent="handleSubmit">
         <div class="row">
             <div class="col-md-9 mb-3">
                 <label for="inputFile">Upload File</label><br>
                 <input type="file" @input="handleInputFile" ref="refInputFile" name="file" class="form-control-file" id="inputFile" accept=".xls, .xlsx, .csv" required>
-                <small class="text-danger">{{ systemStore.error.communion && systemStore.error.communion.file ? systemStore.error.communion.file[0] : '' }}</small>
+                <small class="text-danger">{{ systemStore.error.confirmation && systemStore.error.confirmation.file ? systemStore.error.confirmation.file[0] : '' }}</small>
 
             </div>
 
             <div class="col-md-3 mb-3" >
-                <a href="/forms/first-communion-format.xlsx" class="btn btn-success btn-sm">Download Form</a> &nbsp;
-                <button v-if="showSubmitButton" type="button" class="btn btn-primary btn-sm" ref="refSubmitButton" data-bs-toggle="modal" data-bs-target="#commununionDetailModal">Save</button>
+                <a href="/forms/confirmation-format.xlsx" class="btn btn-success btn-sm">Download Form</a> &nbsp;
+                <button v-if="showSubmitButton" type="button" class="btn btn-primary btn-sm" ref="refSubmitButton" data-bs-toggle="modal" data-bs-target="#confirmationDetailModal">Save</button>
                 <!-- Modal -->
-                <div v-if="refCommunionDetails.details" class="modal fade" id="commununionDetailModal" tabindex="-1" aria-labelledby="commununionDetailModalLabel" aria-hidden="true">
+                <div v-if="refConfirmationDetails.details" class="modal fade" id="confirmationDetailModal" tabindex="-1" aria-labelledby="confirmationDetailModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="commununionDetailModalLabel">Confirmation</h1>
+                        <h1 class="modal-title fs-5" id="confirmationDetailModalLabel">Confirmation</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" v-if="!successRegistration">
                         <p>Are you sure you want to submit the list for Communion Reservation?</p>
-                        <p> Total number of people: <strong>{{ refCommunionDetails.details.length }}</strong></p>
+                        <p> Total number of people: <strong>{{ refConfirmationDetails.details.length }}</strong></p>
                         <button type="submit" class="btn btn-primary btn-sm">Confirm Submit</button>
                     </div>
 
@@ -46,23 +46,17 @@
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Birth Date</th>
-                        <th scope="col">Father</th>
-                        <th scope="col">Mother</th>
-                        <th scope="col">Sponsor 1</th>
-                        <th scope="col">Sponsor 2</th>
+                        <th scope="col">Guardian</th>
                         <th scope="col">Contact Number</th>
                         <th scope="col">Address</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item, index) in refCommunionDetails.details">
+                    <tr v-for="(item, index) in refConfirmationDetails.details">
                         <th scope="row">{{ index + 1 }}</th>
                         <td>{{ item.name }}</td>
                         <td>{{ item.birth_date }}</td>
-                        <td>{{ item.father }}</td>
-                        <td>{{ item.mother }}</td>
-                        <td>{{ item.sponsor_1 }}</td>
-                        <td>{{ item.sponsor_2 }}</td>
+                        <td>{{ item.guardian }}</td>
                         <td>{{ item.contact_number }}</td>
                         <td>{{ item.present_address }}</td>
                     </tr>
@@ -78,6 +72,7 @@
 import { ref, onBeforeMount } from 'vue'
 import XLSX from 'xlsx';
 import { useSystemStore } from '../../../store/system';
+import { Modal } from 'bootstrap'
 
 const systemStore = useSystemStore()
 const successRegistration = ref(false)
@@ -85,7 +80,7 @@ const refInputFile = ref()
 const refSubmitButton = ref()
 const showSubmitButton = ref(false)
 
-const refCommunionDetails = ref({
+const refConfirmationDetails = ref({
     file: null,
     details: null
 })
@@ -95,10 +90,10 @@ const emits = defineEmits(['eventCreated'])
 const handleSubmit = async () => {
     try {
         const formData = new FormData();
-        formData.append('file', refCommunionDetails.value.file);
-        formData.append('details', JSON.stringify(refCommunionDetails.value.details));
+        formData.append('file', refConfirmationDetails.value.file);
+        formData.append('details', JSON.stringify(refConfirmationDetails.value.details));
 
-        const response = await window.axios.post('/api/events/communions', formData, {
+        const response = await window.axios.post('/api/events/confirmations', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -119,8 +114,8 @@ const handleSubmit = async () => {
 }
 
 const resetValues = async () => {
-    refCommunionDetails.value.file = null
-    refCommunionDetails.value.details = null
+    refConfirmationDetails.value.file = null
+    refConfirmationDetails.value.details = null
 }
 
 const handleError = (error) => {
@@ -151,8 +146,8 @@ const dateParser = (value) => {
 };
 
 const handleInputFile = (e) => {
-    //handle file input assign value to the refCommunionDetails.value.file
-    refCommunionDetails.value.file = e.target.files[0]
+    //handle file input assign value to the refConfirmationDetails.value.file
+    refConfirmationDetails.value.file = e.target.files[0]
 
     // Create a FileReader object to read the file
     const reader = new FileReader();
@@ -170,7 +165,7 @@ const handleInputFile = (e) => {
 
         // Convert sheet data to JSON, starting from the 3rd row (index 2)
         const jsonData = XLSX.utils.sheet_to_json(sheet, {
-            header: ["name", "birth_date", "father", "mother", "sponsor_1", "sponsor_2", "contact_number", "present_address"],
+            header: ["name", "birth_date", "guardian", "contact_number", "present_address"],
             range: 2,
             raw: false,
             defval: "",
@@ -185,16 +180,13 @@ const handleInputFile = (e) => {
                 { type: 'date', dateFormat: 'mm/dd/yyyy', parser: dateParser }, // Use custom date parser
                 { type: 'string' },
                 { type: 'string' },
-                { type: 'string' },
-                { type: 'string' },
-                { type: 'string' },
                 { type: 'string' }
             ]
         });
 
-        // Assign JSON data to refCommunionDetails.value.details
-        refCommunionDetails.value.details = jsonData;
-        if(refCommunionDetails.value.details.length > 0) {
+        // Assign JSON data to refConfirmationDetails.value.details
+        refConfirmationDetails.value.details = jsonData;
+        if(refConfirmationDetails.value.details.length > 0) {
             showSubmitButton.value = true
         }
     };
@@ -214,7 +206,7 @@ const loadCommunionDetails = async () => {
         // If numeric, treat it as an ID and fetch details
         await window.axios.get('/api/events/communions/' + lastSegment).then((response) => {
             // console.log(response);
-            refCommunionDetails.value.details = response.data.details;
+            refConfirmationDetails.value.details = response.data.details;
             refInputFile.value.disabled = true
             showSubmitButton.value = false
         });
