@@ -45,6 +45,14 @@ class BaptismController extends Controller
         
     }
 
+    public function print(Request $request, Baptism $baptism)
+    {
+        return view('admin.baptism.baptismprint', [
+            'baptism' => $baptism,
+        ]);
+        
+    }
+
     public function create(Request $request)
     {
         $client = Client::findOrFail(auth()->user()->id);

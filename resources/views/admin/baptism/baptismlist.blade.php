@@ -44,6 +44,10 @@
                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#baptismRejectModal{{ $baptism->id }}">Reject</button>
                         @include('admin.baptism.baptismrejectmodal')
                     @endif
+
+                    @if ($baptism->is_accepted)
+                    <a href="{{ route('baptismprint', ['baptism' => $baptism->id]) }}" target="_blank"  class="btn btn-success btn-sm">Print Preview</a>
+                    @endif
                 </td>
             </tr>
         @empty

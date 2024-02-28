@@ -107,6 +107,7 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
 
     //Baptism
     Route::get('/baptisms', [App\Http\Controllers\Reservation\BaptismController::class, 'index'])->name('baptismlist');
+    Route::get('/baptisms/{baptism}/print', [App\Http\Controllers\Reservation\BaptismController::class, 'print'])->name('baptismprint');
     Route::post('/baptismaccept', [App\Http\Controllers\Reservation\BaptismController::class, 'acceptreservation'])->name('baptismaccept');
     Route::post('/baptismreject', [App\Http\Controllers\Reservation\BaptismController::class, 'rejectreservation'])->name('baptismreject');
 
