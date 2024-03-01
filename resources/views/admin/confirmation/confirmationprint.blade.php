@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Baptism Certificate - {{ $baptism->name }}</title>
+    <title>Baptism Certificate - {{ $confirmation_detail->name }}</title>
     <style type="text/css">
         * {
             margin: 0;
@@ -86,24 +86,27 @@
             <br>
             <h3 style="text-indent: 0pt;text-align: center;">This certifies</h3>
             <br>
-            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">that <span style="display: inline-block;width: 95%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $baptism->name !!}</span></p>
-            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">child of &nbsp; <span style="display: inline-block;width: 90%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $baptism->fathers_name !!}</span></p>
-            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">and <span style="display: inline-block;width: 95%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $baptism->mothers_name !!}</span></p>
-            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">born on the 
-                <span style="display: inline-block;width: 25%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($baptism->birth_date)->format('jS') }}</span>
-                day of <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($baptism->birth_date)->format('F') }}</span>
-                , <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($baptism->birth_date)->format('Y') }}</span>
+            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">that <span style="display: inline-block;width: 95%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $confirmation_detail->name !!}</span></p>
+            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">child of &nbsp; <span style="display: inline-block;width: 90%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $confirmation_detail->fathers_name !!}</span></p>
+            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">and <span style="display: inline-block;width: 95%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $confirmation_detail->mothers_name !!}</span></p>
+            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">Baptized on the 
+                <span style="display: inline-block;width: 25%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->birth_date)->format('jS') }}</span>
+                day of <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->birth_date)->format('F') }}</span>
+                , <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->birth_date)->format('Y') }}</span>
             </p>
-            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">and residing at<span style="display: inline-block;width: 86%;border-bottom: 1px solid black; text-align: center; font-size: 16px; font-weight: bold;">{!! $baptism->present_address !!}</span></p>
-            <h3 style="text-indent: 0pt;text-align: center; margin-bottom: 15px;">was solemnly baptized</h3>
+            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">in the church of <u><strong>St. Gregory the Greate Parish</strong></u></p>
+            
+            <p style="text-indent: 0pt;text-align: center;margin-bottom: 30px;">Recieved</p>
+
+            <h3 style="text-indent: 0pt;text-align: center; margin-bottom: 15px;">The Holy Sacrament of Confirmation</h3>
             <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">on the 
-                <span style="display: inline-block;width: 30%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($baptism->date)->format('jS') }}</span>
-                day of <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($baptism->date)->format('F') }}</span>
-                , <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($baptism->date)->format('Y') }}</span></p>
-            <h3 style="text-indent: 0pt;text-align: center; margin-bottom: 15px;">according to the Rites of the <br> Roman Catholic Church</h3>
-            <p style="text-align: left;margin-bottom: 15px; ">by the Rev. <u><strong>FR. MARTY A. DIMARANAN</strong></u></p>
-            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">the sponsors being <span style="display: inline-block;width: 80%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ $baptism->sponsor_1 }}</span></p>
-            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">and <span style="display: inline-block;width: 95%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ $baptism->sponsor_2 }}</span></p>
+                <span style="display: inline-block;width: 30%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->date)->format('jS') }}</span>
+                day of <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->date)->format('F') }}</span>
+                , <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->date)->format('Y') }}</span></p>
+            {{-- <h3 style="text-indent: 0pt;text-align: center; margin-bottom: 15px;">according to the Rites of the <br> Roman Catholic Church</h3> --}}
+            <p style="text-align: left;margin-bottom: 15px; ">by the Most Rev. <u><strong>FR. MARTY A. DIMARANAN</strong></u></p>
+            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">the Sponsors being <span style="display: inline-block;width: 80%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ $confirmation_detail->sponsor_1 }}</span></p>
+            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">and <span style="display: inline-block;width: 95%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ $confirmation_detail->sponsor_2 }}</span></p>
             <p class="s4" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;margin-bottom: 15px;">Not valid <br> without <br> Parish Seal</p>
             <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">Date of issuance <span style="display: inline-block;width: 82%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::now()->format('F j, Y') }}</span></p>
             <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">Purpose <span id="purpose" style="display: inline-block;width: 90%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">N/A</span></p>
