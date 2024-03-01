@@ -11,7 +11,7 @@ class ConfirmationDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['confirmation_id', 'name', 'birth_date', 'father', 'mother', 'sponsor_1', 'sponsor_2', 'contact_number', 'present_address'];
+    protected $fillable = ['confirmation_id', 'name', 'birth_date', 'baptismal_date', 'father', 'mother', 'sponsor_1', 'sponsor_2', 'contact_number', 'present_address'];
 
     public function confirmation()
     {

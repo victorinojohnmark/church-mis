@@ -30,6 +30,8 @@ class StoreBaptismRequest extends FormRequest
             'is_special' => ['sometimes', 'boolean'],
             'fathers_name' => ['required'],
             'mothers_name' => ['required'],
+            'sponsor_1' => ['required'],
+            'sponsor_2' => ['required'],
             'present_address' => ['required'],
             'contact_number' => ['required','digits:11'],
             'created_by_id' => ['required']

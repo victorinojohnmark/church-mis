@@ -86,6 +86,18 @@
 
         </div>
         <div class="col-md-6 mb-3">
+            <label class="form-label">Sponsor 1</label>
+            <input type="text" name="sponsor_1" v-model="refBaptism.sponsor_1" class="form-control" placeholder="..." required="">
+            <small class="text-danger">{{ systemStore.error.baptism && systemStore.error.baptism.sponsor_1 ? systemStore.error.baptism.sponsor_1[0] : '' }}</small>
+
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Sponsor 2</label>
+            <input type="text" name="sponsor_2" v-model="refBaptism.sponsor_2" class="form-control" placeholder="..." required="">
+            <small class="text-danger">{{ systemStore.error.baptism && systemStore.error.baptism.sponsor_2 ? systemStore.error.baptism.sponsor_2[0] : '' }}</small>
+
+        </div>
+        <div class="col-md-6 mb-3">
             <label class="form-label">Contact #</label>
             <input type="text" name="contact_number" v-model="refBaptism.contact_number" class="form-control" placeholder="..." required="">
             <small class="text-danger">{{ systemStore.error.baptism && systemStore.error.baptism.contact_number ? systemStore.error.baptism.contact_number[0] : '' }}</small>
@@ -140,6 +152,8 @@ const refBaptism = ref({
     birth_date: '',
     fathers_name: '',
     mothers_name: '',
+    sponsor_1: '',
+    sponsor_2: '',
     contact_number: '',
     present_address: ''
 })

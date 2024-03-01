@@ -46,6 +46,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Birth Date</th>
+                        <th scope="col">Baptismal Date</th>
                         <th scope="col">Father</th>
                         <th scope="col">Mother</th>
                         <th scope="col">Sponsor 1</th>
@@ -59,6 +60,7 @@
                         <th scope="row">{{ index + 1 }}</th>
                         <td>{{ item.name }}</td>
                         <td>{{ item.birth_date }}</td>
+                        <td>{{ item.baptismal_date }}</td>
                         <td>{{ item.father }}</td>
                         <td>{{ item.mother }}</td>
                         <td>{{ item.sponsor_1 }}</td>
@@ -171,7 +173,7 @@ const handleInputFile = (e) => {
 
         // Convert sheet data to JSON, starting from the 3rd row (index 2)
         const jsonData = XLSX.utils.sheet_to_json(sheet, {
-            header: ["name", "birth_date", "father", "mother", "sponsor_1", "sponsor_2", "contact_number", "present_address"],
+            header: ["name", "birth_date", "baptismal_date", "father", "mother", "sponsor_1", "sponsor_2", "contact_number", "present_address"],
             range: 2,
             raw: false,
             defval: "",
@@ -184,6 +186,7 @@ const handleInputFile = (e) => {
             columnTypes: [
                 { type: 'string' },
                 { type: 'date', dateFormat: 'mm/dd/yyyy', parser: dateParser }, // Use custom date parser
+                { type: 'date', dateFormat: 'mm/dd/yyyy', parser: dateParser },
                 { type: 'string' },
                 { type: 'string' },
                 { type: 'string' },

@@ -87,6 +87,16 @@
     </div>
 
     <div class="col-md-6 mb-3">
+        <label class="form-label">Sponsor 1</label>
+        <input type="text" name="sponsor_1" value="{{ old('sponsor_1', $baptism->sponsor_1 ?? null) }}" class="form-control" placeholder="..." required>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Sponsor 2</label>
+        <input type="text" name="sponsor_2" value="{{ old('sponsor_2', $baptism->sponsor_2 ?? null) }}" class="form-control" placeholder="..." required>
+    </div>
+
+    <div class="col-md-6 mb-3">
         <label class="form-label">Contact #</label>
         <input type="text" name="contact_number" value="{{ old('contact_number', $baptism->contact_number ?? null) }}" class="form-control" placeholder="..." required>
     </div>

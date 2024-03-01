@@ -33,6 +33,7 @@ class StoreConfirmationRequest extends FormRequest
                         $validator = Validator::make($detail, [
                             'name' => 'required',
                             'birth_date' => 'required',
+                            'baptismal_date' => 'required',
                             'father' => 'required',
                             'mother' => 'required',
                             'sponsor_1' => 'required',

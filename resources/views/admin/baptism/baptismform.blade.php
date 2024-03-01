@@ -64,6 +64,16 @@
     </div>
 
     <div class="col-md-6 mb-3">
+        <label class="form-label">Sponsor 1</label>
+        <input type="text" name="sponsor_1" value="{{ $baptism->sponsor_1 }}" class="form-control" placeholder="..." readonly>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Sponsor 2</label>
+        <input type="text" name="sponsor_2" value="{{ $baptism->sponsor_2 }}" class="form-control" placeholder="..." readonly>
+    </div>
+
+    <div class="col-md-6 mb-3">
         <label class="form-label">Contact #</label>
         <input type="text" name="contact_number" value="{{ $baptism->contact_number }}" class="form-control" placeholder="..." readonly>
     </div>
