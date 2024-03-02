@@ -12,25 +12,37 @@
         </div>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-12">
         <label class="form-label">Name of the Baby</label>
         <input type="text" name="name" class="form-control mb-3" value="{{ old('name', $baptismRequest->name ?? null) }}" placeholder="..." {{ $baptismRequest->is_ready ? 'readonly' : 'required' }}>
     </div>
 
-    <div class="col-md-4">
-        <label class="form-label">Baptismal Date</label>
-        <input type="date" name="baptismal_date" class="form-control mb-3" value="{{ old('baptismal_date', $baptismRequest->baptismal_date ?? null) }}" placeholder="..." {{ $baptismRequest->is_ready ? 'readonly' : 'required' }}>
+    <div class="col-md-6">
+        
+        <div class="d-flex justify-content-between">
+            <label class="form-label">Baptismal Date</label>
+            <div class="unknown">
+                <input type="checkbox" name="is_unknown_date" class="form-check-input" {{ $baptismRequest && $baptismRequest->is_unknown_date ? 'checked' : '' }} {{ $baptismRequest->is_ready ? 'readonly' : '' }}>
+                <label class="form-check-label">&nbsp; Unknown date of baptismal</label>
+            </div>
+        </div>
+        <input type="date" name="baptismal_date" class="form-control mb-3" value="{{ old('baptismal_date', $baptismRequest->baptismal_date ?? null) }}" placeholder="..." {{ $baptismRequest->is_ready ? 'readonly' : '' }}>
+        
     </div>
+
+    {{-- <div class="col-md-6 mb-3">
+        <div class="form-group form-check">
+            <input type="checkbox" name="is_unknown_date" class="form-check-input" {{ $baptismRequest && $baptismRequest->is_unknown_date ? 'checked' : '' }} {{ $baptismRequest->is_ready ? 'readonly' : '' }}>
+            <label class="form-check-label">Unknown date of baptismal</label>
+        </div>
+    </div> --}}
 
     <div class="col-md-6">
         <label class="form-label">Birth Date</label>
         <input type="date" name="birth_date" class="form-control mb-3" value="{{ old('birth_date', $baptismRequest->birth_date ?? null) }}" placeholder="..." {{ $baptismRequest->is_ready ? 'readonly' : 'required' }}>
     </div>
 
-    <div class="col-md-6 mb-3">
-        <label class="form-label">Birth Place</label>
-        <textarea name="birth_place" class="form-control" cols="30" rows="2">{{ old('birth_place', $baptismRequest->birth_place ?? null) }}</textarea>
-    </div>
+    
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Sex</label>

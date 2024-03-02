@@ -42,4 +42,47 @@
 @push('scripts')
     <script src="/vendor/jquery/jquery-3.5.1.js"></script>
     
+    <script>
+        // var baptismalDateInput = document.querySelector('input[name="baptismal_date"]');
+        // var unknownDateCheckbox = document.querySelector('input[name="is_unknown_date"]');
+
+        // console.log(baptismalDateInput, unknownDateCheckbox)
+        
+        // // Function to handle checkbox state change
+        // function handleCheckboxChange() {
+        //     console.log('Checkbox changed!');
+        //     if (unknownDateCheckbox.checked) {
+        //         baptismalDateInput.value = ''; // Clear the value
+        //         baptismalDateInput.disabled = true; // Disable the input
+        //     } else {
+        //         baptismalDateInput.disabled = false; // Enable the input
+        //     }
+        // }
+
+        // // Add event listener to checkbox change event
+        // unknownDateCheckbox.addEventListener('input', () => {
+        //     console.log('click')
+        // });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        var baptismalDateInput = document.querySelector('input[name="baptismal_date"]');
+        var unknownDateCheckbox = document.querySelector('input[name="is_unknown_date"]');
+
+        // Function to handle checkbox state change
+        function handleCheckboxChange() {
+            if (unknownDateCheckbox.checked) {
+                baptismalDateInput.value = ''; // Clear the value
+                baptismalDateInput.disabled = true; // Disable the input
+            } else {
+                baptismalDateInput.disabled = false; // Enable the input
+            }
+        }
+
+        // Add event listener to checkbox change event
+        unknownDateCheckbox.addEventListener('change', handleCheckboxChange);
+
+        // Initial execution
+        handleCheckboxChange();
+    });
+    </script>
 @endpush

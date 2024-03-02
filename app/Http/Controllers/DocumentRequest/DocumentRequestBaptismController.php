@@ -64,7 +64,7 @@ class DocumentRequestBaptismController extends Controller
             'sex' => ['required', 'in:Male,Female'],
             'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling'],
             'contact_number' => ['required','digits:11'],
-            'baptismal_date' => ['required', 'date'],
+            'baptismal_date' => ['nullable', 'date'],
             'father_name' => ['required'],
             'mother_name' => ['required'],
             'address' => ['required'],
