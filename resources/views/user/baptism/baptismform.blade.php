@@ -4,12 +4,20 @@
     <input type="hidden" name="id" value="{{ $baptism->id ?? null }}">
     <div class="col-md-12 mb-3">
         <div class="p-3 bg-body-secondary rounded">
-            <small><i class="fa-solid fa-circle-info text-primary"></i>
+            <small><i class="fa-solid fa-circle-info text-primary"></i> &nbsp;
                 <strong>Event Reservation is closed on mondays.</strong>
                 Sundays at 10am for Regular reservation and Tuesday to Saturday 8-4pm for special schedules.
             </small>
         </div>
     </div>
+
+    <div class="col-md-12 mb-3">
+        <div class="form-group form-check">
+            <input type="checkbox" name="is_special" class="form-check-input" {{ $baptism && $baptism->is_special ? 'checked' : '' }}>
+            <label class="form-check-label">Special Schedule</label>
+        </div>
+    </div>
+
     <div class="col-md-12 mb-3">
         <label class="form-label">Name of the Baby</label>
         <input type="text" name="name" value="{{ old('name', $baptism->name ?? null) }}" class="form-control" placeholder="..." required>
@@ -64,12 +72,7 @@
         <textarea name="place_of_birth" class="form-control" cols="30" rows="2">{{ old('place_of_birth', $baptism->place_of_birth ?? null) }}</textarea>
     </div>
 
-    <div class="col-md-12 mb-3">
-        <div class="form-group form-check">
-            <input type="checkbox" name="is_special" class="form-check-input" {{ $baptism && $baptism->is_special ? 'checked' : '' }}>
-            <label class="form-check-label">Special Schedule</label>
-        </div>
-    </div>
+    
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Birth Date</label>
