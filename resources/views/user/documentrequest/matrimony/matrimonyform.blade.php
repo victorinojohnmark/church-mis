@@ -51,12 +51,12 @@
         <textarea name="address" cols="30" rows="3" class="form-control mb-3" placeholder="..." {{ $matrimonyRequest->is_ready ? 'readonly' : 'required' }}>{{ $matrimonyRequest->address }}</textarea>
     </div>
 
-    <div class="col-md-12 mb-3">
+    {{-- <div class="col-md-12 mb-3">
         <div class="p-3 bg-body-secondary rounded">
             <small><i class="fa-solid fa-circle-info text-primary"></i>
                 You might receive the document within the day. You’ll receive an email advisory when it’s ready for pick up.
             </small>
         </div>
-    </div>
+    </div> --}}
 
 </div>
