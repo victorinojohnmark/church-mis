@@ -120,6 +120,7 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::get('/confirmations', [App\Http\Controllers\Reservation\ConfirmationController::class, 'index'])->name('confirmationlist');
     Route::post('/confirmationaccept', [App\Http\Controllers\Reservation\ConfirmationController::class, 'acceptreservation'])->name('confirmationaccept');
     Route::post('/confirmationreject', [App\Http\Controllers\Reservation\ConfirmationController::class, 'rejectreservation'])->name('confirmationreject');
+    Route::get('/confirmation/{confirmation_detail}/print', [App\Http\Controllers\Reservation\ConfirmationController::class, 'print'])->name('confirmationprint');
 
     //Confirmation
     Route::get('/matrimonies', [App\Http\Controllers\Reservation\MatrimonyController::class, 'index'])->name('matrimonylist');

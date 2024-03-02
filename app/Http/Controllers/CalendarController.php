@@ -73,19 +73,19 @@ class CalendarController extends Controller
             ]);
         }
 
-        $confirmations = Confirmation::accepted()->whereDate('date', '>=', $request->start)
-            ->whereDate('date', '<=', $request->end)
-            ->get();
+        // $confirmations = Confirmation::accepted()->whereDate('date', '>=', $request->start)
+        //     ->whereDate('date', '<=', $request->end)
+        //     ->get();
 
-        foreach ($confirmations as $confirmation) {
-            array_push($data, [
-                'id' => $confirmation->id,
-                'title' => 'Confirmation event for ' . $confirmation->name,
-                'start' => $confirmation->date,
-                'end' => $confirmation->date,
-                'color' => '#FFA500'
-            ]);
-        }
+        // foreach ($confirmations as $confirmation) {
+        //     array_push($data, [
+        //         'id' => $confirmation->id,
+        //         'title' => 'Confirmation event for ' . $confirmation->name,
+        //         'start' => $confirmation->date,
+        //         'end' => $confirmation->date,
+        //         'color' => '#FFA500'
+        //     ]);
+        // }
 
         $funerals = Funeral::accepted()->whereDate('date', '>=', $request->start)
             ->whereDate('date', '<=', $request->end)

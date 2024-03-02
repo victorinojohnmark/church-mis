@@ -19,6 +19,8 @@
                             <th scope="col">Sponsor 2</th>
                             <th scope="col">Contact Number</th>
                             <th scope="col">Address</th>
+                            <th scope="col">Option</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +35,7 @@
                             <td>{{ $detail->sponsor_2 }}</td>
                             <td>{{ $detail->contact_number }}</td>
                             <td>{{ $detail->present_address }}</td>
+                            <td><a href="{{ route('confirmationprint', ['confirmation_detail' => $detail->id]) }}" class="btn btn-success btn-sm">Print</a></td>
                         </tr>
                         @empty
                             

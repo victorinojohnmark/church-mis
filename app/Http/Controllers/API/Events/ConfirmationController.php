@@ -53,4 +53,6 @@ class ConfirmationController extends Controller
             throw $th;
         }
     }
+
+    
 }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Client;
+use App\Models\ConfirmationDetail;
 
 class ConfirmationController extends Controller
 {
@@ -115,10 +116,17 @@ class ConfirmationController extends Controller
 
     public function acceptreservation(Request $request)
     {
+        $data = $request->validate([
+            'accepted_message' => ['required'],
+            'date' => ['required', 'date', 'after_or_equal:' . Date::today()]
+        ]);
+
         $confirmation = Confirmation::findOrFail($request->id);
+
 
         $confirmation->is_accepted = true;
         $confirmation->accepted_message = $request->accepted_message;
+        $confirmation->date = $request->date;
         $confirmation->save();
 
         $confirmation->triggerReservationAccepted();
@@ -139,5 +147,10 @@ class ConfirmationController extends Controller
 
         session()->flash('success', 'The confirmation reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
+    }
+
+    public function print(Request $request, ConfirmationDetail $confirmation_detail)
+    {
+        return view('admin.confirmation.confirmationprint', ['confirmation_detail' => $confirmation_detail]);
     }
 }

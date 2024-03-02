@@ -11,8 +11,13 @@
                         <p>Please confirm to accept the reservation.</p>
                         <label for="" class="form-label fw-semibold">Message</label>
                         <textarea name="accepted_message" class="form-control mb-3" cols="30" rows="3" placeholder="Your message here"></textarea>
-                        <small><i class="fa-solid fa-circle-info text-primary"></i>
-                            <span class="text-secondary">An email will be sent to the user to confirm their reservation.</span></small>
+
+                        <label for="" class="form-label fw-semibold">Confirmation Date</label>
+                        <input type="date" name="date" id="date" class="form-control mb-3">
+                        <small>
+                            <i class="fa-solid fa-circle-info text-primary"></i> &nbsp;
+                            <span class="text-secondary">An email will be sent to the cathecist to confirm their reservation.</span>
+                        </small>
                     </div>
                     <div class="modal-footer">
                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -91,8 +91,8 @@
             <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">and <span style="display: inline-block;width: 95%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $confirmation_detail->mothers_name !!}</span></p>
             <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">Baptized on the 
                 <span style="display: inline-block;width: 25%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->birth_date)->format('jS') }}</span>
-                day of <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->birth_date)->format('F') }}</span>
-                , <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->birth_date)->format('Y') }}</span>
+                day of <span style="display: inline-block;width: 25%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->birth_date)->format('F') }}</span>
+                , <span style="display: inline-block;width: 25%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->birth_date)->format('Y') }}</span>
             </p>
             <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">in the church of <u><strong>St. Gregory the Greate Parish</strong></u></p>
             
@@ -100,9 +100,9 @@
 
             <h3 style="text-indent: 0pt;text-align: center; margin-bottom: 15px;">The Holy Sacrament of Confirmation</h3>
             <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">on the 
-                <span style="display: inline-block;width: 30%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->date)->format('jS') }}</span>
-                day of <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->date)->format('F') }}</span>
-                , <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->date)->format('Y') }}</span></p>
+                <span style="display: inline-block;width: 30%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->confirmation->date)->format('jS') }}</span>
+                day of <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->confirmation->date)->format('F') }}</span>
+                , <span style="display: inline-block;width: 27%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->confirmation->date)->format('Y') }}</span></p>
             {{-- <h3 style="text-indent: 0pt;text-align: center; margin-bottom: 15px;">according to the Rites of the <br> Roman Catholic Church</h3> --}}
             <p style="text-align: left;margin-bottom: 15px; ">by the Most Rev. <u><strong>FR. MARTY A. DIMARANAN</strong></u></p>
             <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">the Sponsors being <span style="display: inline-block;width: 80%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ $confirmation_detail->sponsor_1 }}</span></p>
