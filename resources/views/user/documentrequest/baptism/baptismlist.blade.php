@@ -51,7 +51,7 @@
                                                 <span class="badge bg-danger">Cancelled by Client</span>
                                             @endif
                                         </td>
-                                        <td>{{ $baptismRequest->baptismal_date }}</td>
+                                        <td>{{ $baptismRequest->baptismal_date ?? 'N/A' }}</td>
                                         <td>{{ $baptismRequest->requested_date }}</td>
                                         <td>
                                             @if ($baptismRequest->is_active && !$baptismRequest->is_rejected && !$baptismRequest->is_ready)

@@ -37,6 +37,11 @@
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
+        @error('is_unknown_date')
+            <span class="invalid-feedback d-block text-left" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
 
     {{-- <div class="col-md-6 mb-3">
@@ -50,6 +55,16 @@
         <label class="form-label">Birth Date</label>
         <input type="date" name="birth_date" class="form-control mb-3" value="{{ old('birth_date', $baptismRequest->birth_date ?? null) }}" placeholder="..." {{ $baptismRequest->is_ready ? 'readonly' : 'required' }}>
         @error('birth_date')
+            <span class="invalid-feedback d-block text-left" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Birth Place</label>
+        <input type="text" name="birth_place" class="form-control mb-3" value="{{ old('birth_place', $baptismRequest->birth_place ?? null) }}" placeholder="..." {{ $baptismRequest->is_ready ? 'readonly' : 'required' }}>
+        @error('birth_place')
             <span class="invalid-feedback d-block text-left" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

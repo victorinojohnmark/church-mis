@@ -67,7 +67,7 @@ class DocumentRequestBaptismController extends Controller
             'sex' => ['required', 'in:Male,Female'],
             'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling'],
             'contact_number' => ['required','digits:11'],
-            'is_unknown_date' => ['nullable', 'boolean'],
+            'is_unknown_date' => ['nullable'],
             'baptismal_date' => ['required_if:is_unknown_date,null', 'date'],
             'father_name' => ['required'],
             'mother_name' => ['required'],
@@ -78,7 +78,7 @@ class DocumentRequestBaptismController extends Controller
 
         // dd($request->all());
 
-        dd($request->is_unknown_date);
+        // dd($request->is_unknown_date);
 
         $data['baptism_date'] = $request->is_unknown_date ? null : $request->baptismal_date;
 
