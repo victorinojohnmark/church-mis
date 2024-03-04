@@ -60,7 +60,7 @@
         @forelse($baptismRequests as $baptismRequest)
             <tr>
                 <td>{!! $baptismRequest->name !!}</td>
-                <td>{!! $baptismRequest->baptismal_date !!}</td>
+                <td>{!! $baptismRequest->baptismal_date ?? 'N/A' !!}</td>
                 <td>{!! $baptismRequest->contact_number !!}</td>
                 <td>{!! $baptismRequest->status !!}</td>
                 <td>{!! $baptismRequest->purpose !!}</td>
@@ -96,11 +96,21 @@
                 },
                 dom: 'Blfrtip',
                 buttons: [
-                    'copy', 'excel', 'print'
+                    {
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':not(:eq(3))' // Exclude 4th column (index 3)
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':not(:eq(3))' // Exclude 4th column (index 3)
+                        }
+                    },
+                    'print'
                 ]
             });
-
-
         });
-    </script>
+        </script>
 @endpush

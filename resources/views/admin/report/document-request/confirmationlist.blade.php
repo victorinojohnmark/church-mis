@@ -88,19 +88,29 @@
 
 @push('scripts')
     <script src="/vendor/datatables.net/datatables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#confirmation-table').DataTable({
-                oLanguage: {
-                    sSearch: "Quick Search"
+<script>
+    $(document).ready(function () {
+        $('#confirmation-table').DataTable({
+            oLanguage: {
+                sSearch: "Quick Search"
+            },
+            dom: 'Blfrtip',
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: ':not(:eq(3))' // Exclude 4th column (index 3)
+                    }
                 },
-                dom: 'Blfrtip',
-                buttons: [
-                    'copy', 'excel', 'print'
-                ]
-            });
-
-
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: ':not(:eq(3))' // Exclude 4th column (index 3)
+                    }
+                },
+                'print'
+            ]
         });
+    });
     </script>
 @endpush
