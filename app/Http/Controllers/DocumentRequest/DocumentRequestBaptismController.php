@@ -56,6 +56,9 @@ class DocumentRequestBaptismController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
+        // dd($request->is_unknown_date);
+
         $data = $request->validate([
             'user_id' => ['required', 'integer'],
             'name' => ['required'],
@@ -64,13 +67,20 @@ class DocumentRequestBaptismController extends Controller
             'sex' => ['required', 'in:Male,Female'],
             'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling'],
             'contact_number' => ['required','digits:11'],
-            'baptismal_date' => ['nullable', 'date'],
+            'is_unknown_date' => ['nullable', 'boolean'],
+            'baptismal_date' => ['required_if:is_unknown_date,null', 'date'],
             'father_name' => ['required'],
             'mother_name' => ['required'],
             'address' => ['required'],
             'purpose' => ['required'],
             'requested_date' => ['required', 'date']
         ]);
+
+        // dd($request->all());
+
+        dd($request->is_unknown_date);
+
+        $data['baptism_date'] = $request->is_unknown_date ? null : $request->baptismal_date;
 
 
          if($request->id) {

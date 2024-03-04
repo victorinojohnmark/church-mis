@@ -73,13 +73,16 @@
             if (unknownDateCheckbox.checked) {
                 baptismalDateInput.value = ''; // Clear the value
                 baptismalDateInput.disabled = true; // Disable the input
+                baptismalDateInput.required = false;
             } else {
                 baptismalDateInput.disabled = false; // Enable the input
+                baptismalDateInput.required = true;
             }
         }
 
         // Add event listener to checkbox change event
         unknownDateCheckbox.addEventListener('change', handleCheckboxChange);
+        unknownDateCheckbox.addEventListener('input', handleCheckboxChange);
 
         // Initial execution
         handleCheckboxChange();
