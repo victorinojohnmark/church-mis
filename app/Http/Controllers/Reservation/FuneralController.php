@@ -61,6 +61,7 @@ class FuneralController extends Controller
         //     return $selectedTimestamp >= $startTime && $selectedTimestamp <= $endTime;
         // });
 
+
         $data = $request->validate([
             'date' => [
                 'required',
