@@ -131,4 +131,11 @@ class BlessingController extends Controller
         session()->flash('success', 'The blessing reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
+
+    public function delete(Blessing $blessing) 
+    {
+        $blessing->delete();
+        session()->flash('success', 'Blessing reservation deleted successfully.');
+        return redirect()->back();
+    }
 }

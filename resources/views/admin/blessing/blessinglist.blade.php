@@ -47,6 +47,11 @@
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#blessingRejectModal{{ $blessing->id }}">Reject</button>
                     @include('admin.blessing.blessingrejectmodal')
                 @endif
+
+                @if($blessing->is_accepted)
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#blessingModalDelete{{ $blessing->id }}">Delete</button>
+                    @include('admin.blessing.blessingdeletemodal')
+                @endif
             </td>
         </tr>
         @empty

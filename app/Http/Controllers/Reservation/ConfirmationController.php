@@ -153,4 +153,11 @@ class ConfirmationController extends Controller
     {
         return view('admin.confirmation.confirmationprint', ['confirmation_detail' => $confirmation_detail]);
     }
+
+    public function delete(Confirmation $confirmation) 
+    {
+        $confirmation->delete();
+        session()->flash('success', 'Confirmation reservation deleted successfully.');
+        return redirect()->back();
+    }
 }

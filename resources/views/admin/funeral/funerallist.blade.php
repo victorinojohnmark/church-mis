@@ -46,6 +46,11 @@
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#funeralRejectModal{{ $funeral->id }}">Reject</button>
                     @include('admin.funeral.funeralrejectmodal')
                 @endif
+
+                @if($funeral->is_accepted)
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#funeralModalDelete{{ $funeral->id }}">Delete</button>
+                    @include('admin.funeral.funeraldeletemodal')
+                @endif
             </td>
         </tr>
         @empty

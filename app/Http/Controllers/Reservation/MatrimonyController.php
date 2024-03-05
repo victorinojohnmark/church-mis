@@ -148,4 +148,11 @@ class MatrimonyController extends Controller
         session()->flash('success', 'The matrimony reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
+
+    public function delete(Matrimony $matrimony) 
+    {
+        $matrimony->delete();
+        session()->flash('success', 'Wedding reservation deleted successfully.');
+        return redirect()->back();
+    }
 }

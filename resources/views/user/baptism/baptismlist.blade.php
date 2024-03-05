@@ -73,25 +73,8 @@
                             <td>{{ $baptism->birth_date }}</td>
                             <td>{{ $baptism->created_at }}</td>
                             <td>
-                                <a href="{{ route('clientbaptismshow', ['baptism' => $baptism->id]) }}" class="btn btn-primary btn-sm">View</button>
-                                {{-- <div class="modal fade" id="baptismModal{{ $baptism->id }}" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5">Baptism Reservation Form</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-                                            <form action="{{ route('clientbaptismsave') }}" method="post">
-                                                <div class="modal-body">
-                                                    @include('user.baptism.baptismform')
-                                                <div class="modal-footer">
-                                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div> --}}
+                                <a href="{{ route('clientbaptismshow', ['baptism' => $baptism->id]) }}" class="btn btn-primary btn-sm">View</a>
+                                
                             </td>
                         </tr>
                         @empty

@@ -110,32 +110,38 @@ Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function()
     Route::get('/baptisms/{baptism}/print', [App\Http\Controllers\Reservation\BaptismController::class, 'print'])->name('baptismprint');
     Route::post('/baptismaccept', [App\Http\Controllers\Reservation\BaptismController::class, 'acceptreservation'])->name('baptismaccept');
     Route::post('/baptismreject', [App\Http\Controllers\Reservation\BaptismController::class, 'rejectreservation'])->name('baptismreject');
+    Route::delete('/baptism/{baptism}', [App\Http\Controllers\Reservation\BaptismController::class, 'delete'])->name('baptismdelete');
 
     //Communion
     Route::get('/communions', [App\Http\Controllers\Reservation\CommunionController::class, 'index'])->name('communionlist');
     Route::post('/communionaccept', [App\Http\Controllers\Reservation\CommunionController::class, 'acceptreservation'])->name('communionaccept');
     Route::post('/communionreject', [App\Http\Controllers\Reservation\CommunionController::class, 'rejectreservation'])->name('communionreject');
+    Route::delete('/communion/{communion}', [App\Http\Controllers\Reservation\CommunionController::class, 'delete'])->name('communiondelete');
 
     //Confirmation
     Route::get('/confirmations', [App\Http\Controllers\Reservation\ConfirmationController::class, 'index'])->name('confirmationlist');
     Route::post('/confirmationaccept', [App\Http\Controllers\Reservation\ConfirmationController::class, 'acceptreservation'])->name('confirmationaccept');
     Route::post('/confirmationreject', [App\Http\Controllers\Reservation\ConfirmationController::class, 'rejectreservation'])->name('confirmationreject');
     Route::get('/confirmation/{confirmation_detail}/print', [App\Http\Controllers\Reservation\ConfirmationController::class, 'print'])->name('confirmationprint');
+    Route::delete('/confirmation/{confirmation}', [App\Http\Controllers\Reservation\ConfirmationController::class, 'delete'])->name('confirmationdelete');
 
     //Confirmation
     Route::get('/matrimonies', [App\Http\Controllers\Reservation\MatrimonyController::class, 'index'])->name('matrimonylist');
     Route::post('/matrimonyaccept', [App\Http\Controllers\Reservation\MatrimonyController::class, 'acceptreservation'])->name('matrimonyaccept');
     Route::post('/matrimonyreject', [App\Http\Controllers\Reservation\MatrimonyController::class, 'rejectreservation'])->name('matrimonyreject');
+    Route::delete('/matrimony/{matrimony}', [App\Http\Controllers\Reservation\MatrimonyController::class, 'delete'])->name('matrimonydelete');
 
     //Blessing
     Route::get('/blessings', [App\Http\Controllers\Reservation\BlessingController::class, 'index'])->name('blessinglist');
     Route::post('/blessingaccept', [App\Http\Controllers\Reservation\BlessingController::class, 'acceptreservation'])->name('blessingaccept');
     Route::post('/blessingreject', [App\Http\Controllers\Reservation\BlessingController::class, 'rejectreservation'])->name('blessingreject');
+    Route::delete('/blessing/{blessing}', [App\Http\Controllers\Reservation\BlessingController::class, 'delete'])->name('blessingdelete');
 
     //Funeral
     Route::get('/funerals', [App\Http\Controllers\Reservation\FuneralController::class, 'index'])->name('funerallist');
     Route::post('/funeralaccept', [App\Http\Controllers\Reservation\FuneralController::class, 'acceptreservation'])->name('funeralaccept');
     Route::post('/funeralreject', [App\Http\Controllers\Reservation\FuneralController::class, 'rejectreservation'])->name('funeralreject');
+    Route::delete('/funeral/{funeral}', [App\Http\Controllers\Reservation\FuneralController::class, 'delete'])->name('funeraldelete');
 
 
     ### REPORT ###

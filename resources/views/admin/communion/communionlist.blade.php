@@ -41,6 +41,11 @@
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#communionRejectModal{{ $communion->id }}">Reject</button>
                     @include('admin.communion.communionrejectmodal')
                 @endif
+
+                @if($communion->is_accepted)
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#communionModalDelete{{ $communion->id }}">Delete</button>
+                    @include('admin.communion.communiondeletemodal')
+                @endif
             </td>
         </tr>
         @empty

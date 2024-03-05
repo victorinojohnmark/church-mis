@@ -49,6 +49,11 @@
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationRejectModal{{ $confirmation->id }}">Reject</button>
                     @include('admin.confirmation.confirmationrejectmodal')
                 @endif
+
+                @if($confirmation->is_accepted)
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationModalDelete{{ $confirmation->id }}">Delete</button>
+                    @include('admin.confirmation.confirmationdeletemodal')
+                @endif
             </td>
         </tr>
         @empty

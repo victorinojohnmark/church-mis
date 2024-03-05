@@ -132,4 +132,11 @@ class CommunionController extends Controller
         session()->flash('success', 'The communion reservation has been rejected, an email notification will be sent to the client');
         return redirect()->back();
     }
+
+    public function delete(Communion $communion) 
+    {
+        $communion->delete();
+        session()->flash('success', 'Communion reservation deleted successfully.');
+        return redirect()->back();
+    }
 }

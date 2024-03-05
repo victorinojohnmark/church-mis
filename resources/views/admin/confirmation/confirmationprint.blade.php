@@ -87,8 +87,8 @@
             <h3 style="text-indent: 0pt;text-align: center;">This certifies</h3>
             <br>
             <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">that <span style="display: inline-block;width: 95%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $confirmation_detail->name !!}</span></p>
-            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">child of &nbsp; <span style="display: inline-block;width: 90%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $confirmation_detail->fathers_name !!}</span></p>
-            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">and <span style="display: inline-block;width: 95%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $confirmation_detail->mothers_name !!}</span></p>
+            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">child of &nbsp; <span style="display: inline-block;width: 90%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $confirmation_detail->father !!}</span></p>
+            <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">and <span style="display: inline-block;width: 95%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{!! $confirmation_detail->mother !!}</span></p>
             <p style="text-indent: 0pt;text-align: left;margin-bottom: 15px;">Baptized on the 
                 <span style="display: inline-block;width: 25%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->birth_date)->format('jS') }}</span>
                 day of <span style="display: inline-block;width: 25%;border-bottom: 1px solid black; text-align: center; font-size: 18px; font-weight: bold;">{{ \Carbon\Carbon::parse($confirmation_detail->birth_date)->format('F') }}</span>

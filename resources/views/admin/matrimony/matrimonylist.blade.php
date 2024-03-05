@@ -42,6 +42,11 @@
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#matrimonyRejectModal{{ $matrimony->id }}">Reject</button>
                     @include('admin.matrimony.matrimonyrejectmodal')
                 @endif
+
+                @if($matrimony->is_accepted)
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#matrimonyModalDelete{{ $matrimony->id }}">Delete</button>
+                    @include('admin.matrimony.matrimonydeletemodal')
+                @endif
             </td>
         </tr>
         @empty

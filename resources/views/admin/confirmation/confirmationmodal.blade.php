@@ -35,7 +35,7 @@
                             <td>{{ $detail->sponsor_2 }}</td>
                             <td>{{ $detail->contact_number }}</td>
                             <td>{{ $detail->present_address }}</td>
-                            <td><a href="{{ route('confirmationprint', ['confirmation_detail' => $detail->id]) }}" class="btn btn-success btn-sm">Print</a></td>
+                            <td><a href="{{ route('confirmationprint', ['confirmation_detail' => $detail->id]) }}" target="_blank" class="btn btn-success btn-sm">Print</a></td>
                         </tr>
                         @empty
                             
