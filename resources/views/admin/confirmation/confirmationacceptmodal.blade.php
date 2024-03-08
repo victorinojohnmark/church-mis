@@ -16,7 +16,7 @@
                         <input type="date" name="date" id="date" class="form-control mb-3">
                         <small>
                             <i class="fa-solid fa-circle-info text-primary"></i> &nbsp;
-                            <span class="text-secondary">An email will be sent to the cathecist to confirm their reservation.</span>
+                            <span class="text-secondary">An email will be sent to the catechist to confirm their reservation.</span>
                         </small>
                     </div>
                     <div class="modal-footer">

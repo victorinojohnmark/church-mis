@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="py-3">
-    <a class="btn btn-success" href="{{ route('cathecistcreate') }}">Add Cathecist</a>
+    <a class="btn btn-success" href="{{ route('cathecistcreate') }}">Add Catechist</a>
     {{-- @include('admin.cathecist.cathecistdetailmodal') --}}
 </div>
 <div class="table-responsive">

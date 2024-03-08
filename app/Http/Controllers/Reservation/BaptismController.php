@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Reservation\Baptism;
 use App\Models\Client;
 
+use App\Rules\UniqueBaptismDateAndTime;
+
 class BaptismController extends Controller
 {
 
@@ -110,7 +112,7 @@ class BaptismController extends Controller
 
         $data = $request->validate([
             'name' => ['required'],
-            'date' => ['required', 'date', 'special_date'],
+            'date' => ['required', 'date', 'special_date', new UniqueBaptismDateAndTime()],
             'time' => ['required'],
             'sex' => ['required', 'in:Male,Female'],
             'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling,Other'],

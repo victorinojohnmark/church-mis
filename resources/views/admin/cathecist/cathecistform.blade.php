@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'Cathecists')
+@section('title', 'Catechists')
 
 @section('content')
 <div class="py-3">
-    <a class="btn btn-success" href="{{ route('cathecistlist') }}">Back to Cathecist List</a>
+    <a class="btn btn-success" href="{{ route('cathecistlist') }}">Back to Catechist List</a>
 </div>
 
 <form action="{{ route('catheciststore', ['id' => $cathecist->id]) }}" class="mb-3" method="post">

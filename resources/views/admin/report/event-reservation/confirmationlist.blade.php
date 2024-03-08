@@ -6,7 +6,7 @@
 <div class="py-3">
     @include('admin.report.event-reservation.event-reservation-menu') 
 
-    <div class="card rounded-0">
+    {{-- <div class="card rounded-0">
         <div class="card-header bg-light" data-bs-toggle="collapse" href="#collapseSearchPane">
             <strong>Search Panel</strong>
             
@@ -42,32 +42,38 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 <div class="table-responsive">
     <table id="confirmation-table" class="table table-hover table-bordered">
     
         <thead>
             <tr>
-                <th>Name</th>
+                {{-- <th>Name</th> --}}
                 <th>Confirmation Date</th>
-                <th>Contact #</th>
-                <th>Present Address</th>
+                {{-- <th>Contact #</th> --}}
+                {{-- <th>Present Address</th> --}}
                 <th>Status</th>
                 <th>Date Submitted</th>
                 <th>Submitted By</th>
+                <th>Option</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($confirmations as $confirmation)
             <tr>
-                <td>{!! $confirmation->name !!}</td>
+                {{-- <td>{!! $confirmation->name !!}</td> --}}
                 <td>{!! $confirmation->date !!}</td>
-                <td>{!! $confirmation->contact_number !!}</td>
-                <td>{!! $confirmation->present_address !!}</td>
+                {{-- <td>{!! $confirmation->contact_number !!}</td> --}}
+                {{-- <td>{!! $confirmation->present_address !!}</td> --}}
                 <td>{!! $confirmation->status !!}</td>
                 <td>{!! $confirmation->created_at->format('Y-m-d') !!}</td>
                 <td>{!! $confirmation->createdBy->name !!}</td>
+                <td>
+                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#confirmationModal{{ $confirmation->id }}">View</button>
+                    @include('admin.report.event-reservation.confirmationmodal')
+                </td>
+                
             </tr>
             @empty
             @endforelse
@@ -97,7 +103,7 @@
                 oLanguage: {
                     sSearch: "Quick Search"
                 },
-                dom: 'Blfrtip',
+                dom: 'lfrtip',
                 buttons: [
                     'copy', 'excel', 'print'
                 ]
@@ -105,5 +111,21 @@
 
 
         });
+
+        $(document).ready(function () {
+            $('#confirmationDetailTable').DataTable({
+                oLanguage: {
+                    sSearch: "Quick Search"
+                },
+                dom: 'Blfrtip',
+                buttons: [
+                    'excel','print'
+                ]
+            });
+
+
+        });
+
+        
     </script>
 @endpush

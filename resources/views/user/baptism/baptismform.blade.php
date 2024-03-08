@@ -84,7 +84,7 @@
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Desired Date</label>
-        <input type="date" name="date" value="{{ old('date', $baptism->date ?? null) }}" class="form-control" placeholder="..." required>
+        <input type="date" name="date" value="{{ old('date', $baptism->date ?? null) }}" min={{ date('Y-m-d') }} class="form-control" placeholder="..." required>
         @error('date')
             <span class="invalid-feedback d-block text-left" role="alert">
                 <strong>{{ $message }}</strong>

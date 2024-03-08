@@ -28,7 +28,7 @@
             <label class="form-label">Baptismal Date</label>
             <div class="unknown">
                 <input type="checkbox" name="is_unknown_date" class="form-check-input" {{ old('is_unknown_date', $baptismRequest->is_unknown_date) == "on" ? 'checked' : '' }} {{ $baptismRequest->is_ready ? 'readonly' : '' }}>
-                <label class="form-check-label">&nbsp; Unknown date of baptismal</label>
+                <label class="form-check-label">&nbsp; Unknown baptismal date</label>
             </div>
         </div>
         <input type="date" name="baptismal_date" class="form-control mb-3" value="{{ old('baptismal_date', $baptismRequest->baptismal_date ?? null) }}" placeholder="..." {{ $baptismRequest->is_ready ? 'readonly' : '' }}>

@@ -11,6 +11,16 @@
             {{ refBaptism }}
             {{ selectedDate }} -->
         </div>
+
+        <div class="col-md-12 mb-3">
+            <div class="form-group form-check">
+                <input type="checkbox" name="is_special" v-model="refBaptism.is_special" class="form-check-input">
+                <label class="form-check-label">Special Schedule</label>
+                <small class="text-danger">{{ systemStore.error.baptism && systemStore.error.baptism.is_special ? systemStore.error.baptism.is_special[0] : '' }}</small>
+
+            </div>
+        </div>
+        
         <div class="col-md-12 mb-3">
             <label class="form-label">Name of the Baby</label>
             <input type="text" name="name" v-model="refBaptism.name" class="form-control" placeholder="..." required="">
@@ -59,14 +69,7 @@
             <small class="text-danger">{{ systemStore.error.baptism && systemStore.error.baptism.place_of_birth ? systemStore.error.baptism.place_of_birth[0] : '' }}</small>
 
         </div>
-        <div class="col-md-12 mb-3">
-            <div class="form-group form-check">
-                <input type="checkbox" name="is_special" v-model="refBaptism.is_special" class="form-check-input">
-                <label class="form-check-label">Special Schedule</label>
-                <small class="text-danger">{{ systemStore.error.baptism && systemStore.error.baptism.is_special ? systemStore.error.baptism.is_special[0] : '' }}</small>
-
-            </div>
-        </div>
+        
         <div class="col-md-6 mb-3">
             <label class="form-label">Birth Date</label>
             <input type="date" name="birth_date" v-model="refBaptism.birth_date" class="form-control" placeholder="..." required="">
