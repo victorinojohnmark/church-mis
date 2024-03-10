@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Rules\BaptismSpecialDate;
 use App\Rules\BaptismSpecialTime;
+use App\Rules\UniqueBaptismDateAndTime;
 
 class StoreBaptismRequest extends FormRequest
 {
@@ -20,7 +21,7 @@ class StoreBaptismRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'date' => ['required', 'date', new BaptismSpecialDate()],
+            'date' => ['required', 'date', new BaptismSpecialDate(), new UniqueBaptismDateAndTime()],
             'time' => ['required', new BaptismSpecialTime()],
             'sex' => ['required', 'in:Male,Female'],
             'relationship' => ['required', 'in:Grandmother,Grandfather,Mother,Father,Sibling,Other'],
