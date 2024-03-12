@@ -31,6 +31,9 @@
                         @else
                             <span class="badge bg-danger">Cancelled by Client</span>
                         @endif
+                        @if (!$baptismRequest->baptism)
+                        <span class="badge bg-danger">No Record</span>
+                        @endif
                     </td>
                     <td>{{ $baptismRequest->baptismal_date ?? 'N/A' }}</td>
                     <td>{{ $baptismRequest->requested_date }}</td>
@@ -42,6 +45,9 @@
                             @include('admin.documentrequest.baptism.baptismrejectmodal')
                         @endif
                         
+                        @if ($baptismRequest->baptism)
+                            <a href="{{ route('baptismprint', ['baptism' => $baptismRequest->baptism->id]) }}" target="_blank"  class="btn btn-success btn-sm">Print Preview</a>
+                        @endif
                     </td>
                 </tr>
             @empty

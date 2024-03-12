@@ -48,7 +48,7 @@
                     @if ($baptism->is_accepted)
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#baptismModalDelete{{ $baptism->id }}">Delete</button>
                     @include('admin.baptism.baptismdeletemodal')
-                    <a href="{{ route('baptismprint', ['baptism' => $baptism->id]) }}" target="_blank"  class="btn btn-success btn-sm">Print Preview</a>
+                    {{-- <a href="{{ route('baptismprint', ['baptism' => $baptism->id]) }}" target="_blank"  class="btn btn-success btn-sm">Print Preview</a> --}}
                     @endif
                 </td>
             </tr>

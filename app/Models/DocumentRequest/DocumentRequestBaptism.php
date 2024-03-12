@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Client;
+use App\Models\Reservation\Baptism;
 
 class DocumentRequestBaptism extends Model
 {
@@ -30,6 +31,11 @@ class DocumentRequestBaptism extends Model
     ];
 
     protected $observables = ['setReady', 'reject'];
+
+    public function baptism()
+    {
+        return $this->belongsTo(Baptism::class, 'name', 'name')->where('date', $this->baptismal_date)->where('birth_date', $this->birth_date)->latest();
+    }
 
     public function createdBy()
     {
