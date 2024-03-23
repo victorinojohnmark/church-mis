@@ -46,7 +46,7 @@
                                                 @elseif ($matrimonyRequest->is_ready)
                                                     <span class="badge bg-success">Ready for pick up</span>
                                                 @else
-                                                    <span class="badge bg-warning">Pendings</span>
+                                                    <span class="badge bg-warning">Pending</span>
                                                 @endif
                                             @else
                                                 <span class="badge bg-danger">Cancelled by Client</span>

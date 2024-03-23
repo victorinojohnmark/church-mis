@@ -43,7 +43,7 @@ class DocumentRequestDeath extends Model
             } elseif($this->is_ready) {
                 return 'Ready for pick up';
             } else {
-                return 'Pendings';
+                return 'Pending';
             }
             
         } else {
