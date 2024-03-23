@@ -1,35 +1,31 @@
-<div class="modal fade" id="confirmationModal{{ $confirmation->id }}" tabindex="-1">
+<div class="modal fade" id="communionModal{{ $communion->id }}" tabindex="-1">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Confirmation Reservation</h1>
+                <h1 class="modal-title fs-5">Communion Reservation</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
                 <div class="modal-body">
-                <table class="table" id="confirmationDetailTable">
+                <table class="table" id="communionDetailTable">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Birth Date</th>
-                            <th scope="col">Father</th>
-                            <th scope="col">Mother</th>
-                            <th scope="col">Sponsor 1</th>
-                            <th scope="col">Sponsor 2</th>
+                            <th scope="col">Guardian</th>
                             <th scope="col">Contact Number</th>
                             <th scope="col">Address</th>
                         </tr>
                     </thead>
+
+                    {{ $communion }}
                     <tbody>
-                        @forelse ($confirmation->details as $detail)
+                        @forelse ($communion->details as $detail)
                         <tr>
                             <th scope="row">{{ $loop->index + 1 }}</th>
                             <td>{{ $detail->name }}</td>
                             <td>{{ $detail->birth_date }}</td>
-                            <td>{{ $detail->father }}</td>
-                            <td>{{ $detail->mother }}</td>
-                            <td>{{ $detail->sponsor_1 }}</td>
-                            <td>{{ $detail->sponsor_2 }}</td>
+                            <td>{{ $detail->guardian }}</td>
                             <td>{{ $detail->contact_number }}</td>
                             <td>{{ $detail->present_address }}</td>
                         </tr>

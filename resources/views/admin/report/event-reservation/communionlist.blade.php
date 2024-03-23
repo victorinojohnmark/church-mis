@@ -49,25 +49,30 @@
     
         <thead>
             <tr>
-                <th>Name</th>
+                {{-- <th>Name</th> --}}
                 <th>Communion Date</th>
-                <th>Contact #</th>
-                <th>Present Address</th>
+                {{-- <th>Contact #</th> --}}
+                {{-- <th>Present Address</th> --}}
                 <th>Status</th>
                 <th>Date Submitted</th>
                 <th>Submitted By</th>
+                <th>Option</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($communions as $communion)
             <tr>
-                <td>{!! $communion->name !!}</td>
-                <td>{!! $communion->date !!}</td>
-                <td>{!! $communion->contact_number !!}</td>
-                <td>{!! $communion->present_address !!}</td>
+                {{-- <td>{!! $communion->name !!}</td> --}}
+                <td>{!! $communion->date ?? 'N/A' !!}</td>
+                {{-- <td>{!! $communion->contact_number !!}</td> --}}
+                {{-- <td>{!! $communion->present_address !!}</td> --}}
                 <td>{!! $communion->status !!}</td>
                 <td>{!! $communion->created_at->format('Y-m-d') !!}</td>
                 <td>{!! $communion->createdBy->name !!}</td>
+                <td>
+                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#communionModal{{ $communion->id }}">View</button>
+                    @include('admin.report.event-reservation.communionmodal')
+                </td>
             </tr>
             @empty
             @endforelse

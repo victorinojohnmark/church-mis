@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Cathecists')
+@section('title', 'Catechists')
 
 @section('content')
 <div class="py-3">
